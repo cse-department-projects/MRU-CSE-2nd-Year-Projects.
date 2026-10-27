@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D-MERS — Loading</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1E3A8A;
+      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      user-select: none;
+      -webkit-app-region: drag;
+      overflow: hidden;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      -webkit-app-region: no-drag;
+    }
+
+    .logo-wrapper {
+      position: relative;
+      width: 96px;
+      height: 96px;
+    }
+
+    .logo-bg {
+      width: 96px;
+      height: 96px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .ping {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #EF4444;
+      animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite;
+    }
+
+    .ping-static {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #EF4444;
+    }
+
+    @keyframes ping {
+      75%, 100% { transform: scale(2); opacity: 0; }
+    }
+
+    .brand-name {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: white;
+    }
+
+    .brand-sub {
+      font-size: 13px;
+      color: #BFDBFE;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .brand-tagline {
+      font-size: 11px;
+      color: #93C5FD;
+      font-style: italic;
+    }
+
+    .progress-wrapper {
+      width: 256px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, #60A5FA, #EF4444);
+      width: 0%;
+      transition: width 0.08s linear;
+    }
+
+    .progress-text {
+      text-align: center;
+      font-size: 11px;
+      color: #93C5FD;
+    }
+
+    .bottom-note {
+      position: absolute;
+      bottom: 24px;
+      font-size: 11px;
+      color: #6B8FCE;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="logo-wrapper">
+      <div class="logo-bg">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="rgba(239,68,68,0.3)" stroke="#EF4444" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="ping"></div>
+      <div class="ping-static"></div>
+    </div>
+
+    <div style="text-align:center">
+      <div class="brand-name">D-MERS</div>
+      <div class="brand-sub">Disaster Management & Emergency Response System</div>
+      <div class="brand-tagline" style="margin-top:4px">"One Platform. Faster Response. Safer Communities."</div>
+    </div>
+
+    <div class="progress-wrapper">
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-text" id="progressText">Initializing Emergency Grid...</div>
+    </div>
+  </div>
+
+  <div class="bottom-note">D-MERS v1.0 • Emergency Response Platform</div>
+
+  <script>
+    const bar = document.getElementById('progressBar');
+    const text = document.getElementById('progressText');
+    const messages = [
+      'Initializing Emergency Grid...',
+      'Loading Response Protocols...',
+      'Connecting to Command Network...',
+      'Authenticating System Access...',
+      'Ready for Operations',
+    ];
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 2.5;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+      }
+      bar.style.width = progress + '%';
+      const msgIndex = Math.floor((progress / 100) * (messages.length - 1));
+      text.textContent = messages[Math.min(msgIndex, messages.length - 1)];
+    }, 50);
+  </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+{
+  "name": "d-mers-emergency-response-system",
+  "productName": "D-MERS",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Disaster Management & Emergency Response System",
+  "type": "module",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "tsc --noEmit",
+    "preview": "vite preview",
+    "electron:dev": "concurrently \"npm run dev\" \"cross-env NODE_ENV=development electron .\"",
+    "electron:build": "npm run build && electron-builder --win --x64",
+    "package:windows": "npm run build && electron-builder --win --x64",
+    "icons": "powershell -ExecutionPolicy Bypass -File desktop/create-icons.ps1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.475.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.2.4",
+    "cross-env": "^7.0.3",
+    "electron": "^33.4.11",
+    "electron-builder": "^24.13.3",
+    "postcss": "^8.5.2",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  },
+  "author": "D-MERS Team",
+  "build": {
+    "appId": "in.gov.dmers.app",
+    "productName": "D-MERS",
+    "copyright": "Copyright 2026 D-MERS Emergency Response System",
+    "directories": {
+      "output": "release"
+    },
+    "protocols": [
+      {
+        "name": "D-MERS Protocol",
+        "schemes": [
+          "dmers"
+        ]
+      }
+    ],
+    "files": [
+      "dist/**/*",
+      "desktop/**/*",
+      "!desktop/create-icons.ps1",
+      "!desktop/generate-icons.cjs",
+      "!desktop/main.js"
+    ],
+    "extraMetadata": {
+      "main": "desktop/main.cjs"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "desktop/icons/icon.ico",
+      "publisherName": "D-MERS Emergency Response System"
+    },
+    "nsis": {
+      "artifactName": "D-MERS-Setup.exe",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "D-MERS",
+      "installerIcon": "desktop/icons/icon.ico",
+      "uninstallerIcon": "desktop/icons/icon.ico",
+      "deleteAppDataOnUninstall": false,
+      "perMachine": false,
+      "license": "desktop/LICENSE.txt"
+    },
+    "portable": {
+      "artifactName": "D-MERS-Portable.exe"
+    },
+    "asar": true,
+    "asarUnpack": [
+      "desktop/icons/**/*",
+      "desktop/splash.html"
+    ],
+    "compression": "maximum"
+  }
+}

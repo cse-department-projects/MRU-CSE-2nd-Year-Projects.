@@ -1,0 +1,22 @@
+﻿.env
+.env.*
+!.env.example
+
+node_modules/
+dist/
+target/
+release/
+
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+.DS_Store
+Thumbs.db
+
+# Local database configuration
+config/db.properties
+
+bin/
+tsconfig.tsbuildinfo

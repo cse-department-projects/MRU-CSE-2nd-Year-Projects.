@@ -1,0 +1,17 @@
+D-MERS — Disaster Management & Emergency Response System
+Copyright (c) 2026 D-MERS Project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to use
+the Software for personal, educational, and non-commercial purposes.
+
+This software is provided for college academic project demonstration purposes.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+D-MERS is an academic project and does not represent an official government
+emergency management platform.
+
+For emergency assistance, please contact your local emergency services.
