@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | SmartMedication</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #193653;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(74, 210, 215, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 70%,
+                    rgba(100, 181, 246, 0.16),
+                    transparent 30%
+                ),
+                #f5fbfd;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 75px;
+            padding: 0 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(255,255,255,0.95);
+
+            border-bottom: 1px solid #e1edf1;
+
+            box-shadow:
+                0 5px 25px
+                rgba(40,100,120,0.07);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #159da5;
+
+            text-decoration: none;
+
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #58758d;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #159da5;
+        }
+
+        .logout {
+            border: none;
+            background: #ffe5e5;
+            color: #c0392b;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+
+            padding: 45px 25px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 36px;
+            margin-bottom: 7px;
+        }
+
+        .welcome p {
+            color: #718797;
+        }
+
+        /* STAT CARDS */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e3edf1;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40,100,120,0.07);
+        }
+
+        .stat-icon {
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #718797;
+            font-size: 13px;
+        }
+
+        /* PROGRESS */
+
+        .progress-card {
+            background: white;
+
+            border: 1px solid #e3edf1;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40,100,120,0.07);
+        }
+
+        .progress-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 14px;
+        }
+
+        .progress-header h2 {
+            font-size: 20px;
+        }
+
+        .progress-percent {
+            color: #159da5;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            height: 13px;
+
+            background: #eaf2f4;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background: #159da5;
+
+            border-radius: 20px;
+
+            transition: width 0.5s ease;
+        }
+
+        /* TODAY */
+
+        .section {
+            background: white;
+
+            border: 1px solid #e3edf1;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40,100,120,0.07);
+        }
+
+        .section-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 21px;
+        }
+
+        .view-btn {
+            text-decoration: none;
+
+            color: #159da5;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        .medication-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+        .medication {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 16px;
+
+            border: 1px solid #e6eef1;
+
+            border-radius: 13px;
+
+            background: #fbfeff;
+        }
+
+        .med-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+        .med-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #e6f9fa;
+
+            border-radius: 11px;
+
+            font-size: 22px;
+        }
+
+        .med-name {
+            font-weight: bold;
+
+            margin-bottom: 4px;
+        }
+
+        .med-info {
+            color: #718797;
+
+            font-size: 12px;
+        }
+
+        .med-time {
+            color: #159da5;
+
+            font-weight: bold;
+
+            font-size: 13px;
+        }
+
+        .status {
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+        .pending {
+            background: #fff4d6;
+            color: #9a7100;
+        }
+
+        .taken {
+            background: #e1f7e8;
+            color: #23834b;
+        }
+
+        .missed {
+            background: #ffe5e5;
+            color: #c0392b;
+        }
+
+        .empty {
+            text-align: center;
+
+            padding: 40px;
+
+            color: #718797;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 900px) {
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media(max-width: 650px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a {
+                display: none;
+            }
+
+            .container {
+                padding: 30px 18px;
+            }
+
+            .welcome h1 {
+                font-size: 29px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .medication {
+                flex-wrap: wrap;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a
+        href="dashboard.html"
+        class="logo">
+
+        <div class="logo-icon">
+            💊
+        </div>
+
+        SmartMedication
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Dashboard
+        </a>
+
+        <a href="medicines.html">
+            Medicines
+        </a>
+
+        <a href="reminders.html">
+            Reminders
+        </a>
+
+        <a href="history.html">
+            History
+        </a>
+
+        <button
+            class="logout"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <h1>
+            Good Day! 👋
+        </h1>
+
+        <p>
+            Here's your medication summary for today.
+        </p>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💊
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalCount">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Today's Reminders
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+            <div
+                class="stat-number"
+                id="takenCount">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Taken
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ❌
+            </div>
+
+            <div
+                class="stat-number"
+                id="missedCount">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Missed
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⏳
+            </div>
+
+            <div
+                class="stat-number"
+                id="pendingCount">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Pending
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <section class="progress-card">
+
+        <div class="progress-header">
+
+            <h2>
+                Today's Progress
+            </h2>
+
+            <span
+                class="progress-percent"
+                id="progressPercent">
+
+                0%
+
+            </span>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TODAY'S MEDICATION -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>
+                📅 Today's Medication
+            </h2>
+
+            <a
+                href="reminders.html"
+                class="view-btn">
+
+                Manage Reminders →
+
+            </a>
+
+        </div>
+
+
+        <div
+            id="medicationList"
+            class="medication-list">
+
+            <div class="empty">
+                Loading today's medication...
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+
+    /*
+     * Temporary user ID.
+     *
+     * Later this will come from
+     * the logged-in session.
+     */
+
+    const USER_ID = 1;
+
+
+    /*
+     * Load today's reminders
+     */
+
+    async function loadDashboard() {
+
+        const list =
+            document.getElementById(
+                "medicationList"
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `http://localhost:8080/api/reminders/today/${USER_ID}`
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Could not load reminders"
+                );
+
+            }
+
+
+            const reminders =
+                await response.json();
+
+
+            updateStatistics(
+                reminders
+            );
+
+
+            displayMedication(
+                reminders
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    ⚠️ Unable to load
+                    today's medication.
+
+                    <br><br>
+
+                    Make sure Spring Boot
+                    is running.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    /*
+     * Update statistics
+     */
+
+    function updateStatistics(
+        reminders
+    ) {
+
+        const total =
+            reminders.length;
+
+
+        const taken =
+            reminders.filter(
+                r =>
+                    r.status === "TAKEN"
+            ).length;
+
+
+        const missed =
+            reminders.filter(
+                r =>
+                    r.status === "MISSED"
+            ).length;
+
+
+        const pending =
+            reminders.filter(
+                r =>
+                    r.status === "PENDING"
+            ).length;
+
+
+        document.getElementById(
+            "totalCount"
+        ).textContent =
+            total;
+
+
+        document.getElementById(
+            "takenCount"
+        ).textContent =
+            taken;
+
+
+        document.getElementById(
+            "missedCount"
+        ).textContent =
+            missed;
+
+
+        document.getElementById(
+            "pendingCount"
+        ).textContent =
+            pending;
+
+
+        let progress = 0;
+
+
+        if (total > 0) {
+
+            progress =
+                Math.round(
+                    (taken / total) * 100
+                );
+
+        }
+
+
+        document.getElementById(
+            "progressPercent"
+        ).textContent =
+            `${progress}%`;
+
+
+        document.getElementById(
+            "progressFill"
+        ).style.width =
+            `${progress}%`;
+
+    }
+
+
+    /*
+     * Display medication
+     */
+
+    function displayMedication(
+        reminders
+    ) {
+
+        const list =
+            document.getElementById(
+                "medicationList"
+            );
+
+
+        if (
+            reminders.length === 0
+        ) {
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    <div style="font-size:40px;">
+                        🎉
+                    </div>
+
+                    <br>
+
+                    No medication reminders
+                    for today.
+
+                    <br><br>
+
+                    <a
+                        href="reminders.html"
+                        style="
+                            color:#159da5;
+                            font-weight:bold;
+                            text-decoration:none;
+                        ">
+
+                        + Add a Reminder
+
+                    </a>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        reminders
+            .sort(
+                (a, b) =>
+                    String(
+                        a.reminderTime
+                    ).localeCompare(
+                        String(
+                            b.reminderTime
+                        )
+                    )
+            )
+            .forEach(
+                reminder => {
+
+                    const medicine =
+                        reminder.medicine ||
+                        {};
+
+
+                    const status =
+                        reminder.status ||
+                        "PENDING";
+
+
+                    let statusClass =
+                        "pending";
+
+
+                    if (
+                        status === "TAKEN"
+                    ) {
+
+                        statusClass =
+                            "taken";
+
+                    }
+
+                    else if (
+                        status === "MISSED"
+                    ) {
+
+                        statusClass =
+                            "missed";
+
+                    }
+
+
+                    list.innerHTML += `
+
+                        <div class="medication">
+
+
+                            <div class="med-left">
+
+                                <div class="med-icon">
+                                    💊
+                                </div>
+
+
+                                <div>
+
+                                    <div class="med-name">
+
+                                        ${escapeHtml(
+                                            medicine.name ||
+                                            "Medicine"
+                                        )}
+
+                                    </div>
+
+
+                                    <div class="med-info">
+
+                                        ${escapeHtml(
+                                            medicine.dosage ||
+                                            ""
+                                        )}
+
+                                        ${
+                                            medicine.dosage &&
+                                            medicine.frequency
+                                            ? " • "
+                                            : ""
+                                        }
+
+                                        ${escapeHtml(
+                                            medicine.frequency ||
+                                            ""
+                                        )}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="med-time">
+
+                                ⏰
+                                ${formatTime(
+                                    reminder.reminderTime
+                                )}
+
+                            </div>
+
+
+                            <span
+                                class="status ${statusClass}">
+
+                                ${escapeHtml(
+                                    status
+                                )}
+
+                            </span>
+
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+    }
+
+
+    /*
+     * Format time
+     */
+
+    function formatTime(
+        time
+    ) {
+
+        if (!time) {
+            return "";
+        }
+
+
+        const parts =
+            String(time).split(":");
+
+
+        let hour =
+            Number(parts[0]);
+
+
+        const minute =
+            parts[1] || "00";
+
+
+        const suffix =
+            hour >= 12
+                ? "PM"
+                : "AM";
+
+
+        hour =
+            hour % 12 || 12;
+
+
+        return `${hour}:${minute} ${suffix}`;
+
+    }
+
+
+    /*
+     * Escape HTML
+     */
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(
+            value ?? ""
+        )
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+    }
+
+
+    /*
+     * Logout
+     */
+
+    function logout() {
+
+        localStorage.clear();
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+    /*
+     * Start dashboard
+     */
+
+    loadDashboard();
+    
+    
+
+
+
+
+</script>
+
+
+</body>
+
+</html>

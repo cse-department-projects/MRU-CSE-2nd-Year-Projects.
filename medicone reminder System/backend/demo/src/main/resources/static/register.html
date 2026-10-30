@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register | SmartMedication</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #193653;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(74, 210, 215, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 70%,
+                    rgba(100, 181, 246, 0.16),
+                    transparent 30%
+                ),
+                #f5fbfd;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 22px;
+
+            border: 1px solid #e3edf1;
+
+            box-shadow:
+                0 20px 60px
+                rgba(40, 100, 120, 0.12);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+
+            margin: 0 auto 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 16px;
+
+            font-size: 30px;
+        }
+
+        .logo h1 {
+            color: #159da5;
+            font-size: 25px;
+        }
+
+        .logo p {
+            color: #718797;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #31536c;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #dcebef;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            font-family: inherit;
+        }
+
+        input:focus {
+            border-color: #159da5;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(21, 157, 165, 0.08);
+        }
+
+        .register-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #159da5;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .message {
+            display: none;
+
+            padding: 11px;
+
+            border-radius: 9px;
+
+            margin-bottom: 15px;
+
+            font-size: 13px;
+
+            text-align: center;
+        }
+
+        .success {
+            display: block;
+
+            background: #e1f7e8;
+
+            color: #23834b;
+        }
+
+        .error {
+            display: block;
+
+            background: #ffe5e5;
+
+            color: #c0392b;
+        }
+
+        .login-link {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #718797;
+
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #159da5;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            color: #58758d;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+        @media(max-width: 500px) {
+
+            .card {
+                padding: 30px 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="card">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                💊
+            </div>
+
+            <h1>
+                SmartMedication
+            </h1>
+
+            <p>
+                Smart medication reminder system
+            </p>
+
+        </div>
+
+
+        <h2>
+            Create Account
+        </h2>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+
+        <!-- REGISTER FORM -->
+
+        <form
+            id="registerForm"
+            onsubmit="registerUser(event)">
+
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    required>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="register-btn">
+
+                Create Account
+
+            </button>
+
+
+        </form>
+
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="back-home">
+
+            ← Back to Home
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+    async function registerUser(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById(
+                "name"
+            ).value.trim();
+
+
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim();
+
+
+        const password =
+            document.getElementById(
+                "password"
+            ).value;
+
+
+        const confirmPassword =
+            document.getElementById(
+                "confirmPassword"
+            ).value;
+
+
+        /*
+         * Check passwords
+         */
+
+        if (
+            password !==
+            confirmPassword
+        ) {
+
+            showMessage(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * User object
+         */
+
+        const user = {
+
+            name: name,
+
+            email: email,
+
+            password: password
+
+        };
+
+
+        try {
+
+            /*
+             * REGISTER USER
+             *
+             * IMPORTANT:
+             * Backend endpoint is:
+             *
+             * POST /api/users
+             */
+
+            const response =
+                await fetch(
+                    "http://localhost:8080/api/users",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify(user)
+
+                    }
+                );
+
+
+            const data =
+                await response.text();
+
+
+            if (!response.ok) {
+
+                showMessage(
+                    data ||
+                    "Registration failed.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            showMessage(
+                "Registration successful! Redirecting to login...",
+                "success"
+            );
+
+
+            document
+                .getElementById(
+                    "registerForm"
+                )
+                .reset();
+
+
+            /*
+             * Redirect to login
+             */
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                1500
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Unable to connect to the server. Make sure Spring Boot is running.",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    function showMessage(
+        text,
+        type
+    ) {
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        message.textContent =
+            text;
+
+
+        message.className =
+            `message ${type}`;
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
+

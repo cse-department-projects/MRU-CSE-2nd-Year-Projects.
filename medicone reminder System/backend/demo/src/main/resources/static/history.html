@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Medication History | SmartMedication</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #193653;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(74, 210, 215, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 70%,
+                    rgba(100, 181, 246, 0.16),
+                    transparent 30%
+                ),
+                #f5fbfd;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 75px;
+            padding: 0 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(255,255,255,0.95);
+
+            border-bottom: 1px solid #e1edf1;
+
+            box-shadow:
+                0 5px 25px
+                rgba(40,100,120,0.07);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #159da5;
+
+            text-decoration: none;
+
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #58758d;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #159da5;
+        }
+
+        .logout {
+            border: none;
+
+            background: #ffe5e5;
+
+            color: #c0392b;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 45px 25px;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+
+            margin-bottom: 7px;
+        }
+
+        .page-header p {
+            color: #718797;
+        }
+
+        /* SUMMARY */
+
+        .summary {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+
+            border: 1px solid #e3edf1;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40,100,120,0.07);
+        }
+
+        .summary-icon {
+            font-size: 27px;
+
+            margin-bottom: 10px;
+        }
+
+        .summary-number {
+            font-size: 27px;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+        .summary-label {
+            color: #718797;
+
+            font-size: 13px;
+        }
+
+        /* HISTORY */
+
+        .history-card {
+            background: white;
+
+            border: 1px solid #e3edf1;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(40,100,120,0.07);
+        }
+
+        .history-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .history-header h2 {
+            font-size: 21px;
+        }
+
+        .refresh-btn {
+            border: none;
+
+            background: #e6f9fa;
+
+            color: #159da5;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .history-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+        .history-item {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 17px;
+
+            border: 1px solid #e6eef1;
+
+            border-radius: 13px;
+
+            background: #fbfeff;
+        }
+
+        .history-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            min-width: 230px;
+        }
+
+        .medicine-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #e6f9fa;
+
+            border-radius: 11px;
+
+            font-size: 22px;
+        }
+
+        .medicine-name {
+            font-weight: bold;
+
+            margin-bottom: 4px;
+        }
+
+        .medicine-info {
+            color: #718797;
+
+            font-size: 12px;
+        }
+
+        .date-time {
+            color: #58758d;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .status {
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+        .taken {
+            background: #e1f7e8;
+
+            color: #23834b;
+        }
+
+        .missed {
+            background: #ffe5e5;
+
+            color: #c0392b;
+        }
+
+        .pending {
+            background: #fff4d6;
+
+            color: #9a7100;
+        }
+
+        .empty {
+            text-align: center;
+
+            padding: 50px 20px;
+
+            color: #718797;
+        }
+
+        .empty-icon {
+            font-size: 45px;
+
+            margin-bottom: 12px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 850px) {
+
+            .summary {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .history-item {
+                flex-wrap: wrap;
+            }
+
+        }
+
+        @media(max-width: 650px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 8px;
+            }
+
+            .nav-links a {
+                display: none;
+            }
+
+            .container {
+                padding: 30px 18px;
+            }
+
+            .page-header h1 {
+                font-size: 29px;
+            }
+
+            .history-item {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+
+    <a
+        href="dashboard.html"
+        class="logo">
+
+        <div class="logo-icon">
+            💊
+        </div>
+
+        SmartMedication
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Dashboard
+        </a>
+
+        <a href="medicines.html">
+            Medicines
+        </a>
+
+        <a href="reminders.html">
+            Reminders
+        </a>
+
+        <a href="history.html">
+            History
+        </a>
+
+        <button
+            class="logout"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <h1>
+            Medication History 📋
+        </h1>
+
+        <p>
+            Review your previous medication reminders.
+        </p>
+
+    </div>
+
+
+    <!-- SUMMARY -->
+
+    <div class="summary">
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                📋
+            </div>
+
+            <div
+                class="summary-number"
+                id="totalCount">
+
+                0
+
+            </div>
+
+            <div class="summary-label">
+                Total Reminders
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                ✅
+            </div>
+
+            <div
+                class="summary-number"
+                id="takenCount">
+
+                0
+
+            </div>
+
+            <div class="summary-label">
+                Taken
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                ❌
+            </div>
+
+            <div
+                class="summary-number"
+                id="missedCount">
+
+                0
+
+            </div>
+
+            <div class="summary-label">
+                Missed
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- HISTORY -->
+
+    <section class="history-card">
+
+
+        <div class="history-header">
+
+            <h2>
+                Medication Records
+            </h2>
+
+
+            <button
+                class="refresh-btn"
+                onclick="loadHistory()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="historyList"
+            class="history-list">
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⏳
+                </div>
+
+                Loading history...
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+
+    /*
+     * Temporary user ID
+     */
+
+    const USER_ID = 1;
+
+
+    /*
+     * Load history
+     */
+
+    async function loadHistory() {
+
+        const list =
+            document.getElementById(
+                "historyList"
+            );
+
+
+        try {
+
+            /*
+             * Get all reminders
+             */
+
+            const response =
+                await fetch(
+                    `http://localhost:8080/api/reminders/user/${USER_ID}`
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Could not load history"
+                );
+
+            }
+
+
+            const reminders =
+                await response.json();
+
+
+            updateSummary(
+                reminders
+            );
+
+
+            displayHistory(
+                reminders
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        ⚠️
+                    </div>
+
+                    Unable to load medication
+                    history.
+
+                    <br><br>
+
+                    Make sure Spring Boot
+                    is running.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    /*
+     * Summary
+     */
+
+    function updateSummary(
+        reminders
+    ) {
+
+        const total =
+            reminders.length;
+
+
+        const taken =
+            reminders.filter(
+                r =>
+                    r.status === "TAKEN"
+            ).length;
+
+
+        const missed =
+            reminders.filter(
+                r =>
+                    r.status === "MISSED"
+            ).length;
+
+
+        document.getElementById(
+            "totalCount"
+        ).textContent =
+            total;
+
+
+        document.getElementById(
+            "takenCount"
+        ).textContent =
+            taken;
+
+
+        document.getElementById(
+            "missedCount"
+        ).textContent =
+            missed;
+
+    }
+
+
+    /*
+     * Display history
+     */
+
+    function displayHistory(
+        reminders
+    ) {
+
+        const list =
+            document.getElementById(
+                "historyList"
+            );
+
+
+        if (
+            reminders.length === 0
+        ) {
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        📋
+                    </div>
+
+                    <h3>
+                        No medication history
+                    </h3>
+
+                    <p>
+                        Your reminder records
+                        will appear here.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /*
+         * Sort newest first
+         */
+
+        reminders.sort(
+            (a, b) => {
+
+                const dateA =
+                    String(
+                        a.reminderDate || ""
+                    )
+                    +
+                    String(
+                        a.reminderTime || ""
+                    );
+
+
+                const dateB =
+                    String(
+                        b.reminderDate || ""
+                    )
+                    +
+                    String(
+                        b.reminderTime || ""
+                    );
+
+
+                return dateB.localeCompare(
+                    dateA
+                );
+
+            }
+        );
+
+
+        list.innerHTML = "";
+
+
+        reminders.forEach(
+            reminder => {
+
+                const medicine =
+                    reminder.medicine ||
+                    {};
+
+
+                const status =
+                    reminder.status ||
+                    "PENDING";
+
+
+                let statusClass =
+                    "pending";
+
+
+                if (
+                    status === "TAKEN"
+                ) {
+
+                    statusClass =
+                        "taken";
+
+                }
+
+                else if (
+                    status === "MISSED"
+                ) {
+
+                    statusClass =
+                        "missed";
+
+                }
+
+
+                list.innerHTML += `
+
+                    <div class="history-item">
+
+
+                        <div class="history-left">
+
+
+                            <div class="medicine-icon">
+                                💊
+                            </div>
+
+
+                            <div>
+
+                                <div class="medicine-name">
+
+                                    ${escapeHtml(
+                                        medicine.name ||
+                                        "Medicine"
+                                    )}
+
+                                </div>
+
+
+                                <div class="medicine-info">
+
+                                    ${escapeHtml(
+                                        medicine.dosage ||
+                                        ""
+                                    )}
+
+                                    ${
+                                        medicine.dosage &&
+                                        medicine.frequency
+                                        ? " • "
+                                        : ""
+                                    }
+
+                                    ${escapeHtml(
+                                        medicine.frequency ||
+                                        ""
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="date-time">
+
+                            📅
+                            ${formatDate(
+                                reminder.reminderDate
+                            )}
+
+                            <br>
+
+                            ⏰
+                            ${formatTime(
+                                reminder.reminderTime
+                            )}
+
+                        </div>
+
+
+                        <span
+                            class="status ${statusClass}">
+
+                            ${escapeHtml(
+                                status
+                            )}
+
+                        </span>
+
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    /*
+     * Format date
+     */
+
+    function formatDate(
+        date
+    ) {
+
+        if (!date) {
+
+            return "";
+
+        }
+
+
+        const parts =
+            String(date).split("-");
+
+
+        if (
+            parts.length !== 3
+        ) {
+
+            return date;
+
+        }
+
+
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+    }
+
+
+    /*
+     * Format time
+     */
+
+    function formatTime(
+        time
+    ) {
+
+        if (!time) {
+
+            return "";
+
+        }
+
+
+        const parts =
+            String(time).split(":");
+
+
+        let hour =
+            Number(parts[0]);
+
+
+        const minute =
+            parts[1] || "00";
+
+
+        const suffix =
+            hour >= 12
+                ? "PM"
+                : "AM";
+
+
+        hour =
+            hour % 12 || 12;
+
+
+        return `${hour}:${minute} ${suffix}`;
+
+    }
+
+
+    /*
+     * Escape HTML
+     */
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(
+            value ?? ""
+        )
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+    }
+
+
+    /*
+     * Logout
+     */
+
+    function logout() {
+
+        localStorage.clear();
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+    /*
+     * START
+     */
+
+    loadHistory();
+
+</script>
+
+
+</body>
+
+</html>

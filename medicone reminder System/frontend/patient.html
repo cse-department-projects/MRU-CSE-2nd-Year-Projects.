@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Profile | SmartMedication</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #193653;
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(53, 210, 210, 0.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(100, 181, 246, 0.18),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f4fcfd,
+                    #eef8fb
+                );
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 75px;
+            padding: 0 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(255,255,255,0.94);
+
+            border-bottom: 1px solid #e2edf1;
+
+            box-shadow:
+                0 5px 25px
+                rgba(40,100,120,0.07);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #159da5;
+
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #58758d;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            color: #159da5;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 45px 25px 70px;
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .small-title {
+            color: #159da5;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+
+        .page-heading h1 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #718797;
+            font-size: 15px;
+        }
+
+        /* PROFILE CARD */
+
+        .profile-card {
+            display: grid;
+
+            grid-template-columns: 280px 1fr;
+
+            background: white;
+
+            border: 1px solid #e1edf1;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 55px
+                rgba(40,100,120,0.09);
+        }
+
+        /* LEFT */
+
+        .profile-left {
+            padding: 35px 25px;
+
+            background:
+                linear-gradient(
+                    160deg,
+                    #e7fafa,
+                    #f5fcfd
+                );
+
+            border-right: 1px solid #e2eef1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .profile-left h2 {
+            font-size: 20px;
+            margin-top: 18px;
+            margin-bottom: 5px;
+        }
+
+        .profile-left p {
+            color: #718797;
+            font-size: 13px;
+        }
+
+        /* IMAGE */
+
+        .image-container {
+            position: relative;
+
+            width: 150px;
+            height: 150px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border: 5px solid white;
+
+            box-shadow:
+                0 10px 30px
+                rgba(30,100,110,0.15);
+
+            background: #dff7f8;
+        }
+
+        .image-upload {
+            position: absolute;
+
+            right: 0;
+            bottom: 4px;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #159da5;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            border: 3px solid white;
+
+            font-size: 18px;
+        }
+
+        .image-upload input {
+            display: none;
+        }
+
+        .image-help {
+            margin-top: 18px;
+
+            font-size: 11px;
+
+            color: #8196a3;
+
+            line-height: 1.5;
+        }
+
+        /* RIGHT */
+
+        .profile-right {
+            padding: 35px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+        .section-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 20px;
+        }
+
+        /* MESSAGE */
+
+        .message {
+            display: none;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .message.success {
+            display: block;
+
+            background: #e2f7e9;
+
+            color: #23834b;
+        }
+
+        .message.error {
+            display: block;
+
+            background: #ffe7e7;
+
+            color: #c0392b;
+        }
+
+        /* FORM */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #31536c;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #dcebef;
+
+            border-radius: 11px;
+
+            background: #fbfeff;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            color: #193653;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #159da5;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(21,157,165,0.08);
+
+            background: white;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #edf2f4;
+        }
+
+        .btn {
+            padding: 13px 24px;
+
+            border-radius: 11px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            border: none;
+        }
+
+        .cancel-btn {
+            background: #f0f5f7;
+
+            color: #58758d;
+        }
+
+        .save-btn {
+            background: #159da5;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(21,157,165,0.18);
+        }
+
+        .save-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 800px) {
+
+            .profile-card {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-left {
+                border-right: none;
+
+                border-bottom:
+                    1px solid #e2eef1;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+
+        @media(max-width: 500px) {
+
+            .profile-right {
+                padding: 25px 20px;
+            }
+
+            .page-heading h1 {
+                font-size: 30px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            💊
+        </div>
+
+        SmartMedication
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back-btn">
+
+        ← Back to Dashboard
+
+    </a>
+
+</nav>
+
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <div class="page-heading">
+
+        <div class="small-title">
+            PATIENT MANAGEMENT
+        </div>
+
+        <h1>
+            Patient Profile 👤
+        </h1>
+
+        <p>
+            Keep important patient information
+            organized and easily accessible.
+        </p>
+
+    </div>
+
+
+
+    <div class="profile-card">
+
+
+        <!-- LEFT SIDE -->
+
+        <div class="profile-left">
+
+
+            <div class="image-container">
+
+                <img
+                    id="profilePreview"
+                    class="profile-image"
+                    alt="Patient Profile"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect width='150' height='150' rx='75' fill='%23dff7f8'/%3E%3Ctext x='75' y='95' text-anchor='middle' font-size='60'%3E👤%3C/text%3E%3C/svg%3E">
+
+
+                <label
+                    class="image-upload"
+                    title="Upload patient image">
+
+                    📷
+
+                    <input
+                        type="file"
+                        id="profileImage"
+                        accept="image/*"
+                        onchange="previewImage(event)">
+
+                </label>
+
+            </div>
+
+
+            <h2 id="patientNamePreview">
+                Patient Name
+            </h2>
+
+
+            <p>
+                Patient Information
+            </p>
+
+
+            <div class="image-help">
+
+                Click the 📷 button to add
+                a patient photograph.
+
+                <br><br>
+
+                The selected image is shown
+                as a preview.
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="profile-right">
+
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    👤
+                </div>
+
+                <h2>
+                    Personal Information
+                </h2>
+
+            </div>
+
+
+            <div
+                id="message"
+                class="message">
+            </div>
+
+
+
+            <form
+                id="patientForm"
+                onsubmit="savePatient(event)">
+
+
+                <div class="form-grid">
+
+
+                    <!-- NAME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter patient's full name"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- DATE OF BIRTH -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- GENDER -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Gender
+                        </label>
+
+                        <select
+                            id="gender"
+                            required>
+
+                            <option value="">
+                                Select gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                            <option value="Prefer not to say">
+                                Prefer not to say
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- EMERGENCY CONTACT -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Emergency Contact
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="emergencyContact"
+                            placeholder="Enter emergency contact"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            placeholder="Enter patient's complete address"
+                            required></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="buttons">
+
+                    <button
+                        type="button"
+                        class="btn cancel-btn"
+                        onclick="clearForm()">
+
+                        Clear
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn save-btn"
+                        id="saveButton">
+
+                        💾 Save Patient
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =========================================
+   BACKEND URL
+========================================= */
+
+const API_URL =
+    "http://localhost:8080/api/patients";
+
+
+/*
+    Your current test user is ID 1.
+
+    Later we will replace this with
+    the ID of the logged-in user.
+*/
+
+const USER_ID = 1;
+
+
+
+/* =========================================
+   IMAGE PREVIEW
+========================================= */
+
+function previewImage(event) {
+
+    const file =
+        event.target.files[0];
+
+    if (!file) {
+        return;
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(e) {
+
+            document.getElementById(
+                "profilePreview"
+            ).src = e.target.result;
+
+        };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+
+/* =========================================
+   LIVE NAME PREVIEW
+========================================= */
+
+document.getElementById("name")
+    .addEventListener(
+        "input",
+        function() {
+
+            const name =
+                this.value.trim();
+
+            document.getElementById(
+                "patientNamePreview"
+            ).textContent =
+                name || "Patient Name";
+
+        }
+    );
+
+
+
+/* =========================================
+   SAVE PATIENT
+========================================= */
+
+async function savePatient(event) {
+
+    event.preventDefault();
+
+
+    const saveButton =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    const patient = {
+
+        name:
+            document.getElementById(
+                "name"
+            ).value.trim(),
+
+        dateOfBirth:
+            document.getElementById(
+                "dateOfBirth"
+            ).value,
+
+        gender:
+            document.getElementById(
+                "gender"
+            ).value,
+
+        address:
+            document.getElementById(
+                "address"
+            ).value.trim(),
+
+        emergencyContact:
+            document.getElementById(
+                "emergencyContact"
+            ).value.trim()
+
+    };
+
+
+    try {
+
+
+        saveButton.disabled = true;
+
+        saveButton.textContent =
+            "Saving...";
+
+
+        const response =
+            await fetch(
+                API_URL +
+                "/user/" +
+                USER_ID,
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(patient)
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            throw new Error(
+                errorText ||
+                "Unable to save patient"
+            );
+        }
+
+
+        const savedPatient =
+            await response.json();
+
+
+        /*
+            Store patient ID so that
+            patient-profile.html can
+            display the saved patient.
+        */
+
+        localStorage.setItem(
+            "patientId",
+            savedPatient.id
+        );
+
+
+        localStorage.setItem(
+            "patientUserId",
+            USER_ID
+        );
+
+
+        showMessage(
+            "✅ Patient saved successfully!",
+            "success"
+        );
+
+
+        /*
+            Open the saved patient profile
+        */
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "patient-profile.html";
+
+            },
+            800
+        );
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "Patient save error:",
+            error
+        );
+
+
+        showMessage(
+            "❌ " +
+            (error.message ||
+            "Unable to save patient. Make sure the backend is running."),
+            "error"
+        );
+
+
+        saveButton.disabled = false;
+
+        saveButton.textContent =
+            "💾 Save Patient";
+    }
+
+}
+
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "message " + type;
+
+
+    if (type === "success") {
+
+        setTimeout(
+            function() {
+
+                message.className =
+                    "message";
+
+            },
+            3000
+        );
+
+    }
+
+}
+
+
+
+/* =========================================
+   CLEAR FORM
+========================================= */
+
+function clearForm() {
+
+    document.getElementById(
+        "patientForm"
+    ).reset();
+
+
+    document.getElementById(
+        "patientNamePreview"
+    ).textContent =
+        "Patient Name";
+
+
+    document.getElementById(
+        "profilePreview"
+    ).src =
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect width='150' height='150' rx='75' fill='%23dff7f8'/%3E%3Ctext x='75' y='95' text-anchor='middle' font-size='60'%3E👤%3C/text%3E%3C/svg%3E";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

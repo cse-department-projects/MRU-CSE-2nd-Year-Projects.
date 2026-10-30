@@ -1,0 +1,2456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartMedication - Prescription</title>
+
+    <!-- Browser OCR -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(21,157,165,0.15),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(100,181,246,0.13),
+                    transparent 30%
+                ),
+                #f5fbfd;
+
+            color: #163b3e;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 72px;
+
+            background: rgba(255,255,255,0.97);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            border-bottom: 1px solid #e0edef;
+
+            box-shadow:
+                0 5px 25px
+                rgba(40,100,120,0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            color: #159da5;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+        .back-btn {
+            border: none;
+
+            background: #edfafa;
+
+            color: #159da5;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #dff5f6;
+            transform: translateX(-2px);
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            width: 92%;
+            max-width: 950px;
+
+            margin: 40px auto 60px;
+        }
+
+        .title {
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+        .title h1 {
+            font-size: 36px;
+
+            color: #126f75;
+
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #718797;
+
+            font-size: 15px;
+        }
+
+        /* =========================
+           STEPS
+        ========================= */
+
+        .steps {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+        .step {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #9aaeb4;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+        .circle {
+            width: 36px;
+            height: 36px;
+
+            border-radius: 50%;
+
+            background: #dcebed;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #638087;
+
+            transition: 0.3s;
+        }
+
+        .step.active {
+            color: #159da5;
+        }
+
+        .step.active .circle {
+            background: #159da5;
+
+            color: white;
+
+            box-shadow:
+                0 6px 15px
+                rgba(21,157,165,0.25);
+        }
+
+        .line {
+            width: 70px;
+
+            height: 3px;
+
+            background: #dcebed;
+
+            margin: 0 12px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+            border: 1px solid #e2eef1;
+
+            box-shadow:
+                0 15px 40px
+                rgba(40,100,120,0.08);
+        }
+
+        .card h2 {
+            color: #126f75;
+
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            color: #718797;
+
+            margin-bottom: 22px;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           UPLOAD
+        ========================= */
+
+        .upload-area {
+            border: 2px dashed #159da5;
+
+            border-radius: 18px;
+
+            min-height: 230px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 25px;
+
+            background: #f5ffff;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .upload-area:hover {
+            background: #eaffff;
+
+            transform: translateY(-2px);
+        }
+
+        .upload-icon {
+            font-size: 55px;
+
+            margin-bottom: 12px;
+        }
+
+        .upload-area h3 {
+            color: #126f75;
+
+            margin-bottom: 8px;
+        }
+
+        .upload-area p {
+            color: #718587;
+
+            font-size: 14px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .choose-btn {
+            margin-top: 18px;
+
+            background: #159da5;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+        .choose-btn:hover {
+            background: #117f86;
+        }
+
+        /* =========================
+           PREVIEW
+        ========================= */
+
+        .preview-section {
+            display: none;
+
+            margin-top: 25px;
+        }
+
+        .preview-title {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 12px;
+        }
+
+        .preview-title h3 {
+            color: #126f75;
+        }
+
+        .change-btn {
+            background: #edfafa;
+
+            color: #159da5;
+
+            border: 1px solid #159da5;
+
+            padding: 8px 15px;
+
+            border-radius: 18px;
+
+            cursor: pointer;
+        }
+
+        .image-container {
+            width: 100%;
+
+            max-height: 500px;
+
+            overflow: auto;
+
+            background: #f4f7f8;
+
+            border-radius: 15px;
+
+            padding: 10px;
+
+            text-align: center;
+        }
+
+        #previewImage {
+            max-width: 100%;
+
+            max-height: 470px;
+
+            border-radius: 10px;
+        }
+
+        /* =========================
+           READ BUTTON
+        ========================= */
+
+        .read-btn {
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #159da5;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .read-btn:hover {
+            background: #117f86;
+        }
+
+        .read-btn:disabled {
+            background: #9dbfc1;
+
+            cursor: not-allowed;
+        }
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            display: none;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+        .spinner {
+            width: 42px;
+            height: 42px;
+
+            border: 4px solid #d7eeee;
+
+            border-top: 4px solid #159da5;
+
+            border-radius: 50%;
+
+            animation: spin 1s linear infinite;
+
+            margin: auto;
+        }
+
+        @keyframes spin {
+
+            100% {
+                transform: rotate(360deg);
+            }
+
+        }
+
+        .loading p {
+            margin-top: 12px;
+
+            color: #527275;
+        }
+
+        /* =========================
+           OCR TEXT
+        ========================= */
+
+        .ocr-debug {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #f3f8f9;
+
+            border: 1px solid #d8e9eb;
+        }
+
+        .ocr-debug h3 {
+            color: #126f75;
+
+            margin-bottom: 10px;
+
+            font-size: 15px;
+        }
+
+        .ocr-debug pre {
+            white-space: pre-wrap;
+
+            word-break: break-word;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            color: #405b60;
+
+            max-height: 250px;
+
+            overflow-y: auto;
+        }
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+            display: none;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            margin-top: 20px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+        .success {
+            background: #e8f8ed;
+
+            color: #21733b;
+        }
+
+        .error {
+            background: #fff0f0;
+
+            color: #b52d2d;
+        }
+
+        .info {
+            background: #edf8ff;
+
+            color: #24617c;
+        }
+
+        /* =========================
+           RESULTS
+        ========================= */
+
+        #resultsSection {
+            display: none;
+        }
+
+        .medicine-card {
+            background: #f7ffff;
+
+            border: 1px solid #cfecee;
+
+            border-radius: 15px;
+
+            padding: 18px;
+
+            margin-top: 15px;
+
+            transition: 0.2s;
+        }
+
+        .medicine-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(40,100,120,0.08);
+        }
+
+        .medicine-name {
+            font-size: 18px;
+
+            font-weight: bold;
+
+            color: #126f75;
+
+            margin-bottom: 8px;
+        }
+
+        .medicine-description {
+            color: #718797;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .medicine-check {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 12px;
+
+            color: #31536c;
+
+            font-size: 14px;
+        }
+
+        .medicine-check input {
+            width: 18px;
+
+            height: 18px;
+
+            accent-color: #159da5;
+        }
+
+        .add-btn {
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #126f75;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background: #0d5a5f;
+        }
+
+        .add-btn:disabled {
+            opacity: 0.6;
+
+            cursor: not-allowed;
+        }
+
+        /* =========================
+           TIPS
+        ========================= */
+
+        .tips {
+            background: #fffdf0;
+
+            border: 1px solid #f0e4a8;
+
+            border-radius: 15px;
+
+            padding: 20px;
+        }
+
+        .tips h3 {
+            color: #8b7510;
+
+            margin-bottom: 10px;
+        }
+
+        .tips li {
+            margin: 8px 0;
+
+            color: #665d32;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .title h1 {
+                font-size: 27px;
+            }
+
+            .line {
+                width: 30px;
+            }
+
+            .step {
+                font-size: 11px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <a href="index.html"
+       class="logo">
+
+        <div class="logo-icon">
+            💊
+        </div>
+
+        SmartMedication
+
+    </a>
+
+
+    <button
+        class="back-btn"
+        onclick="goBack()">
+
+        ← Back
+
+    </button>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+
+    <div class="title">
+
+        <h1>
+            📋 Prescription Scanner
+        </h1>
+
+        <p>
+            Upload your prescription and let SmartMedication detect your medicines.
+        </p>
+
+    </div>
+
+
+    <!-- STEPS -->
+
+    <div class="steps">
+
+        <div
+            class="step active"
+            id="step1">
+
+            <div class="circle">
+                1
+            </div>
+
+            <span>
+                Upload
+            </span>
+
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div
+            class="step"
+            id="step2">
+
+            <div class="circle">
+                2
+            </div>
+
+            <span>
+                Read
+            </span>
+
+        </div>
+
+
+        <div class="line"></div>
+
+
+        <div
+            class="step"
+            id="step3">
+
+            <div class="circle">
+                3
+            </div>
+
+            <span>
+                Save
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- UPLOAD CARD -->
+
+    <section class="card">
+
+        <h2>
+            📷 Upload Prescription
+        </h2>
+
+
+        <p class="card-subtitle">
+
+            Upload a clear prescription image.
+            SmartMedication will first try your Spring Boot OCR
+            service and automatically use browser OCR if necessary.
+
+        </p>
+
+
+        <div
+            class="upload-area"
+            id="uploadArea">
+
+            <div class="upload-icon">
+                📄
+            </div>
+
+
+            <h3>
+                Drag & Drop Prescription
+            </h3>
+
+
+            <p>
+                or choose an image from your computer
+            </p>
+
+
+            <button
+                class="choose-btn"
+                type="button"
+                id="chooseBtn">
+
+                Choose Prescription
+
+            </button>
+
+
+            <p style="margin-top:12px;">
+
+                JPG, JPEG or PNG •
+                Clear image recommended
+
+            </p>
+
+        </div>
+
+
+        <input
+            type="file"
+            id="fileInput"
+            accept="image/jpeg,image/jpg,image/png">
+
+
+        <!-- PREVIEW -->
+
+        <div
+            class="preview-section"
+            id="previewSection">
+
+            <div class="preview-title">
+
+                <h3>
+                    Prescription Preview
+                </h3>
+
+
+                <button
+                    class="change-btn"
+                    type="button"
+                    id="changeBtn">
+
+                    Change Image
+
+                </button>
+
+            </div>
+
+
+            <div class="image-container">
+
+                <img
+                    id="previewImage"
+                    alt="Prescription Preview">
+
+            </div>
+
+
+            <button
+                class="read-btn"
+                type="button"
+                id="readBtn">
+
+                🔎 Read Prescription
+
+            </button>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        <div
+            class="loading"
+            id="loading">
+
+            <div class="spinner"></div>
+
+            <p id="loadingText">
+                Reading prescription...
+                Please wait.
+            </p>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            class="message"
+            id="message">
+        </div>
+
+
+        <!-- OCR DEBUG -->
+
+        <div
+            class="ocr-debug"
+            id="ocrDebug">
+
+            <h3>
+                🔍 OCR Text Detected
+            </h3>
+
+            <pre id="ocrText"></pre>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULTS -->
+
+    <section
+        class="card"
+        id="resultsSection">
+
+        <h2>
+            💊 Detected Medicines
+        </h2>
+
+
+        <p class="card-subtitle">
+
+            Review the medicines detected by OCR
+            before saving them to your account.
+
+        </p>
+
+
+        <div id="medicineList"></div>
+
+
+        <button
+            class="add-btn"
+            type="button"
+            id="addMedicineBtn">
+
+            💾 Save Medicines to My Account
+
+        </button>
+
+    </section>
+
+
+    <!-- TIPS -->
+
+    <section class="card">
+
+        <div class="tips">
+
+            <h3>
+                💡 For Better OCR Results
+            </h3>
+
+
+            <ul>
+
+                <li>
+                    Use a clear, high-resolution prescription image.
+                </li>
+
+                <li>
+                    Make sure the complete medicine name is visible.
+                </li>
+
+                <li>
+                    Avoid shadows, glare and blurry images.
+                </li>
+
+                <li>
+                    Keep the prescription as straight as possible.
+                </li>
+
+                <li>
+                    Printed medicine names are easier for OCR to recognize.
+                </li>
+
+                <li>
+                    If the prescription is handwritten, OCR may require manual correction.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   API
+========================================================= */
+
+const API_BASE =
+    "http://localhost:8080";
+
+const OCR_API =
+    API_BASE + "/api/prescription/ocr";
+
+const PRESCRIPTION_MEDICINE_API =
+    API_BASE + "/api/medicines/prescription";
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+function getLoggedInUserId() {
+
+    const possibleIds = [
+
+        localStorage.getItem("loggedInUserId"),
+
+        localStorage.getItem("userId"),
+
+        localStorage.getItem("USER_ID")
+
+    ];
+
+    for (const value of possibleIds) {
+
+        const id = Number(value);
+
+        if (
+            Number.isInteger(id) &&
+            id > 0
+        ) {
+
+            return id;
+
+        }
+
+    }
+
+    return 1;
+}
+
+
+const USER_ID =
+    getLoggedInUserId();
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const fileInput =
+    document.getElementById("fileInput");
+
+const chooseBtn =
+    document.getElementById("chooseBtn");
+
+const uploadArea =
+    document.getElementById("uploadArea");
+
+const previewSection =
+    document.getElementById("previewSection");
+
+const previewImage =
+    document.getElementById("previewImage");
+
+const changeBtn =
+    document.getElementById("changeBtn");
+
+const readBtn =
+    document.getElementById("readBtn");
+
+const loading =
+    document.getElementById("loading");
+
+const loadingText =
+    document.getElementById("loadingText");
+
+const message =
+    document.getElementById("message");
+
+const resultsSection =
+    document.getElementById("resultsSection");
+
+const medicineList =
+    document.getElementById("medicineList");
+
+const addMedicineBtn =
+    document.getElementById("addMedicineBtn");
+
+const ocrDebug =
+    document.getElementById("ocrDebug");
+
+const ocrText =
+    document.getElementById("ocrText");
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let selectedFile = null;
+
+let detectedMedicines = [];
+
+let rawOCRText = "";
+
+
+/* =========================================================
+   FILE CHOOSER
+========================================================= */
+
+chooseBtn.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        fileInput.click();
+
+    }
+);
+
+
+uploadArea.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target === chooseBtn
+        ) {
+            return;
+        }
+
+        fileInput.click();
+
+    }
+);
+
+
+fileInput.addEventListener(
+    "change",
+    function() {
+
+        if (
+            this.files &&
+            this.files.length > 0
+        ) {
+
+            handleFile(
+                this.files[0]
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DRAG AND DROP
+========================================================= */
+
+uploadArea.addEventListener(
+    "dragover",
+    function(event) {
+
+        event.preventDefault();
+
+        uploadArea.style.background =
+            "#eaffff";
+
+    }
+);
+
+
+uploadArea.addEventListener(
+    "dragleave",
+    function() {
+
+        uploadArea.style.background =
+            "#f5ffff";
+
+    }
+);
+
+
+uploadArea.addEventListener(
+    "drop",
+    function(event) {
+
+        event.preventDefault();
+
+        uploadArea.style.background =
+            "#f5ffff";
+
+        const files =
+            event.dataTransfer.files;
+
+        if (
+            files &&
+            files.length > 0
+        ) {
+
+            handleFile(
+                files[0]
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   HANDLE IMAGE
+========================================================= */
+
+function handleFile(file) {
+
+    if (
+        !file.type.startsWith("image/")
+    ) {
+
+        showMessage(
+            "Please select a JPG, JPEG or PNG image.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    selectedFile = file;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(event) {
+
+            previewImage.src =
+                event.target.result;
+
+            previewSection.style.display =
+                "block";
+
+            resultsSection.style.display =
+                "none";
+
+            ocrDebug.style.display =
+                "none";
+
+            hideMessage();
+
+            detectedMedicines = [];
+
+            rawOCRText = "";
+
+            setStep(1);
+
+        };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+   CHANGE IMAGE
+========================================================= */
+
+changeBtn.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        fileInput.value = "";
+
+        fileInput.click();
+
+    }
+);
+
+
+/* =========================================================
+   MAIN OCR
+========================================================= */
+
+readBtn.addEventListener(
+    "click",
+    async function() {
+
+        if (!selectedFile) {
+
+            showMessage(
+                "Please choose a prescription image first.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        readBtn.disabled = true;
+
+        loading.style.display =
+            "block";
+
+        loadingText.textContent =
+            "Connecting to SmartMedication OCR service...";
+
+        hideMessage();
+
+        resultsSection.style.display =
+            "none";
+
+        ocrDebug.style.display =
+            "none";
+
+        setStep(2);
+
+
+        try {
+
+            /*
+             * FIRST:
+             * Try Spring Boot OCR.
+             */
+
+            let backendResult = null;
+
+            try {
+
+                backendResult =
+                    await readUsingBackendOCR();
+
+            } catch (backendError) {
+
+                console.warn(
+                    "Backend OCR unavailable:",
+                    backendError
+                );
+
+            }
+
+
+            if (
+                backendResult &&
+                backendResult.medicines &&
+                backendResult.medicines.length > 0
+            ) {
+
+                detectedMedicines =
+                    cleanMedicineNames(
+                        backendResult.medicines
+                    );
+
+                rawOCRText =
+                    backendResult.rawText ||
+                    backendResult.text ||
+                    "";
+
+            }
+
+
+            /*
+             * FALLBACK:
+             * Browser Tesseract OCR.
+             */
+
+            if (
+                detectedMedicines.length === 0
+            ) {
+
+                loadingText.textContent =
+                    "Spring Boot OCR did not find medicine names. Starting browser OCR...";
+
+                const browserResult =
+                    await readUsingTesseract();
+
+                rawOCRText =
+                    browserResult.text;
+
+                detectedMedicines =
+                    extractMedicineCandidates(
+                        browserResult.text
+                    );
+
+            }
+
+
+            /*
+             * Show raw OCR text.
+             */
+
+            if (rawOCRText) {
+
+                ocrText.textContent =
+                    rawOCRText;
+
+                ocrDebug.style.display =
+                    "block";
+
+            }
+
+
+            /*
+             * Final result.
+             */
+
+            detectedMedicines =
+                cleanMedicineNames(
+                    detectedMedicines
+                );
+
+
+            if (
+                detectedMedicines.length === 0
+            ) {
+
+                showMessage(
+                    "OCR read the prescription, but no medicine names could be identified. Check the OCR text shown below and try a clearer image.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            displayMedicines();
+
+
+            resultsSection.style.display =
+                "block";
+
+
+            showMessage(
+                detectedMedicines.length +
+                " medicine(s) detected successfully.",
+                "success"
+            );
+
+
+            setStep(3);
+
+
+        } catch (error) {
+
+            console.error(
+                "OCR ERROR:",
+                error
+            );
+
+
+            showMessage(
+                "Unable to read the prescription. " +
+                (error.message || ""),
+                "error"
+            );
+
+
+            setStep(2);
+
+        } finally {
+
+            loading.style.display =
+                "none";
+
+            readBtn.disabled =
+                false;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   BACKEND OCR
+========================================================= */
+
+async function readUsingBackendOCR() {
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "file",
+        selectedFile
+    );
+
+
+    const response =
+        await fetch(
+            OCR_API,
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+
+    let data;
+
+    try {
+
+        data =
+            await response.json();
+
+    } catch (error) {
+
+        throw new Error(
+            "OCR server returned an invalid response."
+        );
+
+    }
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            "Backend OCR request failed."
+        );
+
+    }
+
+
+    if (data.success === false) {
+
+        throw new Error(
+            data.message ||
+            "Backend OCR failed."
+        );
+
+    }
+
+
+    return {
+
+        medicines:
+            Array.isArray(data.medicines)
+                ? data.medicines
+                : [],
+
+        rawText:
+            data.rawText ||
+            data.text ||
+            ""
+
+    };
+
+}
+
+
+/* =========================================================
+   TESSERACT OCR
+========================================================= */
+
+async function readUsingTesseract() {
+
+    if (
+        typeof Tesseract === "undefined"
+    ) {
+
+        throw new Error(
+            "Browser OCR library could not be loaded. Check your internet connection."
+        );
+
+    }
+
+
+    const result =
+        await Tesseract.recognize(
+            selectedFile,
+            "eng",
+            {
+                logger:
+                    function(info) {
+
+                        if (
+                            info.status === "recognizing text"
+                        ) {
+
+                            const percent =
+                                Math.round(
+                                    (info.progress || 0) * 100
+                                );
+
+                            loadingText.textContent =
+                                "Reading prescription with OCR... " +
+                                percent +
+                                "%";
+
+                        }
+
+                    }
+            }
+        );
+
+
+    return {
+
+        text:
+            result.data.text || ""
+
+    };
+
+}
+
+
+/* =========================================================
+   MEDICINE EXTRACTION
+========================================================= */
+
+function extractMedicineCandidates(text) {
+
+    if (!text) {
+        return [];
+    }
+
+
+    const lines =
+        text
+            .split(/\r?\n/)
+            .map(line => line.trim())
+            .filter(Boolean);
+
+
+    const candidates = [];
+
+
+    /*
+     * Common words that are NOT medicine names.
+     */
+
+    const ignoredWords = [
+
+        "patient",
+        "name",
+        "age",
+        "sex",
+        "male",
+        "female",
+        "doctor",
+        "dr",
+        "date",
+        "diagnosis",
+        "prescription",
+        "medicine",
+        "medicines",
+        "tablet",
+        "tablets",
+        "capsule",
+        "capsules",
+        "syrup",
+        "injection",
+        "dose",
+        "dosage",
+        "morning",
+        "afternoon",
+        "evening",
+        "night",
+        "before",
+        "after",
+        "daily",
+        "twice",
+        "thrice",
+        "once",
+        "times",
+        "day",
+        "days",
+        "week",
+        "weeks",
+        "month",
+        "months",
+        "take",
+        "taken",
+        "food",
+        "water",
+        "continue",
+        "stop",
+        "follow",
+        "review",
+        "hospital",
+        "clinic",
+        "phone",
+        "mobile",
+        "address",
+        "email",
+        "signature",
+        "quantity",
+        "qty",
+        "refill",
+        "mg",
+        "mcg",
+        "g",
+        "ml",
+        "mls",
+        "kg",
+        "bp",
+        "spo2",
+        "temp",
+        "temperature",
+        "pulse",
+        "room",
+        "no",
+        "number",
+        "rx",
+        "sig"
+
+    ];
+
+
+    for (
+        let line of lines
+    ) {
+
+        let cleaned =
+            line
+                .replace(/^[\s•●○◦▪▸►\-–—*]+/, "")
+                .replace(/^\d+[\s.)-]+/, "")
+                .trim();
+
+
+        if (
+            cleaned.length < 3 ||
+            cleaned.length > 80
+        ) {
+
+            continue;
+
+        }
+
+
+        /*
+         * Remove common dosage information.
+         */
+
+        cleaned =
+            cleaned.replace(
+                /\b\d+(?:\.\d+)?\s*(mg|mcg|g|ml|mls|%|iu)\b/gi,
+                ""
+            );
+
+
+        cleaned =
+            cleaned.replace(
+                /\b\d+\s*(?:x|times?)\s*(?:daily|a day|per day)?\b/gi,
+                ""
+            );
+
+
+        cleaned =
+            cleaned.replace(
+                /\b(?:od|bd|tds|tid|qid|hs|sos|stat)\b/gi,
+                ""
+            );
+
+
+        cleaned =
+            cleaned
+                .replace(/\s+/g, " ")
+                .trim();
+
+
+        if (
+            cleaned.length < 3
+        ) {
+
+            continue;
+
+        }
+
+
+        const lower =
+            cleaned.toLowerCase();
+
+
+        /*
+         * Ignore lines made entirely from
+         * generic prescription words.
+         */
+
+        const words =
+            lower.split(/\s+/);
+
+
+        const hasIgnoredOnly =
+            words.length > 0 &&
+            words.every(
+                word =>
+                    ignoredWords.includes(
+                        word.replace(
+                            /[^a-z]/g,
+                            ""
+                        )
+                    )
+            );
+
+
+        if (
+            hasIgnoredOnly
+        ) {
+
+            continue;
+
+        }
+
+
+        /*
+         * Ignore lines containing too many
+         * obviously non-medicine words.
+         */
+
+        let ignoredCount = 0;
+
+        for (
+            const word of words
+        ) {
+
+            const cleanWord =
+                word.replace(
+                    /[^a-z]/g,
+                    ""
+                );
+
+            if (
+                ignoredWords.includes(
+                    cleanWord
+                )
+            ) {
+
+                ignoredCount++;
+
+            }
+
+        }
+
+
+        if (
+            ignoredCount >=
+            Math.max(2, words.length)
+        ) {
+
+            continue;
+
+        }
+
+
+        /*
+         * Remove trailing dosage/frequency.
+         */
+
+        cleaned =
+            cleaned
+                .replace(
+                    /\b(?:once|twice|thrice)\b.*$/i,
+                    ""
+                )
+                .replace(
+                    /\b(?:morning|afternoon|evening|night)\b.*$/i,
+                    ""
+                )
+                .trim();
+
+
+        /*
+         * Keep lines containing alphabetic text.
+         */
+
+        if (
+            !/[A-Za-z]{3,}/.test(cleaned)
+        ) {
+
+            continue;
+
+        }
+
+
+        /*
+         * Avoid very long sentences.
+         */
+
+        if (
+            cleaned.split(/\s+/).length > 7
+        ) {
+
+            continue;
+
+        }
+
+
+        candidates.push(cleaned);
+
+    }
+
+
+    /*
+     * Remove duplicates.
+     */
+
+    return [
+        ...new Set(
+            candidates.map(
+                item =>
+                    item.trim()
+            )
+        )
+    ].slice(0, 15);
+
+}
+
+
+/* =========================================================
+   CLEAN MEDICINE NAMES
+========================================================= */
+
+function cleanMedicineNames(names) {
+
+    if (!Array.isArray(names)) {
+        return [];
+    }
+
+
+    const cleaned = [];
+
+
+    for (
+        let name of names
+    ) {
+
+        if (
+            name === null ||
+            name === undefined
+        ) {
+
+            continue;
+
+        }
+
+
+        name =
+            String(name)
+                .replace(/[\r\n]+/g, " ")
+                .replace(
+                    /^[\s•●○◦▪▸►\-–—*]+/,
+                    ""
+                )
+                .replace(
+                    /^\d+[\s.)-]+/,
+                    ""
+                )
+                .replace(
+                    /\s+/g,
+                    " "
+                )
+                .trim();
+
+
+        if (
+            name.length < 3 ||
+            name.length > 100
+        ) {
+
+            continue;
+
+        }
+
+
+        /*
+         * Remove dosage from the end.
+         */
+
+        name =
+            name.replace(
+                /\s+\d+(?:\.\d+)?\s*(mg|mcg|g|ml|mls|%|iu)\b.*$/i,
+                ""
+            ).trim();
+
+
+        if (
+            name.length >= 3
+        ) {
+
+            cleaned.push(name);
+
+        }
+
+    }
+
+
+    return [
+        ...new Set(
+            cleaned
+        )
+    ].slice(0, 20);
+
+}
+
+
+/* =========================================================
+   DISPLAY MEDICINES
+========================================================= */
+
+function displayMedicines() {
+
+    medicineList.innerHTML = "";
+
+
+    detectedMedicines.forEach(
+        function(medicine, index) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "medicine-card";
+
+
+            card.innerHTML = `
+
+                <div class="medicine-name">
+
+                    💊 ${escapeHtml(medicine)}
+
+                </div>
+
+
+                <div class="medicine-description">
+
+                    This medicine was detected
+                    from your uploaded prescription.
+                    Please verify the name before saving.
+
+                </div>
+
+
+                <label class="medicine-check">
+
+                    <input
+                        type="checkbox"
+                        class="medicine-checkbox"
+                        data-index="${index}"
+                        checked>
+
+                    Add this medicine to my account
+
+                </label>
+
+            `;
+
+
+            medicineList.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SAVE MEDICINES
+========================================================= */
+
+addMedicineBtn.addEventListener(
+    "click",
+    async function() {
+
+        const checkboxes =
+            document.querySelectorAll(
+                ".medicine-checkbox:checked"
+            );
+
+
+        if (
+            checkboxes.length === 0
+        ) {
+
+            showMessage(
+                "Please select at least one medicine.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        addMedicineBtn.disabled =
+            true;
+
+
+        addMedicineBtn.textContent =
+            "Saving Medicines...";
+
+
+        hideMessage();
+
+
+        let savedCount = 0;
+
+        let failedCount = 0;
+
+
+        try {
+
+            for (
+                const checkbox
+                of checkboxes
+            ) {
+
+                const index =
+                    Number(
+                        checkbox.dataset.index
+                    );
+
+
+                const medicineName =
+                    detectedMedicines[index];
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            PRESCRIPTION_MEDICINE_API,
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        name:
+                                            medicineName,
+
+                                        userId:
+                                            USER_ID
+
+                                    })
+
+                            }
+                        );
+
+
+                    if (!response.ok) {
+
+                        const errorText =
+                            await response.text();
+
+
+                        console.error(
+                            "Medicine save failed:",
+                            errorText
+                        );
+
+
+                        failedCount++;
+
+                        continue;
+
+                    }
+
+
+                    savedCount++;
+
+                } catch (error) {
+
+                    console.error(
+                        "Medicine save error:",
+                        error
+                    );
+
+                    failedCount++;
+
+                }
+
+            }
+
+
+            if (
+                savedCount === 0
+            ) {
+
+                throw new Error(
+                    "No medicines could be saved. Please check that the Spring Boot server is running."
+                );
+
+            }
+
+
+            localStorage.setItem(
+                "lastPrescriptionMedicines",
+                JSON.stringify(
+                    detectedMedicines
+                )
+            );
+
+
+            if (
+                failedCount === 0
+            ) {
+
+                showMessage(
+                    savedCount +
+                    " medicine(s) saved successfully. Opening My Medicines...",
+                    "success"
+                );
+
+            } else {
+
+                showMessage(
+                    savedCount +
+                    " medicine(s) saved. " +
+                    failedCount +
+                    " could not be saved.",
+                    "success"
+                );
+
+            }
+
+
+            setTimeout(
+                function() {
+
+                    window.location.href =
+                        "medicines.html";
+
+                },
+                1200
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "SAVE ERROR:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to save medicines.",
+                "error"
+            );
+
+        } finally {
+
+            addMedicineBtn.disabled =
+                false;
+
+            addMedicineBtn.textContent =
+                "💾 Save Medicines to My Account";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   STEP INDICATOR
+========================================================= */
+
+function setStep(number) {
+
+    const steps = [
+
+        document.getElementById("step1"),
+
+        document.getElementById("step2"),
+
+        document.getElementById("step3")
+
+    ];
+
+
+    steps.forEach(
+        function(step) {
+
+            step.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    for (
+        let i = 0;
+        i < number;
+        i++
+    ) {
+
+        steps[i].classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message " + type;
+
+    message.style.display =
+        "block";
+
+}
+
+
+function hideMessage() {
+
+    message.style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   HTML ESCAPING
+========================================================= */
+
+function escapeHtml(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+function goBack() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medication Schedule | SmartMedication</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #193653;
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(53, 210, 210, 0.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(100, 181, 246, 0.18),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f4fcfd,
+                    #eef8fb
+                );
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 75px;
+            padding: 0 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(255,255,255,0.94);
+
+            border-bottom: 1px solid #e2edf1;
+
+            box-shadow:
+                0 5px 25px
+                rgba(40,100,120,0.07);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #159da5;
+
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: #58758d;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            color: #159da5;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1050px;
+
+            margin: auto;
+
+            padding: 45px 25px 70px;
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .small-title {
+            color: #159da5;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+
+        .page-heading h1 {
+            font-size: 38px;
+
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #718797;
+
+            font-size: 15px;
+        }
+
+        /* CARD */
+
+        .schedule-card {
+            background: white;
+
+            border: 1px solid #e1edf1;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 20px 55px
+                rgba(40,100,120,0.09);
+
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 30px 35px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e5fafa,
+                    #f7fcfd
+                );
+
+            border-bottom:
+                1px solid #e3eef1;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .medicine-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: white;
+
+            font-size: 27px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(40,100,120,0.08);
+        }
+
+        .card-header h2 {
+            font-size: 22px;
+
+            margin-bottom: 5px;
+        }
+
+        .card-header p {
+            color: #718797;
+
+            font-size: 13px;
+        }
+
+        /* FORM */
+
+        .form-section {
+            padding: 35px;
+        }
+
+        .message {
+            display: none;
+
+            padding: 13px 16px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        .message.success {
+            display: block;
+
+            background: #e2f7e9;
+
+            color: #23834b;
+        }
+
+        .message.error {
+            display: block;
+
+            background: #ffe7e7;
+
+            color: #c0392b;
+        }
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #31536c;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #dcebef;
+
+            border-radius: 11px;
+
+            background: #fbfeff;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            color: #193653;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #159da5;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(21,157,165,0.08);
+
+            background: white;
+        }
+
+        textarea {
+            min-height: 110px;
+
+            resize: vertical;
+        }
+
+        /* INFO */
+
+        .info-box {
+            margin-top: 25px;
+
+            padding: 15px 18px;
+
+            border-radius: 12px;
+
+            background: #f2fbfc;
+
+            border: 1px solid #dceff1;
+
+            color: #5f7b8e;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+
+            margin-top: 30px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid #edf2f4;
+        }
+
+        .btn {
+            border: none;
+
+            padding: 13px 24px;
+
+            border-radius: 11px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .clear-btn {
+            background: #f0f5f7;
+
+            color: #58758d;
+        }
+
+        .save-btn {
+            background: #159da5;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(21,157,165,0.18);
+        }
+
+        .save-btn:hover {
+            background: #118b92;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            💊
+        </div>
+
+        SmartMedication
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back-btn">
+
+        ← Back to Dashboard
+
+    </a>
+
+</nav>
+
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <div class="page-heading">
+
+        <div class="small-title">
+            MEDICATION MANAGEMENT
+        </div>
+
+        <h1>
+            Medication Schedule 💊
+        </h1>
+
+        <p>
+            Create and manage a patient's
+            medication schedule.
+        </p>
+
+    </div>
+
+
+
+    <div class="schedule-card">
+
+
+        <!-- HEADER -->
+
+        <div class="card-header">
+
+            <div class="medicine-icon">
+                💊
+            </div>
+
+            <div>
+
+                <h2>
+                    Add Medication
+                </h2>
+
+                <p>
+                    Set the medicine timing and
+                    schedule details below.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <div class="form-section">
+
+
+            <div
+                id="message"
+                class="message">
+            </div>
+
+
+
+            <form
+                id="medicationForm"
+                onsubmit="saveMedication(event)">
+
+
+                <div class="form-grid">
+
+
+                    <!-- PATIENT ID -->
+
+                    <div class="form-group">
+
+                        <label>
+                            👤 Patient ID
+                        </label>
+
+                        <input
+                            type="number"
+                            id="patientId"
+                            placeholder="Enter patient ID"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- MEDICINE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            💊 Medicine Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="medicineName"
+                            placeholder="Example: Vitamin D"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- TIME -->
+
+                    <div class="form-group">
+
+                        <label>
+                            🕐 Medication Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="time"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- FREQUENCY -->
+
+                    <div class="form-group">
+
+                        <label>
+                            🔄 Frequency
+                        </label>
+
+                        <select
+                            id="frequency"
+                            required>
+
+                            <option value="">
+                                Select frequency
+                            </option>
+
+                            <option value="Once Daily">
+                                Once Daily
+                            </option>
+
+                            <option value="Twice Daily">
+                                Twice Daily
+                            </option>
+
+                            <option value="Three Times Daily">
+                                Three Times Daily
+                            </option>
+
+                            <option value="Every 6 Hours">
+                                Every 6 Hours
+                            </option>
+
+                            <option value="Every 8 Hours">
+                                Every 8 Hours
+                            </option>
+
+                            <option value="Every 12 Hours">
+                                Every 12 Hours
+                            </option>
+
+                            <option value="Weekly">
+                                Weekly
+                            </option>
+
+                            <option value="As Needed">
+                                As Needed
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- START DATE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            📅 Start Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="startDate"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- END DATE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            📅 End Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="endDate"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- INSTRUCTIONS -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            📝 Instructions
+                        </label>
+
+                        <textarea
+                            id="instructions"
+                            placeholder="Example: Take after breakfast with water."
+                            required></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- INFO -->
+
+                <div class="info-box">
+
+                    💡 <strong>Tip:</strong>
+                    Make sure the medication time,
+                    start date and end date are correct.
+                    These details will be used to create
+                    the patient's medication reminders.
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="buttons">
+
+                    <button
+                        type="button"
+                        class="btn clear-btn"
+                        onclick="clearForm()">
+
+                        Clear
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn save-btn"
+                        id="saveButton">
+
+                        💾 Save Medication
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =========================================
+   BACKEND URL
+========================================= */
+
+const API_URL =
+    "http://localhost:8080/api/medications";
+
+
+
+/* =========================================
+   LOAD PATIENT ID
+========================================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const savedPatientId =
+            localStorage.getItem(
+                "patientId"
+            );
+
+        if (savedPatientId) {
+
+            document.getElementById(
+                "patientId"
+            ).value =
+                savedPatientId;
+
+        }
+
+    }
+);
+
+
+
+/* =========================================
+   SAVE MEDICATION
+========================================= */
+
+async function saveMedication(event) {
+
+    event.preventDefault();
+
+
+    const saveButton =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    const medication = {
+
+        patientId:
+            Number(
+                document.getElementById(
+                    "patientId"
+                ).value
+            ),
+
+        medicineName:
+            document.getElementById(
+                "medicineName"
+            ).value.trim(),
+
+        time:
+            document.getElementById(
+                "time"
+            ).value,
+
+        startDate:
+            document.getElementById(
+                "startDate"
+            ).value,
+
+        endDate:
+            document.getElementById(
+                "endDate"
+            ).value,
+
+        frequency:
+            document.getElementById(
+                "frequency"
+            ).value,
+
+        instructions:
+            document.getElementById(
+                "instructions"
+            ).value.trim()
+
+    };
+
+
+    /* DATE VALIDATION */
+
+    if (
+        medication.endDate <
+        medication.startDate
+    ) {
+
+        showMessage(
+            "❌ End date cannot be before start date.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    try {
+
+
+        saveButton.disabled =
+            true;
+
+        saveButton.textContent =
+            "Saving...";
+
+
+        const response =
+            await fetch(
+                API_URL,
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(
+                            medication
+                        )
+
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const error =
+                await response.text();
+
+            throw new Error(
+                error ||
+                "Unable to save medication"
+            );
+
+        }
+
+
+        const savedMedication =
+            await response.json();
+
+
+        /*
+
+            Store medication ID.
+
+            We can use this later to open
+            the medication profile.
+
+        */
+
+        localStorage.setItem(
+            "medicationId",
+            savedMedication.id
+        );
+
+
+        showMessage(
+            "✅ Medication schedule saved successfully!",
+            "success"
+        );
+
+
+        /*
+            Later we will redirect to:
+
+            medication-list.html
+
+            For now wait so the user
+            can see the success message.
+        */
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "medication-list.html";
+
+            },
+            900
+        );
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "Medication save error:",
+            error
+        );
+
+
+        showMessage(
+            "❌ Failed to save medication. Make sure the backend is running.",
+            "error"
+        );
+
+
+        saveButton.disabled =
+            false;
+
+        saveButton.textContent =
+            "💾 Save Medication";
+
+    }
+
+}
+
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "message " + type;
+
+}
+
+
+
+/* =========================================
+   CLEAR
+========================================= */
+
+function clearForm() {
+
+    document.getElementById(
+        "medicationForm"
+    ).reset();
+
+
+    const savedPatientId =
+        localStorage.getItem(
+            "patientId"
+        );
+
+
+    if (savedPatientId) {
+
+        document.getElementById(
+            "patientId"
+        ).value =
+            savedPatientId;
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

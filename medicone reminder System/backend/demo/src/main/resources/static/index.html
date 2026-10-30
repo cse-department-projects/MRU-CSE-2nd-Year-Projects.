@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartMedication | Smart Medication Reminder</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #193653;
+            line-height: 1.6;
+
+            background:
+                radial-gradient(circle at 10% 20%,
+                rgba(74, 210, 215, 0.18),
+                transparent 30%),
+
+                radial-gradient(circle at 90% 70%,
+                rgba(100, 181, 246, 0.16),
+                transparent 30%),
+
+                #f5fbfd;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            background: rgba(255,255,255,0.94);
+
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid #e0edf1;
+
+            box-shadow:
+                0 5px 25px rgba(40,100,120,0.06);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: #159da5;
+
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+
+            color: #58758d;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: #159da5;
+        }
+
+        .login-btn {
+            padding: 10px 22px;
+
+            border-radius: 10px;
+
+            background: #159da5;
+
+            color: white !important;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 680px;
+
+            display: grid;
+
+            grid-template-columns: 1.1fr 0.9fr;
+
+            align-items: center;
+
+            gap: 60px;
+
+            padding: 80px 8%;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 8px 15px;
+
+            margin-bottom: 25px;
+
+            border-radius: 30px;
+
+            background: #e5fafa;
+
+            color: #159da5;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px,6vw,72px);
+
+            line-height: 1.08;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 28px;
+
+            color: #183b56;
+        }
+
+        .hero h1 span {
+            color: #159da5;
+        }
+
+        .hero-description {
+            max-width: 620px;
+
+            color: #667f91;
+
+            font-size: 18px;
+
+            line-height: 1.8;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .primary-btn {
+            background: #159da5;
+
+            color: white;
+
+            box-shadow:
+                0 12px 25px
+                rgba(21,157,165,0.25);
+        }
+
+        .secondary-btn {
+            background: white;
+
+            color: #31536c;
+
+            border: 1px solid #d8e8ed;
+        }
+
+        /* ================= MEDICATION CARD ================= */
+
+        .hero-card {
+            background: rgba(255,255,255,0.96);
+
+            padding: 30px;
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 30px 70px
+                rgba(40,100,120,0.14);
+
+            border: 1px solid #e1edf1;
+        }
+
+        .medicine-top {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .medicine-main-icon {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 16px;
+
+            background: #e4f9f9;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+        }
+
+        .medicine-top h3 {
+            font-size: 21px;
+        }
+
+        .medicine-top p {
+            color: #8397a5;
+
+            font-size: 13px;
+        }
+
+        .medicine-item {
+            padding: 18px;
+
+            margin-bottom: 14px;
+
+            background: #f7fbfc;
+
+            border-radius: 15px;
+
+            border: 1px solid #edf3f5;
+        }
+
+        .medicine-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .medicine-name {
+            font-weight: bold;
+
+            color: #31536c;
+
+            font-size: 16px;
+        }
+
+        .medicine-dosage {
+            display: block;
+
+            color: #8397a5;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+        .medicine-time {
+            color: #159da5;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+        /* STATUS */
+
+        .status {
+            display: inline-block;
+
+            margin-left: 5px;
+
+            padding: 4px 8px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: bold;
+        }
+
+        .taken {
+            background: #dcf6e5;
+
+            color: #23834b;
+        }
+
+        .pending {
+            background: #fff0c9;
+
+            color: #a36d00;
+        }
+
+        .missed {
+            background: #ffe1e1;
+
+            color: #c0392b;
+        }
+
+        /* BUTTONS */
+
+        .medicine-actions {
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 14px;
+        }
+
+        .action-btn {
+            flex: 1;
+
+            padding: 9px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .take-btn {
+            background: #dff7e7;
+
+            color: #23834b;
+        }
+
+        .take-btn:hover {
+            background: #c9efd8;
+        }
+
+        .miss-btn {
+            background: #ffe5e5;
+
+            color: #c0392b;
+        }
+
+        .miss-btn:hover {
+            background: #ffd2d2;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+
+            cursor: not-allowed;
+        }
+
+        .loading {
+            text-align: center;
+
+            padding: 25px;
+
+            color: #8397a5;
+        }
+
+        .empty {
+            text-align: center;
+
+            padding: 25px;
+
+            color: #23834b;
+
+            background: #f0faf4;
+
+            border-radius: 14px;
+        }
+
+        .error {
+            text-align: center;
+
+            padding: 20px;
+
+            color: #c0392b;
+
+            background: #fff1f1;
+
+            border-radius: 14px;
+        }
+
+        /* PROGRESS */
+
+        .progress-section {
+            margin-top: 25px;
+        }
+
+        .progress-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 9px;
+
+            font-size: 13px;
+
+            color: #667f91;
+        }
+
+        .progress-bar {
+            width: 100%;
+
+            height: 10px;
+
+            background: #e7eff2;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+
+            height: 100%;
+
+            background: #159da5;
+
+            border-radius: 20px;
+
+            transition: width 0.5s ease;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            padding: 100px 8%;
+
+            background: white;
+
+            text-align: center;
+        }
+
+        .section-heading {
+            max-width: 700px;
+
+            margin: 0 auto 55px;
+        }
+
+        .section-heading p {
+            color: #159da5;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-size: 42px;
+
+            line-height: 1.2;
+        }
+
+        .section-heading h2 span {
+            color: #159da5;
+        }
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 30px 23px;
+
+            border: 1px solid #e3edf1;
+
+            border-radius: 20px;
+
+            background: #ffffff;
+
+            transition: 0.3s;
+
+            text-align: left;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+
+            box-shadow:
+                0 20px 40px
+                rgba(40,100,120,0.10);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #e6f9fa;
+
+            border-radius: 15px;
+
+            font-size: 26px;
+
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            color: #718797;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 18px;
+        }
+
+        .feature-link {
+            color: #159da5;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            padding: 100px 8%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eafafa,
+                    #f4f9ff
+                );
+        }
+
+        .about-container {
+            max-width: 1050px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .small-title {
+            color: #159da5;
+
+            font-size: 13px;
+
+            letter-spacing: 3px;
+
+            font-weight: bold;
+
+            margin-bottom: 12px;
+        }
+
+        .about h2 {
+            font-size: 43px;
+
+            line-height: 1.2;
+
+            margin-bottom: 22px;
+        }
+
+        .about h2 span {
+            color: #159da5;
+        }
+
+        .about-text {
+            color: #687f90;
+
+            line-height: 1.9;
+
+            margin-bottom: 20px;
+        }
+
+        .about-card {
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(40,100,120,0.10);
+        }
+
+        .about-stat {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #edf2f4;
+        }
+
+        .about-stat:last-child {
+            border-bottom: none;
+        }
+
+        .about-stat-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #e6f9fa;
+
+            border-radius: 13px;
+
+            font-size: 22px;
+        }
+
+        .about-stat strong {
+            display: block;
+
+            font-size: 17px;
+        }
+
+        .about-stat span {
+            color: #8295a5;
+
+            font-size: 13px;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            padding: 80px 8%;
+
+            text-align: center;
+
+            background: white;
+        }
+
+        .cta-box {
+            max-width: 950px;
+
+            margin: auto;
+
+            padding: 55px 30px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dff8f8,
+                    #edf6ff
+                );
+        }
+
+        .cta h2 {
+            font-size: 38px;
+
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #718797;
+
+            margin-bottom: 25px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #173b56;
+
+            color: white;
+
+            padding: 35px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        footer p {
+            color: #a9c0cf;
+
+            font-size: 13px;
+        }
+
+        /* ================= PRESCRIPTION BUTTON ================= */
+
+        .prescription-open-btn {
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            border-radius: 12px;
+
+            border: none;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background: #183b56;
+
+            color: white;
+
+            margin-left: 8px;
+        }
+
+        .prescription-open-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* ================= MEDICATION ALERT BUTTON ================= */
+
+        .alert-enable-btn {
+            display: inline-block;
+            padding: 14px 25px;
+            border-radius: 12px;
+            border: none;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            background: #159da5;
+            color: white;
+            margin-left: 8px;
+            box-shadow: 0 10px 22px rgba(21,157,165,0.20);
+        }
+
+        .alert-enable-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+
+        /* ================= USER PROFILE ================= */
+
+        .user-profile {
+            display: none;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 6px 10px 6px 7px;
+
+            border: 1px solid #dcebef;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            text-decoration: none;
+
+            color: #193653;
+
+            box-shadow:
+                0 5px 16px rgba(25,54,83,0.07);
+
+            transition: 0.2s ease;
+        }
+
+        .user-profile:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 8px 20px rgba(25,54,83,0.10);
+        }
+
+        .user-profile-image {
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            display: block;
+
+            background: #dff7f8;
+        }
+
+        .user-profile-fallback {
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #dff7f8;
+
+            font-size: 21px;
+        }
+
+
+        /* ================= LANGUAGE SELECTOR ================= */
+        .language-selector { display:flex; align-items:center; margin-right:4px; }
+        .language-selector select { border:1px solid #d8e8ed; background:white; color:#31536c; padding:10px 12px; border-radius:10px; font-size:14px; font-weight:bold; cursor:pointer; outline:none; }
+        .language-selector select:hover { border-color:#159da5; }
+        .language-selector select:focus { border-color:#159da5; box-shadow:0 0 0 3px rgba(21,157,165,0.10); }
+        @media(max-width:750px) { .language-selector select { padding:8px 7px; font-size:12px; } }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width:1050px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                max-width: 650px;
+
+                width: 100%;
+
+                margin: auto;
+            }
+
+            .feature-grid {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+        }
+
+        @media(max-width:750px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a:not(.login-btn) {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 6%;
+            }
+
+            .hero h1 {
+                font-size: 46px;
+            }
+
+            .features {
+                padding: 70px 6%;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                padding: 70px 6%;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+            }
+
+            footer {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            .prescription-open-btn {
+                margin-left: 0;
+
+                margin-top: 8px;
+            }
+
+            .user-profile-name {
+                display: none;
+            }
+
+            .user-profile {
+                padding: 5px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="index.html"
+       class="logo">
+
+        <div class="logo-icon">
+            💊
+        </div>
+
+        SmartMedication
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <div class="language-selector">
+            <select id="languageSelector" aria-label="Select Language">
+                <option value="en">🇬🇧 English</option>
+                <option value="te">🇮🇳 తెలుగు</option>
+                <option value="hi">🇮🇳 हिन्दी</option>
+            </select>
+        </div>
+
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+
+        <a href="patient.html"
+           id="userProfile"
+           class="user-profile"
+           title="Open Patient Profile">
+
+            <span id="userProfileImageWrap"
+                  class="user-profile-fallback">👤</span>
+
+            <span id="userProfileName"
+                  class="user-profile-name">
+                Profile
+            </span>
+
+        </a>
+
+        <a href="login.html"
+           class="login-btn">
+            Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero"
+         id="home">
+
+
+    <div class="hero-content">
+
+        <div class="badge">
+
+            ✨ Smart Healthcare Assistant
+
+        </div>
+
+
+        <h1>
+
+            Never Miss Your
+
+            <span>
+                Medication
+            </span>
+
+            Again.
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Smart Medication Reminder and Tracking System
+            helps you manage medicines, set reminders,
+            track medication progress and maintain
+            medication history in one simple place.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a href="register.html"
+               class="primary-btn">
+
+                Get Started →
+
+            </a>
+
+
+            <a href="#features"
+               class="secondary-btn">
+
+                Explore Features
+
+            </a>
+
+
+            <!-- FIXED PRESCRIPTION BUTTON -->
+
+            <a href="prescription.html"
+               class="prescription-open-btn">
+
+                📄 Add Prescription
+
+            </a>
+
+            <button type="button"
+                    id="enableAlertButton"
+                    class="alert-enable-btn">
+
+                🔔 Enable Medication Alerts
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TODAY'S MEDICATION ================= -->
+
+    <div class="hero-card">
+
+
+        <div class="medicine-top">
+
+            <div class="medicine-main-icon">
+                💊
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Today's Medication
+                </h3>
+
+                <p id="todayDate">
+                    Loading...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div id="todayMedicationList">
+
+            <div class="loading">
+
+                ⏳ Loading medication...
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-section">
+
+
+            <div class="progress-info">
+
+                <span>
+                    Today's Progress
+                </span>
+
+
+                <strong id="progressPercent">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress"
+                    id="progressBar">
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features"
+         id="features">
+
+
+    <div class="section-heading">
+
+        <p>
+            POWERFUL FEATURES
+        </p>
+
+
+        <h2>
+
+            Everything You Need
+
+            <span>
+                In One Place
+            </span>
+
+        </h2>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                💊
+            </div>
+
+            <h3>
+                Medicine Management
+            </h3>
+
+            <p>
+                Add, edit and manage your medicines.
+            </p>
+
+            <a href="medicines.html"
+               class="feature-link">
+
+                View Medicines →
+
+            </a>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ⏰
+            </div>
+
+            <h3>
+                Today's Reminders
+            </h3>
+
+            <p>
+                View and manage your scheduled medicines.
+            </p>
+
+            <a href="reminders.html"
+               class="feature-link">
+
+                View Reminders →
+
+            </a>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Medication Tracking
+            </h3>
+
+            <p>
+                Monitor your medication progress.
+            </p>
+
+            <a href="dashboard.html"
+               class="feature-link">
+
+                View Tracking →
+
+            </a>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📅
+            </div>
+
+            <h3>
+                Medication History
+            </h3>
+
+            <p>
+                View your previous medication activity.
+            </p>
+
+            <a href="history.html"
+               class="feature-link">
+
+                View History →
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about"
+         id="about">
+
+
+    <div class="about-container">
+
+
+        <div>
+
+            <p class="small-title">
+                ABOUT THE SYSTEM
+            </p>
+
+
+            <h2>
+
+                Healthcare Made
+
+                <span>
+                    Simple.
+                </span>
+
+            </h2>
+
+
+            <p class="about-text">
+
+                SmartMedication combines medication
+                reminders, medicine management,
+                progress tracking and history
+                into one simple application.
+
+            </p>
+
+
+            <p class="about-text">
+
+                Your medication information is managed
+                through a Spring Boot backend and
+                MySQL database.
+
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+
+            <div class="about-stat">
+
+                <div class="about-stat-icon">
+                    💊
+                </div>
+
+                <div>
+
+                    <strong>
+                        Medicine Management
+                    </strong>
+
+                    <span>
+                        Manage your medicines
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="about-stat">
+
+                <div class="about-stat-icon">
+                    ⏰
+                </div>
+
+                <div>
+
+                    <strong>
+                        Smart Reminders
+                    </strong>
+
+                    <span>
+                        Track scheduled doses
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="about-stat">
+
+                <div class="about-stat-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <strong>
+                        Progress Tracking
+                    </strong>
+
+                    <span>
+                        Monitor medication progress
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="about-stat">
+
+                <div class="about-stat-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <strong>
+                        Medication History
+                    </strong>
+
+                    <span>
+                        View previous records
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+
+    <div class="cta-box">
+
+
+        <h2>
+            Ready to Take Control?
+        </h2>
+
+
+        <p>
+            Start organizing your medication today.
+        </p>
+
+
+        <a href="register.html"
+           class="primary-btn">
+
+            Create Your Account →
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div>
+
+        💊
+
+        <strong>
+            SmartMedication
+        </strong>
+
+    </div>
+
+
+    <p>
+
+        Smart Medication Reminder &
+        Tracking System
+
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+    /*
+     * Get logged-in user ID
+     */
+
+    function getLoggedInUserId() {
+
+        const stored =
+            localStorage.getItem("loggedInUserId") ||
+            localStorage.getItem("userId") ||
+            localStorage.getItem("USER_ID");
+
+        const id = Number(stored);
+
+        if (Number.isInteger(id) && id > 0) {
+            return id;
+        }
+
+        return 1;
+    }
+
+
+    /*
+     * Temporary/current user ID
+     */
+
+    const USER_ID = getLoggedInUserId();
+
+
+    /*
+     * Load today's reminders
+     */
+
+    async function loadTodayMedication() {
+
+        const list =
+            document.getElementById(
+                "todayMedicationList"
+            );
+
+        try {
+
+            const response = await fetch(
+                `/api/reminders/today/${USER_ID}`
+            );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load reminders"
+                );
+
+            }
+
+            const reminders =
+                await response.json();
+
+            list.innerHTML = "";
+
+
+            if (reminders.length === 0) {
+
+                list.innerHTML = `
+
+                    <div class="empty">
+
+                        🎉
+
+                        <br>
+
+                        No medication scheduled
+                        for today.
+
+                    </div>
+
+                `;
+
+                updateProgress(0, 0);
+
+                return;
+            }
+
+
+            let taken = 0;
+
+
+            reminders.forEach(
+                reminder => {
+
+                    if (
+                        reminder.status ===
+                        "TAKEN"
+                    ) {
+
+                        taken++;
+
+                    }
+
+
+                    const medicine =
+                        reminder.medicine;
+
+
+                    const time =
+                        formatTime(
+                            reminder.reminderTime
+                        );
+
+
+                    let statusClass =
+                        "pending";
+
+
+                    let statusText =
+                        "Pending";
+
+
+                    if (
+                        reminder.status ===
+                        "TAKEN"
+                    ) {
+
+                        statusClass =
+                            "taken";
+
+                        statusText =
+                            "Taken";
+
+                    }
+
+
+                    if (
+                        reminder.status ===
+                        "MISSED"
+                    ) {
+
+                        statusClass =
+                            "missed";
+
+                        statusText =
+                            "Missed";
+
+                    }
+
+
+                    list.innerHTML += `
+
+                        <div
+                            class="medicine-item">
+
+                            <div
+                                class="medicine-row">
+
+                                <div>
+
+                                    <span
+                                        class="medicine-name">
+
+                                        💊
+                                        ${medicine.name}
+
+                                    </span>
+
+
+                                    <span
+                                        class="medicine-dosage">
+
+                                        ${medicine.dosage}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div
+                                    class="medicine-time">
+
+                                    ${time}
+
+                                    <span
+                                        class="status
+                                        ${statusClass}">
+
+                                        ${statusText}
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="medicine-actions">
+
+                                <button
+                                    class="action-btn
+                                    take-btn"
+
+                                    onclick="
+                                    updateReminderStatus(
+                                        ${reminder.id},
+                                        'TAKEN'
+                                    )"
+
+                                    ${reminder.status ===
+                                      "TAKEN"
+                                      ? "disabled"
+                                      : ""}>
+
+                                    ✅ Take Medicine
+
+                                </button>
+
+
+                                <button
+                                    class="action-btn
+                                    miss-btn"
+
+                                    onclick="
+                                    updateReminderStatus(
+                                        ${reminder.id},
+                                        'MISSED'
+                                    )"
+
+                                    ${reminder.status ===
+                                      "MISSED"
+                                      ? "disabled"
+                                      : ""}>
+
+                                    ❌ Mark Missed
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+
+            document.getElementById(
+                "todayDate"
+            ).textContent =
+                formatDate(
+                    reminders[0].reminderDate
+                );
+
+
+            updateProgress(
+                taken,
+                reminders.length
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            list.innerHTML = `
+
+                <div class="error">
+
+                    ⚠️
+
+                    <br><br>
+
+                    Unable to connect to
+                    the medication server.
+
+                    <br><br>
+
+                    Make sure Spring Boot
+                    is running on port 8080.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    /*
+     * Update reminder status
+     */
+
+    async function updateReminderStatus(
+        reminderId,
+        status
+    ) {
+
+        try {
+
+            let endpoint;
+
+
+            if (status === "TAKEN") {
+
+                endpoint =
+                    `/api/reminders/${reminderId}/taken`;
+
+            } else {
+
+                endpoint =
+                    `/api/reminders/${reminderId}/missed`;
+
+            }
+
+
+            const response =
+                await fetch(
+                    endpoint,
+                    {
+                        method: "PUT"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Could not update status"
+                );
+
+            }
+
+
+            await loadTodayMedication();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Unable to update medication status."
+            );
+
+        }
+
+    }
+
+
+    /*
+     * Convert time
+     */
+
+    function formatTime(time) {
+
+        const parts =
+            time.split(":");
+
+
+        let hour =
+            parseInt(parts[0]);
+
+
+        const minute =
+            parts[1];
+
+
+        const period =
+            hour >= 12
+                ? "PM"
+                : "AM";
+
+
+        hour =
+            hour % 12 || 12;
+
+
+        return `${hour}:${minute} ${period}`;
+
+    }
+
+
+    /*
+     * Format date
+     */
+
+    function formatDate(date) {
+
+        const d =
+            new Date(date);
+
+
+        return d.toLocaleDateString(
+            "en-IN",
+            {
+                weekday: "long",
+                day: "numeric",
+                month: "long"
+            }
+        );
+
+    }
+
+
+    /*
+     * Progress calculation
+     */
+
+    function updateProgress(
+        taken,
+        total
+    ) {
+
+        const percentage =
+            total === 0
+                ? 0
+                : Math.round(
+                    (taken / total) * 100
+                );
+
+
+        document.getElementById(
+            "progressPercent"
+        ).textContent =
+            percentage + "%";
+
+
+        document.getElementById(
+            "progressBar"
+        ).style.width =
+            percentage + "%";
+
+    }
+
+
+    /* =========================================
+       LOAD USER PROFILE ON HOME PAGE
+    ========================================= */
+
+    async function loadUserProfile() {
+
+        const profile =
+            document.getElementById(
+                "userProfile"
+            );
+
+        const profileName =
+            document.getElementById(
+                "userProfileName"
+            );
+
+        const imageWrap =
+            document.getElementById(
+                "userProfileImageWrap"
+            );
+
+
+        if (
+            !profile ||
+            !profileName ||
+            !imageWrap
+        ) {
+
+            return;
+
+        }
+
+
+        const userId =
+            getLoggedInUserId();
+
+
+        if (!userId) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `/api/patients/user/${userId}`
+                );
+
+
+            if (!response.ok) {
+
+                return;
+
+            }
+
+
+            const patient =
+                await response.json();
+
+
+            if (patient.name) {
+
+                profileName.textContent =
+                    patient.name;
+
+                profile.style.display =
+                    "flex";
+
+            }
+
+
+            const savedImage =
+                localStorage.getItem(
+                    "patientProfileImage_" +
+                    userId
+                );
+
+
+            if (savedImage) {
+
+                imageWrap.innerHTML = `
+
+                    <img
+                        src="${savedImage}"
+                        class="user-profile-image"
+                        alt="Profile">
+
+                `;
+
+            } else {
+
+                imageWrap.textContent =
+                    "👤";
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Could not load user profile:",
+                error
+            );
+
+        }
+
+    }
+
+
+
+
+        /*
+     * Start application
+     */
+
+    loadTodayMedication();
+
+    loadUserProfile();
+
+
+    /* ================= FAST LANGUAGE SWITCHER ================= */
+    const translations = {
+        en: {
+            home:"Home", features:"Features", about:"About", login:"Login",
+            badge:"✨ Smart Healthcare Assistant",
+            hero:'Never Miss Your <span>Medication</span> Again.',
+            desc:"Smart Medication Reminder and Tracking System helps you manage medicines, set reminders, track medication progress and maintain medication history in one simple place.",
+            start:"Get Started →", explore:"Explore Features", prescription:"📄 Add Prescription",
+            today:"Today's Medication", progress:"Today's Progress",
+            powerful:"POWERFUL FEATURES", everything:'Everything You Need <span>In One Place</span>',
+            medicine:"Medicine Management", medicineText:"Add, edit and manage your medicines.", medicineLink:"View Medicines →",
+            reminders:"Today's Reminders", remindersText:"View and manage your scheduled medicines.", remindersLink:"View Reminders →",
+            tracking:"Medication Tracking", trackingText:"Monitor your medication progress.", trackingLink:"View Tracking →",
+            history:"Medication History", historyText:"View your previous medication activity.", historyLink:"View History →",
+            aboutTitle:"ABOUT THE SYSTEM", aboutHead:'Healthcare Made <span>Simple.</span>',
+            ready:"Ready to Take Control?", readyText:"Start organizing your medication today.", create:"Create Your Account →"
+        },
+        te: {
+            home:"హోమ్", features:"ఫీచర్లు", about:"మా గురించి", login:"లాగిన్",
+            badge:"✨ స్మార్ట్ ఆరోగ్య సహాయకుడు",
+            hero:'మీ <span>మందులను</span> మర్చిపోకండి.',
+            desc:"స్మార్ట్ మెడికేషన్ రిమైండర్ మరియు ట్రాకింగ్ సిస్టమ్ మీ మందులను నిర్వహించడానికి, రిమైండర్లు పెట్టడానికి మరియు మందుల పురోగతిని తెలుసుకోవడానికి సహాయపడుతుంది.",
+            start:"ప్రారంభించండి →", explore:"ఫీచర్లను చూడండి", prescription:"📄 ప్రిస్క్రిప్షన్",
+            today:"ఈరోజు మందులు", progress:"ఈరోజు పురోగతి",
+            powerful:"ముఖ్యమైన ఫీచర్లు", everything:'మీకు కావాల్సినవి <span>ఒకే చోట</span>',
+            medicine:"మందుల నిర్వహణ", medicineText:"మీ మందులను జోడించండి, మార్చండి మరియు నిర్వహించండి.", medicineLink:"మందులను చూడండి →",
+            reminders:"ఈరోజు రిమైండర్లు", remindersText:"మీ షెడ్యూల్ చేసిన మందులను చూడండి మరియు నిర్వహించండి.", remindersLink:"రిమైండర్లను చూడండి →",
+            tracking:"మందుల ట్రాకింగ్", trackingText:"మీ మందుల పురోగతిని తెలుసుకోండి.", trackingLink:"ట్రాకింగ్ చూడండి →",
+            history:"మందుల చరిత్ర", historyText:"మీ గత మందుల వివరాలను చూడండి.", historyLink:"చరిత్రను చూడండి →",
+            aboutTitle:"సిస్టమ్ గురించి", aboutHead:'ఆరోగ్య నిర్వహణ <span>సులభం.</span>',
+            ready:"ప్రారంభించడానికి సిద్ధంగా ఉన్నారా?", readyText:"ఈరోజే మీ మందులను సక్రమంగా నిర్వహించండి.", create:"మీ ఖాతాను సృష్టించండి →"
+        },
+        hi: {
+            home:"होम", features:"फीचर्स", about:"हमारे बारे में", login:"लॉगिन",
+            badge:"✨ स्मार्ट हेल्थकेयर सहायक",
+            hero:'अपनी <span>दवाई</span> लेना न भूलें।',
+            desc:"स्मार्ट मेडिकेशन रिमाइंडर और ट्रैकिंग सिस्टम आपकी दवाइयों को व्यवस्थित करने, रिमाइंडर लगाने और दवाई की प्रगति देखने में मदद करता है।",
+            start:"शुरू करें →", explore:"फीचर्स देखें", prescription:"📄 प्रिस्क्रिप्शन",
+            today:"आज की दवाइयाँ", progress:"आज की प्रगति",
+            powerful:"मुख्य फीचर्स", everything:'आपकी जरूरत की सभी चीजें <span>एक ही जगह</span>',
+            medicine:"दवाई प्रबंधन", medicineText:"अपनी दवाइयाँ जोड़ें, बदलें और व्यवस्थित करें।", medicineLink:"दवाइयाँ देखें →",
+            reminders:"आज के रिमाइंडर", remindersText:"अपनी निर्धारित दवाइयाँ देखें और प्रबंधित करें।", remindersLink:"रिमाइंडर देखें →",
+            tracking:"दवाई ट्रैकिंग", trackingText:"अपनी दवाई लेने की प्रगति देखें।", trackingLink:"ट्रैकिंग देखें →",
+            history:"दवाई का इतिहास", historyText:"अपनी पिछली दवाइयों की जानकारी देखें।", historyLink:"इतिहास देखें →",
+            aboutTitle:"सिस्टम के बारे में", aboutHead:'स्वास्थ्य प्रबंधन <span>आसान है।</span>',
+            ready:"शुरू करने के लिए तैयार हैं?", readyText:"आज से अपनी दवाइयों को व्यवस्थित करें।", create:"अपना खाता बनाएँ →"
+        }
+    };
+
+    function setLangText(selector, value, useHTML=false) {
+        const el = document.querySelector(selector);
+        if (el) useHTML ? el.innerHTML = value : el.textContent = value;
+    }
+
+    function applyFastLanguage(lang) {
+        const t = translations[lang] || translations.en;
+        localStorage.setItem("preferredLanguage", lang);
+        document.documentElement.lang = lang;
+
+        setLangText('.nav-links a[href="#home"]', t.home);
+        setLangText('.nav-links a[href="#features"]', t.features);
+        setLangText('.nav-links a[href="#about"]', t.about);
+        setLangText('.login-btn', t.login);
+        setLangText('.badge', t.badge);
+        setLangText('.hero h1', t.hero, true);
+        setLangText('.hero-description', t.desc);
+        setLangText('.hero-buttons .primary-btn', t.start);
+        setLangText('.hero-buttons .secondary-btn', t.explore);
+        setLangText('.prescription-open-btn', t.prescription);
+        setLangText('.medicine-top h3', t.today);
+        setLangText('.progress-info span', t.progress);
+        setLangText('.section-heading p', t.powerful);
+        setLangText('.section-heading h2', t.everything, true);
+        setLangText('.small-title', t.aboutTitle);
+        setLangText('.about h2', t.aboutHead, true);
+
+        const cards = document.querySelectorAll('.feature-card');
+        const data = [
+            [t.medicine,t.medicineText,t.medicineLink],
+            [t.reminders,t.remindersText,t.remindersLink],
+            [t.tracking,t.trackingText,t.trackingLink],
+            [t.history,t.historyText,t.historyLink]
+        ];
+        cards.forEach((card,i)=>{
+            if (!data[i]) return;
+            const h=card.querySelector("h3"), p=card.querySelector("p"), a=card.querySelector("a");
+            if(h) h.textContent=data[i][0];
+            if(p) p.textContent=data[i][1];
+            if(a) a.textContent=data[i][2];
+        });
+
+        setLangText('.cta h2', t.ready);
+        setLangText('.cta p', t.readyText);
+        setLangText('.cta .primary-btn', t.create);
+
+        const selector = document.getElementById("languageSelector");
+        if (selector) selector.value = lang;
+    }
+
+    const fastLanguageSelector = document.getElementById("languageSelector");
+    if (fastLanguageSelector) {
+        fastLanguageSelector.addEventListener("change", function () {
+            applyFastLanguage(this.value);
+        });
+        applyFastLanguage(localStorage.getItem("preferredLanguage") || "en");
+    }
+
+</script>
+
+
+    
+<script>
+/* =====================================================
+   GLOBAL MEDICATION ALARM FALLBACK
+   Embedded in index.html so alarms work even if
+   alarm.js is not loaded separately on this page.
+===================================================== */
+/* SmartMedication GLOBAL MEDICATION ALARM */
+(function () {
+    "use strict";
+
+    const ENABLED_KEY = "smartMedicationAlertsEnabled";
+    const LAST_ALARM_KEY = "smartMedicationLastAlarmId";
+    const ACTIVE_ALARM_KEY = "smartMedicationActiveAlarmId";
+
+    let alarmAudio = null;
+    let audioContext = null;
+    let oscillator = null;
+    let vibrationTimer = null;
+    let pollTimer = null;
+    let currentReminder = null;
+
+    function getUserId() {
+        const id = Number(
+            localStorage.getItem("loggedInUserId") ||
+            localStorage.getItem("userId") ||
+            localStorage.getItem("USER_ID")
+        );
+        return Number.isInteger(id) && id > 0 ? id : null;
+    }
+
+    function enabled() {
+        return localStorage.getItem(ENABLED_KEY) === "true";
+    }
+
+    function audio() {
+        if (!alarmAudio) {
+            alarmAudio = new Audio("sounds/medicine-alarm.mp3");
+            alarmAudio.loop = true;
+            alarmAudio.preload = "auto";
+            alarmAudio.volume = 1;
+        }
+        return alarmAudio;
+    }
+
+    async function unlockAudio() {
+        try {
+            const a = audio();
+            a.muted = true;
+            await a.play();
+            a.pause();
+            a.currentTime = 0;
+            a.muted = false;
+        } catch (e) {}
+
+        try {
+            const AC = window.AudioContext || window.webkitAudioContext;
+            if (AC) {
+                if (!audioContext) audioContext = new AC();
+                if (audioContext.state === "suspended") {
+                    await audioContext.resume();
+                }
+            }
+        } catch (e) {}
+    }
+
+    function fallbackTone() {
+        try {
+            const AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return;
+            if (!audioContext) audioContext = new AC();
+            if (audioContext.state === "suspended") audioContext.resume();
+            if (oscillator) return;
+
+            oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            oscillator.type = "sine";
+            oscillator.frequency.value = 880;
+            gain.gain.value = 0.2;
+            oscillator.connect(gain);
+            gain.connect(audioContext.destination);
+            oscillator.start();
+
+            oscillator._timer = setInterval(() => {
+                if (oscillator) {
+                    oscillator.frequency.value =
+                        oscillator.frequency.value === 880 ? 660 : 880;
+                }
+            }, 450);
+        } catch (e) {}
+    }
+
+    function stopTone() {
+        if (!oscillator) return;
+        try {
+            clearInterval(oscillator._timer);
+            oscillator.stop();
+            oscillator.disconnect();
+        } catch (e) {}
+        oscillator = null;
+    }
+
+    function vibrate() {
+        if (!navigator.vibrate) return;
+        try {
+            navigator.vibrate([700, 350, 700, 350]);
+            clearInterval(vibrationTimer);
+            vibrationTimer = setInterval(() => {
+                try { navigator.vibrate([700, 350, 700, 350]); } catch (e) {}
+            }, 2200);
+        } catch (e) {}
+    }
+
+    function stopVibrate() {
+        clearInterval(vibrationTimer);
+        vibrationTimer = null;
+        if (navigator.vibrate) {
+            try { navigator.vibrate(0); } catch (e) {}
+        }
+    }
+
+    function stopSound() {
+        if (alarmAudio) {
+            try {
+                alarmAudio.pause();
+                alarmAudio.currentTime = 0;
+            } catch (e) {}
+        }
+        stopTone();
+    }
+
+    function esc(v) {
+        return String(v ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+    }
+
+    function styles() {
+        if (document.getElementById("globalAlarmStyles")) return;
+        const s = document.createElement("style");
+        s.id = "globalAlarmStyles";
+        s.textContent = `
+#globalMedicationAlarm{position:fixed;inset:0;z-index:2147483647}
+.global-alarm-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(5,20,30,.82);backdrop-filter:blur(8px)}
+.global-alarm-card{width:min(460px,94vw);padding:38px 28px;text-align:center;background:#fff;border-radius:26px;box-shadow:0 30px 100px rgba(0,0,0,.4);animation:globalAlarmPop .3s ease}
+@keyframes globalAlarmPop{from{transform:scale(.88);opacity:0}to{transform:scale(1);opacity:1}}
+.global-alarm-bell{font-size:58px;animation:globalBell .55s infinite alternate}
+@keyframes globalBell{from{transform:rotate(-12deg)}to{transform:rotate(12deg)}}
+.global-alarm-title{margin:10px 0;color:#159da5;font-weight:800;letter-spacing:1px}
+.global-alarm-card h2{margin:12px 0;color:#193653;font-size:28px}
+.global-alarm-dosage,.global-alarm-time{margin:8px 0;color:#31536c;font-weight:700}
+.global-alarm-card p{margin:18px 0;color:#58758d}
+.global-alarm-buttons{display:flex;gap:12px;justify-content:center;margin-top:24px}
+.global-alarm-buttons button{border:0;border-radius:11px;padding:13px 20px;font-weight:700;cursor:pointer;font-size:15px}
+#globalAlarmTaken{background:#159da5;color:white}
+#globalAlarmMissed{background:#f1f5f7;color:#31536c}
+@media(max-width:550px){.global-alarm-buttons{flex-direction:column}.global-alarm-buttons button{width:100%}}
+`;
+        document.head.appendChild(s);
+    }
+
+    async function notify(name, dosage, time) {
+        if (!("Notification" in window)) return;
+        try {
+            if (Notification.permission === "granted") {
+                new Notification("🔔 SmartMedication Reminder", {
+                    body: `${name}${dosage ? " — " + dosage : ""}\nIt is time to take your medicine (${time}).`,
+                    tag: "medicine-" + (currentReminder?.id || "reminder"),
+                    requireInteraction: true
+                });
+            }
+        } catch (e) {}
+    }
+
+    function showAlarm(reminder) {
+        currentReminder = reminder;
+        const m = reminder.medicine || {};
+        const name = m.name || "Your Medicine";
+        const dosage = m.dosage || "";
+        const instructions = m.instructions || "Follow your prescribed instructions.";
+        const time = reminder.reminderTime ? reminder.reminderTime.substring(0,5) : "";
+
+        const old = document.getElementById("globalMedicationAlarm");
+        if (old) old.remove();
+
+        const box = document.createElement("div");
+        box.id = "globalMedicationAlarm";
+        box.innerHTML = `
+<div class="global-alarm-overlay">
+<div class="global-alarm-card">
+<div class="global-alarm-bell">🔔</div>
+<div class="global-alarm-title">MEDICATION REMINDER</div>
+<h2>💊 ${esc(name)}</h2>
+${dosage ? `<div class="global-alarm-dosage">Dosage: ${esc(dosage)}</div>` : ""}
+<div class="global-alarm-time">⏰ ${esc(time)}</div>
+<p>${esc(instructions)}</p>
+<div class="global-alarm-buttons">
+<button id="globalAlarmTaken">✅ Taken</button>
+<button id="globalAlarmMissed">❌ Missed</button>
+</div>
+</div></div>`;
+
+        document.body.appendChild(box);
+
+        document.getElementById("globalAlarmTaken").onclick = () => finish("taken");
+        document.getElementById("globalAlarmMissed").onclick = () => finish("missed");
+
+        const a = audio();
+        a.currentTime = 0;
+        a.play().catch(() => fallbackTone());
+        vibrate();
+        notify(name, dosage, time);
+    }
+
+    async function finish(action) {
+        if (!currentReminder) return;
+
+        const id = currentReminder.id;
+        const endpoint = action === "taken"
+            ? `/api/reminders/${id}/taken`
+            : `/api/reminders/${id}/missed`;
+
+        stopSound();
+        stopVibrate();
+
+        try { await fetch(endpoint, {method:"PUT"}); } catch (e) {
+            console.error("Reminder update failed:", e);
+        }
+
+        localStorage.removeItem(ACTIVE_ALARM_KEY);
+        localStorage.setItem(LAST_ALARM_KEY, String(id));
+
+        const box = document.getElementById("globalMedicationAlarm");
+        if (box) box.remove();
+        currentReminder = null;
+    }
+
+    async function check() {
+        if (!enabled()) return;
+
+        const userId = getUserId();
+        if (!userId) return;
+
+        try {
+            const response = await fetch(`/api/reminders/today/${userId}`);
+            if (!response.ok) return;
+
+            const reminders = await response.json();
+            const now = new Date();
+            const currentTime =
+                String(now.getHours()).padStart(2,"0") + ":" +
+                String(now.getMinutes()).padStart(2,"0");
+
+            const activeId = Number(localStorage.getItem(ACTIVE_ALARM_KEY));
+
+            if (activeId) {
+                const active = reminders.find(r => Number(r.id) === activeId);
+                if (active && active.status !== "TAKEN" && active.status !== "MISSED") {
+                    if (!document.getElementById("globalMedicationAlarm")) showAlarm(active);
+                    return;
+                }
+                localStorage.removeItem(ACTIVE_ALARM_KEY);
+            }
+
+            for (const r of reminders) {
+                if (!r || !r.id) continue;
+                if (r.status === "TAKEN" || r.status === "MISSED") continue;
+
+                const rt = r.reminderTime ? r.reminderTime.substring(0,5) : "";
+                if (rt !== currentTime) continue;
+
+                if (String(r.id) === localStorage.getItem(LAST_ALARM_KEY)) continue;
+
+                localStorage.setItem(ACTIVE_ALARM_KEY, String(r.id));
+                showAlarm(r);
+                break;
+            }
+        } catch (e) {
+            console.warn("SmartMedication alarm check failed:", e);
+        }
+    }
+
+    async function enable() {
+        localStorage.setItem(ENABLED_KEY, "true");
+        await unlockAudio();
+
+        if ("Notification" in window && Notification.permission === "default") {
+            try { await Notification.requestPermission(); } catch (e) {}
+        }
+
+        updateButtons();
+        check();
+        alert("🔔 Medication alerts are enabled for all SmartMedication pages.");
+    }
+
+    function updateButtons() {
+        document.querySelectorAll("#enableAlertButton,[data-enable-medication-alerts]")
+            .forEach(b => {
+                b.textContent = enabled()
+                    ? "✅ Medication Alerts Enabled"
+                    : "🔔 Enable Medication Alerts";
+                if (enabled()) b.classList.add("enabled");
+            });
+
+        const status = document.getElementById("alertStatus");
+        if (status && enabled()) {
+            status.textContent = "Alarm monitoring is active on all SmartMedication pages.";
+        }
+    }
+
+    function start() {
+        styles();
+        updateButtons();
+        check();
+
+        clearInterval(pollTimer);
+        pollTimer = setInterval(check, 15000);
+
+        window.addEventListener("focus", check);
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) check();
+        });
+    }
+
+    window.enableMedicationAlerts = enable;
+    window.enableGlobalMedicationAlerts = enable;
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("#enableAlertButton,[data-enable-medication-alerts]")
+            .forEach(b => b.addEventListener("click", enable));
+        start();
+    });
+})();
+
+</script>
+
+<script src="alarm.js"></script>
+</body>
+
+</html>
