@@ -1,0 +1,54 @@
+2026-10-04T12:43:53.707597Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-10-04T12:43:53.871636Z 0 [System] [MY-010116] [Server] /opt/homebrew/bin/mysqld (mysqld 9.6.0) starting as process 39570
+2026-10-04T12:43:53.871643Z 0 [System] [MY-015590] [Server] MySQL Server has access to 8 logical CPUs.
+2026-10-04T12:43:53.871650Z 0 [System] [MY-015590] [Server] MySQL Server has access to 8589934592 bytes of physical memory.
+2026-10-04T12:43:53.874670Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /Users/mandlaramesh/Downloads/smartvillagesystem/mysql_data/ is case insensitive
+2026-10-04T12:43:53.890656Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-04T12:43:53.983188Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-04T12:43:55.080960Z 0 [ERROR] [MY-011292] [Server] Plugin mysqlx reported: 'Preparation of I/O interfaces failed, X Protocol won't be accessible'
+2026-10-04T12:43:55.081059Z 0 [ERROR] [MY-011300] [Server] Plugin mysqlx reported: 'Setup of bind-address: '127.0.0.1' port: 33060 failed, `bind()` failed with error: Address already in use (48). Do you already have another mysqld server running with Mysqlx ?'
+2026-10-04T12:43:55.081090Z 0 [ERROR] [MY-013597] [Server] Plugin mysqlx reported: 'Value '127.0.0.1' set to `Mysqlx_bind_address`, X Plugin can't bind to it. Skipping this value.'
+2026-10-04T12:43:55.081120Z 0 [ERROR] [MY-011300] [Server] Plugin mysqlx reported: 'Setup of socket: '/tmp/mysqlx.sock' failed, can't open lock file /tmp/mysqlx.sock.lock'
+2026-10-04T12:43:55.192781Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-04T12:43:55.192803Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-04T12:43:55.193588Z 0 [ERROR] [MY-010262] [Server] Can't start server: Bind on TCP/IP port: Address already in use
+2026-10-04T12:43:55.193595Z 0 [ERROR] [MY-010257] [Server] Do you already have another mysqld server running on port: 3306 ?
+2026-10-04T12:43:55.193611Z 0 [ERROR] [MY-010119] [Server] Aborting
+2026-10-04T12:43:56.180244Z 0 [System] [MY-010910] [Server] /opt/homebrew/bin/mysqld: Shutdown complete (mysqld 9.6.0)  Homebrew.
+2026-10-04T12:43:56.180277Z 0 [System] [MY-015016] [Server] MySQL Server - end.
+2026-10-04T12:44:18.483035Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-10-04T12:44:18.655884Z 0 [System] [MY-010116] [Server] /opt/homebrew/bin/mysqld (mysqld 9.6.0) starting as process 39891
+2026-10-04T12:44:18.655890Z 0 [System] [MY-015590] [Server] MySQL Server has access to 8 logical CPUs.
+2026-10-04T12:44:18.655896Z 0 [System] [MY-015590] [Server] MySQL Server has access to 8589934592 bytes of physical memory.
+2026-10-04T12:44:18.658611Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /Users/mandlaramesh/Downloads/smartvillagesystem/mysql_data/ is case insensitive
+2026-10-04T12:44:18.670961Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-04T12:44:18.767686Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-04T12:44:18.997519Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-04T12:44:18.997547Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-04T12:44:19.028807Z 0 [System] [MY-010931] [Server] /opt/homebrew/bin/mysqld: ready for connections. Version: '9.6.0'  socket: '/Users/mandlaramesh/Downloads/smartvillagesystem/mysql_data/mysql.sock'  port: 3307  Homebrew.
+2026-10-04T12:46:27.826129Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-10-04T12:46:27.963611Z 0 [System] [MY-010116] [Server] /opt/homebrew/bin/mysqld (mysqld 9.6.0) starting as process 41474
+2026-10-04T12:46:27.963616Z 0 [System] [MY-015590] [Server] MySQL Server has access to 8 logical CPUs.
+2026-10-04T12:46:27.963622Z 0 [System] [MY-015590] [Server] MySQL Server has access to 8589934592 bytes of physical memory.
+2026-10-04T12:46:27.965221Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /Users/mandlaramesh/Downloads/smartvillagesystem/mysql_data/ is case insensitive
+2026-10-04T12:46:27.976423Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-04T12:46:28.236673Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-04T12:46:28.366192Z 0 [System] [MY-010229] [Server] Starting XA crash recovery...
+2026-10-04T12:46:28.368251Z 0 [System] [MY-010232] [Server] XA crash recovery finished.
+2026-10-04T12:46:28.436215Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-04T12:46:28.436239Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-04T12:46:28.437165Z 0 [ERROR] [MY-010262] [Server] Can't start server: Bind on TCP/IP port: Address already in use
+2026-10-04T12:46:28.437174Z 0 [ERROR] [MY-010257] [Server] Do you already have another mysqld server running on port: 3306 ?
+2026-10-04T12:46:28.437188Z 0 [ERROR] [MY-010119] [Server] Aborting
+2026-10-04T12:46:29.411386Z 0 [System] [MY-010910] [Server] /opt/homebrew/bin/mysqld: Shutdown complete (mysqld 9.6.0)  Homebrew.
+2026-10-04T12:46:29.411414Z 0 [System] [MY-015016] [Server] MySQL Server - end.
+2026-10-04T12:47:22.817181Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-10-04T12:47:22.958673Z 0 [System] [MY-010116] [Server] /opt/homebrew/bin/mysqld (mysqld 9.6.0) starting as process 42133
+2026-10-04T12:47:22.958679Z 0 [System] [MY-015590] [Server] MySQL Server has access to 8 logical CPUs.
+2026-10-04T12:47:22.958685Z 0 [System] [MY-015590] [Server] MySQL Server has access to 8589934592 bytes of physical memory.
+2026-10-04T12:47:22.960623Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /Users/mandlaramesh/Downloads/smartvillagesystem/mysql_data/ is case insensitive
+2026-10-04T12:47:22.974973Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-04T12:47:23.080689Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-04T12:47:23.330834Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-04T12:47:23.330866Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-04T12:47:23.357816Z 0 [System] [MY-010931] [Server] /opt/homebrew/bin/mysqld: ready for connections. Version: '9.6.0'  socket: '/Users/mandlaramesh/Downloads/smartvillagesystem/mysql_data/mysql.sock'  port: 3308  Homebrew.
