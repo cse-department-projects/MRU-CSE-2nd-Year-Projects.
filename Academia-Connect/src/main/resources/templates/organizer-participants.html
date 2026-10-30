@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Participants | Academia Connect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="app-page">
+
+<main class="organizer-participants-page">
+
+    <div class="container">
+
+        <section class="participants-page-header">
+
+            <div>
+
+                <a th:href="@{/organizer/activities}"
+                   class="page-back-link">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Back to Manage Activities
+
+                </a>
+
+                <span class="page-eyebrow">
+                    <i class="bi bi-people"></i>
+                    PARTICIPANT MANAGEMENT
+                </span>
+
+                <h1 th:text="${activity.title}">
+                    Activity Title
+                </h1>
+
+                <p>
+                    Manage registered participants, attendance,
+                    certificate issuance and the activity waitlist.
+                </p>
+
+            </div>
+
+            <div class="participants-capacity-card">
+
+                <div class="participants-capacity-icon">
+                    <i class="bi bi-person-check"></i>
+                </div>
+
+                <div>
+                    <span>ACTIVITY CAPACITY</span>
+
+                    <strong th:text="${activity.capacity}">
+                        0
+                    </strong>
+
+                    <small>Maximum participants</small>
+                </div>
+
+            </div>
+
+        </section>
+
+        <div th:if="${successMessage}"
+             class="alert alert-success record-alert"
+             role="alert">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            <span th:text="${successMessage}">
+                Action completed successfully.
+            </span>
+
+        </div>
+
+        <div th:if="${errorMessage}"
+             class="alert alert-danger record-alert"
+             role="alert">
+
+            <i class="bi bi-exclamation-circle-fill"></i>
+
+            <span th:text="${errorMessage}">
+                An error occurred.
+            </span>
+
+        </div>
+
+        <!-- REGISTERED PARTICIPANTS -->
+        <section class="participants-section">
+
+            <div class="participants-section-heading">
+
+                <div>
+
+                    <span class="dashboard-small-label">
+                        REGISTERED USERS
+                    </span>
+
+                    <h2>Registered Participants</h2>
+
+                    <p>
+                        Mark attendance and issue certificates to participants
+                        who attended the activity.
+                    </p>
+
+                </div>
+
+                <div class="participants-section-count">
+
+                    <i class="bi bi-people-fill"></i>
+
+                    <strong th:text="${#lists.size(registrations)}">
+                        0
+                    </strong>
+
+                    <span>Registered</span>
+
+                </div>
+
+            </div>
+
+            <div th:if="${#lists.isEmpty(registrations)}"
+                 class="participants-empty-state">
+
+                <div>
+                    <i class="bi bi-person-x"></i>
+                </div>
+
+                <h3>No registered participants</h3>
+
+                <p>
+                    No users have registered for this activity yet.
+                </p>
+
+            </div>
+
+            <div th:unless="${#lists.isEmpty(registrations)}"
+                 class="participants-table-card">
+
+                <div class="table-responsive">
+
+                    <table class="table participants-table align-middle">
+
+                        <thead>
+                        <tr>
+                            <th>Participant</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Attendance and Certificate</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="registration : ${registrations}">
+
+                            <td>
+
+                                <div class="participant-name-cell">
+
+                                    <div class="participant-avatar">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong th:text="${registration.user.fullName}">
+                                            Participant Name
+                                        </strong>
+
+                                        <small>Registered participant</small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+
+                                <span class="participant-username"
+                                      th:text="${registration.user.username}">
+                                    username
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <a class="participant-email"
+                                   th:href="'mailto:' + ${registration.user.email}"
+                                   th:text="${registration.user.email}">
+                                    email@example.com
+                                </a>
+
+                            </td>
+
+                            <td>
+
+                                <span class="participant-status-badge"
+                                      th:classappend="${
+                                          registration.status.name() == 'ATTENDED'
+                                          ? ' participant-status-attended'
+                                          : registration.status.name() == 'ABSENT'
+                                          ? ' participant-status-absent'
+                                          : ' participant-status-registered'
+                                      }">
+
+                                    <i th:class="${
+                                        registration.status.name() == 'ATTENDED'
+                                        ? 'bi bi-check-circle-fill'
+                                        : registration.status.name() == 'ABSENT'
+                                        ? 'bi bi-x-circle-fill'
+                                        : 'bi bi-clock-fill'
+                                    }"></i>
+
+                                    <span th:text="${registration.status}">
+                                        REGISTERED
+                                    </span>
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <div class="participant-action-group">
+
+                                    <form th:action="@{/organizer/registrations/{id}/attendance(id=${registration.id})}"
+                                          method="post">
+
+                                        <button type="submit"
+                                                name="status"
+                                                value="ATTENDED"
+                                                class="btn btn-sm btn-outline-success">
+
+                                            <i class="bi bi-check-circle"></i>
+                                            Attended
+
+                                        </button>
+
+                                    </form>
+
+                                    <form th:action="@{/organizer/registrations/{id}/attendance(id=${registration.id})}"
+                                          method="post">
+
+                                        <button type="submit"
+                                                name="status"
+                                                value="ABSENT"
+                                                class="btn btn-sm btn-outline-danger">
+
+                                            <i class="bi bi-x-circle"></i>
+                                            Absent
+
+                                        </button>
+
+                                    </form>
+
+                                    <form th:if="${registration.status.name() == 'ATTENDED'}"
+                                          th:action="@{/organizer/registrations/{id}/certificate(id=${registration.id})}"
+                                          method="post">
+
+                                        <button type="submit"
+                                                class="btn btn-sm btn-primary"
+                                                onclick="return confirm('Issue certificate to this participant?')">
+
+                                            <i class="bi bi-award"></i>
+                                            Issue Certificate
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="participant-certificate-note">
+
+                <i class="bi bi-info-circle-fill"></i>
+
+                <p>
+                    The certificate option becomes available only after a
+                    participant is marked as attended. A certificate cannot
+                    be issued more than once to the same participant.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- WAITLIST -->
+        <section class="participants-section waitlist-management-section">
+
+            <div class="participants-section-heading">
+
+                <div>
+
+                    <span class="dashboard-small-label waitlist-label">
+                        WAITLIST
+                    </span>
+
+                    <h2>Waiting Users</h2>
+
+                    <p>
+                        Review users currently waiting for a confirmed place
+                        in this activity.
+                    </p>
+
+                </div>
+
+                <div class="participants-section-count waitlist-count">
+
+                    <i class="bi bi-hourglass-split"></i>
+
+                    <strong th:text="${#lists.size(waitlistEntries)}">
+                        0
+                    </strong>
+
+                    <span>Waiting</span>
+
+                </div>
+
+            </div>
+
+            <div th:if="${#lists.isEmpty(waitlistEntries)}"
+                 class="participants-empty-state waitlist-empty-state">
+
+                <div>
+                    <i class="bi bi-hourglass"></i>
+                </div>
+
+                <h3>No users on the waitlist</h3>
+
+                <p>
+                    All currently interested users have confirmed places.
+                </p>
+
+            </div>
+
+            <div th:unless="${#lists.isEmpty(waitlistEntries)}"
+                 class="participants-table-card waitlist-table-card">
+
+                <div class="table-responsive">
+
+                    <table class="table participants-table align-middle">
+
+                        <thead>
+                        <tr>
+                            <th>Queue Position</th>
+                            <th>Participant</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="entry : ${waitlistEntries}">
+
+                            <td>
+
+                                <span class="waitlist-position-badge">
+
+                                    <i class="bi bi-list-ol"></i>
+
+                                    <span th:text="${entry.queuePosition}">
+                                        1
+                                    </span>
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <div class="participant-name-cell">
+
+                                    <div class="participant-avatar waitlist-avatar">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <strong th:text="${entry.user.fullName}">
+                                            Participant Name
+                                        </strong>
+
+                                        <small>Waitlisted participant</small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <td>
+
+                                <span class="participant-username"
+                                      th:text="${entry.user.username}">
+                                    username
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <a class="participant-email"
+                                   th:href="'mailto:' + ${entry.user.email}"
+                                   th:text="${entry.user.email}">
+                                    email@example.com
+                                </a>
+
+                            </td>
+
+                            <td>
+
+                                <span class="waitlist-status-badge">
+
+                                    <i class="bi bi-hourglass-split"></i>
+
+                                    <span th:text="${entry.status}">
+                                        WAITING
+                                    </span>
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="records-bottom-navigation">
+
+            <a th:href="@{/organizer/activities}"
+               class="btn btn-outline-primary">
+
+                <i class="bi bi-arrow-left"></i>
+                Back to Manage Activities
+
+            </a>
+
+            <a th:href="@{/organizer}"
+               class="btn btn-primary">
+
+                <i class="bi bi-grid"></i>
+                Organizer Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<div th:replace="~{fragments/chatbot :: chatbot}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Activity | Academia Connect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="app-page">
+
+<main class="activity-form-page">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-11">
+
+                <section class="activity-form-header edit-activity-header">
+
+                    <div>
+
+                        <a th:href="@{/organizer/activities}"
+                           class="page-back-link">
+
+                            <i class="bi bi-arrow-left"></i>
+                            Back to Manage Activities
+
+                        </a>
+
+                        <span class="page-eyebrow">
+                            <i class="bi bi-pencil-square"></i>
+                            EDIT ACTIVITY
+                        </span>
+
+                        <h1>Edit Activity</h1>
+
+                        <p>
+                            Update the activity information, schedule,
+                            registration deadline, participant capacity and status.
+                        </p>
+
+                    </div>
+
+                    <div class="activity-form-header-icon edit-activity-header-icon">
+                        <i class="bi bi-calendar2-check"></i>
+                    </div>
+
+                </section>
+
+                <form th:action="@{/organizer/activities/{id}/edit(id=${activityId})}"
+                      th:object="${activity}"
+                      method="post"
+                      class="activity-form-card">
+
+                    <div class="activity-form-section">
+
+                        <div class="activity-form-section-heading">
+
+                            <div class="activity-form-section-icon">
+                                <i class="bi bi-info-circle"></i>
+                            </div>
+
+                            <div>
+                                <span>BASIC INFORMATION</span>
+
+                                <h2>Activity details</h2>
+
+                                <p>
+                                    Update the information displayed to participants.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="row g-4">
+
+                            <div class="col-12">
+
+                                <label for="title" class="form-label">
+                                    Activity Title
+                                    <span class="required-field">*</span>
+                                </label>
+
+                                <div class="input-group activity-input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-type"></i>
+                                    </span>
+
+                                    <input id="title"
+                                           type="text"
+                                           class="form-control"
+                                           th:field="*{title}"
+                                           placeholder="Enter activity title"
+                                           minlength="3"
+                                           maxlength="150"
+                                           required>
+
+                                </div>
+
+                                <small class="activity-field-help">
+                                    Title must contain between 3 and 150 characters.
+                                </small>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <label for="description" class="form-label">
+                                    Description
+                                </label>
+
+                                <textarea id="description"
+                                          class="form-control"
+                                          rows="5"
+                                          th:field="*{description}"
+                                          placeholder="Describe the activity, its purpose and what participants can expect"></textarea>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label for="type" class="form-label">
+                                    Activity Type
+                                    <span class="required-field">*</span>
+                                </label>
+
+                                <select id="type"
+                                        class="form-select"
+                                        th:field="*{type}"
+                                        required>
+
+                                    <option value="">Select activity type</option>
+                                    <option value="WORKSHOP">Workshop</option>
+                                    <option value="SEMINAR">Seminar</option>
+                                    <option value="CONFERENCE">Conference</option>
+                                    <option value="COMPETITION">Competition</option>
+                                    <option value="GUEST_LECTURE">Guest Lecture</option>
+                                    <option value="WEBINAR">Webinar</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label for="location" class="form-label">
+                                    Location
+                                    <span class="required-field">*</span>
+                                </label>
+
+                                <div class="input-group activity-input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-geo-alt"></i>
+                                    </span>
+
+                                    <input id="location"
+                                           type="text"
+                                           class="form-control"
+                                           th:field="*{location}"
+                                           placeholder="Example: Seminar Hall or Online"
+                                           required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="activity-form-section">
+
+                        <div class="activity-form-section-heading">
+
+                            <div class="activity-form-section-icon activity-schedule-icon">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+
+                            <div>
+                                <span>SCHEDULE</span>
+
+                                <h2>Date and registration</h2>
+
+                                <p>
+                                    Update the activity time and registration closing time.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+
+                                <label for="dateTime" class="form-label">
+                                    Activity Date and Time
+                                    <span class="required-field">*</span>
+                                </label>
+
+                                <input id="dateTime"
+                                       type="datetime-local"
+                                       class="form-control"
+                                       th:field="*{dateTime}"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label for="registrationDeadline" class="form-label">
+                                    Registration Deadline
+                                    <span class="required-field">*</span>
+                                </label>
+
+                                <input id="registrationDeadline"
+                                       type="datetime-local"
+                                       class="form-control"
+                                       th:field="*{registrationDeadline}"
+                                       required>
+
+                            </div>
+
+                        </div>
+
+                        <div class="activity-form-note">
+
+                            <i class="bi bi-lightbulb-fill"></i>
+
+                            <p>
+                                Keep the registration deadline earlier than
+                                the activity date and time.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="activity-form-section">
+
+                        <div class="activity-form-section-heading">
+
+                            <div class="activity-form-section-icon activity-settings-icon">
+                                <i class="bi bi-sliders"></i>
+                            </div>
+
+                            <div>
+                                <span>SETTINGS</span>
+
+                                <h2>Capacity and status</h2>
+
+                                <p>
+                                    Update participant limits and the current activity state.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+
+                                <label for="capacity" class="form-label">
+                                    Participant Capacity
+                                    <span class="required-field">*</span>
+                                </label>
+
+                                <div class="input-group activity-input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-people"></i>
+                                    </span>
+
+                                    <input id="capacity"
+                                           type="number"
+                                           class="form-control"
+                                           th:field="*{capacity}"
+                                           placeholder="Enter maximum capacity"
+                                           min="1"
+                                           required>
+
+                                </div>
+
+                                <small class="activity-field-help">
+                                    Changing capacity may affect future registrations and waitlists.
+                                </small>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label for="status" class="form-label">
+                                    Activity Status
+                                    <span class="required-field">*</span>
+                                </label>
+
+                                <select id="status"
+                                        class="form-select"
+                                        th:field="*{status}"
+                                        required>
+
+                                    <option value="DRAFT">Draft</option>
+                                    <option value="UPCOMING">Upcoming</option>
+                                    <option value="ACTIVE">Active</option>
+                                    <option value="COMPLETED">Completed</option>
+                                    <option value="CANCELLED">Cancelled</option>
+
+                                </select>
+
+                                <small class="activity-field-help">
+                                    Select the status that represents the activity correctly.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="edit-activity-warning">
+
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+                        <div>
+                            <strong>Review changes before updating</strong>
+
+                            <p>
+                                Date, deadline, capacity or status changes may affect
+                                registered participants and users on the waitlist.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="activity-form-actions">
+
+                        <a th:href="@{/organizer/activities}"
+                           class="btn btn-light">
+
+                            <i class="bi bi-x-circle"></i>
+                            Cancel Changes
+
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            <i class="bi bi-check-circle"></i>
+                            Update Activity
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<div th:replace="~{fragments/chatbot :: chatbot}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

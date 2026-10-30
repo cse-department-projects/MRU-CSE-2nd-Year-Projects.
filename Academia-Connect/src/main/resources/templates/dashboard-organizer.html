@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Organizer Dashboard | Academia Connect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="app-page">
+
+<main class="organizer-dashboard-page">
+
+    <div class="container">
+
+        <section class="organizer-dashboard-header">
+
+            <div>
+
+                <span class="page-eyebrow">
+                    <i class="bi bi-person-workspace"></i>
+                    ORGANIZER OVERVIEW
+                </span>
+
+                <h1>Organizer Dashboard</h1>
+
+                <p>
+                    Create academic activities and manage registrations,
+                    waitlists, attendance, certificates and participant feedback.
+                </p>
+
+            </div>
+
+            <div class="dashboard-header-actions">
+
+                <a th:href="@{/}"
+                   class="btn btn-light">
+
+                    <i class="bi bi-house"></i>
+                    Home
+
+                </a>
+
+                <a th:href="@{/logout}"
+                   class="btn btn-outline-danger">
+
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- ANALYTICS -->
+        <section class="organizer-analytics-panel">
+
+            <div class="organizer-panel-heading">
+
+                <div>
+
+                    <span class="dashboard-small-label">
+                        ACTIVITY ANALYTICS
+                    </span>
+
+                    <h2>Your organizer performance</h2>
+
+                    <p>
+                        A quick overview of activities, participation,
+                        waiting users and submitted ratings.
+                    </p>
+
+                </div>
+
+                <div class="organizer-panel-icon">
+                    <i class="bi bi-bar-chart-line"></i>
+                </div>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-sm-6 col-xl-3">
+
+                    <article class="organizer-stat-card">
+
+                        <div class="organizer-stat-icon organizer-stat-blue">
+                            <i class="bi bi-calendar-event"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Total Activities</span>
+
+                            <strong th:text="${totalActivities}">
+                                0
+                            </strong>
+
+                            <p>Activities created by you</p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="col-sm-6 col-xl-3">
+
+                    <article class="organizer-stat-card">
+
+                        <div class="organizer-stat-icon organizer-stat-green">
+                            <i class="bi bi-people"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Total Registrations</span>
+
+                            <strong th:text="${totalRegistrations}">
+                                0
+                            </strong>
+
+                            <p>Confirmed participant entries</p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="col-sm-6 col-xl-3">
+
+                    <article class="organizer-stat-card">
+
+                        <div class="organizer-stat-icon organizer-stat-yellow">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Waiting Users</span>
+
+                            <strong th:text="${totalWaitingUsers}">
+                                0
+                            </strong>
+
+                            <p>Users currently in waitlists</p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+                <div class="col-sm-6 col-xl-3">
+
+                    <article class="organizer-stat-card">
+
+                        <div class="organizer-stat-icon organizer-stat-purple">
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+
+                        <div>
+
+                            <span>Average Rating</span>
+
+                            <strong>
+                                <span th:text="${#numbers.formatDecimal(averageRating, 1, 1)}">
+                                    0.0
+                                </span>
+                                <small>/ 5</small>
+                            </strong>
+
+                            <p>Average participant feedback</p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ACTIONS -->
+        <section class="organizer-actions-section">
+
+            <div class="dashboard-section-heading">
+
+                <div>
+
+                    <span class="dashboard-small-label">
+                        ORGANIZER TOOLS
+                    </span>
+
+                    <h2>Manage your academic activities</h2>
+
+                    <p>
+                        Choose an option to create or manage an activity.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-md-6">
+
+                    <article class="organizer-action-card">
+
+                        <div class="organizer-action-icon organizer-create-icon">
+                            <i class="bi bi-calendar-plus"></i>
+                        </div>
+
+                        <span class="organizer-action-label">
+                            CREATE
+                        </span>
+
+                        <h3>Create Activity</h3>
+
+                        <p>
+                            Add a new workshop, seminar, webinar,
+                            competition or other academic activity.
+                        </p>
+
+                        <div class="organizer-action-list">
+
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                Set activity details and schedule
+                            </span>
+
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                Define capacity and deadline
+                            </span>
+
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                Publish for student registration
+                            </span>
+
+                        </div>
+
+                        <a th:href="@{/activities/create}"
+                           class="btn btn-primary w-100 justify-content-center">
+
+                            <i class="bi bi-plus-circle"></i>
+                            Create New Activity
+
+                        </a>
+
+                    </article>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <article class="organizer-action-card">
+
+                        <div class="organizer-action-icon organizer-manage-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+
+                        <span class="organizer-action-label organizer-manage-label">
+                            MANAGE
+                        </span>
+
+                        <h3>Manage Activities</h3>
+
+                        <p>
+                            Open your activities and manage every related
+                            participant and organizer workflow.
+                        </p>
+
+                        <div class="organizer-action-list">
+
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                Edit or cancel activities
+                            </span>
+
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                View participants and waitlists
+                            </span>
+
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                Mark attendance and issue certificates
+                            </span>
+
+                        </div>
+
+                        <a th:href="@{/organizer/activities}"
+                           class="btn btn-success w-100 justify-content-center">
+
+                            <i class="bi bi-sliders"></i>
+                            Manage Activities
+
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="organizer-workflow-card">
+
+            <div class="organizer-workflow-icon">
+                <i class="bi bi-diagram-3"></i>
+            </div>
+
+            <div>
+
+                <span class="dashboard-small-label">
+                    ORGANIZER WORKFLOW
+                </span>
+
+                <h3>From activity creation to certificate issuance</h3>
+
+                <p>
+                    Create an activity, monitor registrations and waitlists,
+                    mark attendance after completion, issue certificates and
+                    review participant feedback from Manage Activities.
+                </p>
+
+            </div>
+
+            <a th:href="@{/organizer/activities}"
+               class="btn btn-outline-primary">
+
+                Open Activity Manager
+
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<div th:replace="~{fragments/chatbot :: chatbot}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

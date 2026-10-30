@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Certificates | Academia Connect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="app-page">
+
+<main class="records-page">
+
+    <div class="container">
+
+        <div class="records-page-header">
+
+            <div>
+
+                <a th:href="@{/dashboard}"
+                   class="page-back-link">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Back to Dashboard
+
+                </a>
+
+                <span class="page-eyebrow">
+                    <i class="bi bi-patch-check"></i>
+                    VERIFIED ACHIEVEMENTS
+                </span>
+
+                <h1>My Certificates</h1>
+
+                <p>
+                    View certificates issued after confirmed attendance,
+                    open the full certificate and verify its unique code.
+                </p>
+
+            </div>
+
+            <div class="records-header-icon certificates-header-icon">
+                <i class="bi bi-award"></i>
+            </div>
+
+        </div>
+
+        <!-- EMPTY STATE -->
+        <section th:if="${#lists.isEmpty(certificates)}"
+                 class="records-empty-state">
+
+            <div class="records-empty-icon certificates-empty-icon">
+                <i class="bi bi-award"></i>
+            </div>
+
+            <span>NO CERTIFICATES</span>
+
+            <h2>No certificates have been issued yet</h2>
+
+            <p>
+                Certificates become available after you attend an activity
+                and the organizer confirms your attendance.
+            </p>
+
+            <a th:href="@{/activities}"
+               class="btn btn-primary">
+
+                <i class="bi bi-calendar-event"></i>
+                Browse Activities
+
+            </a>
+
+        </section>
+
+        <!-- CERTIFICATES -->
+        <section th:unless="${#lists.isEmpty(certificates)}">
+
+            <div class="records-section-heading">
+
+                <div>
+
+                    <span class="records-section-label certificates-section-label">
+                        ISSUED CERTIFICATES
+                    </span>
+
+                    <h2>Your academic certificates</h2>
+
+                    <p>
+                        Open a certificate to view, print and verify it.
+                    </p>
+
+                </div>
+
+                <div class="records-count-pill certificates-count-pill">
+
+                    <i class="bi bi-patch-check"></i>
+
+                    <strong th:text="${#lists.size(certificates)}">
+                        0
+                    </strong>
+
+                    <span>Certificates</span>
+
+                </div>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-6"
+                     th:each="certificate : ${certificates}">
+
+                    <article class="certificate-record-card">
+
+                        <div class="certificate-record-top">
+
+                            <div class="certificate-record-brand">
+
+                                <div class="certificate-record-logo">
+                                    <i class="bi bi-mortarboard-fill"></i>
+                                </div>
+
+                                <div>
+                                    <strong>Academia Connect</strong>
+                                    <span>Certificate of Participation</span>
+                                </div>
+
+                            </div>
+
+                            <i class="bi bi-patch-check-fill certificate-record-seal"></i>
+
+                        </div>
+
+                        <div class="certificate-record-body">
+
+                            <span class="certificate-record-label">
+                                ISSUED FOR
+                            </span>
+
+                            <h3 th:text="${certificate.activity.title}">
+                                Activity Title
+                            </h3>
+
+                            <p>
+                                This certificate confirms successful
+                                participation in the listed academic activity.
+                            </p>
+
+                            <div class="certificate-record-information">
+
+                                <div>
+
+                                    <span class="certificate-info-icon">
+                                        <i class="bi bi-calendar-check"></i>
+                                    </span>
+
+                                    <div>
+                                        <small>Issue Date</small>
+
+                                        <strong th:text="${certificate.issueDate}">
+                                            Issue Date
+                                        </strong>
+                                    </div>
+
+                                </div>
+
+                                <div>
+
+                                    <span class="certificate-info-icon">
+                                        <i class="bi bi-upc-scan"></i>
+                                    </span>
+
+                                    <div>
+                                        <small>Certificate Code</small>
+
+                                        <strong th:text="${certificate.certificateCode}">
+                                            CERT-XXXXXXXX
+                                        </strong>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="certificate-valid-note">
+
+                                <i class="bi bi-shield-check"></i>
+
+                                <span>
+                                    This certificate has a unique public
+                                    verification code.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="certificate-record-footer">
+
+                            <a th:href="@{/certificates/{id}(id=${certificate.id})}"
+                               class="btn certificate-open-button w-100 justify-content-center">
+
+                                <i class="bi bi-eye"></i>
+                                View Certificate
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="records-bottom-navigation">
+
+            <a th:href="@{/dashboard}"
+               class="btn btn-outline-primary">
+
+                <i class="bi bi-grid"></i>
+                Back to Dashboard
+
+            </a>
+
+            <a th:href="@{/certificates/verify}"
+               class="btn btn-primary">
+
+                <i class="bi bi-patch-check"></i>
+                Verify a Certificate
+
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<div th:replace="~{fragments/chatbot :: chatbot}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

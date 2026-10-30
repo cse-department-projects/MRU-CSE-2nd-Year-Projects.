@@ -1,0 +1,22 @@
+### Get All Users
+GET http://localhost:8080/api/users
+
+###
+
+### Get User By ID
+GET http://localhost:8080/api/users/1
+
+###
+
+### Create User
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+    "username": "mani",
+    "email": "mani@example.com",
+    "password": "password123",
+    "fullName": "mAnI",
+    "role": "USER",
+    "department": "Computer Science"
+}

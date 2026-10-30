@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Submit Feedback | Academia Connect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="app-page">
+
+<main class="feedback-page">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-8 col-lg-9">
+
+                <a th:href="@{/my-registrations}"
+                   class="page-back-link">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Back to My Registrations
+
+                </a>
+
+                <section class="feedback-card">
+
+                    <div class="feedback-card-header">
+
+                        <div>
+
+                            <span class="page-eyebrow">
+                                <i class="bi bi-chat-left-text"></i>
+                                ACTIVITY FEEDBACK
+                            </span>
+
+                            <h1>Share your experience</h1>
+
+                            <p>
+                                Your feedback helps organizers improve future
+                                activities and understand participant experience.
+                            </p>
+
+                        </div>
+
+                        <div class="feedback-header-icon">
+                            <i class="bi bi-star"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="feedback-activity-summary">
+
+                        <div class="feedback-activity-icon">
+                            <i class="bi bi-mortarboard"></i>
+                        </div>
+
+                        <div>
+
+                            <small>ACTIVITY</small>
+
+                            <h2 th:text="${activity.title}">
+                                Activity Title
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <form th:action="@{/activities/{id}/feedback(id=${activity.id})}"
+                          method="post"
+                          class="feedback-form">
+
+                        <div class="mb-4">
+
+                            <label for="rating"
+                                   class="form-label">
+                                Overall Rating
+                            </label>
+
+                            <div class="feedback-select-group">
+
+                                <i class="bi bi-star-fill"></i>
+
+                                <select id="rating"
+                                        name="rating"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">
+                                        Select your rating
+                                    </option>
+
+                                    <option value="5">
+                                        5 - Excellent
+                                    </option>
+
+                                    <option value="4">
+                                        4 - Very Good
+                                    </option>
+
+                                    <option value="3">
+                                        3 - Good
+                                    </option>
+
+                                    <option value="2">
+                                        2 - Average
+                                    </option>
+
+                                    <option value="1">
+                                        1 - Poor
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <small class="feedback-help-text">
+                                Choose the rating that best reflects your overall experience.
+                            </small>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label for="comments"
+                                   class="form-label">
+                                Comments
+                            </label>
+
+                            <div class="feedback-textarea-group">
+
+                                <i class="bi bi-pencil-square"></i>
+
+                                <textarea id="comments"
+                                          name="comments"
+                                          class="form-control"
+                                          rows="7"
+                                          maxlength="1000"
+                                          placeholder="Share what you liked, what could be improved, or any suggestions for future activities."></textarea>
+
+                            </div>
+
+                            <div class="feedback-comment-footer">
+
+                                <small>
+                                    Maximum 1000 characters
+                                </small>
+
+                                <small id="characterCount">
+                                    0 / 1000
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="feedback-guidance">
+
+                            <i class="bi bi-info-circle-fill"></i>
+
+                            <p>
+                                Please keep your feedback respectful, specific
+                                and focused on the activity experience.
+                            </p>
+
+                        </div>
+
+                        <div class="feedback-form-actions">
+
+                            <a th:href="@{/my-registrations}"
+                               class="btn btn-light">
+
+                                <i class="bi bi-x-circle"></i>
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-success">
+
+                                <i class="bi bi-send"></i>
+                                Submit Feedback
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<div th:replace="~{fragments/chatbot :: chatbot}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const comments = document.getElementById("comments");
+    const characterCount = document.getElementById("characterCount");
+
+    comments.addEventListener("input", function () {
+        characterCount.textContent =
+            comments.value.length + " / 1000";
+    });
+</script>
+
+</body>
+</html>
