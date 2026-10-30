@@ -1,0 +1,12 @@
+node_modules/
+backend/target/
+.env
+.env.local
+dist/
+.idea/
+.vscode/
+
+.output/
+.wrangler/
+*.tsbuildinfo
+.git-backup
