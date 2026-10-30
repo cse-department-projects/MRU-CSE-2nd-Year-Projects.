@@ -1,0 +1,6 @@
+{
+  "name": "SENTINEL — Disaster Early Warning Platform",
+  "description": "A Google Cloud Console-styled disaster risk monitoring and early-warning platform featuring live interactive risk mapping, real-time sensor networks, predictive models, alert feeds, and emergency response operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: #202124;
+    background-color: #F8F9FA;
+  }
+}
+
+/* Custom Google Console Style Elevations & Borders */
+.g-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E8EAED;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.08), 0 1px 3px 1px rgba(60, 64, 67, 0.04);
+}
+
+.g-card-flat {
+  background-color: #FFFFFF;
+  border: 1px solid #E8EAED;
+  border-radius: 8px;
+}
+
+.g-card-interactive {
+  transition: all 0.15s ease-in-out;
+}
+
+.g-card-interactive:hover {
+  box-shadow: 0 2px 6px 2px rgba(60, 64, 67, 0.12);
+  border-color: #DADCE0;
+}
+
+/* Google-style subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DADCE0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BDC1C6;
+}
+
+/* Leaflet map popup overrides */
+.leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
+  color: #202124 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px 0 rgba(60, 64, 67, 0.2) !important;
+  border: 1px solid #E8EAED !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: #FFFFFF !important;
+  box-shadow: 0 4px 12px 0 rgba(60, 64, 67, 0.2) !important;
+}
+
+/* Subtle pulse for critical alerts */
+@keyframes subtle-pulse {
+  0%, 100% {
+    opacity: 1;
+    stroke-width: 2.5;
+  }
+  50% {
+    opacity: 0.6;
+    stroke-width: 4.5;
+  }
+}
+
+.critical-pulse {
+  animation: subtle-pulse 2.2s infinite ease-in-out;
+}
+
+@keyframes ping-subtle {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  70%, 100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.ping-subtle {
+  animation: ping-subtle 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
