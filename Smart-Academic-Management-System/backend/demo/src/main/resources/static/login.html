@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login - Smart Academic Management System</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .login-container {
+        background: white;
+        width: 400px;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+        text-align: center;
+        color: #1f4e79;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #1f4e79;
+        box-shadow: 0 0 0 2px rgba(31, 78, 121, 0.1);
+    }
+
+    button {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        background: #1f4e79;
+        color: white;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #163a5c;
+    }
+
+    button:disabled {
+        background: #999;
+        cursor: not-allowed;
+    }
+
+    .message {
+        margin-top: 20px;
+        text-align: center;
+        font-weight: bold;
+        min-height: 20px;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .back {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #1f4e79;
+    }
+
+    .back:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+        .login-container {
+            width: 90%;
+            padding: 30px 25px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="login-container">
+
+    <h1>Smart Academic</h1>
+
+    <h2 id="loginTitle">Login</h2>
+
+    <!--
+        autocomplete="on"
+        allows the browser to use saved login information.
+    -->
+    <form id="loginForm" autocomplete="on">
+
+        <!-- ==============================
+             EMAIL
+        =============================== -->
+
+        <label for="email">Email</label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+            inputmode="email"
+            required
+        >
+
+        <!-- ==============================
+             PASSWORD
+        =============================== -->
+
+        <label for="password">Password</label>
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+        >
+
+        <!-- ==============================
+             LOGIN BUTTON
+        =============================== -->
+
+        <button type="submit" id="loginButton">
+            Login
+        </button>
+
+    </form>
+
+    <!-- ==============================
+         MESSAGE
+    =============================== -->
+
+    <div
+        class="message"
+        id="message"
+        aria-live="polite">
+    </div>
+
+    <!-- ==============================
+         BACK TO HOME
+    =============================== -->
+
+    <a href="/index.html" class="back">
+        ← Back to Home
+    </a>
+
+</div>
+
+
+<script>
+
+    // ==========================================
+    // GET ROLE FROM URL
+    // ==========================================
+
+    const urlParams = new URLSearchParams(
+        window.location.search
+    );
+
+    const role = urlParams.get("role");
+
+
+    // ==========================================
+    // GET HTML ELEMENTS
+    // ==========================================
+
+    const loginTitle =
+        document.getElementById("loginTitle");
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const emailInput =
+        document.getElementById("email");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const message =
+        document.getElementById("message");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+
+    // ==========================================
+    // DISPLAY ROLE
+    // ==========================================
+
+    if (role === "student") {
+
+        loginTitle.innerText = "Student Login";
+
+    }
+    else if (role === "teacher") {
+
+        loginTitle.innerText = "Teacher Login";
+
+    }
+    else if (role === "parent") {
+
+        loginTitle.innerText = "Parent Login";
+
+    }
+    else {
+
+        loginTitle.innerText = "Login";
+
+    }
+
+
+    // ==========================================
+    // LOGIN FORM
+    // ==========================================
+
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            // Prevent normal HTML form submission
+            event.preventDefault();
+
+
+            // ==================================
+            // CHECK ROLE
+            // ==================================
+
+            if (!role) {
+
+                message.innerText =
+                    "Please select a role first.";
+
+                message.className =
+                    "message error";
+
+                return;
+            }
+
+
+            // ==================================
+            // GET FORM VALUES
+            // ==================================
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            // ==================================
+            // CLEAR OLD MESSAGE
+            // ==================================
+
+            message.innerText = "";
+
+            message.className = "message";
+
+
+            // ==================================
+            // BASIC VALIDATION
+            // ==================================
+
+            if (!email) {
+
+                message.innerText =
+                    "Please enter your email.";
+
+                message.className =
+                    "message error";
+
+                emailInput.focus();
+
+                return;
+            }
+
+
+            if (!password) {
+
+                message.innerText =
+                    "Please enter your password.";
+
+                message.className =
+                    "message error";
+
+                passwordInput.focus();
+
+                return;
+            }
+
+
+            // ==================================
+            // DISABLE LOGIN BUTTON
+            // ==================================
+
+            loginButton.disabled = true;
+
+            loginButton.innerText =
+                "Logging in...";
+
+
+            try {
+
+                // ==================================
+                // SEND LOGIN REQUEST TO SPRING BOOT
+                // ==================================
+
+                const response = await fetch(
+                    "/api/auth/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            email: email,
+
+                            password: password,
+
+                            role: role.toUpperCase()
+
+                        })
+                    }
+                );
+
+
+                // ==================================
+                // READ BACKEND RESPONSE
+                // ==================================
+
+                const result =
+                    (await response.text()).trim();
+
+
+                console.log(
+                    "Login response:",
+                    result
+                );
+
+
+                // ==================================
+                // LOGIN SUCCESS
+                // ==================================
+
+                if (
+                    response.ok &&
+                    result === "LOGIN_SUCCESS"
+                ) {
+
+                    message.innerText =
+                        "Login successful!";
+
+                    message.className =
+                        "message success";
+
+
+                    // ==================================
+                    // SAVE LOGIN INFORMATION
+                    // ==================================
+
+                    localStorage.setItem(
+                        "userEmail",
+                        email
+                    );
+
+                    localStorage.setItem(
+                        "userRole",
+                        role
+                    );
+
+
+                    // ==================================
+                    // REDIRECT TO DASHBOARD
+                    // ==================================
+
+                    setTimeout(function() {
+
+                        if (role === "student") {
+
+                            window.location.href =
+                                "/student-dashboard.html";
+
+                        }
+                        else if (role === "teacher") {
+
+                            window.location.href =
+                                "/teacher-dashboard.html";
+
+                        }
+                        else if (role === "parent") {
+
+                            window.location.href =
+                                "/parent-dashboard.html";
+
+                        }
+
+                    }, 500);
+
+                    return;
+                }
+
+
+                // ==================================
+                // USER NOT FOUND
+                // ==================================
+
+                else if (
+                    result === "USER_NOT_FOUND"
+                ) {
+
+                    message.innerText =
+                        "User not found. Please check your email.";
+
+                    message.className =
+                        "message error";
+
+                }
+
+
+                // ==================================
+                // INVALID PASSWORD
+                // ==================================
+
+                else if (
+                    result === "INVALID_PASSWORD"
+                ) {
+
+                    message.innerText =
+                        "Incorrect password.";
+
+                    message.className =
+                        "message error";
+
+                }
+
+
+                // ==================================
+                // INVALID ROLE
+                // ==================================
+
+                else if (
+                    result === "INVALID_ROLE"
+                ) {
+
+                    message.innerText =
+                        "This account does not have the selected role.";
+
+                    message.className =
+                        "message error";
+
+                }
+
+
+                // ==================================
+                // BACKEND ERROR
+                // ==================================
+
+                else {
+
+                    console.error(
+                        "Backend response:",
+                        response.status,
+                        result
+                    );
+
+                    message.innerText =
+                        "Login failed. Please check your details.";
+
+                    message.className =
+                        "message error";
+
+                }
+
+            }
+            catch (error) {
+
+                // ==================================
+                // CONNECTION ERROR
+                // ==================================
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+                message.innerText =
+                    "Cannot connect to the backend.";
+
+                message.className =
+                    "message error";
+
+            }
+
+
+            // ==================================
+            // ENABLE LOGIN BUTTON AGAIN
+            // ==================================
+
+            loginButton.disabled = false;
+
+            loginButton.innerText =
+                "Login";
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
