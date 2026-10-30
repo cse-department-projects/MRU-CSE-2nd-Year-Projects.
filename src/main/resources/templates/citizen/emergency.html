@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Helpline & SOS - Smart Village</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-container">
+    <div th:replace="~{fragments/sidebar :: sidebar(activeMenu='emergency', role='CITIZEN')}"></div>
+
+    <main class="app-main">
+        <div th:replace="~{fragments/navbar :: navbar(pageTitle='Emergency Helpline & Village SOS Directory', userObj=${user})}"></div>
+
+        <div class="content-body">
+            <!-- Active SOS Alerts Banner -->
+            <div th:each="alert : ${alerts}" class="alert alert-danger alert-custom mb-4 border-start border-4 border-danger shadow-sm">
+                <i class="fa-solid fa-triangle-exclamation fs-3 text-danger me-2"></i>
+                <div class="flex-grow-1">
+                    <h6 class="fw-bold mb-1 text-danger text-uppercase" th:text="${'EMERGENCY ALERT: ' + alert.alertTitle}">Alert Title</h6>
+                    <p class="mb-0 fs-7 text-dark" th:text="${alert.message}">Alert message text</p>
+                </div>
+                <span class="badge bg-danger" th:text="${alert.severity}">CRITICAL</span>
+            </div>
+
+            <!-- Instant Hotline Buttons -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <a href="tel:108" class="btn btn-danger w-100 py-3 d-flex align-items-center justify-content-center gap-2 shadow-sm rounded-3">
+                        <i class="fa-solid fa-truck-medical fs-4"></i>
+                        <div class="text-start">
+                            <div class="fw-bold fs-6 lh-1">Ambulance SOS</div>
+                            <div class="fs-8 opacity-75">Dial 108</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="tel:112" class="btn btn-dark w-100 py-3 d-flex align-items-center justify-content-center gap-2 shadow-sm rounded-3">
+                        <i class="fa-solid fa-shield-halved fs-4 text-warning"></i>
+                        <div class="text-start">
+                            <div class="fw-bold fs-6 lh-1">Police Emergency</div>
+                            <div class="fs-8 opacity-75">Dial 112 / 100</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="tel:101" class="btn btn-warning text-dark w-100 py-3 d-flex align-items-center justify-content-center gap-2 shadow-sm rounded-3">
+                        <i class="fa-solid fa-fire-extinguisher fs-4"></i>
+                        <div class="text-start">
+                            <div class="fw-bold fs-6 lh-1">Fire Brigade</div>
+                            <div class="fs-8 opacity-75">Dial 101</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="tel:1912" class="btn btn-primary-custom w-100 py-3 d-flex align-items-center justify-content-center gap-2 shadow-sm rounded-3">
+                        <i class="fa-solid fa-bolt-lightning fs-4"></i>
+                        <div class="text-start">
+                            <div class="fw-bold fs-6 lh-1">Power Faults</div>
+                            <div class="fs-8 opacity-75">Dial 1912</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Emergency Helpline Directory Cards Grid -->
+            <div class="row g-4">
+                <div th:each="contact : ${contacts}" class="col-md-6 col-lg-4">
+                    <div class="dashboard-card border-top border-4" th:classappend="${contact.category == 'POLICE' ? 'border-dark' : (contact.category == 'HEALTHCARE' ? 'border-danger' : 'border-primary')}">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-light text-dark border fs-8" th:text="${contact.category}">PANCHAYAT</span>
+                            <i class="fa-solid fa-phone-flip text-muted"></i>
+                        </div>
+                        <h5 class="fw-bold mb-1 text-dark" th:text="${contact.name}">Contact Name</h5>
+                        <p class="text-muted fs-7 mb-2" th:text="${contact.designation}">Designation</p>
+                        
+                        <hr class="my-2">
+
+                        <div class="fs-7 mb-2">
+                            <i class="fa-solid fa-phone text-success me-2"></i>
+                            <a th:href="${'tel:' + contact.phone}" class="fw-bold text-dark text-decoration-none" th:text="${contact.phone}">Phone</a>
+                            <span th:if="${contact.altPhone != null}" th:text="${' / ' + contact.altPhone}"></span>
+                        </div>
+                        <div class="fs-7 text-muted" th:if="${contact.location != null}">
+                            <i class="fa-solid fa-location-dot text-danger me-2"></i>
+                            <span th:text="${contact.location}">Location</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

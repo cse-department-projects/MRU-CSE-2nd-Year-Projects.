@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Services - Smart Village</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-container">
+    <div th:replace="~{fragments/sidebar :: sidebar(activeMenu='utilities', role='CITIZEN')}"></div>
+
+    <main class="app-main">
+        <div th:replace="~{fragments/navbar :: navbar(pageTitle='Village Utility Services - Water, Electricity & Waste', userObj=${user})}"></div>
+
+        <div class="content-body">
+            <!-- Household Utility Overview Cards -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="dashboard-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="stat-icon icon-blue"><i class="fa-solid fa-faucet-drip"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Water Connection</h6>
+                                <span class="badge bg-success fs-8">ACTIVE</span>
+                            </div>
+                        </div>
+                        <div class="fs-7 text-muted mb-2">Meter No: <strong>WTR-WARD3-982</strong></div>
+                        <div class="fs-7 text-muted">Supply Hours: <strong>6:00 AM - 9:00 AM</strong></div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="dashboard-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="stat-icon icon-amber"><i class="fa-solid fa-bolt"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Electricity Supply</h6>
+                                <span class="badge bg-success fs-8">NORMAL</span>
+                            </div>
+                        </div>
+                        <div class="fs-7 text-muted mb-2">Consumer No: <strong>ELE-8837190</strong></div>
+                        <div class="fs-7 text-muted">Substation: <strong>Ward 4 Feeder</strong></div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="dashboard-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="stat-icon icon-teal"><i class="fa-solid fa-trash-can"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Garbage Collection</h6>
+                                <span class="badge bg-primary fs-8">SCHEDULED</span>
+                            </div>
+                        </div>
+                        <div class="fs-7 text-muted mb-2">Vehicle Route: <strong>Ward 3 Route #2</strong></div>
+                        <div class="fs-7 text-muted">Days: <strong>Mon, Thu (7:30 AM)</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Public Utility Schedules Notice Grid -->
+            <div class="custom-table-container">
+                <div class="table-toolbar">
+                    <h6 class="fw-bold mb-0"><i class="fa-solid fa-calendar-check me-2 text-primary"></i> Public Maintenance Notices & Supply Schedules</h6>
+                    <input type="text" class="form-control form-control-custom table-search-input" style="max-width: 220px;" data-target-table="utilitiesTable" placeholder="Search notices...">
+                </div>
+                <div class="table-responsive">
+                    <table class="table" id="utilitiesTable">
+                        <thead>
+                            <tr>
+                                <th>Utility Type</th>
+                                <th>Notice Title</th>
+                                <th>Affected Area / Wards</th>
+                                <th>Schedule Date & Time</th>
+                                <th>Status</th>
+                                <th>Official Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="u : ${utilities}">
+                                <td>
+                                    <span th:if="${u.utilityType == 'WATER_SUPPLY'}" class="badge bg-info text-white"><i class="fa-solid fa-droplet me-1"></i> Water</span>
+                                    <span th:if="${u.utilityType == 'POWER_OUTAGE'}" class="badge bg-warning text-dark"><i class="fa-solid fa-bolt me-1"></i> Power</span>
+                                    <span th:if="${u.utilityType == 'WASTE_COLLECTION'}" class="badge bg-success text-white"><i class="fa-solid fa-trash me-1"></i> Sanitation</span>
+                                    <span th:if="${u.utilityType == 'STREET_MAINTENANCE'}" class="badge bg-secondary text-white"><i class="fa-solid fa-wrench me-1"></i> Maintenance</span>
+                                </td>
+                                <td class="fw-bold text-dark" th:text="${u.title}">Notice Title</td>
+                                <td th:text="${u.areaAffected}">Area</td>
+                                <td class="fw-semibold text-primary" th:text="${u.scheduleDate}">Schedule</td>
+                                <td>
+                                    <span class="badge bg-light text-dark border" th:text="${u.status}">SCHEDULED</span>
+                                </td>
+                                <td th:text="${u.details}">Details</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

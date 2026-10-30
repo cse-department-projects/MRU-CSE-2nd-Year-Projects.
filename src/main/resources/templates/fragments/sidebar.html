@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<aside th:fragment="sidebar(activeMenu, role)" class="app-sidebar">
+    <div class="sidebar-header">
+        <a href="/" class="brand-title">
+            <i class="fa-solid fa-tree-city"></i>
+            <span>Smart Village</span>
+        </a>
+    </div>
+
+    <!-- CITIZEN SIDEBAR MENU -->
+    <div class="sidebar-nav" th:if="${role == 'CITIZEN' or role == null}">
+        <div class="nav-category">Main Menu</div>
+        <a href="/citizen/dashboard" class="nav-link-custom" th:classappend="${activeMenu == 'dashboard' ? 'active' : ''}">
+            <i class="fa-solid fa-house"></i>
+            <span>1. Citizen Dashboard</span>
+        </a>
+        <a href="/citizen/profile" class="nav-link-custom" th:classappend="${activeMenu == 'profile' ? 'active' : ''}">
+            <i class="fa-solid fa-user-gear"></i>
+            <span>2. My Profile</span>
+        </a>
+
+        <div class="nav-category">Citizen Services</div>
+        <a href="/citizen/services" class="nav-link-custom" th:classappend="${activeMenu == 'services' ? 'active' : ''}">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>3. Rural Services</span>
+        </a>
+        <a href="/citizen/complaints/new" class="nav-link-custom" th:classappend="${activeMenu == 'new_complaint' ? 'active' : ''}">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>4. Report Problem</span>
+        </a>
+        <a href="/citizen/status" class="nav-link-custom" th:classappend="${activeMenu == 'status' ? 'active' : ''}">
+            <i class="fa-solid fa-list-check"></i>
+            <span>5. Track Status</span>
+        </a>
+
+        <div class="nav-category">Village Utilities & News</div>
+        <a href="/citizen/agriculture" class="nav-link-custom" th:classappend="${activeMenu == 'agriculture' ? 'active' : ''}">
+            <i class="fa-solid fa-wheat-awn"></i>
+            <span>6. Agriculture & Farming</span>
+        </a>
+        <a href="/citizen/news" class="nav-link-custom" th:classappend="${activeMenu == 'news' ? 'active' : ''}">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>7. News & Notices</span>
+        </a>
+        <a href="/citizen/utilities" class="nav-link-custom" th:classappend="${activeMenu == 'utilities' ? 'active' : ''}">
+            <i class="fa-solid fa-faucet-drip"></i>
+            <span>8. Utilities & Power</span>
+        </a>
+        <a href="/citizen/emergency" class="nav-link-custom text-danger fw-bold" th:classappend="${activeMenu == 'emergency' ? 'active' : ''}">
+            <i class="fa-solid fa-phone-volume"></i>
+            <span>9. Emergency Helpline</span>
+        </a>
+
+        <div class="nav-category">Account</div>
+        <a href="/logout" class="nav-link-custom logout-link">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>10. Logout</span>
+        </a>
+    </div>
+
+    <!-- ADMIN SIDEBAR MENU -->
+    <div class="sidebar-nav" th:if="${role == 'ADMIN'}">
+        <div class="nav-category">Admin Control</div>
+        <a href="/admin/dashboard" class="nav-link-custom" th:classappend="${activeMenu == 'admin_dashboard' ? 'active' : ''}">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>1. Admin Dashboard</span>
+        </a>
+        <a href="/admin/citizens" class="nav-link-custom" th:classappend="${activeMenu == 'citizens' ? 'active' : ''}">
+            <i class="fa-solid fa-users"></i>
+            <span>2. Citizen Registry</span>
+        </a>
+
+        <div class="nav-category">Grievances & Schemes</div>
+        <a href="/admin/complaints" class="nav-link-custom" th:classappend="${activeMenu == 'admin_complaints' ? 'active' : ''}">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>3. Complaints Mgr</span>
+        </a>
+        <a href="/admin/applications" class="nav-link-custom" th:classappend="${activeMenu == 'applications' ? 'active' : ''}">
+            <i class="fa-solid fa-file-signature"></i>
+            <span>4. Scheme Applications</span>
+        </a>
+
+        <div class="nav-category">Village Operations</div>
+        <a href="/admin/agriculture" class="nav-link-custom" th:classappend="${activeMenu == 'admin_agriculture' ? 'active' : ''}">
+            <i class="fa-solid fa-tractor"></i>
+            <span>5. Agriculture Mgr</span>
+        </a>
+        <a href="/admin/utilities" class="nav-link-custom" th:classappend="${activeMenu == 'admin_utilities' ? 'active' : ''}">
+            <i class="fa-solid fa-bolt"></i>
+            <span>6. Utilities Mgr</span>
+        </a>
+        <a href="/admin/news" class="nav-link-custom" th:classappend="${activeMenu == 'admin_news' ? 'active' : ''}">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>7. News & Notices</span>
+        </a>
+        <a href="/admin/reports" class="nav-link-custom" th:classappend="${activeMenu == 'reports' ? 'active' : ''}">
+            <i class="fa-solid fa-chart-column"></i>
+            <span>8. Reports & Analytics</span>
+        </a>
+        <a href="/admin/emergency" class="nav-link-custom text-danger fw-bold" th:classappend="${activeMenu == 'admin_emergency' ? 'active' : ''}">
+            <i class="fa-solid fa-shield-cat"></i>
+            <span>9. Emergency Broadcast</span>
+        </a>
+
+        <div class="nav-category">Account</div>
+        <a href="/logout" class="nav-link-custom logout-link">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>10. Logout</span>
+        </a>
+    </div>
+</aside>
+
+</body>
+</html>

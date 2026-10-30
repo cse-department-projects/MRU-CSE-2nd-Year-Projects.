@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture & Farming Services - Smart Village</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-container">
+    <div th:replace="~{fragments/sidebar :: sidebar(activeMenu='agriculture', role='CITIZEN')}"></div>
+
+    <main class="app-main">
+        <div th:replace="~{fragments/navbar :: navbar(pageTitle='Agriculture & Farmer Services Portal', userObj=${user})}"></div>
+
+        <div class="content-body">
+            <div th:if="${successMessage != null}" class="alert alert-success alert-custom mb-4">
+                <i class="fa-solid fa-circle-check me-2"></i>
+                <span th:text="${successMessage}">Success message</span>
+            </div>
+
+            <!-- Header Quick Stats -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="dashboard-card stat-card">
+                        <div>
+                            <div class="stat-label">Central Mandi Crops</div>
+                            <div class="stat-value text-success" th:text="${#lists.size(crops)}">6</div>
+                            <div class="fs-8 text-muted">Daily updated prices</div>
+                        </div>
+                        <div class="stat-icon icon-green"><i class="fa-solid fa-wheat-awn"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-card stat-card">
+                        <div>
+                            <div class="stat-label">Soil Testing Requests</div>
+                            <div class="stat-value text-primary" th:text="${#lists.size(soilRequests)}">1</div>
+                            <div class="fs-8 text-muted">My submitted requests</div>
+                        </div>
+                        <div class="stat-icon icon-teal"><i class="fa-solid fa-flask-vial"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-card stat-card">
+                        <div>
+                            <div class="stat-label">Fertilizer Supply Status</div>
+                            <div class="stat-value text-teal">AVAILABLE</div>
+                            <div class="fs-8 text-muted">Urea & DAP at Co-op Store</div>
+                        </div>
+                        <div class="stat-icon icon-amber"><i class="fa-solid fa-store"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mandi Prices Table Card -->
+            <div class="custom-table-container mb-5">
+                <div class="table-toolbar">
+                    <h6 class="fw-bold mb-0"><i class="fa-solid fa-chart-line me-2 text-success"></i> Live Village Mandi Crop Market Prices (MSP Rate)</h6>
+                    <input type="text" class="form-control form-control-custom table-search-input" style="max-width: 220px;" data-target-table="mandiPricesTable" placeholder="Search crop...">
+                </div>
+                <div class="table-responsive">
+                    <table class="table" id="mandiPricesTable">
+                        <thead>
+                            <tr>
+                                <th>Crop Name</th>
+                                <th>Category</th>
+                                <th>Mandi Rate (₹/Quintal)</th>
+                                <th>Min - Max Range</th>
+                                <th>Market Trend</th>
+                                <th>Last Updated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="crop : ${crops}">
+                                <td class="fw-bold text-dark fs-6">
+                                    <i class="fa-solid fa-seedling text-success me-2"></i>
+                                    <span th:text="${crop.cropName}">Paddy</span>
+                                </td>
+                                <td><span class="badge bg-light text-dark border" th:text="${crop.category}">CEREAL</span></td>
+                                <td class="fw-bold text-success fs-6" th:text="${'₹ ' + crop.pricePerQuintal}">₹ 2300</td>
+                                <td class="text-muted" th:text="${'₹ ' + crop.minPrice + ' - ₹ ' + crop.maxPrice}">₹ 2100 - ₹ 2450</td>
+                                <td>
+                                    <span th:if="${crop.trend == 'UP'}" class="badge bg-success-subtle text-success"><i class="fa-solid fa-arrow-up me-1"></i> Rising</span>
+                                    <span th:if="${crop.trend == 'DOWN'}" class="badge bg-danger-subtle text-danger"><i class="fa-solid fa-arrow-down me-1"></i> Falling</span>
+                                    <span th:if="${crop.trend == 'STABLE'}" class="badge bg-secondary-subtle text-secondary"><i class="fa-solid fa-minus me-1"></i> Stable</span>
+                                </td>
+                                <td class="fs-8 text-muted" th:text="${#temporals.format(crop.lastUpdated, 'dd MMM yyyy')}">Today</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Soil Health Test Booking Form & Table -->
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="dashboard-card">
+                        <h6 class="fw-bold mb-3 border-bottom pb-2"><i class="fa-solid fa-flask-vial me-2 text-primary"></i> Request Soil Health Testing</h6>
+                        <form th:action="@{/citizen/soil-test/save}" method="post">
+                            <div class="mb-3">
+                                <label class="form-label font-weight-bold fs-7">Farmer Name</label>
+                                <input type="text" name="farmerName" th:value="${user.fullName}" class="form-control form-control-custom" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label font-weight-bold fs-7">Agricultural Land Area (in Acres) *</label>
+                                <input type="number" step="0.1" name="landAreaAcres" class="form-control form-control-custom" placeholder="e.g. 3.5" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label font-weight-bold fs-7">Survey / Khasra Number *</label>
+                                <input type="text" name="surveyNumber" class="form-control form-control-custom" placeholder="e.g. Survey #142/B" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label font-weight-bold fs-7">Sample Soil Location Details *</label>
+                                <input type="text" name="sampleLocation" class="form-control form-control-custom" placeholder="e.g. North Plot near Canal" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100 justify-content-center">
+                                <i class="fa-solid fa-paper-plane me-1"></i> Submit Soil Test Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="custom-table-container h-100">
+                        <div class="table-toolbar">
+                            <h6 class="fw-bold mb-0"><i class="fa-solid fa-vial-circle-check me-2 text-info"></i> My Soil Test Reports & Status</h6>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Req No</th>
+                                        <th>Land Area</th>
+                                        <th>Survey #</th>
+                                        <th>Status</th>
+                                        <th>Lab Result Summary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="sr : ${soilRequests}">
+                                        <td class="fw-bold text-primary" th:text="${sr.reqNumber}">SOIL-101</td>
+                                        <td th:text="${sr.landAreaAcres + ' Acres'}">3.5 Acres</td>
+                                        <td th:text="${sr.surveyNumber}">Survey #142</td>
+                                        <td>
+                                            <span class="badge bg-info text-white" th:text="${sr.status}">REQUESTED</span>
+                                        </td>
+                                        <td th:text="${sr.resultSummary != null ? sr.resultSummary : 'Sample collection scheduled by Agriculture Officer'}">Summary</td>
+                                    </tr>
+                                    <tr th:if="${#lists.isEmpty(soilRequests)}">
+                                        <td colspan="5" class="text-center text-muted py-4">No soil testing requests submitted yet.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

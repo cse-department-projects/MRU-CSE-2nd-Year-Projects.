@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - Smart Village Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-container">
+    <div th:replace="~{fragments/sidebar :: sidebar(activeMenu='reports', role='ADMIN')}"></div>
+
+    <main class="app-main">
+        <div th:replace="~{fragments/navbar :: navbar(pageTitle='Panchayat Performance Reports & Analytics', userObj=${admin})}"></div>
+
+        <div class="content-body">
+            <!-- Toolbar Print Action -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold mb-0">Smart Village Quarterly Governance Metrics</h5>
+                <button class="btn btn-outline-primary btn-print-report">
+                    <i class="fa-solid fa-print me-2"></i> Print Official Report
+                </button>
+            </div>
+
+            <!-- Metric Summary Cards -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="dashboard-card text-center">
+                        <div class="text-muted fs-8 font-weight-bold uppercase mb-1">Total Population Tracked</div>
+                        <div class="fs-2 fw-extrabold text-primary" th:text="${totalCitizens}">0</div>
+                        <div class="fs-8 text-success fw-semibold mt-1"><i class="fa-solid fa-arrow-up me-1"></i> 100% Ward Coverage</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card text-center">
+                        <div class="text-muted fs-8 font-weight-bold uppercase mb-1">Grievance Resolution Rate</div>
+                        <div class="fs-2 fw-extrabold text-success">87.5%</div>
+                        <div class="fs-8 text-muted mt-1">Target: > 85% SLA</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card text-center">
+                        <div class="text-muted fs-8 font-weight-bold uppercase mb-1">Schemes Approved</div>
+                        <div class="fs-2 fw-extrabold text-teal" th:text="${approvedApplications}">0</div>
+                        <div class="fs-8 text-muted mt-1">Out of <span th:text="${totalApplications}">0</span> Total</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="dashboard-card text-center">
+                        <div class="text-muted fs-8 font-weight-bold uppercase mb-1">Active Infrastructure Projects</div>
+                        <div class="fs-2 fw-extrabold text-amber">4</div>
+                        <div class="fs-8 text-muted mt-1">Solar LED & Water Pipe Upgrade</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="row g-4 mb-4">
+                <div class="col-lg-6">
+                    <div class="dashboard-card">
+                        <h6 class="fw-bold mb-3 border-bottom pb-2"><i class="fa-solid fa-chart-column me-2 text-primary"></i> Ward-wise Grievances Registered</h6>
+                        <div style="height: 280px;">
+                            <canvas id="wardReportChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="dashboard-card">
+                        <h6 class="fw-bold mb-3 border-bottom pb-2"><i class="fa-solid fa-chart-pie me-2 text-success"></i> Scheme Application Approvals vs Pending</h6>
+                        <div style="height: 280px;">
+                            <canvas id="schemeReportChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Performance Table -->
+            <div class="custom-table-container">
+                <div class="table-toolbar">
+                    <h6 class="fw-bold mb-0"><i class="fa-solid fa-table me-2 text-dark"></i> Ward Performance Summary Matrix</h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Ward Name</th>
+                                <th>Registered Citizens</th>
+                                <th>Complaints Received</th>
+                                <th>Complaints Resolved</th>
+                                <th>Resolution Rate</th>
+                                <th>Status Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-dark">Ward 1 - East Sector</td>
+                                <td>420 Residents</td>
+                                <td>12 Tickets</td>
+                                <td>11 Closed</td>
+                                <td class="fw-bold text-success">91.6%</td>
+                                <td><span class="badge bg-success">EXCELLENT</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-dark">Ward 2 - Market Area</td>
+                                <td>680 Residents</td>
+                                <td>18 Tickets</td>
+                                <td>15 Closed</td>
+                                <td class="fw-bold text-success">83.3%</td>
+                                <td><span class="badge bg-primary">GOOD</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-dark">Ward 3 - North Sector</td>
+                                <td>510 Residents</td>
+                                <td>14 Tickets</td>
+                                <td>12 Closed</td>
+                                <td class="fw-bold text-success">85.7%</td>
+                                <td><span class="badge bg-success">EXCELLENT</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-dark">Ward 4 - South Sector</td>
+                                <td>390 Residents</td>
+                                <td>9 Tickets</td>
+                                <td>8 Closed</td>
+                                <td class="fw-bold text-success">88.8%</td>
+                                <td><span class="badge bg-success">EXCELLENT</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-dark">Ward 5 - Agri Colony</td>
+                                <td>450 Residents</td>
+                                <td>15 Tickets</td>
+                                <td>12 Closed</td>
+                                <td class="fw-bold text-success">80.0%</td>
+                                <td><span class="badge bg-primary">GOOD</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Complete Audit & Action Trail (Stored in MySQL smart_village_db) -->
+            <div class="custom-table-container mt-4">
+                <div class="table-toolbar">
+                    <div class="d-flex align-items-center gap-2">
+                        <h6 class="fw-bold mb-0"><i class="fa-solid fa-clock-rotate-left me-2 text-primary"></i> Citizen & User Activity Audit Log (Stored in MySQL)</h6>
+                        <span class="badge bg-primary rounded-pill" th:text="${(recentLogs != null ? #lists.size(recentLogs) : 0) + ' Records'}">0</span>
+                    </div>
+                    <span class="text-muted fs-8"><i class="fa-solid fa-server text-success me-1"></i> MySQL Table: <code>activity_logs</code></span>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>User</th>
+                                <th>Role</th>
+                                <th>Action Taken</th>
+                                <th>Details / Everything Saved</th>
+                                <th>IP Address</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:if="${recentLogs == null or #lists.isEmpty(recentLogs)}">
+                                <td colspan="7" class="text-center text-muted py-3">No activity logs recorded yet. Every action taken by students or citizens will appear here.</td>
+                            </tr>
+                            <tr th:each="log : ${recentLogs}">
+                                <td class="text-muted fs-8 text-nowrap" th:text="${#temporals.format(log.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2026-10-30 21:00</td>
+                                <td class="fw-bold text-dark text-nowrap" th:text="${log.username}">username</td>
+                                <td><span class="badge bg-light text-dark border" th:text="${log.role}">ROLE</span></td>
+                                <td><span class="badge bg-primary" th:text="${log.action}">ACTION</span></td>
+                                <td class="fs-8 text-secondary" style="max-width: 420px; word-break: break-word;" th:text="${log.details}">Details</td>
+                                <td class="text-muted fs-8 text-nowrap" th:text="${log.ipAddress}">127.0.0.1</td>
+                                <td><span class="badge" th:classappend="${log.status == 'SUCCESS' ? 'bg-success' : 'bg-danger'}" th:text="${log.status}">SUCCESS</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+<script th:inline="javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        // Ward Chart
+        const ctxWard = document.getElementById('wardReportChart').getContext('2d');
+        new Chart(ctxWard, {
+            type: 'bar',
+            data: {
+                labels: ['Ward 1', 'Ward 2', 'Ward 3', 'Ward 4', 'Ward 5'],
+                datasets: [{
+                    label: 'Total Complaints',
+                    data: [12, 18, 14, 9, 15],
+                    backgroundColor: '#0284c7',
+                    borderRadius: 6
+                }, {
+                    label: 'Resolved Complaints',
+                    data: [11, 15, 12, 8, 12],
+                    backgroundColor: '#16a34a',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Scheme Chart
+        const ctxScheme = document.getElementById('schemeReportChart').getContext('2d');
+        new Chart(ctxScheme, {
+            type: 'pie',
+            data: {
+                labels: ['Approved', 'Under Review', 'Submitted', 'Rejected'],
+                datasets: [{
+                    data: [8, 3, 2, 1],
+                    backgroundColor: ['#16a34a', '#0284c7', '#8b5cf6', '#dc2626']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    });
+</script>
+</body>
+</html>

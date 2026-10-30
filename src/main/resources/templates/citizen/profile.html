@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Smart Village System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-container">
+    <div th:replace="~{fragments/sidebar :: sidebar(activeMenu='profile', role='CITIZEN')}"></div>
+
+    <main class="app-main">
+        <div th:replace="~{fragments/navbar :: navbar(pageTitle='My Profile Account', userObj=${user})}"></div>
+
+        <div class="content-body">
+            <!-- Alert message -->
+            <div th:if="${successMessage != null}" class="alert alert-success alert-custom mb-4">
+                <i class="fa-solid fa-circle-check me-2"></i>
+                <span th:text="${successMessage}">Profile updated</span>
+            </div>
+
+            <div class="row g-4">
+                <!-- Profile Summary Card -->
+                <div class="col-lg-4">
+                    <div class="dashboard-card text-center p-4">
+                        <div class="avatar-circle mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2.5rem;" th:text="${#strings.substring(user.fullName, 0, 1)}">U</div>
+                        <h5 class="fw-bold mb-1" th:text="${user.fullName}">Citizen Name</h5>
+                        <p class="text-muted fs-7 mb-2" th:text="${user.occupation != null ? user.occupation : 'Resident'}">Occupation</p>
+                        <span class="badge bg-primary px-3 py-2 rounded-pill fs-8">CITIZEN ROLE</span>
+
+                        <hr class="my-4">
+
+                        <div class="text-start">
+                            <div class="d-flex justify-content-between py-2 border-bottom">
+                                <span class="text-muted fs-7">Username</span>
+                                <span class="fw-bold fs-7 text-dark" th:text="${user.username}">user</span>
+                            </div>
+                            <div class="d-flex justify-content-between py-2 border-bottom">
+                                <span class="text-muted fs-7">Ward No</span>
+                                <span class="fw-bold fs-7 text-dark" th:text="${user.wardNumber}">Ward 1</span>
+                            </div>
+                            <div class="d-flex justify-content-between py-2 border-bottom">
+                                <span class="text-muted fs-7">Ration Card</span>
+                                <span class="fw-bold fs-7 text-dark" th:text="${user.rationCard != null ? user.rationCard : 'N/A'}">RC-001</span>
+                            </div>
+                            <div class="d-flex justify-content-between py-2">
+                                <span class="text-muted fs-7">Registration Date</span>
+                                <span class="fw-bold fs-7 text-dark" th:text="${#temporals.format(user.createdAt, 'dd MMM yyyy')}">01 Oct 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Update Form -->
+                <div class="col-lg-8">
+                    <div class="dashboard-card">
+                        <h6 class="fw-bold mb-3 border-bottom pb-2"><i class="fa-solid fa-user-pen me-2 text-primary"></i> Edit Personal Profile & Family Details</h6>
+
+                        <form th:action="@{/citizen/profile/update}" method="post" th:object="${user}">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold fs-7">Full Name</label>
+                                    <input type="text" name="fullName" th:value="${user.fullName}" class="form-control form-control-custom" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold fs-7">Mobile Phone</label>
+                                    <input type="tel" name="phone" th:value="${user.phone}" class="form-control form-control-custom" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold fs-7">Email Address</label>
+                                    <input type="email" name="email" th:value="${user.email}" class="form-control form-control-custom">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold fs-7">Occupation</label>
+                                    <input type="text" name="occupation" th:value="${user.occupation}" class="form-control form-control-custom">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold fs-7">Aadhaar Card Number</label>
+                                    <input type="text" name="aadhaar" th:value="${user.aadhaar}" class="form-control form-control-custom">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold fs-7">Ration Card Number</label>
+                                    <input type="text" name="rationCard" th:value="${user.rationCard}" class="form-control form-control-custom">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold fs-7">Village Ward Number</label>
+                                    <select name="wardNumber" class="form-select form-control-custom">
+                                        <option value="Ward 1" th:selected="${user.wardNumber == 'Ward 1'}">Ward 1 - East Sector</option>
+                                        <option value="Ward 2" th:selected="${user.wardNumber == 'Ward 2'}">Ward 2 - Market Area</option>
+                                        <option value="Ward 3" th:selected="${user.wardNumber == 'Ward 3'}">Ward 3 - North Sector</option>
+                                        <option value="Ward 4" th:selected="${user.wardNumber == 'Ward 4'}">Ward 4 - South Sector</option>
+                                        <option value="Ward 5" th:selected="${user.wardNumber == 'Ward 5'}">Ward 5 - Agri Colony</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold fs-7">Household Family Members Count</label>
+                                    <input type="number" name="householdMembers" th:value="${user.householdMembers}" class="form-control form-control-custom" min="1" max="20">
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label font-weight-bold fs-7">Village Address</label>
+                                    <textarea name="address" class="form-control form-control-custom" rows="3" th:text="${user.address}"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-2 border-top text-end">
+                                <button type="submit" class="btn btn-primary-custom">
+                                    <i class="fa-solid fa-floppy-disk me-1"></i> Save Profile Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

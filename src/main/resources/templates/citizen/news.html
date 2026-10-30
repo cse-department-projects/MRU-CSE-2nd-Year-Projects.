@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village News & Announcements - Smart Village</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-container">
+    <div th:replace="~{fragments/sidebar :: sidebar(activeMenu='news', role='CITIZEN')}"></div>
+
+    <main class="app-main">
+        <div th:replace="~{fragments/navbar :: navbar(pageTitle='Village News Bulletins & Gram Sabha Announcements', userObj=${user})}"></div>
+
+        <div class="content-body">
+            <!-- Search & Category Filters Toolbar -->
+            <div class="dashboard-card p-3 mb-4">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                            <input type="text" id="newsSearchInput" class="form-control form-control-custom border-start-0" placeholder="Search announcements by keywords...">
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <span class="fs-8 text-muted me-2 font-weight-bold">Filter Category:</span>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-sm btn-outline-primary active" onclick="filterNews('ALL')">All</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="filterNews('GRAM_SABHA')">Gram Sabha</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="filterNews('HEALTH')">Health</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="filterNews('SCHEME')">Schemes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Cards Stream -->
+            <div class="row g-4" id="newsCardStream">
+                <div th:each="news : ${announcements}" class="col-md-6 news-card-item" th:data-category="${news.category}">
+                    <div class="dashboard-card h-100 border-start border-4" th:classappend="${news.priority == 'HIGH' or news.priority == 'URGENT' ? 'border-danger' : 'border-primary'}">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div>
+                                <span class="badge bg-primary-subtle text-primary me-1" th:text="${news.category}">GRAM_SABHA</span>
+                                <span th:if="${news.priority == 'HIGH' or news.priority == 'URGENT'}" class="badge bg-danger">URGENT</span>
+                            </div>
+                            <span class="text-muted fs-8">
+                                <i class="fa-regular fa-calendar me-1"></i>
+                                <span th:text="${#temporals.format(news.postedDate, 'dd MMM yyyy, HH:mm')}">Date</span>
+                            </span>
+                        </div>
+
+                        <h5 class="fw-bold mb-2 text-dark" th:text="${news.title}">Announcement Title</h5>
+                        <p class="text-muted fs-7 mb-3" style="line-height: 1.6;" th:text="${news.content}">Detailed announcement text content...</p>
+
+                        <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center fs-8 text-muted">
+                            <span><i class="fa-solid fa-users me-1"></i> Target: <strong class="text-dark" th:text="${news.targetAudience}">ALL CITIZENS</strong></span>
+                            <span><i class="fa-solid fa-building-columns me-1"></i> Gram Panchayat</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:if="${#lists.isEmpty(announcements)}" class="col-12 text-center text-muted py-5">
+                    <i class="fa-solid fa-newspaper fs-1 mb-3 text-secondary"></i>
+                    <h5>No village announcements posted yet</h5>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/main.js}"></script>
+<script>
+    function filterNews(cat) {
+        const items = document.querySelectorAll('.news-card-item');
+        items.forEach(item => {
+            if (cat === 'ALL' || item.getAttribute('data-category') === cat) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    document.getElementById('newsSearchInput').addEventListener('keyup', function() {
+        const q = this.value.toLowerCase();
+        const items = document.querySelectorAll('.news-card-item');
+        items.forEach(item => {
+            const txt = item.textContent.toLowerCase();
+            item.style.display = txt.includes(q) ? '' : 'none';
+        });
+    });
+</script>
+</body>
+</html>

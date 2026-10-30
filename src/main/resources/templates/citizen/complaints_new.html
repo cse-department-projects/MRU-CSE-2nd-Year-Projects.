@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Problem - Smart Village System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="app-container">
+    <div th:replace="~{fragments/sidebar :: sidebar(activeMenu='new_complaint', role='CITIZEN')}"></div>
+
+    <main class="app-main">
+        <div th:replace="~{fragments/navbar :: navbar(pageTitle='Report a Village Problem / Grievance', userObj=${user})}"></div>
+
+        <div class="content-body" style="max-width: 900px; margin: 0 auto;">
+            <div class="dashboard-card p-4">
+                <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom">
+                    <div class="stat-icon icon-rose"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div>
+                        <h5 class="fw-bold mb-1">Village Grievance Registration Form</h5>
+                        <p class="text-muted fs-7 mb-0">Lodge complaints regarding public infrastructure, water, power, sanitation, or roads for Panchayat action.</p>
+                    </div>
+                </div>
+
+                <form th:action="@{/citizen/complaints/save}" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label font-weight-bold fs-7">Complaint Subject / Title *</label>
+                            <input type="text" name="title" class="form-control form-control-custom" placeholder="e.g. Water Pipeline Leakage near School / Broken LED Streetlight" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label font-weight-bold fs-7">Problem Category *</label>
+                            <select name="category" class="form-select form-control-custom" required>
+                                <option value="Water">Water Supply & Leakage</option>
+                                <option value="Electricity">Electricity & Power Failure</option>
+                                <option value="Roads">Roads & Potholes</option>
+                                <option value="Sanitation">Sanitation & Garbage Collection</option>
+                                <option value="Drainage">Drainage Overflow</option>
+                                <option value="Streetlights">Streetlights & Public Safety</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label font-weight-bold fs-7">Ward Location *</label>
+                            <select name="wardNumber" class="form-select form-control-custom" required th:value="${user.wardNumber}">
+                                <option value="Ward 1" th:selected="${user.wardNumber == 'Ward 1'}">Ward 1 - East Sector</option>
+                                <option value="Ward 2" th:selected="${user.wardNumber == 'Ward 2'}">Ward 2 - Market Area</option>
+                                <option value="Ward 3" th:selected="${user.wardNumber == 'Ward 3'}">Ward 3 - North Sector</option>
+                                <option value="Ward 4" th:selected="${user.wardNumber == 'Ward 4'}">Ward 4 - South Sector</option>
+                                <option value="Ward 5" th:selected="${user.wardNumber == 'Ward 5'}">Ward 5 - Agri Colony</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label font-weight-bold fs-7">Priority Urgency Level *</label>
+                            <select name="priority" class="form-select form-control-custom" required>
+                                <option value="LOW">Low - Routine repair within 7 days</option>
+                                <option value="MEDIUM" selected>Medium - Normal issue within 3 days</option>
+                                <option value="HIGH">High - Urgent issue within 24 hours</option>
+                                <option value="URGENT">Urgent SOS - Emergency Immediate</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label font-weight-bold fs-7">Specific Landmark / Location Address *</label>
+                            <input type="text" name="location" class="form-control form-control-custom" placeholder="e.g. Opposite Community Hall, House #45, North Street" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label font-weight-bold fs-7">Full Problem Description *</label>
+                            <textarea name="description" class="form-control form-control-custom" rows="4" placeholder="Explain the problem in detail (how long it has existed, impact on residents, safety hazards)..." required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top d-flex justify-content-between align-items-center">
+                        <a href="/citizen/dashboard" class="btn btn-secondary-custom">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Back to Dashboard
+                        </a>
+                        <button type="submit" class="btn btn-primary-custom px-4 py-2">
+                            <i class="fa-solid fa-paper-plane me-2"></i> Register Complaint Ticket
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

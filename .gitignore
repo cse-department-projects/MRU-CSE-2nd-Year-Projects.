@@ -1,0 +1,22 @@
+# Java compiled files
+*.class
+out/
+target/
+build/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+
+# Logs
+*.log
+
+# Database credentials
+db.properties
+
+# Environment secrets
+.env
+.env.*
+!.env.example
