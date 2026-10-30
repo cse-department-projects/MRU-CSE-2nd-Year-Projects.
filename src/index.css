@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color-scheme: light; font-synthesis: none; text-rendering: optimizeLegibility; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  body {
+    @apply text-forest-950 font-sans antialiased bg-forest-50;
+    min-width: 320px;
+  }
+  img { max-width: 100%; }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+  button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 3px solid #86c767; outline-offset: 3px; }
+}
+
+@layer components {
+  .page-hero { @apply relative overflow-hidden bg-gradient-to-br from-[#4e8a25] via-[#32602b] to-[#173b29] text-white; }
+  .page-hero::after { content: ''; @apply pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-white/5 blur-2xl; }
+  .eyebrow { @apply inline-flex items-center gap-2 rounded-full border border-leaf-500/30 bg-leaf-50 px-4 py-2 text-sm font-bold text-leaf-600; }
+  .surface-card { @apply rounded-3xl border border-forest-100 bg-white shadow-sm; }
+  .action-button { @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#204b2d] px-6 py-3 font-bold text-white shadow-lg shadow-forest-950/15 transition hover:-translate-y-0.5 hover:bg-[#173b29]; }
+  .soft-button { @apply inline-flex items-center justify-center gap-2 rounded-full border border-leaf-500/50 bg-white px-6 py-3 font-bold text-forest-950 transition hover:bg-leaf-50; }
+  .field { @apply w-full rounded-xl border border-forest-100 bg-[#fbfdfb] px-4 py-3 text-forest-950 placeholder:text-forest-500/70 focus:border-leaf-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-leaf-500/20; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* Give wide displays more room while keeping the reading width comfortable. */
+@media (min-width: 1536px) {
+  .max-w-7xl { max-width: 90rem; }
+}
