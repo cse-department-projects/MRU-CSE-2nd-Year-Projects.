@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitZOne | Dashboard</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        🏋️ FitZOne
+    </div>
+
+
+    <ul>
+
+        <li>
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+
+        <li>
+            <a href="workout.html">
+                <i class="fa-solid fa-dumbbell"></i>
+                Workout
+            </a>
+        </li>
+
+
+        <li>
+            <a href="food.html">
+                <i class="fa-solid fa-bowl-food"></i>
+                Food
+            </a>
+        </li>
+
+
+        <li>
+            <a href="water.html">
+                <i class="fa-solid fa-glass-water"></i>
+                Water
+            </a>
+        </li>
+
+
+        <li>
+            <a href="progress.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Progress
+            </a>
+        </li>
+
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+        </li>
+
+
+        <li>
+            <a href="index.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+
+    <!-- ================= TOPBAR ================= -->
+
+    <div class="topbar">
+
+        <input
+            type="text"
+            class="search"
+            placeholder="Search...">
+
+
+        <div class="profile">
+
+            <i class="fa-solid fa-user-circle"></i>
+
+            Welcome, <span id="userName">User</span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <div class="welcome">
+
+        <div>
+
+            <h1>
+                Welcome to FitZOne 💪
+            </h1>
+
+            <p>
+                Stay active, eat healthy, and achieve your fitness goals every day.
+            </p>
+
+        </div>
+
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+    </div>
+
+
+
+    <!-- ================= PROFILE SUMMARY ================= -->
+
+    <div class="profile-summary">
+
+        <h2>Your Fitness Profile</h2>
+
+
+        <div class="profile-summary-cards">
+
+
+            <!-- Height -->
+
+            <div class="profile-info">
+
+                <i class="fa-solid fa-ruler-vertical"></i>
+
+                <h3>
+                    Height
+                </h3>
+
+                <p id="userHeight">
+                    -- cm
+                </p>
+
+            </div>
+
+
+            <!-- Weight -->
+
+            <div class="profile-info">
+
+                <i class="fa-solid fa-weight-scale"></i>
+
+                <h3>
+                    Weight
+                </h3>
+
+                <p id="userWeight">
+                    -- kg
+                </p>
+
+            </div>
+
+
+            <!-- Goal -->
+
+            <div class="profile-info">
+
+                <i class="fa-solid fa-bullseye"></i>
+
+                <h3>
+                    Goal
+                </h3>
+
+                <p id="userGoal">
+                    --
+                </p>
+
+            </div>
+
+
+            <!-- Activity -->
+
+            <div class="profile-info">
+
+                <i class="fa-solid fa-person-running"></i>
+
+                <h3>
+                    Activity
+                </h3>
+
+                <p id="userActivity">
+                    --
+                </p>
+
+            </div>
+
+
+            <!-- Sleep -->
+
+            <div class="profile-info">
+
+                <i class="fa-solid fa-bed"></i>
+
+                <h3>
+                    Sleep
+                </h3>
+
+                <p id="userSleep">
+                    -- hrs
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= QUICK ACCESS ================= -->
+
+    <div class="quick">
+
+        <h2>
+            Quick Access
+        </h2>
+
+    </div>
+
+
+
+    <!-- ================= FITNESS OVERVIEW ================= -->
+
+    <div class="overview">
+
+        <h2>
+            Today's Fitness Overview
+        </h2>
+
+
+        <div class="overview-cards">
+
+
+            <!-- Calories -->
+
+            <div class="overview-card">
+
+                <i class="fa-solid fa-fire"></i>
+
+                <h3>
+                    Calories Burned
+                </h3>
+
+                <h1>
+                    650 kcal
+                </h1>
+
+                <p>
+                    Goal: 800 kcal
+                </p>
+
+                <progress
+                    value="650"
+                    max="800">
+                </progress>
+
+            </div>
+
+
+
+            <!-- Steps -->
+
+            <div class="overview-card">
+
+                <i class="fa-solid fa-shoe-prints"></i>
+
+                <h3>
+                    Steps
+                </h3>
+
+                <h1>
+                    8,540
+                </h1>
+
+                <p>
+                    Goal: 10,000
+                </p>
+
+                <progress
+                    value="8540"
+                    max="10000">
+                </progress>
+
+            </div>
+
+
+
+            <!-- Water -->
+
+            <div class="overview-card">
+
+                <i class="fa-solid fa-glass-water"></i>
+
+                <h3>
+                    Water Intake
+                </h3>
+
+                <h1>
+                    6 / 8 Glasses
+                </h1>
+
+                <p>
+                    Goal: 8 Glasses
+                </p>
+
+                <progress
+                    value="6"
+                    max="8">
+                </progress>
+
+            </div>
+
+
+
+            <!-- Heart Rate -->
+
+            <div class="overview-card">
+
+                <i class="fa-solid fa-heart-pulse"></i>
+
+                <h3>
+                    Heart Rate
+                </h3>
+
+                <h1>
+                    76 BPM
+                </h1>
+
+                <p>
+                    Healthy
+                </p>
+
+                <progress
+                    value="76"
+                    max="120">
+                </progress>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= WEEKLY PROGRESS ================= -->
+
+    <div class="weekly">
+
+        <h2>
+            Weekly Progress
+        </h2>
+
+
+        <div class="chart">
+
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="height:70%;">
+                </div>
+
+                <span>
+                    Mon
+                </span>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="height:90%;">
+                </div>
+
+                <span>
+                    Tue
+                </span>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="height:55%;">
+                </div>
+
+                <span>
+                    Wed
+                </span>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="height:80%;">
+                </div>
+
+                <span>
+                    Thu
+                </span>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="height:95%;">
+                </div>
+
+                <span>
+                    Fri
+                </span>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="height:65%;">
+                </div>
+
+                <span>
+                    Sat
+                </span>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div
+                    class="fill"
+                    style="height:85%;">
+                </div>
+
+                <span>
+                    Sun
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= RECENT ACTIVITY ================= -->
+
+    <div class="activity">
+
+        <h2>
+            Recent Activities
+        </h2>
+
+
+        <div class="activity-box">
+
+
+            <div class="item">
+
+                <i class="fa-solid fa-person-running"></i>
+
+                Morning Run - 5 km
+
+                <span>
+                    Today
+                </span>
+
+            </div>
+
+
+            <div class="item">
+
+                <i class="fa-solid fa-dumbbell"></i>
+
+                Strength Training - 45 mins
+
+                <span>
+                    Yesterday
+                </span>
+
+            </div>
+
+
+            <div class="item">
+
+                <i class="fa-solid fa-bowl-food"></i>
+
+                Healthy Breakfast Logged
+
+                <span>
+                    Today
+                </span>
+
+            </div>
+
+
+            <div class="item">
+
+                <i class="fa-solid fa-glass-water"></i>
+
+                Water Goal Completed
+
+                <span>
+                    Today
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= ACHIEVEMENTS ================= -->
+
+    <div class="achievements">
+
+        <h2>
+            Your Achievements
+        </h2>
+
+
+        <div class="badge-container">
+
+
+            <div class="badge">
+
+                🏅
+
+                <h3>
+                    7 Day Streak
+                </h3>
+
+                <p>
+                    Completed workouts for 7 consecutive days.
+                </p>
+
+            </div>
+
+
+            <div class="badge">
+
+                🔥
+
+                <h3>
+                    5000 Calories
+                </h3>
+
+                <p>
+                    Total calories burned this month.
+                </p>
+
+            </div>
+
+
+            <div class="badge">
+
+                💧
+
+                <h3>
+                    Hydration Hero
+                </h3>
+
+                <p>
+                    Completed water intake goals.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= BMI SECTION ================= -->
+
+    <div class="bmi-section">
+
+
+        <!-- BMI -->
+
+        <div class="bmi-card">
+
+            <h2>
+                Body Mass Index
+            </h2>
+
+
+            <div class="bmi-number">
+                22.5
+            </div>
+
+
+            <p>
+                Normal Weight
+            </p>
+
+
+            <progress
+                value="22.5"
+                max="40">
+            </progress>
+
+        </div>
+
+
+
+        <!-- Today's Goal -->
+
+        <div class="goal-card">
+
+            <h2>
+                Today's Goal
+            </h2>
+
+
+            <ul>
+
+                <li>
+                    ✔ Morning Workout
+                </li>
+
+                <li>
+                    ✔ Drink 8 Glasses Water
+                </li>
+
+                <li>
+                    ✔ Eat Healthy Meals
+                </li>
+
+                <li>
+                    ⬜ Evening Walk
+                </li>
+
+                <li>
+                    ⬜ Sleep 8 Hours
+                </li>
+
+            </ul>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= QUICK CARDS ================= -->
+
+    <div class="cards">
+
+
+        <!-- Workout -->
+
+        <div class="card">
+
+            <i class="fa-solid fa-dumbbell"></i>
+
+            <h3>
+                Workout
+            </h3>
+
+            <a href="workout.html">
+                Open
+            </a>
+
+        </div>
+
+
+
+        <!-- Food -->
+
+        <div class="card">
+
+            <i class="fa-solid fa-bowl-food"></i>
+
+            <h3>
+                Food
+            </h3>
+
+            <a href="food.html">
+                Open
+            </a>
+
+        </div>
+
+
+
+        <!-- Water -->
+
+        <div class="card">
+
+            <i class="fa-solid fa-glass-water"></i>
+
+            <h3>
+                Water
+            </h3>
+
+            <a href="water.html">
+                Open
+            </a>
+
+        </div>
+
+
+
+        <!-- Progress -->
+
+        <div class="card">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <h3>
+                Progress
+            </h3>
+
+            <a href="progress.html">
+                Open
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================= DASHBOARD JAVASCRIPT ================= -->
+
+<script src="./js/dashboard.js"></script>
+
+
+</body>
+
+</html>

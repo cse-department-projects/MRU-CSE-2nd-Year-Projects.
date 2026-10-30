@@ -1,0 +1,327 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8faf7;
+    color: #142018;
+    min-height: 100vh;
+}
+
+/* Main container */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    min-height: 650px;
+    margin: 50px auto;
+
+    display: flex;
+
+    background: #ffffff;
+    border-radius: 25px;
+    overflow: hidden;
+
+    box-shadow: 0 15px 45px rgba(20, 70, 40, 0.10);
+}
+
+/* LEFT SIDE */
+.left {
+    width: 50%;
+
+    background: #eaf3eb;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative circle */
+.left::before {
+    content: "";
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border: 1px solid #155d32;
+    border-radius: 50%;
+
+    right: -170px;
+    top: -80px;
+
+    opacity: 0.15;
+}
+
+/* Second decorative circle */
+.left::after {
+    content: "";
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    background: rgba(21, 93, 50, 0.06);
+    border-radius: 50%;
+
+    left: -120px;
+    bottom: -100px;
+}
+
+/* Dumbbell icon */
+.left > i {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #155d32;
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 8px 25px rgba(21, 93, 50, 0.12);
+}
+
+/* Heading */
+.left h1 {
+    font-size: 48px;
+    line-height: 1.15;
+    font-weight: 600;
+
+    color: #142018;
+
+    margin-bottom: 20px;
+}
+
+/* Paragraph */
+.left p {
+    max-width: 420px;
+
+    font-size: 16px;
+    line-height: 1.8;
+
+    color: #64736a;
+}
+
+/* RIGHT SIDE */
+.right {
+    width: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px;
+}
+
+/* Form */
+form {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Login heading */
+form h2 {
+    font-size: 36px;
+    font-weight: 600;
+
+    color: #142018;
+
+    margin-bottom: 35px;
+}
+
+/* Input box */
+.input-box {
+    width: 100%;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #dce5de;
+    border-radius: 12px;
+
+    margin-bottom: 18px;
+
+    background: #ffffff;
+
+    transition: 0.3s;
+}
+
+/* Input icon */
+.input-box i {
+    color: #155d32;
+    font-size: 17px;
+
+    margin-left: 18px;
+    margin-right: 12px;
+}
+
+/* Input */
+.input-box input {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+
+    color: #142018;
+
+    background: transparent;
+}
+
+/* Placeholder */
+.input-box input::placeholder {
+    color: #9aa59d;
+}
+
+/* Focus effect */
+.input-box:focus-within {
+    border-color: #155d32;
+
+    box-shadow: 0 0 0 3px rgba(21, 93, 50, 0.08);
+}
+
+/* Forgot password */
+.forgot {
+    text-align: right;
+    margin: 5px 0 25px;
+}
+
+.forgot a {
+    text-decoration: none;
+
+    font-size: 13px;
+    color: #155d32;
+
+    transition: 0.3s;
+}
+
+.forgot a:hover {
+    color: #0e4022;
+    text-decoration: underline;
+}
+
+/* Login button */
+button {
+    width: 100%;
+    height: 55px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #155d32;
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0e4826;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(21, 93, 50, 0.20);
+}
+
+/* Signup section */
+.signup {
+    text-align: center;
+
+    margin-top: 25px;
+
+    font-size: 14px;
+    color: #68756d;
+}
+
+.signup a {
+    color: #155d32;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.signup a:hover {
+    text-decoration: underline;
+}
+
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 800px) {
+
+    .container {
+        width: 92%;
+        margin: 25px auto;
+
+        flex-direction: column;
+    }
+
+    .left,
+    .right {
+        width: 100%;
+    }
+
+    .left {
+        padding: 50px 35px;
+        min-height: 350px;
+    }
+
+    .left h1 {
+        font-size: 38px;
+    }
+
+    .right {
+        padding: 45px 30px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .container {
+        border-radius: 18px;
+    }
+
+    .left {
+        padding: 40px 25px;
+    }
+
+    .left h1 {
+        font-size: 32px;
+    }
+
+    .left p {
+        font-size: 14px;
+    }
+
+    .right {
+        padding: 40px 25px;
+    }
+
+    form h2 {
+        font-size: 30px;
+    }
+}

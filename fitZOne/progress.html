@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FitZone | Progress</title>
+
+    <link rel="stylesheet"
+          href="css/progress.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            💚 FitZone
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="workout.html">
+                <i class="fa-solid fa-dumbbell"></i>
+                Workout
+            </a>
+
+            <a href="food.html">
+                <i class="fa-solid fa-apple-whole"></i>
+                Food
+            </a>
+
+            <a href="water.html">
+                <i class="fa-solid fa-droplet"></i>
+                Water
+            </a>
+
+            <a href="progress.html" class="active">
+                <i class="fa-solid fa-chart-line"></i>
+                Progress
+            </a>
+
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+
+        </nav>
+
+        <a href="index.html" class="logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h2>
+                    Your Progress 📈
+                </h2>
+
+                <p>
+                    Keep track of your fitness journey.
+                </p>
+
+            </div>
+
+            <div class="user">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <span id="userName">
+                    User
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- SUMMARY CARDS -->
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        💪
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Workouts
+                        </p>
+
+                        <h2 id="totalWorkouts">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        🔥
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Calories Burned
+                        </p>
+
+                        <h2 id="totalCalories">
+                            0
+                        </h2>
+
+                        <span>
+                            kcal
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        ⏱️
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Workout Time
+                        </p>
+
+                        <h2 id="totalDuration">
+                            0
+                        </h2>
+
+                        <span>
+                            minutes
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Water Intake
+                        </p>
+
+                        <h2 id="totalWater">
+                            0
+                        </h2>
+
+                        <span>
+                            glasses
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WORKOUT PROGRESS -->
+
+            <div class="card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Workout Progress
+                        </h2>
+
+                        <p>
+                            Your recorded workout activity.
+                        </p>
+
+                    </div>
+
+                    <span class="badge">
+                        💪 Fitness
+                    </span>
+
+                </div>
+
+
+                <div id="workoutProgress"
+                     class="progress-list">
+
+                    <p class="empty">
+                        Loading workout progress...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- WATER PROGRESS -->
+
+            <div class="card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>
+                            Water Progress
+                        </h2>
+
+                        <p>
+                            Your recorded hydration activity.
+                        </p>
+
+                    </div>
+
+                    <span class="badge">
+                        💧 Hydration
+                    </span>
+
+                </div>
+
+
+                <div id="waterProgress"
+                     class="progress-list">
+
+                    <p class="empty">
+                        Loading water progress...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOTIVATION -->
+
+            <div class="motivation">
+
+                <div class="motivation-icon">
+                    🌱
+                </div>
+
+                <div>
+
+                    <h2>
+                        Keep Growing!
+                    </h2>
+
+                    <p id="motivationText">
+                        Every workout and healthy habit
+                        contributes to your progress.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/progress.js"></script>
+
+</body>
+
+</html>

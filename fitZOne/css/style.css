@@ -1,0 +1,1449 @@
+/* =====================================================
+   FITZONE - MAIN STYLESHEET
+===================================================== */
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #fafbf7;
+    color: #172018;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =====================================================
+   COLORS
+===================================================== */
+
+:root {
+    --green: #164b27;
+    --green-light: #e9f1e6;
+    --cream: #fafbf7;
+    --dark: #172018;
+    --gray: #687068;
+    --border: #e2e7df;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    height: 92px;
+
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(250, 251, 247, 0.97);
+
+    border-bottom: 1px solid var(--border);
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+.logo-mark {
+    width: 32px;
+    height: 32px;
+
+    border: 4px solid var(--green);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-mark i {
+    font-size: 12px;
+    color: var(--green);
+}
+
+
+/* NAVIGATION */
+
+.navbar nav {
+    display: flex;
+    gap: 42px;
+}
+
+.navbar nav a {
+    font-size: 15px;
+
+    color: #424942;
+
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: var(--green);
+}
+
+
+/* NAV BUTTONS */
+
+.nav-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+.login {
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+.login:hover {
+    color: var(--green);
+}
+
+.signup {
+    background: var(--green);
+
+    color: white;
+
+    padding: 13px 27px;
+
+    border-radius: 30px;
+
+    transition: 0.3s;
+}
+
+.signup:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(22, 75, 39, 0.15);
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    min-height: 730px;
+
+    padding: 70px 8% 80px;
+
+    display: grid;
+
+    grid-template-columns: 0.9fr 1.1fr;
+
+    align-items: center;
+
+    gap: 30px;
+
+    overflow: hidden;
+
+    background: var(--cream);
+}
+
+
+/* HERO CONTENT */
+
+.hero-content {
+    max-width: 570px;
+}
+
+
+/* EYEBROW */
+
+.eyebrow,
+.section-heading > span,
+.about-content > span {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: var(--green);
+}
+
+.eyebrow {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+
+.eyebrow > span {
+    width: 28px;
+
+    height: 1px;
+
+    background: var(--green);
+}
+
+
+/* HERO HEADING */
+
+.hero h1 {
+    font-size: clamp(60px, 6vw, 88px);
+
+    line-height: 0.98;
+
+    font-weight: 500;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 35px;
+}
+
+.hero h1 strong {
+    color: var(--green);
+
+    font-weight: 500;
+}
+
+
+/* HERO DESCRIPTION */
+
+.hero-content > p {
+    max-width: 470px;
+
+    font-size: 18px;
+
+    color: var(--gray);
+
+    line-height: 1.8;
+
+    margin-bottom: 35px;
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.primary-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    padding: 17px 27px;
+
+    background: var(--green);
+
+    color: white;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(22, 75, 39, 0.18);
+}
+
+.primary-btn i {
+    transition: 0.3s;
+}
+
+.primary-btn:hover i {
+    transform: translateX(5px);
+}
+
+
+/* HERO NOTE */
+
+.hero-note {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 90px;
+
+    align-items: center;
+}
+
+.hero-note > span {
+    width: 2px;
+
+    height: 52px;
+
+    background: var(--green);
+}
+
+.hero-note p {
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   FITNESS VISUAL
+===================================================== */
+
+.fitness-visual {
+    position: relative;
+
+    width: 570px;
+
+    height: 570px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* SOFT BACKGROUND GLOW */
+
+.fitness-glow {
+    position: absolute;
+
+    width: 370px;
+
+    height: 370px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #edf4e9 0%,
+            #f3f7ef 55%,
+            transparent 75%
+        );
+
+    filter: blur(2px);
+
+    z-index: 0;
+}
+
+
+/* MAIN CIRCLE */
+
+.fitness-circle {
+    position: relative;
+
+    width: 390px;
+
+    height: 390px;
+
+    z-index: 2;
+}
+
+
+/* CIRCLE BORDER */
+
+.circle-path {
+    position: absolute;
+
+    width: 390px;
+
+    height: 390px;
+
+    top: 0;
+
+    left: 0;
+
+    border: 2px solid var(--green);
+
+    border-radius: 50%;
+}
+
+
+/* INNER SOFT SHAPE */
+
+.circle-shadow {
+    position: absolute;
+
+    width: 310px;
+
+    height: 310px;
+
+    top: 40px;
+
+    left: 40px;
+
+    border-radius: 48% 52% 55% 45%;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #f4f7f1 0%,
+            #edf3e8 58%,
+            transparent 76%
+        );
+
+    z-index: -1;
+}
+
+
+/* =====================================================
+   FITNESS ITEMS
+===================================================== */
+
+.fitness-item {
+    position: absolute;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    z-index: 5;
+}
+
+
+/* ICON */
+
+.fitness-icon {
+    width: 58px;
+
+    height: 58px;
+
+    border-radius: 50%;
+
+    background: #f4f8f1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--green);
+
+    font-size: 20px;
+
+    border: 1px solid rgba(22, 75, 39, 0.05);
+
+    box-shadow:
+        0 10px 30px rgba(22, 75, 39, 0.12);
+
+    transition: 0.3s;
+}
+
+.fitness-icon:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 15px 35px rgba(22, 75, 39, 0.18);
+}
+
+
+/* LABEL */
+
+.fitness-label {
+    font-size: 14px;
+
+    font-weight: 500;
+
+    color: #303730;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   TRAIN
+===================================================== */
+
+.train-item {
+    top: -40px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* =====================================================
+   HYDRATE
+===================================================== */
+
+.hydrate-item {
+    right: -75px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    flex-direction: row;
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-item {
+    bottom: -40px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* =====================================================
+   FUEL
+===================================================== */
+
+.fuel-item {
+    left: -65px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    flex-direction: row;
+
+    gap: 12px;
+}
+
+
+/* =====================================================
+   DECORATIVE DOTS
+===================================================== */
+
+.dot-pattern {
+    position: absolute;
+
+    width: 70px;
+
+    height: 70px;
+
+    background-image:
+        radial-gradient(
+            #dce7d8 2px,
+            transparent 2px
+        );
+
+    background-size: 16px 16px;
+
+    opacity: 0.7;
+
+    z-index: 0;
+}
+
+
+/* TOP DOTS */
+
+.dots-top {
+    top: 15px;
+
+    right: 20px;
+}
+
+
+/* BOTTOM DOTS */
+
+.dots-bottom {
+    bottom: 0;
+
+    left: 15px;
+}
+
+
+/* =====================================================
+   FITNESS ICON ANIMATION
+===================================================== */
+
+.fitness-icon {
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.train-item .fitness-icon {
+    animation-delay: 0s;
+}
+
+.hydrate-item .fitness-icon {
+    animation-delay: 0.8s;
+}
+
+.progress-item .fitness-icon {
+    animation-delay: 1.6s;
+}
+
+.fuel-item .fitness-icon {
+    animation-delay: 2.4s;
+}
+
+
+@keyframes gentleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+/* =====================================================
+   FEATURES
+===================================================== */
+
+.features {
+    padding: 120px 9%;
+
+    background: white;
+}
+
+
+/* SECTION HEADING */
+
+.section-heading {
+    margin-bottom: 60px;
+}
+
+.section-heading h2 {
+    font-size: 52px;
+
+    line-height: 1.1;
+
+    letter-spacing: -2px;
+
+    font-weight: 500;
+
+    margin-top: 15px;
+}
+
+
+/* FEATURE GRID */
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* FEATURE CARD */
+
+.feature-card {
+    position: relative;
+
+    padding: 45px 30px;
+
+    min-height: 300px;
+
+    border-right: 1px solid var(--border);
+
+    transition: 0.3s;
+}
+
+.feature-card:last-child {
+    border-right: none;
+}
+
+.feature-card:hover {
+    background: #fafcf8;
+}
+
+
+/* NUMBER */
+
+.feature-number {
+    color: #a0a9a0;
+
+    font-size: 13px;
+
+    margin-bottom: 55px;
+}
+
+
+/* ICON */
+
+.feature-card > i {
+    display: block;
+
+    color: var(--green);
+
+    font-size: 25px;
+
+    margin-bottom: 20px;
+}
+
+
+/* TITLE */
+
+.feature-card h3 {
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+
+/* DESCRIPTION */
+
+.feature-card p {
+    color: var(--gray);
+
+    font-size: 14px;
+
+    max-width: 220px;
+}
+
+
+/* =====================================================
+   SCREENS
+===================================================== */
+
+.screens {
+    padding: 130px 9%;
+
+    background: var(--cream);
+}
+
+
+.screen-layout {
+    display: grid;
+
+    grid-template-columns: 0.8fr 1.2fr;
+
+    gap: 100px;
+
+    align-items: center;
+}
+
+
+/* SCREEN INTRO */
+
+.screen-intro p {
+    color: var(--gray);
+
+    max-width: 380px;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* SCREEN PREVIEW */
+
+.screen-preview {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 20px 60px rgba(30, 50, 30, 0.07);
+}
+
+
+/* PREVIEW TOP */
+
+.preview-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-weight: 600;
+}
+
+.preview-date {
+    color: #8a928a;
+
+    font-size: 12px;
+}
+
+
+/* PROGRESS CIRCLE */
+
+.progress-circle {
+    width: 190px;
+
+    height: 190px;
+
+    border-radius: 50%;
+
+    margin: 45px auto;
+
+    background:
+        radial-gradient(
+            circle,
+            white 58%,
+            transparent 59%
+        ),
+        conic-gradient(
+            var(--green) 72%,
+            #e8ede6 0
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.progress-circle div {
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.progress-circle strong {
+    font-size: 42px;
+}
+
+.progress-circle small {
+    color: var(--gray);
+}
+
+
+/* PREVIEW STATS */
+
+.preview-stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border-top: 1px solid var(--border);
+
+    padding-top: 25px;
+}
+
+.preview-stats div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.preview-stats span {
+    font-size: 12px;
+
+    color: var(--gray);
+}
+
+.preview-stats strong {
+    font-size: 19px;
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about {
+    padding: 140px 9%;
+
+    background: var(--green);
+
+    color: white;
+}
+
+.about-content {
+    max-width: 800px;
+}
+
+.about-content > span {
+    color: #b8d4bb;
+}
+
+.about h2 {
+    font-size: 60px;
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+
+    font-weight: 500;
+
+    margin: 20px 0 30px;
+}
+
+.about p {
+    color: #d0ddd1;
+
+    max-width: 550px;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* ABOUT POINTS */
+
+.about-points {
+    display: grid;
+
+    grid-template-columns: repeat(2, 220px);
+
+    gap: 18px 40px;
+
+    margin-top: 45px;
+}
+
+.about-points div {
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+
+    font-size: 14px;
+}
+
+.about-points i {
+    color: #b9d8bd;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    padding: 55px 9%;
+
+    background: #f2f5ef;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    align-items: center;
+
+    gap: 40px;
+}
+
+
+/* FOOTER BRAND */
+
+.footer-brand p {
+    margin-top: 8px;
+
+    color: var(--gray);
+
+    font-size: 13px;
+}
+
+
+/* COPYRIGHT */
+
+.copyright {
+    color: var(--gray);
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   RESPONSIVE - TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding: 70px 7% 100px;
+
+        text-align: center;
+    }
+
+
+    .hero-content {
+        max-width: 700px;
+
+        margin: auto;
+    }
+
+
+    .eyebrow {
+        justify-content: center;
+    }
+
+
+    .hero-content > p {
+        margin-left: auto;
+
+        margin-right: auto;
+    }
+
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+
+    .hero-note {
+        justify-content: center;
+
+        text-align: left;
+    }
+
+
+    .fitness-visual {
+        transform: scale(0.85);
+
+        margin-top: -20px;
+    }
+
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .feature-card:nth-child(2) {
+        border-right: none;
+    }
+
+
+    .screen-layout {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+    }
+
+
+    .screen-intro {
+        max-width: 600px;
+    }
+
+
+    footer {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+
+    .footer-brand .logo {
+        justify-content: center;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE - MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    /* NAVBAR */
+
+    .navbar {
+        height: 75px;
+
+        padding: 0 6%;
+    }
+
+
+    .navbar nav {
+        display: none;
+    }
+
+
+    .logo {
+        font-size: 21px;
+    }
+
+
+    .logo-mark {
+        width: 28px;
+
+        height: 28px;
+
+        border-width: 3px;
+    }
+
+
+    .nav-buttons {
+        gap: 10px;
+    }
+
+
+    .nav-buttons .login {
+        display: none;
+    }
+
+
+    .signup {
+        padding: 10px 18px;
+
+        font-size: 14px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        padding: 60px 6% 70px;
+
+        min-height: auto;
+    }
+
+
+    .eyebrow {
+        font-size: 10px;
+
+        letter-spacing: 1.5px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .hero h1 {
+        font-size: 58px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .hero-content > p {
+        font-size: 16px;
+
+        line-height: 1.7;
+    }
+
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        width: 100%;
+    }
+
+
+    .hero-buttons a {
+        justify-content: center;
+
+        text-align: center;
+    }
+
+
+    .hero-note {
+        margin-top: 55px;
+    }
+
+
+    /* FITNESS VISUAL */
+
+    .fitness-visual {
+        width: 390px;
+
+        height: 390px;
+
+        transform: scale(0.75);
+
+        margin-top: -20px;
+
+        margin-left: auto;
+
+        margin-right: auto;
+    }
+
+
+    .fitness-circle {
+        width: 330px;
+
+        height: 330px;
+    }
+
+
+    .circle-path {
+        width: 330px;
+
+        height: 330px;
+    }
+
+
+    .circle-shadow {
+        width: 260px;
+
+        height: 260px;
+
+        top: 35px;
+
+        left: 35px;
+    }
+
+
+    .fitness-icon {
+        width: 52px;
+
+        height: 52px;
+
+        font-size: 18px;
+    }
+
+
+    .train-item {
+        top: -30px;
+    }
+
+
+    .hydrate-item {
+        right: -55px;
+    }
+
+
+    .progress-item {
+        bottom: -30px;
+    }
+
+
+    .fuel-item {
+        left: -50px;
+    }
+
+
+    .fitness-label {
+        font-size: 13px;
+    }
+
+
+    /* FEATURES */
+
+    .features {
+        padding: 90px 7%;
+    }
+
+
+    .section-heading {
+        margin-bottom: 45px;
+    }
+
+
+    .section-heading h2 {
+        font-size: 40px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .feature-card {
+        min-height: auto;
+
+        padding: 40px 20px;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+
+    .feature-card:last-child {
+        border-bottom: none;
+    }
+
+
+    .feature-number {
+        margin-bottom: 35px;
+    }
+
+
+    /* SCREENS */
+
+    .screens {
+        padding: 90px 7%;
+    }
+
+
+    .screen-layout {
+        gap: 45px;
+    }
+
+
+    .screen-preview {
+        padding: 25px;
+
+        border-radius: 16px;
+    }
+
+
+    .progress-circle {
+        width: 160px;
+
+        height: 160px;
+    }
+
+
+    .progress-circle strong {
+        font-size: 36px;
+    }
+
+
+    .preview-stats {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    /* ABOUT */
+
+    .about {
+        padding: 100px 7%;
+    }
+
+
+    .about h2 {
+        font-size: 42px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .about p {
+        font-size: 16px;
+    }
+
+
+    .about-points {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+        padding: 45px 7%;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 430px) {
+
+    .hero h1 {
+        font-size: 50px;
+
+        letter-spacing: -2.5px;
+    }
+
+
+    .fitness-visual {
+        width: 340px;
+
+        height: 340px;
+
+        transform: scale(0.65);
+
+        margin-left: auto;
+
+        margin-right: auto;
+    }
+
+
+    .section-heading h2 {
+        font-size: 35px;
+    }
+
+
+    .about h2 {
+        font-size: 36px;
+    }
+
+}

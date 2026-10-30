@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FitZone | Workout</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Workout CSS -->
+    <link rel="stylesheet" href="css/workout.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        💚 FitZone
+    </div>
+
+
+    <ul>
+
+        <li>
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+
+        <li class="active">
+            <a href="workout.html">
+                <i class="fa-solid fa-dumbbell"></i>
+                Workout
+            </a>
+        </li>
+
+
+        <li>
+            <a href="food.html">
+                <i class="fa-solid fa-utensils"></i>
+                Food
+            </a>
+        </li>
+
+
+        <li>
+            <a href="water.html">
+                <i class="fa-solid fa-droplet"></i>
+                Water
+            </a>
+        </li>
+
+
+        <li>
+            <a href="progress.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Progress
+            </a>
+        </li>
+
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+        </li>
+
+
+        <li>
+            <a href="index.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+
+
+<!-- =========================================
+     MAIN CONTENT
+========================================= -->
+
+<div class="main-content">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <h2>
+            Workout 💪
+        </h2>
+
+
+        <span id="userName">
+            User
+        </span>
+
+    </div>
+
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <h1>
+            Track Your Workout 💪
+        </h1>
+
+
+        <p>
+            Record your workout and let FitZone
+            understand your fitness activity.
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================================
+         WORKOUT FORM
+    ========================================= -->
+
+    <div class="workout-card">
+
+        <h2>
+            <i class="fa-solid fa-plus"></i>
+            Add Workout
+        </h2>
+
+
+        <form id="workoutForm">
+
+
+            <!-- WORKOUT TYPE -->
+
+            <label for="workoutType">
+                Workout Type
+            </label>
+
+
+            <select id="workoutType" required>
+
+                <option value="">
+                    Select Workout
+                </option>
+
+
+                <option value="Running">
+                    Running
+                </option>
+
+
+                <option value="Walking">
+                    Walking
+                </option>
+
+
+                <option value="Cycling">
+                    Cycling
+                </option>
+
+
+                <option value="Strength Training">
+                    Strength Training
+                </option>
+
+
+                <option value="Yoga">
+                    Yoga
+                </option>
+
+
+                <option value="Swimming">
+                    Swimming
+                </option>
+
+
+                <option value="Skipping">
+                    Skipping
+                </option>
+
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+
+            <!-- DURATION -->
+
+            <label for="duration">
+                Duration (minutes)
+            </label>
+
+
+            <input
+                type="number"
+                id="duration"
+                min="1"
+                placeholder="Example: 45"
+                required
+            >
+
+
+
+            <!-- INTENSITY -->
+
+            <label for="intensity">
+                Intensity
+            </label>
+
+
+            <select id="intensity" required>
+
+                <option value="">
+                    Select Intensity
+                </option>
+
+
+                <option value="Low">
+                    Low
+                </option>
+
+
+                <option value="Moderate">
+                    Moderate
+                </option>
+
+
+                <option value="High">
+                    High
+                </option>
+
+            </select>
+
+
+
+            <!-- NOTES -->
+
+            <label for="notes">
+                Notes
+            </label>
+
+
+            <textarea
+                id="notes"
+                rows="4"
+                placeholder="How did you feel during your workout?"
+            ></textarea>
+
+
+
+            <!-- BUTTON -->
+
+            <button type="submit">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Save Workout
+
+            </button>
+
+
+            <!-- MESSAGE -->
+
+            <p id="message"></p>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- =========================================
+         RECENT WORKOUTS
+    ========================================= -->
+
+    <div class="recent-workouts">
+
+
+        <h2>
+
+            <i class="fa-solid fa-clock"></i>
+
+            Recent Workouts
+
+        </h2>
+
+
+        <div id="workoutList">
+
+            <p class="empty">
+                No workouts recorded yet.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         PERSONALIZED RECOMMENDATIONS
+    ========================================= -->
+
+    <div class="recommendation-card">
+
+
+        <h2>
+            🌿 Your FitZone Recommendations
+        </h2>
+
+
+        <p class="recommendation-intro">
+
+            Complete a workout to receive
+            personalized natural food and
+            healthy habit suggestions.
+
+        </p>
+
+
+
+        <div id="recommendationList">
+
+
+            <!-- FOOD -->
+
+            <div class="recommendation-item">
+
+                <span>
+                    🥗
+                </span>
+
+
+                <div>
+
+                    <h3>
+                        Natural Food Habit
+                    </h3>
+
+
+                    <p>
+                        Your food suggestions will
+                        appear here based on your
+                        workout and fitness goal.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HYDRATION -->
+
+            <div class="recommendation-item">
+
+                <span>
+                    💧
+                </span>
+
+
+                <div>
+
+                    <h3>
+                        Hydration Habit
+                    </h3>
+
+
+                    <p>
+                        Drink water regularly,
+                        especially after exercise.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RECOVERY -->
+
+            <div class="recommendation-item">
+
+                <span>
+                    😴
+                </span>
+
+
+                <div>
+
+                    <h3>
+                        Recovery Habit
+                    </h3>
+
+
+                    <p>
+                        Maintain a consistent sleep
+                        routine to support recovery.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DAILY HABIT -->
+
+            <div class="recommendation-item">
+
+                <span>
+                    🌱
+                </span>
+
+
+                <div>
+
+                    <h3>
+                        Healthy Daily Habit
+                    </h3>
+
+
+                    <p>
+                        Include fruits, vegetables,
+                        whole grains and balanced
+                        meals in your day.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="js/workout.js"></script>
+
+
+</body>
+
+</html>

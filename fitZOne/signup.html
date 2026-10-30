@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FitZOne | Sign Up</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/signup.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left">
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+        <h1>Join FitZOne</h1>
+
+        <p>
+            Create your account and start tracking your
+            fitness, workouts, food, water intake, and
+            daily progress.
+        </p>
+
+    </div>
+
+
+    <div class="right">
+
+        <h2>Create Account</h2>
+
+        <form id="signupForm">
+
+            <div class="input-box">
+                <i class="fa-solid fa-user"></i>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Full Name"
+                    required>
+            </div>
+
+
+            <div class="input-box">
+                <i class="fa-solid fa-envelope"></i>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    required>
+            </div>
+
+
+            <div class="input-box">
+                <i class="fa-solid fa-phone"></i>
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Mobile Number"
+                    required>
+            </div>
+
+
+            <div class="input-box">
+                <i class="fa-solid fa-calendar"></i>
+                <input
+                    type="number"
+                    id="age"
+                    placeholder="Age"
+                    required>
+            </div>
+
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-venus-mars"></i>
+
+                <select id="gender" required>
+
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required>
+
+            </div>
+
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                    type="password"c
+                    id="confirmPassword"
+                    placeholder="Confirm Password"
+                    required>
+
+            </div>
+
+
+            <button type="submit">
+                Create Account
+            </button>
+
+
+            <!-- SUCCESS / ERROR MESSAGE -->
+            <p id="message"></p>
+
+
+            <div class="login">
+
+                Already have an account?
+
+                <a href="login.html">Login</a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/signup.js"></script>
+
+</body>
+
+</html>
