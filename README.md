@@ -1,20 +1,85 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# SENTINEL – Disaster Early Warning Platform
 
-# Run and deploy your AI Studio app
+## Project Overview
+SENTINEL is a disaster early warning platform designed to support disaster preparedness, risk awareness, emergency communication and coordinated response.
 
-This contains everything you need to run your app locally.
+The platform provides dedicated access portals for citizens, NGOs, government disaster authorities and emergency responders.
 
-View your app in AI Studio: https://ai.studio/apps/4410714b-e8d4-420e-b184-3211e4f03bae
+## Key Features
+- Multi-agency access portal
+- Citizen and community resident interface
+- NGO and volunteer response interface
+- Government disaster authority interface
+- First responder interface
+- Disaster warning and emergency information dashboard
+- Map-based disaster information
 
-## Run Locally
+## Technologies Used
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Node.js
+- Google Gemini API
+- Leaflet
+- Recharts
 
-**Prerequisites:**  Node.js
+## Requirements
+- Node.js
+- npm
+- Git
 
+## Installation and Execution
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+**1. Clone the repository**
+```bash
+git clone https://github.com/2511cs010268-Dnyann/MRU-CSE-2nd-Year-Projects.git
+```
+
+**2. Open the project folder**
+
+Navigate to the SENTINEL project directory containing `package.json`.
+
+**3. Install dependencies**
+```bash
+npm install
+```
+
+**4. Configure the API key**
+
+Create a `.env.local` file in the project root and add:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+Use your own valid API key. Never upload the actual key to GitHub.
+
+**5. Start the application**
+```bash
+npm run dev
+```
+
+**6. Open in browser**
+
+```text
+http://localhost:3000
+```
+
+## Production Build
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+## Project Details
+- Project Name: SENTINEL
+- Project Title: Disaster Early Warning Platform
+- Project Category: Web Application
+- Department: Computer Science and Engineering
+- Academic Year: 2026
+
+## Note
+Some AI-powered features may require a valid Gemini API key. Configure the required environment variables before running those features.
