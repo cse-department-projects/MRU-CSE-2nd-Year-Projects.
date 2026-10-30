@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LogiTrack — Transportation & Logistics Manager</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+</head>
+<body>
+  <div id="loginScreen" style="position:fixed;inset:0;background:#1e2a38;display:flex;align-items:center;justify-content:center;z-index:9999;">
+  <div style="background:#fff;padding:32px;border-radius:6px;width:320px;">
+    <h2 style="margin-bottom:20px;">LogiTrack Login</h2>
+    <input type="text" id="loginUsername" placeholder="Username" style="width:100%;margin-bottom:10px;padding:10px;">
+    <input type="password" id="loginPassword" placeholder="Password" style="width:100%;margin-bottom:16px;padding:10px;">
+    <button class="btn-primary" style="width:100%;" onclick="doLogin()">Log In</button>
+    <p id="loginError" style="color:red;margin-top:10px;display:none;">Invalid username or password</p>
+    <button class="btn-primary" style="width:100%;margin-top:8px;background:#555;" onclick="doRegister()">Register</button>
+  </div>
+</div>
+  <div class="app" id="mainApp" style="display:none;">
+    <aside class="sidebar">
+      <div class="brand">🚚 LogiTrack</div>
+      <div id="apiStatus" style="padding:8px 12px;color:#4caf7d;font-size:12px;">● Checking API...</div>
+      <nav>
+        <button class="nav-btn active" data-view="dashboard">Dashboard</button>
+        <button class="nav-btn" data-view="shipments">Shipments</button>
+        <button class="nav-btn" data-view="vehicles">Vehicles</button>
+        <button class="nav-btn" data-view="drivers">Drivers</button>
+        <button class="nav-btn" data-view="track">Track Package</button>
+        <button class="nav-btn" data-view="map">Map</button>
+        <button class="nav-btn" data-view="reports">Reports</button>
+        <button class="nav-btn" data-view="feedback">Feedback</button>
+      </nav>
+      <button class="dark-toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+      <div style="padding:10px 16px;color:#ccc;font-size:13px;" id="userInfo"></div>
+<button class="nav-btn" onclick="logout()">Logout</button>
+      
+    </aside>
+
+    <main class="content">
+
+      <!-- DASHBOARD -->
+      <section id="view-dashboard" class="view active">
+        <h1>Dashboard</h1>
+        <div class="stat-grid" id="statGrid"></div>
+        <h2>Recent Shipments</h2>
+        <h2>Shipment Status Breakdown</h2>
+<div style="max-width:400px;background:#fff;border:1px solid #dcd8cc;
+border-radius:3px;padding:16px;margin-bottom:20px;">
+  <canvas id="statusChart"></canvas>
+</div>
+        <div class="table-wrap"><table id="recentShipmentsTable"><thead>
+          <tr><th>Tracking ID</th><th>Route</th><th>Customer</th><th>Status</th></tr>
+        </thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- SHIPMENTS -->
+      <section id="view-shipments" class="view">
+        <div class="view-header">
+          <h1>Shipments</h1>
+          <button class="btn-primary" onclick="openShipmentForm()">+ New Shipment</button>
+        </div>
+        <input type="text" id="shipmentSearch" placeholder="Search by tracking ID, customer, or city..." style="width:100%;max-width:400px;padding:9px 12px;border:1px solid #dcd8cc;border-radius:3px;margin-bottom:14px;" oninput="filterShipments()">
+        <div class="table-wrap"><table id="shipmentsTable"><thead>
+          <tr><th>Tracking ID</th><th>Origin</th><th>Destination</th><th>Customer</th><th>Weight(kg)</th><th>Vehicle</th><th>Driver</th><th>Status</th><th>Actions</th></tr>
+        </thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- VEHICLES -->
+      <section id="view-vehicles" class="view">
+        <div class="view-header">
+          <h1>Vehicles</h1>
+          <button class="btn-primary" onclick="openVehicleForm()">+ Add Vehicle</button>
+        </div>
+        <div class="table-wrap"><table id="vehiclesTable"><thead>
+          <tr><th>Number</th><th>Type</th><th>Capacity (kg)</th><th>Status</th><th>Actions</th></tr>
+        </thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- DRIVERS -->
+      <section id="view-drivers" class="view">
+        <div class="view-header">
+          <h1>Drivers</h1>
+          <button class="btn-primary" onclick="openDriverForm()">+ Add Driver</button>
+        </div>
+        <div class="table-wrap"><table id="driversTable"><thead>
+          <tr><th>Name</th><th>License No.</th><th>Phone</th><th>Status</th><th>Actions</th></tr>
+        </thead><tbody></tbody></table></div>
+      </section>
+
+      <!-- TRACK -->
+       <!-- REPORTS -->
+<section id="view-reports" class="view">
+  <h1>Reports</h1>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div style="background:#fff;border:1px solid #dcd8cc;border-radius:3px;padding:16px;">
+      <h2>Shipments by Status</h2>
+      <canvas id="reportStatusChart"></canvas>
+    </div>
+    <div style="background:#fff;border:1px solid #dcd8cc;border-radius:3px;padding:16px;">
+      <h2>Shipments by Vehicle Type</h2>
+      <canvas id="reportVehicleChart"></canvas>
+    </div>
+  </div>
+</section>
+       <!-- MAP -->
+<section id="view-map" class="view">
+  <h1>Shipment Map</h1>
+  <div id="mapContainer" style="height:500px;border-radius:3px;"></div>
+</section>
+      <section id="view-track" class="view">
+        <h1>Track Package</h1>
+        <div class="track-box">
+          <input type="text" id="trackInput" placeholder="Enter Tracking ID e.g. TRK-ABC12345">
+          <button class="btn-primary" onclick="trackShipment()">Track</button>
+        </div>
+        <div id="trackResult"></div>
+        <div id="qrCodeContainer" style="margin-top:16px;"></div>
+      </section>
+      <!-- FEEDBACK -->
+<section id="view-feedback" class="view">
+  <div class="view-header">
+    <h1>Customer Feedback</h1>
+  </div>
+
+  <div style="background:#fff;border:1px solid #dcd8cc;border-radius:3px;padding:16px;max-width:500px;margin-bottom:20px;">
+    <h2>Submit Feedback</h2>
+    <input type="text" id="feedbackName" placeholder="Your Name" style="width:100%;margin-bottom:10px;padding:8px;">
+    <input type="email" id="feedbackEmail" placeholder="Your Email" style="width:100%;margin-bottom:10px;padding:8px;">
+    <select id="feedbackRating" style="width:100%;margin-bottom:10px;padding:8px;">
+      <option value="5">5 - Excellent</option>
+      <option value="4">4 - Good</option>
+      <option value="3">3 - Average</option>
+      <option value="2">2 - Poor</option>
+      <option value="1">1 - Very Poor</option>
+    </select>
+    <textarea id="feedbackComments" placeholder="Your Comments" style="width:100%;margin-bottom:10px;padding:8px;height:80px;"></textarea>
+    <button class="btn-primary" onclick="submitFeedback()">Submit Feedback</button>
+  </div>
+
+  <div class="table-wrap">
+    <table id="feedbackTable">
+      <thead>
+        <tr><th>Name</th><th>Email</th><th>Rating</th><th>Comments</th><th>Date</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+
+    </main>
+  </div>
+  <!-- Toasts -->
+<div class="toast-container" id="toastContainer"></div>
+
+  <!-- Modal -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+      <h2 id="modalTitle">Form</h2>
+      <form id="modalForm"></form>
+    </div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
