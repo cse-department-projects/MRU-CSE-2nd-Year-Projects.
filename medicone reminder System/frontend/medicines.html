@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Medicines | SmartMedication</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            color: #193653;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(74, 210, 215, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 70%,
+                    rgba(100, 181, 246, 0.16),
+                    transparent 30%
+                ),
+                #f5fbfd;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+
+            height: 75px;
+
+            padding: 0 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background: rgba(255,255,255,0.95);
+
+            border-bottom: 1px solid #e1edf1;
+
+            box-shadow:
+                0 5px 25px
+                rgba(40,100,120,0.07);
+        }
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #159da5;
+
+            text-decoration: none;
+
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+        .logo-icon {
+
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+        .back-btn {
+
+            text-decoration: none;
+
+            color: #58758d;
+
+            font-weight: 600;
+
+            font-size: 14px;
+
+        }
+
+        .back-btn:hover {
+
+            color: #159da5;
+        }
+
+        /* MAIN */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 55px 25px;
+        }
+
+        .page-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .page-header h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 7px;
+        }
+
+        .page-header p {
+
+            color: #718797;
+        }
+
+        .add-btn {
+
+            border: none;
+
+            padding: 13px 22px;
+
+            border-radius: 12px;
+
+            background: #159da5;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px
+                rgba(21,157,165,0.20);
+
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+        /* SEARCH */
+
+        .search-box {
+
+            width: 100%;
+
+            padding: 15px 18px;
+
+            border-radius: 12px;
+
+            border: 1px solid #dcebef;
+
+            outline: none;
+
+            font-size: 15px;
+
+            margin-bottom: 25px;
+
+            background: white;
+        }
+
+        .search-box:focus {
+
+            border-color: #159da5;
+
+        }
+
+        /* MEDICINE GRID */
+
+        .medicine-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .medicine-card {
+
+            background: white;
+
+            border: 1px solid #e3edf1;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(40,100,120,0.07);
+
+            transition: 0.25s;
+        }
+
+        .medicine-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 20px 45px
+                rgba(40,100,120,0.12);
+        }
+
+        .medicine-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #e6f9fa;
+
+            border-radius: 15px;
+
+            font-size: 27px;
+
+            margin-bottom: 18px;
+        }
+
+        .medicine-card h3 {
+
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .medicine-info {
+
+            color: #718797;
+
+            font-size: 14px;
+
+            line-height: 1.9;
+
+        }
+
+        .medicine-info strong {
+
+            color: #31536c;
+        }
+
+        .instructions {
+
+            margin-top: 12px;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            background: #f5fafb;
+
+            color: #718797;
+
+            font-size: 13px;
+        }
+
+        .card-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .edit-btn,
+        .delete-btn {
+
+            flex: 1;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .edit-btn {
+
+            background: #e5f4ff;
+
+            color: #2876a7;
+        }
+
+        .delete-btn {
+
+            background: #ffe7e7;
+
+            color: #c0392b;
+        }
+
+        /* EMPTY */
+
+        .empty {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            color: #718797;
+
+        }
+
+        .empty-icon {
+
+            font-size: 50px;
+
+            margin-bottom: 15px;
+        }
+
+        /* MODAL */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2000;
+
+            background:
+                rgba(15,45,65,0.45);
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+        .modal.active {
+
+            display: flex;
+
+        }
+
+        .modal-content {
+
+            width: 100%;
+
+            max-width: 520px;
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 30px 80px
+                rgba(20,60,80,0.25);
+        }
+
+        .modal-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .modal-header h2 {
+
+            font-size: 24px;
+        }
+
+        .close-btn {
+
+            border: none;
+
+            background: #f1f6f8;
+
+            width: 35px;
+
+            height: 35px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            color: #58758d;
+        }
+
+        .form-group {
+
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #31536c;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #dcebef;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color: #159da5;
+        }
+
+        .save-btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #159da5;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .save-btn:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+        }
+
+        .message {
+
+            margin-bottom: 15px;
+
+            padding: 11px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            display: none;
+        }
+
+        .success {
+
+            display: block;
+
+            background: #e1f7e8;
+
+            color: #23834b;
+        }
+
+        .error {
+
+            display: block;
+
+            background: #ffe5e5;
+
+            color: #c0392b;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:950px) {
+
+            .medicine-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:650px) {
+
+            .page-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .medicine-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+
+                padding: 0 5%;
+            }
+
+            .container {
+
+                padding: 40px 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <a href="index.html"
+       class="logo">
+
+        <div class="logo-icon">
+            💊
+        </div>
+
+        SmartMedication
+
+    </a>
+
+
+    <a href="index.html"
+       class="back-btn">
+
+        ← Back to Home
+
+    </a>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                My Medicines 💊
+            </h1>
+
+            <p>
+                Manage all your medicines in one place.
+            </p>
+
+        </div>
+
+
+        <button
+            class="add-btn"
+            onclick="openAddModal()">
+
+            ➕ Add Medicine
+
+        </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="🔍 Search your medicines..."
+        oninput="filterMedicines()">
+
+
+    <!-- MEDICINE LIST -->
+
+    <div
+        id="medicineGrid"
+        class="medicine-grid">
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                ⏳
+            </div>
+
+            Loading medicines...
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+<!-- MODAL -->
+
+<div
+    id="medicineModal"
+    class="modal">
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Medicine
+            </h2>
+
+
+            <button
+                class="close-btn"
+                onclick="closeModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+
+        <form
+            id="medicineForm"
+            onsubmit="saveMedicine(event)">
+
+
+            <div class="form-group">
+
+                <label>
+                    Medicine Name
+                </label>
+
+                <input
+                    type="text"
+                    id="medicineName"
+                    placeholder="Example: Vitamin D"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Dosage
+                </label>
+
+                <input
+                    type="text"
+                    id="dosage"
+                    placeholder="Example: 1 tablet"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Frequency
+                </label>
+
+                <select
+                    id="frequency"
+                    required>
+
+                    <option value="">
+                        Select frequency
+                    </option>
+
+                    <option value="Daily">
+                        Daily
+                    </option>
+
+                    <option value="Twice Daily">
+                        Twice Daily
+                    </option>
+
+                    <option value="Weekly">
+                        Weekly
+                    </option>
+
+                    <option value="As Needed">
+                        As Needed
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Instructions
+                </label>
+
+                <textarea
+                    id="instructions"
+                    placeholder="Example: Take after breakfast">
+                </textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="saveButton"
+                class="save-btn">
+
+                💾 Save Medicine
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+    /*
+     * Temporary user ID.
+     *
+     * Later this will come from
+     * the login system.
+     */
+
+    const USER_ID = 1;
+
+
+    let medicines = [];
+
+    let editingMedicineId = null;
+
+
+    /*
+     * Load medicines
+     */
+
+    async function loadMedicines() {
+
+        const grid =
+            document.getElementById(
+                "medicineGrid"
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `http://localhost:8080/api/medicines/user/${USER_ID}`
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load medicines"
+                );
+
+            }
+
+
+            medicines =
+                await response.json();
+
+
+            displayMedicines(medicines);
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            grid.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        ⚠️
+                    </div>
+
+                    Unable to connect to
+                    the medication server.
+
+                    <br><br>
+
+                    Make sure Spring Boot
+                    is running.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    /*
+     * Display medicines
+     */
+
+    function displayMedicines(list) {
+
+        const grid =
+            document.getElementById(
+                "medicineGrid"
+            );
+
+
+        grid.innerHTML = "";
+
+
+        if (list.length === 0) {
+
+            grid.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        💊
+                    </div>
+
+                    <h3>
+                        No medicines yet
+                    </h3>
+
+                    <p>
+                        Click "Add Medicine"
+                        to add your first medicine.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        list.forEach(medicine => {
+
+            grid.innerHTML += `
+
+                <div class="medicine-card">
+
+                    <div class="medicine-icon">
+                        💊
+                    </div>
+
+
+                    <h3>
+                        ${escapeHtml(medicine.name)}
+                    </h3>
+
+
+                    <div class="medicine-info">
+
+                        <strong>
+                            Dosage:
+                        </strong>
+
+                        ${escapeHtml(medicine.dosage)}
+
+                        <br>
+
+
+                        <strong>
+                            Frequency:
+                        </strong>
+
+                        ${escapeHtml(medicine.frequency)}
+
+                    </div>
+
+
+                    <div class="instructions">
+
+                        📝
+
+                        ${
+                            medicine.instructions
+                                ? escapeHtml(
+                                    medicine.instructions
+                                  )
+                                : "No instructions"
+                        }
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+
+                        <button
+                            class="edit-btn"
+                            onclick="
+                            openEditModal(
+                                ${medicine.id}
+                            )">
+
+                            ✏️ Edit
+
+                        </button>
+
+
+                        <button
+                            class="delete-btn"
+                            onclick="
+                            deleteMedicine(
+                                ${medicine.id}
+                            )">
+
+                            🗑️ Delete
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    /*
+     * Open Add modal
+     */
+
+    function openAddModal() {
+
+        editingMedicineId = null;
+
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Add Medicine";
+
+
+        document.getElementById(
+            "medicineForm"
+        ).reset();
+
+
+        clearMessage();
+
+
+        document.getElementById(
+            "medicineModal"
+        ).classList.add("active");
+
+    }
+
+
+    /*
+     * Open Edit modal
+     */
+
+    function openEditModal(id) {
+
+        const medicine =
+            medicines.find(
+                item => item.id === id
+            );
+
+
+        if (!medicine) {
+
+            return;
+
+        }
+
+
+        editingMedicineId = id;
+
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "Edit Medicine";
+
+
+        document.getElementById(
+            "medicineName"
+        ).value =
+            medicine.name;
+
+
+        document.getElementById(
+            "dosage"
+        ).value =
+            medicine.dosage;
+
+
+        document.getElementById(
+            "frequency"
+        ).value =
+            medicine.frequency;
+
+
+        document.getElementById(
+            "instructions"
+        ).value =
+            medicine.instructions || "";
+
+
+        clearMessage();
+
+
+        document.getElementById(
+            "medicineModal"
+        ).classList.add("active");
+
+    }
+
+
+    /*
+     * Close modal
+     */
+
+    function closeModal() {
+
+        document.getElementById(
+            "medicineModal"
+        ).classList.remove("active");
+
+    }
+
+
+    /*
+     * Save medicine
+     */
+
+    async function saveMedicine(event) {
+
+        event.preventDefault();
+
+
+        const saveButton =
+            document.getElementById(
+                "saveButton"
+            );
+
+
+        const medicine = {
+
+            name:
+                document.getElementById(
+                    "medicineName"
+                ).value.trim(),
+
+            dosage:
+                document.getElementById(
+                    "dosage"
+                ).value.trim(),
+
+            frequency:
+                document.getElementById(
+                    "frequency"
+                ).value,
+
+            instructions:
+                document.getElementById(
+                    "instructions"
+                ).value.trim(),
+
+            user: {
+                id: USER_ID
+            }
+
+        };
+
+
+        saveButton.disabled = true;
+
+        saveButton.textContent =
+            "Saving...";
+
+
+        try {
+
+            let url;
+
+            let method;
+
+
+            /*
+             * ADD
+             */
+
+            if (editingMedicineId === null) {
+
+                url =
+                    "http://localhost:8080/api/medicines";
+
+                method =
+                    "POST";
+
+            }
+
+            /*
+             * EDIT
+             */
+
+            else {
+
+                url =
+                    `http://localhost:8080/api/medicines/${editingMedicineId}`;
+
+                method =
+                    "PUT";
+
+            }
+
+
+            const response =
+                await fetch(
+                    url,
+                    {
+                        method: method,
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                medicine
+                            )
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to save medicine"
+                );
+
+            }
+
+
+            showMessage(
+                "Medicine saved successfully!",
+                "success"
+            );
+
+
+            await loadMedicines();
+
+
+            setTimeout(
+                closeModal,
+                700
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            showMessage(
+                "Unable to save medicine.",
+                "error"
+            );
+
+        } finally {
+
+            saveButton.disabled =
+                false;
+
+            saveButton.textContent =
+                "💾 Save Medicine";
+
+        }
+
+    }
+
+
+    /*
+     * Delete medicine
+     */
+
+    async function deleteMedicine(id) {
+
+        const medicine =
+            medicines.find(
+                item => item.id === id
+            );
+
+
+        if (!medicine) {
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                `Delete ${medicine.name}?`
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `http://localhost:8080/api/medicines/${id}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to delete medicine"
+                );
+
+            }
+
+
+            await loadMedicines();
+
+
+            alert(
+                "Medicine deleted successfully."
+            );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            alert(
+                "Unable to delete medicine."
+            );
+
+        }
+
+    }
+
+
+    /*
+     * Search medicines
+     */
+
+    function filterMedicines() {
+
+        const search =
+            document.getElementById(
+                "searchInput"
+            ).value
+             .toLowerCase()
+             .trim();
+
+
+        const filtered =
+            medicines.filter(
+                medicine =>
+                    medicine.name
+                        .toLowerCase()
+                        .includes(search)
+            );
+
+
+        displayMedicines(filtered);
+
+    }
+
+
+    /*
+     * Display messages
+     */
+
+    function showMessage(
+        text,
+        type
+    ) {
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        message.textContent =
+            text;
+
+
+        message.className =
+            `message ${type}`;
+
+    }
+
+
+    function clearMessage() {
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        message.textContent = "";
+
+        message.className =
+            "message";
+
+    }
+
+
+    /*
+     * Basic HTML escaping
+     */
+
+    function escapeHtml(value) {
+
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+
+    }
+
+
+    /*
+     * Start page
+     */
+
+    loadMedicines();
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Profile | SmartMedication</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            min-height: 100vh;
+
+            color: #193653;
+
+            background:
+
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(53, 210, 210, 0.20),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(100, 181, 246, 0.18),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f4fcfd,
+                    #eef8fb
+                );
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 75px;
+
+            padding: 0 7%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                rgba(255,255,255,0.94);
+
+            border-bottom:
+                1px solid #e2edf1;
+
+            box-shadow:
+                0 5px 25px
+                rgba(40,100,120,0.07);
+
+            backdrop-filter:
+                blur(10px);
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #159da5;
+
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+
+        .logo-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #e5fafa;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+
+        .nav-buttons {
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+        }
+
+
+        .nav-btn {
+
+            text-decoration: none;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+
+            color: #58758d;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .nav-btn:hover {
+
+            color: #159da5;
+
+            background: #eafafa;
+        }
+
+
+        .dashboard-btn {
+
+            background: #159da5;
+
+            color: white;
+        }
+
+
+        .dashboard-btn:hover {
+
+            color: white;
+
+            background: #118b92;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .container {
+
+            max-width: 1050px;
+
+            margin: auto;
+
+            padding: 45px 25px 70px;
+        }
+
+
+        .page-heading {
+
+            margin-bottom: 30px;
+        }
+
+
+        .small-title {
+
+            color: #159da5;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .page-heading h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .page-heading p {
+
+            color: #718797;
+
+            font-size: 15px;
+        }
+
+
+        /* ================= PROFILE ================= */
+
+        .profile-card {
+
+            background: white;
+
+            border:
+                1px solid #e1edf1;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 55px
+                rgba(40,100,120,0.09);
+        }
+
+
+        .profile-header {
+
+            padding: 35px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #e5fafa,
+                    #f7fcfd
+                );
+
+            border-bottom:
+                1px solid #e3eef1;
+        }
+
+
+        /* ================= PROFILE IMAGE ================= */
+
+        .profile-image-container {
+
+            position: relative;
+
+            width: 125px;
+
+            height: 125px;
+
+            flex-shrink: 0;
+        }
+
+
+        .profile-image {
+
+            width: 125px;
+
+            height: 125px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            background: #dff7f8;
+
+            border:
+                5px solid white;
+
+            box-shadow:
+                0 10px 30px
+                rgba(30,100,110,0.15);
+        }
+
+
+        .verified {
+
+            position: absolute;
+
+            right: 3px;
+
+            bottom: 5px;
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #159da5;
+
+            color: white;
+
+            border: 3px solid white;
+
+            font-size: 14px;
+        }
+
+
+        .patient-heading h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .patient-heading p {
+
+            color: #718797;
+
+            font-size: 14px;
+        }
+
+
+        .patient-id {
+
+            display: inline-block;
+
+            margin-top: 12px;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background: #e6f8f8;
+
+            color: #159da5;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+
+        /* ================= DETAILS ================= */
+
+        .details-section {
+
+            padding: 35px;
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .section-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: #e5fafa;
+
+            font-size: 19px;
+        }
+
+
+        .section-heading h3 {
+
+            font-size: 20px;
+        }
+
+
+        .details-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .detail-box {
+
+            padding: 20px;
+
+            border:
+                1px solid #e5eef1;
+
+            border-radius: 15px;
+
+            background: #fbfeff;
+
+            transition: 0.2s;
+        }
+
+
+        .detail-box:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(40,100,120,0.07);
+        }
+
+
+        .detail-label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #8196a3;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .detail-value {
+
+            color: #193653;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            word-break: break-word;
+        }
+
+
+        .address-box {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        /* ================= EMERGENCY ================= */
+
+        .emergency-box {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff5f5,
+                    #fffafa
+                );
+
+            border:
+                1px solid #f3dddd;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .emergency-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+
+        .emergency-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #ffe5e5;
+
+            font-size: 21px;
+        }
+
+
+        .emergency-left h4 {
+
+            color: #a94442;
+
+            margin-bottom: 4px;
+        }
+
+
+        .emergency-left p {
+
+            color: #8d7777;
+
+            font-size: 12px;
+        }
+
+
+        .emergency-number {
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            color: #c0392b;
+        }
+
+
+        /* ================= BUTTONS ================= */
+
+        .action-section {
+
+            padding: 25px 35px 35px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+
+            border-top:
+                1px solid #edf2f4;
+        }
+
+
+        .action-btn {
+
+            border: none;
+
+            padding: 13px 22px;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-decoration: none;
+        }
+
+
+        .edit-btn {
+
+            background: #eaf7f8;
+
+            color: #159da5;
+        }
+
+
+        .edit-btn:hover {
+
+            background: #d9f2f3;
+        }
+
+
+        .home-btn {
+
+            background: #159da5;
+
+            color: white;
+        }
+
+
+        .home-btn:hover {
+
+            background: #118b92;
+        }
+
+
+        /* ================= LOADING ================= */
+
+        .loading {
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+            color: #718797;
+        }
+
+
+        .loader {
+
+            width: 45px;
+
+            height: 45px;
+
+            margin: 0 auto 20px;
+
+            border:
+                4px solid #dff2f3;
+
+            border-top:
+                4px solid #159da5;
+
+            border-radius: 50%;
+
+            animation:
+                spin 1s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* ================= ERROR ================= */
+
+        .error {
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            display: none;
+        }
+
+
+        .error-icon {
+
+            font-size: 50px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .error h2 {
+
+            margin-bottom: 8px;
+        }
+
+
+        .error p {
+
+            color: #718797;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 700px) {
+
+            .profile-header {
+
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+
+            .details-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .address-box {
+
+                grid-column: auto;
+            }
+
+
+            .emergency-box {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .action-section {
+
+                flex-direction: column;
+            }
+
+
+            .action-btn {
+
+                width: 100%;
+
+                text-align: center;
+            }
+
+
+            .nav-buttons {
+
+                gap: 2px;
+            }
+
+
+            .nav-btn {
+
+                padding: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            💊
+        </div>
+
+        SmartMedication
+
+    </div>
+
+
+    <div class="nav-buttons">
+
+        <a
+            href="patient.html"
+            class="nav-btn">
+
+            ✏️ Edit
+
+        </a>
+
+
+        <a
+            href="index.html"
+            class="nav-btn dashboard-btn">
+
+            🏠 Dashboard
+
+        </a>
+
+    </div>
+
+
+</nav>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+    <div class="page-heading">
+
+        <div class="small-title">
+            PATIENT MANAGEMENT
+        </div>
+
+
+        <h1>
+            Patient Profile 👤
+        </h1>
+
+
+        <p>
+            View your saved patient information
+            in one place.
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= PROFILE CARD ================= -->
+
+    <div
+        class="profile-card"
+        id="profileCard"
+        style="display:none;">
+
+
+        <!-- PROFILE HEADER -->
+
+        <div class="profile-header">
+
+
+            <div class="profile-image-container">
+
+                <img
+                    id="profileImage"
+                    class="profile-image"
+                    alt="Patient Photo">
+
+
+                <div class="verified">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <div class="patient-heading">
+
+                <h2 id="patientName">
+                    Patient Name
+                </h2>
+
+
+                <p>
+                    SmartMedication Patient Profile
+                </p>
+
+
+                <span
+                    class="patient-id"
+                    id="patientId">
+
+                    Patient ID
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- DETAILS -->
+
+        <div class="details-section">
+
+
+            <div class="section-heading">
+
+                <div class="section-icon">
+                    👤
+                </div>
+
+
+                <h3>
+                    Personal Information
+                </h3>
+
+            </div>
+
+
+
+            <div class="details-grid">
+
+
+                <!-- DOB -->
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+
+                        📅 Date of Birth
+
+                    </div>
+
+
+                    <div
+                        class="detail-value"
+                        id="dateOfBirth">
+
+                        Loading...
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AGE -->
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+
+                        🎂 Age
+
+                    </div>
+
+
+                    <div
+                        class="detail-value"
+                        id="age">
+
+                        Loading...
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- GENDER -->
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+
+                        ⚧ Gender
+
+                    </div>
+
+
+                    <div
+                        class="detail-value"
+                        id="gender">
+
+                        Loading...
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMERGENCY -->
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+
+                        🚨 Emergency Contact
+
+                    </div>
+
+
+                    <div
+                        class="detail-value"
+                        id="emergencyContact">
+
+                        Loading...
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ADDRESS -->
+
+                <div class="detail-box address-box">
+
+                    <div class="detail-label">
+
+                        🏠 Address
+
+                    </div>
+
+
+                    <div
+                        class="detail-value"
+                        id="address">
+
+                        Loading...
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- EMERGENCY CARD -->
+
+            <div class="emergency-box">
+
+
+                <div class="emergency-left">
+
+
+                    <div class="emergency-icon">
+                        🚨
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+                            Emergency Contact
+                        </h4>
+
+
+                        <p>
+                            Contact this number
+                            during an emergency.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    class="emergency-number"
+                    id="emergencyNumber">
+
+                    --
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ACTIONS -->
+
+        <div class="action-section">
+
+
+            <a
+                href="patient.html"
+                class="action-btn edit-btn">
+
+                ✏️ Edit Profile
+
+            </a>
+
+
+            <a
+                href="index.html"
+                class="action-btn home-btn">
+
+                🏠 Back to Dashboard
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= LOADING ================= -->
+
+    <div
+        class="loading"
+        id="loading">
+
+
+        <div class="loader"></div>
+
+
+        <h3>
+            Loading patient profile...
+        </h3>
+
+
+        <p>
+            Please wait while we retrieve
+            your information.
+        </p>
+
+
+    </div>
+
+
+
+    <!-- ================= ERROR ================= -->
+
+    <div
+        class="error"
+        id="error">
+
+
+        <div class="error-icon">
+            😕
+        </div>
+
+
+        <h2>
+            Patient Profile Not Found
+        </h2>
+
+
+        <p id="errorMessage">
+
+            We couldn't find your saved
+            patient information.
+
+        </p>
+
+
+        <a
+            href="patient.html"
+            class="action-btn home-btn">
+
+            ➕ Create Patient Profile
+
+        </a>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =========================================
+   BACKEND URL
+========================================= */
+
+const API_URL =
+    "http://localhost:8080/api/patients";
+
+
+
+/* =========================================
+   GET SAVED PATIENT ID
+========================================= */
+
+const patientId =
+    localStorage.getItem(
+        "patientId"
+    );
+
+
+
+/* =========================================
+   DEFAULT IMAGE
+========================================= */
+
+const defaultImage =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect width='150' height='150' rx='75' fill='%23dff7f8'/%3E%3Ctext x='75' y='95' text-anchor='middle' font-size='60'%3E👤%3C/text%3E%3C/svg%3E";
+
+
+
+/* =========================================
+   LOAD PATIENT
+========================================= */
+
+async function loadPatient() {
+
+
+    if (!patientId) {
+
+        showError(
+            "No patient profile was found. Please create a patient profile first."
+        );
+
+        return;
+    }
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                API_URL +
+                "/" +
+                patientId
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Patient profile not found"
+            );
+        }
+
+
+        const patient =
+            await response.json();
+
+
+        displayPatient(patient);
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "Error loading patient:",
+            error
+        );
+
+
+        showError(
+            "Unable to load the patient profile. Make sure the Spring Boot backend is running."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================
+   DISPLAY PATIENT
+========================================= */
+
+function displayPatient(patient) {
+
+
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "error"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "profileCard"
+    ).style.display = "block";
+
+
+
+    /* NAME */
+
+    document.getElementById(
+        "patientName"
+    ).textContent =
+        patient.name || "Patient Name";
+
+
+
+    /* PATIENT ID */
+
+    document.getElementById(
+        "patientId"
+    ).textContent =
+        "Patient ID: " +
+        patient.id;
+
+
+
+    /* DATE OF BIRTH */
+
+    const dob =
+        patient.dateOfBirth;
+
+
+    document.getElementById(
+        "dateOfBirth"
+    ).textContent =
+        formatDate(dob);
+
+
+
+    /* AGE */
+
+    document.getElementById(
+        "age"
+    ).textContent =
+        calculateAge(dob);
+
+
+
+    /* GENDER */
+
+    document.getElementById(
+        "gender"
+    ).textContent =
+        patient.gender || "Not provided";
+
+
+
+    /* ADDRESS */
+
+    document.getElementById(
+        "address"
+    ).textContent =
+        patient.address || "Not provided";
+
+
+
+    /* EMERGENCY CONTACT */
+
+    document.getElementById(
+        "emergencyContact"
+    ).textContent =
+        patient.emergencyContact ||
+        "Not provided";
+
+
+    document.getElementById(
+        "emergencyNumber"
+    ).textContent =
+        patient.emergencyContact ||
+        "--";
+
+
+
+    /* IMAGE */
+
+    /*
+        Your current backend does not store
+        the image yet, so we show a default
+        patient image.
+
+        Later we can add image upload storage.
+    */
+
+    document.getElementById(
+        "profileImage"
+    ).src =
+        defaultImage;
+
+}
+
+
+
+/* =========================================
+   FORMAT DATE
+========================================= */
+
+function formatDate(dateString) {
+
+
+    if (!dateString) {
+
+        return "Not provided";
+    }
+
+
+    const date =
+        new Date(
+            dateString +
+            "T00:00:00"
+        );
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   CALCULATE AGE
+========================================= */
+
+function calculateAge(
+    dateString
+) {
+
+
+    if (!dateString) {
+
+        return "Not available";
+    }
+
+
+    const birthDate =
+        new Date(
+            dateString +
+            "T00:00:00"
+        );
+
+
+    const today =
+        new Date();
+
+
+    let age =
+        today.getFullYear()
+        -
+        birthDate.getFullYear();
+
+
+    const monthDifference =
+        today.getMonth()
+        -
+        birthDate.getMonth();
+
+
+    if (
+        monthDifference < 0 ||
+        (
+            monthDifference === 0 &&
+            today.getDate() <
+            birthDate.getDate()
+        )
+    ) {
+
+        age--;
+
+    }
+
+
+    return age + " years";
+
+}
+
+
+
+/* =========================================
+   SHOW ERROR
+========================================= */
+
+function showError(message) {
+
+
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "profileCard"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "error"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "errorMessage"
+    ).textContent =
+        message;
+
+}
+
+
+
+/* =========================================
+   START
+========================================= */
+
+loadPatient();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | SmartMedication</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 15% 20%,
+                rgba(77, 208, 225, 0.35),
+                transparent 35%),
+
+                radial-gradient(circle at 85% 80%,
+                rgba(100, 181, 246, 0.30),
+                transparent 35%),
+
+                linear-gradient(135deg,
+                #e9ffff,
+                #f7fbff,
+                #e4f4ff);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #193653;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1250px;
+            min-height: 720px;
+            display: grid;
+            grid-template-columns: 1fr 0.85fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .left-section {
+            padding: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 25px;
+            font-weight: bold;
+            color: #159da3;
+            margin-bottom: 120px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            box-shadow: 0 10px 30px rgba(30, 130, 150, 0.15);
+        }
+
+        .hero-icon {
+            width: 75px;
+            height: 75px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(30, 130, 150, 0.15);
+        }
+
+        .left-section h1 {
+            font-size: 56px;
+            line-height: 1.15;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #159da3;
+        }
+
+        .description {
+            font-size: 19px;
+            line-height: 1.8;
+            color: #58758d;
+            max-width: 620px;
+            margin-bottom: 35px;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 17px;
+            color: #31536c;
+        }
+
+        .check {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #d8f7f5;
+            color: #159da3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 30px;
+            padding: 55px;
+            box-shadow: 0 30px 80px rgba(30, 90, 120, 0.15);
+            backdrop-filter: blur(15px);
+        }
+
+        .welcome {
+            color: #159da3;
+            font-size: 14px;
+            letter-spacing: 4px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .login-card h2 {
+            font-size: 38px;
+            margin-bottom: 12px;
+            color: #193653;
+        }
+
+        .subtitle {
+            color: #8295a5;
+            font-size: 16px;
+            margin-bottom: 38px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #31536c;
+            font-size: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 17px 18px;
+            border: 1px solid #d3e1e8;
+            border-radius: 13px;
+            outline: none;
+            font-size: 16px;
+            color: #193653;
+            background: #fbfdff;
+            transition: 0.25s;
+        }
+
+        input:focus {
+            border-color: #159da3;
+            box-shadow: 0 0 0 4px rgba(21, 157, 163, 0.10);
+        }
+
+        input::placeholder {
+            color: #9aa9b4;
+        }
+
+        .remember-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5px 0 28px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #718797;
+            font-size: 14px;
+        }
+
+        .remember input {
+            width: 17px;
+            height: 17px;
+        }
+
+        .forgot {
+            color: #159da3;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .login-button {
+            width: 100%;
+            border: none;
+            padding: 18px;
+            border-radius: 14px;
+            background: #159da3;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+            box-shadow: 0 12px 25px rgba(21, 157, 163, 0.25);
+        }
+
+        .login-button:hover {
+            background: #118b91;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(21, 157, 163, 0.30);
+        }
+
+        .login-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            display: none;
+            padding: 13px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .message.error {
+            display: block;
+            background: #fff0f0;
+            color: #c0392b;
+            border: 1px solid #ffd2d2;
+        }
+
+        .message.success {
+            display: block;
+            background: #edfff7;
+            color: #18865b;
+            border: 1px solid #c8f1df;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+            color: #a1afb8;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #dfe8ed;
+        }
+
+        .create-account {
+            text-align: center;
+            color: #718797;
+            font-size: 15px;
+        }
+
+        .create-account a {
+            color: #159da3;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 35px;
+            color: #718797;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .home-link:hover {
+            color: #159da3;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                padding: 30px 0;
+            }
+
+            .left-section {
+                display: none;
+            }
+
+            .login-card {
+                padding: 40px 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <section class="left-section">
+
+        <div class="logo">
+            <div class="logo-icon"></div>
+            SmartMedication
+        </div>
+
+        <div class="hero-icon"></div>
+
+        <h1>
+            Take control of
+            <span class="highlight">your medication.</span>
+        </h1>
+
+        <p class="description">
+            Manage your medicines, set reminders, and keep track
+            of your medication history — all in one place.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <span class="check">✓</span>
+                Smart medication reminders
+            </div>
+
+            <div class="feature">
+                <span class="check">✓</span>
+                Easy medicine tracking
+            </div>
+
+            <div class="feature">
+                <span class="check">✓</span>
+                Medication history
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="login-card">
+
+        <div class="welcome">
+            WELCOME BACK
+        </div>
+
+        <h2>
+            Sign in to your account
+        </h2>
+
+        <p class="subtitle">
+            Enter your details to continue.
+        </p>
+
+        <div id="message" class="message"></div>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+            <div class="remember-row">
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="remember"
+                    >
+
+                    Remember me
+
+                </label>
+
+                <a href="#" class="forgot">
+                    Forgot password?
+                </a>
+
+            </div>
+
+            <button
+                type="submit"
+                class="login-button"
+                id="loginButton"
+            >
+                Sign In →
+            </button>
+
+        </form>
+
+        <div class="divider">
+            OR
+        </div>
+
+        <div class="create-account">
+
+            Don't have an account?
+
+            <a href="register.html">
+                Create account
+            </a>
+
+        </div>
+
+        <a href="index.html" class="home-link">
+            ← Back to Home
+        </a>
+
+    </section>
+
+</div>
+
+<script>
+
+    const loginForm = document.getElementById("loginForm");
+
+    const emailInput = document.getElementById("email");
+
+    const passwordInput = document.getElementById("password");
+
+    const loginButton = document.getElementById("loginButton");
+
+    const message = document.getElementById("message");
+
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className = "message " + type;
+    }
+
+
+    loginForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+
+        const email = emailInput.value.trim();
+
+        const password = passwordInput.value;
+
+
+        if (!email || !password) {
+
+            showMessage(
+                "Please enter your email and password.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        loginButton.disabled = true;
+
+        loginButton.textContent = "Signing in...";
+
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:8080/api/users/login",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        email: email,
+
+                        password: password
+
+                    })
+
+                }
+            );
+
+
+            const text = await response.text();
+
+
+            let data;
+
+
+            try {
+
+                data = JSON.parse(text);
+
+            } catch {
+
+                data = text;
+
+            }
+
+
+            if (response.ok) {
+
+                /*
+                 * Save the logged-in user's information.
+                 */
+                localStorage.setItem(
+                    "loggedInUser",
+                    JSON.stringify(data)
+                );
+
+                /*
+                 * Save the logged-in user's ID.
+                 * This is used by the prescription and reminder pages.
+                 */
+                if (data && data.id) {
+
+                    localStorage.setItem(
+                        "loggedInUserId",
+                        data.id
+                    );
+
+                }
+
+
+                showMessage(
+                    "Login successful! Redirecting...",
+                    "success"
+                );
+
+
+                /*
+                 * Open the main page after login.
+                 */
+                setTimeout(function() {
+
+                    window.location.href = "index.html";
+
+                }, 800);
+
+
+            } else {
+
+                showMessage(
+                    data || "Invalid email or password.",
+                    "error"
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.error("LOGIN ERROR:", error);
+
+
+            showMessage(
+                "Cannot connect to the server. Make sure Spring Boot is running on port 8080.",
+                "error"
+            );
+
+        } finally {
+
+            loginButton.disabled = false;
+
+            loginButton.textContent = "Sign In →";
+
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>
