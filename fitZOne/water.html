@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FitZone | Water</title>
+
+    <link rel="stylesheet"
+          href="css/water.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            💚 FitZone
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="workout.html">
+                <i class="fa-solid fa-dumbbell"></i>
+                Workout
+            </a>
+
+            <a href="food.html">
+                <i class="fa-solid fa-apple-whole"></i>
+                Food
+            </a>
+
+            <a href="water.html" class="active">
+                <i class="fa-solid fa-droplet"></i>
+                Water
+            </a>
+
+            <a href="progress.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Progress
+            </a>
+
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+
+        </nav>
+
+        <a href="index.html" class="logout">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h2>
+                    Water Tracking 💧
+                </h2>
+
+                <p>
+                    Stay hydrated and take care of your body.
+                </p>
+
+            </div>
+
+            <div class="user">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <span id="userName">
+                    User
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- WATER CARD -->
+
+            <div class="water-card">
+
+                <div class="water-icon">
+
+                    💧
+
+                </div>
+
+                <h1>
+                    Stay Hydrated
+                </h1>
+
+                <p>
+                    Track your daily water intake.
+                </p>
+
+
+                <div class="progress-container">
+
+                    <div class="progress-bar">
+
+                        <div id="waterProgress"
+                             class="progress-fill">
+                        </div>
+
+                    </div>
+
+                    <p id="progressText">
+                        0 / 8 glasses
+                    </p>
+
+                </div>
+
+
+                <!-- GLASSES -->
+
+                <div class="glasses">
+
+                    <button class="glass"
+                            data-glass="1">
+
+                        💧
+
+                        <span>
+                            1
+                        </span>
+
+                    </button>
+
+                    <button class="glass"
+                            data-glass="2">
+
+                        💧
+
+                        <span>
+                            2
+                        </span>
+
+                    </button>
+
+                    <button class="glass"
+                            data-glass="3">
+
+                        💧
+
+                        <span>
+                            3
+                        </span>
+
+                    </button>
+
+                    <button class="glass"
+                            data-glass="4">
+
+                        💧
+
+                        <span>
+                            4
+                        </span>
+
+                    </button>
+
+                    <button class="glass"
+                            data-glass="5">
+
+                        💧
+
+                        <span>
+                            5
+                        </span>
+
+                    </button>
+
+                    <button class="glass"
+                            data-glass="6">
+
+                        💧
+
+                        <span>
+                            6
+                        </span>
+
+                    </button>
+
+                    <button class="glass"
+                            data-glass="7">
+
+                        💧
+
+                        <span>
+                            7
+                        </span>
+
+                    </button>
+
+                    <button class="glass"
+                            data-glass="8">
+
+                        💧
+
+                        <span>
+                            8
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <button id="saveWater"
+                        class="save-btn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Water Intake
+
+                </button>
+
+
+                <p id="message"></p>
+
+            </div>
+
+
+            <!-- TIPS -->
+
+            <div class="tips-card">
+
+                <h2>
+                    🌿 Hydration Habits
+                </h2>
+
+                <div class="tip">
+
+                    <span>💧</span>
+
+                    <div>
+
+                        <h3>
+                            Drink Regularly
+                        </h3>
+
+                        <p>
+                            Take small amounts of water regularly throughout the day.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <span>🍉</span>
+
+                    <div>
+
+                        <h3>
+                            Eat Water-Rich Foods
+                        </h3>
+
+                        <p>
+                            Fruits and vegetables can also contribute to your daily fluid intake.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <span>🏃</span>
+
+                    <div>
+
+                        <h3>
+                            Hydrate Around Exercise
+                        </h3>
+
+                        <p>
+                            Remember to drink water before and after physical activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT RECORDS -->
+
+            <div class="records-card">
+
+                <h2>
+                    Recent Water Records
+                </h2>
+
+                <div id="waterList">
+
+                    <p class="empty">
+                        No water records yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/water.js"></script>
+
+</body>
+
+</html>

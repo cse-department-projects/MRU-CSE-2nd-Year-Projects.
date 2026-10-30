@@ -1,0 +1,441 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f6faf7;
+    color: #17251c;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+
+    background: #111827;
+    color: white;
+
+    padding: 25px 18px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+
+    margin-bottom: 40px;
+    padding-left: 10px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar nav a,
+.logout {
+    text-decoration: none;
+
+    color: #d1d5db;
+
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    transition: 0.3s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #166534;
+    color: white;
+}
+
+.logout {
+    margin-top: auto;
+}
+
+.logout:hover {
+    background: #166534;
+    color: white;
+}
+
+
+/* MAIN */
+
+.main {
+    flex: 1;
+}
+
+
+/* TOPBAR */
+
+.topbar {
+    background: white;
+
+    padding: 22px 35px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.topbar h2 {
+    color: #166534;
+    margin-bottom: 5px;
+}
+
+.topbar p {
+    color: #6b7280;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    font-weight: bold;
+}
+
+.user i {
+    font-size: 30px;
+    color: #166534;
+}
+
+
+/* CONTENT */
+
+.content {
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 28px;
+}
+
+
+/* WELCOME */
+
+.welcome-card {
+    background: #166534;
+
+    color: white;
+
+    border-radius: 20px;
+
+    padding: 32px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.small-title {
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    color: #bbf7d0;
+
+    font-weight: bold;
+}
+
+.welcome-card h1 {
+    margin: 10px 0;
+
+    font-size: 30px;
+}
+
+.welcome-card p {
+    color: #dcfce7;
+
+    max-width: 650px;
+
+    line-height: 1.6;
+}
+
+.food-emoji {
+    font-size: 80px;
+}
+
+
+/* PROFILE SUMMARY */
+
+.profile-summary {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.profile-summary > div {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.05);
+}
+
+.profile-summary span {
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.profile-summary strong {
+    color: #166534;
+
+    font-size: 16px;
+}
+
+
+/* SECTION TITLE */
+
+.section-title h2 {
+    color: #166534;
+
+    margin-bottom: 5px;
+}
+
+.section-title p {
+    color: #6b7280;
+}
+
+
+/* FOOD GRID */
+
+.food-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.food-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.06);
+
+    transition: 0.3s;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+}
+
+.food-card-icon {
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+.food-card h3 {
+    color: #166534;
+
+    margin-bottom: 8px;
+}
+
+.food-card p {
+    color: #6b7280;
+
+    line-height: 1.6;
+}
+
+.food-tag {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 6px 10px;
+
+    border-radius: 15px;
+
+    background: #dcfce7;
+
+    color: #166534;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+/* SIMPLE FOODS */
+
+.simple-food-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.simple-food {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.05);
+}
+
+.simple-food > span {
+    font-size: 35px;
+}
+
+.simple-food h3 {
+    margin: 10px 0 6px;
+
+    color: #166534;
+}
+
+.simple-food p {
+    color: #6b7280;
+
+    line-height: 1.5;
+}
+
+
+/* HABIT */
+
+.habit-card {
+    background: #ecfdf5;
+
+    border: 1px solid #bbf7d0;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.habit-icon {
+    font-size: 45px;
+}
+
+.habit-card h2 {
+    color: #166534;
+
+    margin-bottom: 6px;
+}
+
+.habit-card p {
+    color: #365314;
+
+    line-height: 1.6;
+}
+
+
+/* LOADING */
+
+.loading {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    color: #6b7280;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+
+    .profile-summary {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .food-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .simple-food-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .topbar {
+        padding: 20px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .profile-summary,
+    .food-grid,
+    .simple-food-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-card {
+        padding: 25px;
+    }
+
+    .food-emoji {
+        display: none;
+    }
+}

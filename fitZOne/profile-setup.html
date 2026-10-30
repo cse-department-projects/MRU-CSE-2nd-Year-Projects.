@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitZOne | Fitness Profile</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/profile-setup.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+
+        <div class="icon">
+            <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+
+        <h1>Let's Personalize FitZOne</h1>
+
+        <p>
+            Tell us a little about yourself so FitZOne
+            can understand your fitness needs and create
+            personalized recommendations for you.
+        </p>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+
+        <h2>Fitness Profile</h2>
+
+        <p class="subtitle">
+            Complete your profile to get personalized fitness insights.
+        </p>
+
+
+        <form id="profileForm">
+
+            <!-- HEIGHT -->
+            <div class="input-box">
+
+                <i class="fa-solid fa-ruler-vertical"></i>
+
+                <input
+                    type="number"
+                    id="height"
+                    placeholder="Height (cm)"
+                    min="50"
+                    max="250"
+                    required>
+
+            </div>
+
+
+            <!-- WEIGHT -->
+            <div class="input-box">
+
+                <i class="fa-solid fa-weight-scale"></i>
+
+                <input
+                    type="number"
+                    id="weight"
+                    placeholder="Weight (kg)"
+                    min="20"
+                    max="300"
+                    step="0.1"
+                    required>
+
+            </div>
+
+
+            <!-- FITNESS GOAL -->
+            <div class="input-box">
+
+                <i class="fa-solid fa-bullseye"></i>
+
+                <select id="fitnessGoal" required>
+
+                    <option value="">
+                        Select Fitness Goal
+                    </option>
+
+                    <option value="Weight Loss">
+                        Weight Loss
+                    </option>
+
+                    <option value="Muscle Gain">
+                        Muscle Gain
+                    </option>
+
+                    <option value="Maintain Weight">
+                        Maintain Weight
+                    </option>
+
+                    <option value="Improve Fitness">
+                        Improve Fitness
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ACTIVITY LEVEL -->
+            <div class="input-box">
+
+                <i class="fa-solid fa-person-running"></i>
+
+                <select id="activityLevel" required>
+
+                    <option value="">
+                        Select Activity Level
+                    </option>
+
+                    <option value="Sedentary">
+                        Sedentary
+                    </option>
+
+                    <option value="Light">
+                        Lightly Active
+                    </option>
+
+                    <option value="Moderate">
+                        Moderately Active
+                    </option>
+
+                    <option value="Active">
+                        Very Active
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- DIET -->
+            <div class="input-box">
+
+                <i class="fa-solid fa-leaf"></i>
+
+                <select id="dietPreference" required>
+
+                    <option value="">
+                        Select Diet Preference
+                    </option>
+
+                    <option value="Vegetarian">
+                        Vegetarian
+                    </option>
+
+                    <option value="Non-Vegetarian">
+                        Non-Vegetarian
+                    </option>
+
+                    <option value="Vegan">
+                        Vegan
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- SLEEP -->
+            <div class="input-box">
+
+                <i class="fa-solid fa-bed"></i>
+
+                <input
+                    type="number"
+                    id="sleepHours"
+                    placeholder="Average Sleep (hours)"
+                    min="1"
+                    max="24"
+                    step="0.5"
+                    required>
+
+            </div>
+
+
+            <button type="submit">
+                Save & Continue
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+
+            <p id="message"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/profile-setup.js"></script>
+
+</body>
+
+</html>

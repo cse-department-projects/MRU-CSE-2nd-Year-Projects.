@@ -1,0 +1,407 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f6faf7;
+    color: #17251c;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+
+    background: #111827;
+    color: white;
+
+    padding: 25px 18px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+
+    margin-bottom: 40px;
+    padding-left: 10px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar nav a,
+.logout {
+    text-decoration: none;
+
+    color: #d1d5db;
+
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    transition: 0.3s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: #166534;
+    color: white;
+}
+
+.logout {
+    margin-top: auto;
+}
+
+.logout:hover {
+    background: #166534;
+    color: white;
+}
+
+
+/* MAIN */
+
+.main {
+    flex: 1;
+}
+
+
+/* TOPBAR */
+
+.topbar {
+    background: white;
+
+    padding: 22px 35px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.topbar h2 {
+    color: #166534;
+    margin-bottom: 5px;
+}
+
+.topbar p {
+    color: #6b7280;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-weight: bold;
+}
+
+.user i {
+    font-size: 30px;
+    color: #166534;
+}
+
+
+/* CONTENT */
+
+.content {
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 25px;
+}
+
+
+/* USER CARD */
+
+.user-card {
+    background: #166534;
+    color: white;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.profile-avatar {
+    width: 75px;
+    height: 75px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #166534;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 35px;
+}
+
+.user-card h1 {
+    margin-bottom: 5px;
+}
+
+.user-card p {
+    color: #dcfce7;
+    margin-bottom: 7px;
+}
+
+.user-card span {
+    color: #bbf7d0;
+
+    font-size: 13px;
+}
+
+
+/* CARD */
+
+.card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0, 0, 0, 0.06);
+}
+
+.card-title {
+    margin-bottom: 25px;
+}
+
+.card-title h2 {
+    color: #166534;
+
+    margin-bottom: 5px;
+}
+
+.card-title p {
+    color: #6b7280;
+}
+
+
+/* INFO */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.info-box {
+    background: #f0fdf4;
+
+    border-radius: 12px;
+
+    padding: 18px;
+}
+
+.info-box span {
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-bottom: 7px;
+}
+
+.info-box strong {
+    color: #17251c;
+
+    word-break: break-word;
+}
+
+
+/* FORM */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: bold;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #16a34a;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(34, 197, 94, 0.1);
+}
+
+
+/* SAVE */
+
+.save-btn {
+    margin-top: 25px;
+
+    border: none;
+
+    background: #166534;
+
+    color: white;
+
+    padding: 14px 25px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background: #14532d;
+}
+
+#message {
+    margin-top: 15px;
+
+    font-weight: bold;
+}
+
+
+/* BMI */
+
+.bmi-card {
+    background: #ecfdf5;
+
+    border: 1px solid #bbf7d0;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+.bmi-icon {
+    font-size: 45px;
+}
+
+.bmi-card span {
+    color: #365314;
+
+    font-size: 14px;
+}
+
+.bmi-card h2 {
+    color: #166534;
+
+    font-size: 30px;
+
+    margin: 4px 0;
+}
+
+.bmi-card p {
+    color: #365314;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .info-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .topbar {
+        padding: 20px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .form-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}

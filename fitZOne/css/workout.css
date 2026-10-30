@@ -1,0 +1,390 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #f4faf6;
+    color: #17251c;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 240px;
+    height: 100vh;
+
+    background: #111827;
+
+    color: white;
+
+    padding: 25px 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 13px 15px;
+
+    color: #d1d5db;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+.sidebar a:hover,
+.sidebar li.active a {
+    background: #166534;
+    color: white;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    margin-left: 240px;
+    padding: 25px 35px;
+}
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: white;
+
+    padding: 18px 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.topbar h2 {
+    color: #166534;
+}
+
+#userName {
+    font-weight: 600;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+    margin: 30px 0;
+}
+
+.page-header h1 {
+    font-size: 30px;
+    color: #14532d;
+}
+
+.page-header p {
+    color: #64748b;
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   WORKOUT CARD
+========================================= */
+
+.workout-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.workout-card h2 {
+    color: #166534;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.workout-card label {
+    display: block;
+
+    margin-top: 15px;
+    margin-bottom: 6px;
+
+    font-weight: 600;
+}
+
+.workout-card input,
+.workout-card select,
+.workout-card textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+.workout-card input:focus,
+.workout-card select:focus,
+.workout-card textarea:focus {
+    border-color: #16a34a;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.workout-card button {
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #166534;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.workout-card button:hover {
+    background: #14532d;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+#message {
+    text-align: center;
+
+    margin-top: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RECENT WORKOUTS
+========================================= */
+
+.recent-workouts {
+    margin-top: 25px;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.recent-workouts h2 {
+    color: #166534;
+
+    margin-bottom: 20px;
+}
+
+.workout-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    background: #f0fdf4;
+
+    border-radius: 10px;
+}
+
+.workout-item > i {
+    color: #16a34a;
+
+    font-size: 22px;
+}
+
+.workout-item h3 {
+    color: #14532d;
+}
+
+.workout-item p {
+    color: #64748b;
+
+    margin-top: 4px;
+}
+
+.empty {
+    color: #64748b;
+}
+
+
+/* =========================================
+   PERSONALIZED RECOMMENDATIONS
+========================================= */
+
+.recommendation-card {
+    margin-top: 25px;
+
+    background: #dcfce7;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    border-left: 5px solid #16a34a;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.recommendation-card h2 {
+    color: #14532d;
+
+    margin-bottom: 8px;
+}
+
+.recommendation-intro {
+    color: #365314;
+
+    margin-bottom: 20px;
+
+    line-height: 1.5;
+}
+
+.recommendation-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    background: white;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    margin-top: 12px;
+}
+
+.recommendation-item > span {
+    font-size: 25px;
+
+    min-width: 35px;
+}
+
+.recommendation-item h3 {
+    color: #166534;
+
+    margin-bottom: 5px;
+}
+
+.recommendation-item p {
+    color: #4b5563;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        position: relative;
+
+        width: 100%;
+
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+
+        padding: 20px;
+    }
+
+    .topbar {
+        flex-direction: column;
+
+        gap: 10px;
+
+        align-items: flex-start;
+    }
+}

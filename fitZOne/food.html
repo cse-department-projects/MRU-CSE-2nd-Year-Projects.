@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FitZone | Food</title>
+
+    <link rel="stylesheet"
+          href="css/food.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            💚 FitZone
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="workout.html">
+                <i class="fa-solid fa-dumbbell"></i>
+                Workout
+            </a>
+
+            <a href="food.html" class="active">
+                <i class="fa-solid fa-apple-whole"></i>
+                Food
+            </a>
+
+            <a href="water.html">
+                <i class="fa-solid fa-droplet"></i>
+                Water
+            </a>
+
+            <a href="progress.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Progress
+            </a>
+
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+
+        </nav>
+
+        <a href="index.html" class="logout">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h2>
+                    Food & Nutrition 🍎
+                </h2>
+
+                <p>
+                    Natural food suggestions for your fitness journey.
+                </p>
+
+            </div>
+
+            <div class="user">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+                <span id="userName">
+                    User
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+
+            <!-- PERSONALIZED INTRO -->
+
+            <div class="welcome-card">
+
+                <div>
+
+                    <span class="small-title">
+                        PERSONALIZED FOR YOU
+                    </span>
+
+                    <h1>
+                        Eat Better. Feel Better. 🌱
+                    </h1>
+
+                    <p id="personalizedMessage">
+                        Loading your personalized food recommendations...
+                    </p>
+
+                </div>
+
+                <div class="food-emoji">
+                    🥗
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE SUMMARY -->
+
+            <div class="profile-summary">
+
+                <div>
+
+                    <span>
+                        🎯 Goal
+                    </span>
+
+                    <strong id="userGoal">
+                        -
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        🌱 Diet
+                    </span>
+
+                    <strong id="userDiet">
+                        -
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        🏃 Activity
+                    </span>
+
+                    <strong id="userActivity">
+                        -
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        💪 Latest Workout
+                    </span>
+
+                    <strong id="latestWorkout">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECOMMENDATIONS -->
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Recommended For You 🌿
+                    </h2>
+
+                    <p>
+                        Suggestions based on your FitZone profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="foodRecommendations"
+                 class="food-grid">
+
+                <div class="loading">
+                    Loading recommendations...
+                </div>
+
+            </div>
+
+
+            <!-- PROTEIN -->
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Natural Protein Sources 💪
+                    </h2>
+
+                    <p>
+                        Simple protein-rich foods for a balanced diet.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="simple-food-grid">
+
+                <div class="simple-food">
+                    <span>🥚</span>
+                    <h3>Eggs</h3>
+                    <p>Protein-rich and easy to include in meals.</p>
+                </div>
+
+                <div class="simple-food">
+                    <span>🥛</span>
+                    <h3>Milk & Curd</h3>
+                    <p>Useful sources of protein and calcium.</p>
+                </div>
+
+                <div class="simple-food">
+                    <span>🫘</span>
+                    <h3>Dal & Beans</h3>
+                    <p>Plant-based protein and fibre.</p>
+                </div>
+
+                <div class="simple-food">
+                    <span>🌱</span>
+                    <h3>Sprouts</h3>
+                    <p>A nutritious option for meals or snacks.</p>
+                </div>
+
+                <div class="simple-food">
+                    <span>🧀</span>
+                    <h3>Paneer</h3>
+                    <p>A convenient vegetarian protein source.</p>
+                </div>
+
+                <div class="simple-food">
+                    <span>🥜</span>
+                    <h3>Nuts & Seeds</h3>
+                    <p>Can be included in balanced snacks.</p>
+                </div>
+
+            </div>
+
+
+            <!-- HEALTHY HABITS -->
+
+            <div class="habit-card">
+
+                <div class="habit-icon">
+                    🌿
+                </div>
+
+                <div>
+
+                    <h2>
+                        FitZone Healthy Habit
+                    </h2>
+
+                    <p id="habitMessage">
+                        Choose mostly whole or minimally processed foods,
+                        include vegetables and fruits, and keep yourself hydrated.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/food.js"></script>
+
+</body>
+
+</html>
