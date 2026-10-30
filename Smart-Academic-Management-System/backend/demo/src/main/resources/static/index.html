@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Academic Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        header {
+            background: #1f4e79;
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .container h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #1f4e79;
+        }
+
+        .container p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .role-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .role-card {
+            background: white;
+            width: 250px;
+            padding: 35px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .role-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1f4e79;
+        }
+
+        .role-card p {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .role-card button {
+            border: none;
+            padding: 12px 25px;
+            background: #1f4e79;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .role-card button:hover {
+            background: #163a5c;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 20px;
+            background: #1f4e79;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Smart Academic Management System</h1>
+    </header>
+
+    <div class="container">
+
+        <h2>Welcome</h2>
+
+        <p>
+            A smart platform for managing students, teachers,
+            learning, assessments and academic progress.
+        </p>
+
+        <div class="role-container">
+
+            <!-- Student -->
+            <div class="role-card">
+                <h3>Student</h3>
+
+                <p>
+                    Access your subjects, notes, quizzes,
+                    assignments and academic progress.
+                </p>
+
+                <button onclick="studentLogin()">
+                    Student Login
+                </button>
+            </div>
+
+            <!-- Teacher -->
+            <div class="role-card">
+                <h3>Teacher</h3>
+
+                <p>
+                    Manage students, create assessments,
+                    review answers and provide marks.
+                </p>
+
+                <button onclick="teacherLogin()">
+                    Teacher Login
+                </button>
+            </div>
+
+            <!-- Parent -->
+            <div class="role-card">
+                <h3>Parent</h3>
+
+                <p>
+                    View your child's marks, attendance,
+                    progress and teacher feedback.
+                </p>
+
+                <button onclick="parentLogin()">
+                    Parent Login
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Smart Academic Management System</p>
+    </footer>
+
+    <script>
+
+        function studentLogin() {
+            window.location.href = "/login.html?role=student";
+        }
+
+        function teacherLogin() {
+            window.location.href = "/login.html?role=teacher";
+        }
+
+        function parentLogin() {
+            window.location.href = "/login.html?role=parent";
+        }
+
+    </script>
+
+</body>
+</html>

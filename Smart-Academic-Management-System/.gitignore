@@ -1,0 +1,30 @@
+﻿# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Java and Maven
+**/target/
+*.class
+
+# Environment and secret files
+.env
+.env.*
+!.env.example
+
+# Uploaded documents
+uploads/*
+!uploads/.gitkeep
+
+# Logs
+*.log
+
+# IDE files
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+**/application.properties
