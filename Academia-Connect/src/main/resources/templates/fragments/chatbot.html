@@ -1,0 +1,450 @@
+<div th:fragment="chatbot">
+
+    <button id="chatbot-toggle"
+            class="academia-chatbot-toggle"
+            type="button"
+            aria-label="Open academic assistant"
+            aria-controls="chatbot-box"
+            aria-expanded="false">
+
+        <i class="bi bi-chat-dots-fill"></i>
+
+        <span class="chatbot-toggle-pulse"></span>
+
+    </button>
+
+    <section id="chatbot-box"
+             class="academia-chatbot-box d-none"
+             aria-label="Academic Event Assistant">
+
+        <header class="academia-chatbot-header">
+
+            <div class="chatbot-header-content">
+
+                <div class="chatbot-header-icon">
+                    <i class="bi bi-robot"></i>
+                </div>
+
+                <div>
+
+                    <strong>Academic Assistant</strong>
+
+                    <span>
+                        <i class="bi bi-circle-fill"></i>
+                        Ready to help
+                    </span>
+
+                </div>
+
+            </div>
+
+            <button id="chatbot-close"
+                    type="button"
+                    class="chatbot-close-button"
+                    aria-label="Close academic assistant">
+
+                <i class="bi bi-x-lg"></i>
+
+            </button>
+
+        </header>
+
+        <div id="chatbot-messages"
+             class="academia-chatbot-messages"
+             aria-live="polite">
+
+            <div class="chatbot-message-row chatbot-bot-row">
+
+                <div class="chatbot-message-avatar">
+                    <i class="bi bi-robot"></i>
+                </div>
+
+                <div class="chatbot-message chatbot-bot-message">
+
+                    <strong>Hello!</strong>
+
+                    <p>
+                        Ask me about activities, registration, waitlists,
+                        attendance, feedback or certificates.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="chatbot-quick-section">
+
+                <span class="chatbot-quick-label">
+                    QUICK QUESTIONS
+                </span>
+
+                <div class="chatbot-quick-questions">
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="How do I register?">
+
+                        <i class="bi bi-calendar-check"></i>
+                        Register
+
+                    </button>
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="What is a waitlist?">
+
+                        <i class="bi bi-hourglass-split"></i>
+                        Waitlist
+
+                    </button>
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="How can I get a certificate?">
+
+                        <i class="bi bi-award"></i>
+                        Certificate
+
+                    </button>
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="How do I verify a certificate?">
+
+                        <i class="bi bi-patch-check"></i>
+                        Verification
+
+                    </button>
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="What is a schedule conflict?">
+
+                        <i class="bi bi-calendar-x"></i>
+                        Schedule Conflict
+
+                    </button>
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="How do I cancel registration?">
+
+                        <i class="bi bi-x-circle"></i>
+                        Cancel Registration
+
+                    </button>
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="What can a user do?">
+
+                        <i class="bi bi-person"></i>
+                        User Features
+
+                    </button>
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="What can an organizer do?">
+
+                        <i class="bi bi-person-workspace"></i>
+                        Organizer Features
+
+                    </button>
+
+                    <button type="button"
+                            class="quick-question"
+                            data-question="What is Academia Connect?">
+
+                        <i class="bi bi-info-circle"></i>
+                        About Platform
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer class="academia-chatbot-footer">
+
+            <div class="chatbot-input-wrapper">
+
+                <input id="chatbot-input"
+                       type="text"
+                       autocomplete="off"
+                       maxlength="250"
+                       placeholder="Type your question..."
+                       aria-label="Chatbot question">
+
+                <button id="chatbot-send"
+                        type="button"
+                        aria-label="Send question">
+
+                    <i class="bi bi-send-fill"></i>
+
+                </button>
+
+            </div>
+
+            <small>
+                Automated help for Academia Connect features
+            </small>
+
+        </footer>
+
+    </section>
+
+    <script>
+        (() => {
+            const chatbotToggle = document.getElementById("chatbot-toggle");
+            const chatbotBox = document.getElementById("chatbot-box");
+            const chatbotClose = document.getElementById("chatbot-close");
+            const chatbotSend = document.getElementById("chatbot-send");
+            const chatbotInput = document.getElementById("chatbot-input");
+            const chatbotMessages = document.getElementById("chatbot-messages");
+
+            if (
+                !chatbotToggle ||
+                !chatbotBox ||
+                !chatbotClose ||
+                !chatbotSend ||
+                !chatbotInput ||
+                !chatbotMessages
+            ) {
+                return;
+            }
+
+            function openChatbot() {
+                chatbotBox.classList.remove("d-none");
+                chatbotToggle.setAttribute("aria-expanded", "true");
+
+                window.setTimeout(() => {
+                    chatbotInput.focus();
+                }, 100);
+            }
+
+            function closeChatbot() {
+                chatbotBox.classList.add("d-none");
+                chatbotToggle.setAttribute("aria-expanded", "false");
+            }
+
+            chatbotToggle.addEventListener("click", () => {
+                if (chatbotBox.classList.contains("d-none")) {
+                    openChatbot();
+                } else {
+                    closeChatbot();
+                }
+            });
+
+            chatbotClose.addEventListener("click", closeChatbot);
+
+            document.addEventListener("keydown", event => {
+                if (
+                    event.key === "Escape" &&
+                    !chatbotBox.classList.contains("d-none")
+                ) {
+                    closeChatbot();
+                }
+            });
+
+            function getBotReply(message) {
+                const text = message.toLowerCase();
+
+                if (
+                    text.includes("academia connect") ||
+                    text.includes("about project") ||
+                    text.includes("about platform") ||
+                    text.includes("what is this")
+                ) {
+                    return "Academia Connect is a centralized academic activity management platform for participants and organizers. It supports activity discovery, registration, waitlists, attendance, feedback and verifiable certificates.";
+                }
+
+                if (
+                    (text.includes("organizer") ||
+                     text.includes("organiser") ||
+                     text.includes("host")) &&
+                    (text.includes("do") ||
+                     text.includes("can") ||
+                     text.includes("feature") ||
+                     text.includes("work") ||
+                     text.includes("manage"))
+                ) {
+                    return "Organizers can create and edit activities, manage participants and waitlists, mark attendance, issue certificates, review feedback and view activity analytics.";
+                }
+
+                if (
+                    (text.includes("user") ||
+                     text.includes("student") ||
+                     text.includes("participant")) &&
+                    (text.includes("do") ||
+                     text.includes("can") ||
+                     text.includes("feature") ||
+                     text.includes("work"))
+                ) {
+                    return "Users can browse activities, register, join waitlists, cancel registrations, submit feedback and view their issued certificates.";
+                }
+
+                if (
+                    text.includes("verify") ||
+                    text.includes("verification") ||
+                    text.includes("certificate code") ||
+                    text.includes("valid certificate")
+                ) {
+                    return "Open the Verify Certificate page, enter the complete certificate code and submit it. The platform will show whether the certificate is valid.";
+                }
+
+                if (
+                    text.includes("cancel") ||
+                    text.includes("remove registration") ||
+                    text.includes("leave activity")
+                ) {
+                    return "Open My Registrations or My Waitlist, find the required activity and select Cancel. Cancelling a confirmed registration may promote the first waiting user.";
+                }
+
+                if (
+                    text.includes("register") ||
+                    text.includes("registration") ||
+                    text.includes("join activity")
+                ) {
+                    return "Click the Register option in the home page, fill the details and then login to host or attend an activity";
+                }
+
+                if (
+                    text.includes("waitlist") ||
+                    text.includes("waiting list") ||
+                    text.includes("queue")
+                ) {
+                    return "When an activity reaches capacity, additional users are placed on the waitlist and assigned a queue position.";
+                }
+
+                if (
+                    text.includes("promotion") ||
+                    text.includes("promoted") ||
+                    text.includes("move from waitlist")
+                ) {
+                    return "When a confirmed participant cancels, the first eligible user on the waitlist is automatically promoted to registered status.";
+                }
+
+                if (
+                    text.includes("certificate") ||
+                    text.includes("download certificate") ||
+                    text.includes("print certificate")
+                ) {
+                    return "Certificates can be issued only to participants marked as attended. After issuance, the participant can open My Certificates to view, print or save the certificate as a PDF.";
+                }
+
+                if (
+                    text.includes("feedback") ||
+                    text.includes("rating") ||
+                    text.includes("review")
+                ) {
+                    return "Open My Registrations and choose Feedback for the relevant activity. Submitted ratings and comments can be reviewed by the organizer.";
+                }
+
+                if (
+                    text.includes("attendance") ||
+                    text.includes("attended") ||
+                    text.includes("absent")
+                ) {
+                    return "Organizers can open an activity's Participants page and mark each registered participant as attended or absent.";
+                }
+
+                if (
+                    text.includes("conflict") ||
+                    text.includes("same time") ||
+                    text.includes("overlap")
+                ) {
+                    return "When another registered activity has the same date and time, Academia Connect displays a schedule-conflict warning before registration.";
+                }
+
+                if (
+                    text.includes("analytics") ||
+                    text.includes("statistics") ||
+                    text.includes("dashboard data")
+                ) {
+                    return "The organizer dashboard displays total activities, registrations, waiting users and the average participant rating.";
+                }
+
+                if (
+                    text.includes("activity") ||
+                    text.includes("event") ||
+                    text.includes("browse")
+                ) {
+                    return "Open Browse Activities to view available academic activities. Select an activity to see its description, schedule, location, capacity and registration details.";
+                }
+
+                return "I can help with activities, user or organizer features, registration, cancellation, waitlists, attendance, feedback, certificates, verification, schedule conflicts and analytics.";
+            }
+
+            function addMessage(message, type) {
+                const row = document.createElement("div");
+                row.className =
+                    type === "user"
+                        ? "chatbot-message-row chatbot-user-row"
+                        : "chatbot-message-row chatbot-bot-row";
+
+                if (type === "bot") {
+                    const avatar = document.createElement("div");
+                    avatar.className = "chatbot-message-avatar";
+
+                    const icon = document.createElement("i");
+                    icon.className = "bi bi-robot";
+
+                    avatar.appendChild(icon);
+                    row.appendChild(avatar);
+                }
+
+                const messageBox = document.createElement("div");
+                messageBox.className =
+                    type === "user"
+                        ? "chatbot-message chatbot-user-message"
+                        : "chatbot-message chatbot-bot-message";
+
+                const paragraph = document.createElement("p");
+                paragraph.textContent = message;
+
+                messageBox.appendChild(paragraph);
+                row.appendChild(messageBox);
+                chatbotMessages.appendChild(row);
+
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            function sendMessage() {
+                const message = chatbotInput.value.trim();
+
+                if (message === "") {
+                    chatbotInput.focus();
+                    return;
+                }
+
+                addMessage(message, "user");
+
+                chatbotInput.value = "";
+
+                window.setTimeout(() => {
+                    addMessage(getBotReply(message), "bot");
+                }, 250);
+            }
+
+            chatbotSend.addEventListener("click", sendMessage);
+
+            chatbotInput.addEventListener("keydown", event => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            document.querySelectorAll(".quick-question").forEach(button => {
+                button.addEventListener("click", () => {
+                    chatbotInput.value = button.dataset.question || "";
+                    sendMessage();
+                });
+            });
+        })();
+    </script>
+
+</div>

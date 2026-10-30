@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-lg academia-navbar"
+     th:fragment="navbar">
+
+    <div class="container">
+
+        <a class="navbar-brand academia-navbar-brand"
+           th:href="@{/}">
+
+            <span class="navbar-brand-icon">
+                <i class="bi bi-mortarboard-fill"></i>
+            </span>
+
+            <span>
+                Academia Connect
+            </span>
+
+        </a>
+
+        <button class="navbar-toggler academia-navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarContent">
+
+            <ul class="navbar-nav mx-auto academia-navbar-links">
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       th:href="@{/}">
+
+                        <i class="bi bi-house"></i>
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       th:href="@{/activities}">
+
+                        <i class="bi bi-calendar-event"></i>
+                        Browse Activities
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       th:href="@{/certificates/verify}">
+
+                        <i class="bi bi-patch-check"></i>
+                        Verify Certificate
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <div class="academia-navbar-actions">
+
+                <a th:href="@{/login}"
+                   class="btn btn-outline-primary">
+
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Login
+
+                </a>
+
+                <a th:href="@{/register}"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-person-plus"></i>
+                    Register
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>

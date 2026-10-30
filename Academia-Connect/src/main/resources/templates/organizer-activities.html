@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Activities | Academia Connect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="app-page">
+
+<main class="organizer-activities-page">
+
+    <div class="container">
+
+        <section class="organizer-activities-header">
+
+            <div>
+
+                <a th:href="@{/organizer}"
+                   class="page-back-link">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Back to Organizer Dashboard
+
+                </a>
+
+                <span class="page-eyebrow">
+                    <i class="bi bi-sliders"></i>
+                    ACTIVITY MANAGEMENT
+                </span>
+
+                <h1>Manage Activities</h1>
+
+                <p>
+                    Edit activity details, manage participants and waitlists,
+                    review feedback, mark attendance and issue certificates.
+                </p>
+
+            </div>
+
+            <div class="organizer-activities-header-actions">
+
+                <a th:href="@{/activities/create}"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+                    Create Activity
+
+                </a>
+
+                <div class="organizer-activities-header-icon">
+                    <i class="bi bi-calendar2-week"></i>
+                </div>
+
+            </div>
+
+        </section>
+
+        <div th:if="${successMessage}"
+             class="alert alert-success record-alert"
+             role="alert">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            <span th:text="${successMessage}">
+                Action completed successfully.
+            </span>
+
+        </div>
+
+        <div th:if="${errorMessage}"
+             class="alert alert-danger record-alert"
+             role="alert">
+
+            <i class="bi bi-exclamation-circle-fill"></i>
+
+            <span th:text="${errorMessage}">
+                An error occurred.
+            </span>
+
+        </div>
+
+        <!-- EMPTY STATE -->
+        <section th:if="${#lists.isEmpty(activities)}"
+                 class="organizer-activities-empty-state">
+
+            <div class="organizer-empty-icon">
+                <i class="bi bi-calendar-plus"></i>
+            </div>
+
+            <span>NO ACTIVITIES CREATED</span>
+
+            <h2>You have not created any activities yet</h2>
+
+            <p>
+                Create your first workshop, seminar, webinar, competition
+                or other academic activity to begin accepting registrations.
+            </p>
+
+            <a th:href="@{/activities/create}"
+               class="btn btn-primary">
+
+                <i class="bi bi-plus-circle"></i>
+                Create Your First Activity
+
+            </a>
+
+        </section>
+
+        <!-- ACTIVITY LIST -->
+        <section th:unless="${#lists.isEmpty(activities)}">
+
+            <div class="organizer-activities-list-heading">
+
+                <div>
+
+                    <span class="dashboard-small-label">
+                        YOUR ACTIVITIES
+                    </span>
+
+                    <h2>Organized academic activities</h2>
+
+                    <p>
+                        Select an activity to manage its complete workflow.
+                    </p>
+
+                </div>
+
+                <div class="organizer-activity-count">
+
+                    <i class="bi bi-calendar-check"></i>
+
+                    <strong th:text="${#lists.size(activities)}">
+                        0
+                    </strong>
+
+                    <span>Activities</span>
+
+                </div>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-xl-6"
+                     th:each="activity : ${activities}">
+
+                    <article class="organizer-activity-card">
+
+                        <div class="organizer-activity-card-top">
+
+                            <span class="organizer-activity-type"
+                                  th:text="${activity.type}">
+                                WORKSHOP
+                            </span>
+
+                            <span class="organizer-activity-status"
+                                  th:classappend="${
+                                      activity.status.name() == 'CANCELLED'
+                                      ? ' organizer-status-cancelled'
+                                      : ' organizer-status-active'
+                                  }">
+
+                                <i th:class="${
+                                    activity.status.name() == 'CANCELLED'
+                                    ? 'bi bi-x-circle-fill'
+                                    : 'bi bi-check-circle-fill'
+                                }"></i>
+
+                                <span th:text="${activity.status}">
+                                    ACTIVE
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                        <div class="organizer-activity-card-body">
+
+                            <div class="organizer-activity-title-row">
+
+                                <div class="organizer-activity-main-icon">
+                                    <i class="bi bi-mortarboard"></i>
+                                </div>
+
+                                <div>
+
+                                    <span class="organizer-activity-small-label">
+                                        ACTIVITY
+                                    </span>
+
+                                    <h3 th:text="${activity.title}">
+                                        Activity Title
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+                            <div class="organizer-activity-info-grid">
+
+                                <div>
+
+                                    <span class="organizer-info-icon">
+                                        <i class="bi bi-calendar3"></i>
+                                    </span>
+
+                                    <div>
+
+                                        <small>Date and Time</small>
+
+                                        <strong th:text="${#temporals.format(
+                                                activity.dateTime,
+                                                'dd MMM yyyy, hh:mm a'
+                                            )}">
+                                            Activity Date
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                                <div>
+
+                                    <span class="organizer-info-icon">
+                                        <i class="bi bi-people"></i>
+                                    </span>
+
+                                    <div>
+
+                                        <small>Capacity</small>
+
+                                        <strong>
+                                            <span th:text="${activity.capacity}">
+                                                0
+                                            </span>
+                                            Participants
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                                <div>
+
+                                    <span class="organizer-info-icon">
+                                        <i class="bi bi-tag"></i>
+                                    </span>
+
+                                    <div>
+
+                                        <small>Activity Type</small>
+
+                                        <strong th:text="${activity.type}">
+                                            WORKSHOP
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                                <div>
+
+                                    <span class="organizer-info-icon">
+                                        <i class="bi bi-gear"></i>
+                                    </span>
+
+                                    <div>
+
+                                        <small>Management</small>
+
+                                        <strong>
+                                            Full Organizer Access
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="organizer-activity-workflow-note">
+
+                                <i class="bi bi-info-circle-fill"></i>
+
+                                <p>
+                                    Participants, attendance, certificates and
+                                    feedback are managed separately for this activity.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="organizer-activity-actions">
+
+                            <a th:href="@{/organizer/activities/{id}/edit(id=${activity.id})}"
+                               class="btn btn-outline-primary">
+
+                                <i class="bi bi-pencil-square"></i>
+                                Edit
+
+                            </a>
+
+                            <a th:href="@{/organizer/activities/{id}/participants(id=${activity.id})}"
+                               class="btn btn-outline-success">
+
+                                <i class="bi bi-people"></i>
+                                Participants
+
+                            </a>
+
+                            <a th:href="@{/organizer/activities/{id}/feedback(id=${activity.id})}"
+                               class="btn btn-outline-info organizer-feedback-button">
+
+                                <i class="bi bi-chat-left-text"></i>
+                                Feedback
+
+                            </a>
+
+                            <form th:if="${activity.status.name() != 'CANCELLED'}"
+                                  th:action="@{/organizer/activities/{id}/cancel(id=${activity.id})}"
+                                  method="post"
+                                  class="organizer-cancel-form">
+
+                                <button type="submit"
+                                        class="btn btn-outline-danger"
+                                        onclick="return confirm('Cancel this activity?')">
+
+                                    <i class="bi bi-x-circle"></i>
+                                    Cancel
+
+                                </button>
+
+                            </form>
+
+                            <button th:if="${activity.status.name() == 'CANCELLED'}"
+                                    type="button"
+                                    class="btn btn-light"
+                                    disabled>
+
+                                <i class="bi bi-slash-circle"></i>
+                                Cancelled
+
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="records-bottom-navigation">
+
+            <a th:href="@{/organizer}"
+               class="btn btn-outline-primary">
+
+                <i class="bi bi-grid"></i>
+                Back to Organizer Dashboard
+
+            </a>
+
+            <a th:href="@{/activities/create}"
+               class="btn btn-primary">
+
+                <i class="bi bi-plus-circle"></i>
+                Create Another Activity
+
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<div th:replace="~{fragments/chatbot :: chatbot}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Academia Connect | Academic Activity Management</title>
+
+    <meta name="description"
+          content="Discover academic activities, manage registrations and waitlists, track attendance and receive verifiable certificates.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<!-- HERO -->
+<section class="home-hero">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <span class="home-eyebrow">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    Smart Academic Activity Management
+                </span>
+
+                <h1 class="home-title">
+                    Connect, participate and grow through
+                    <span class="text-gradient">academic activities.</span>
+                </h1>
+
+                <p class="home-lead">
+                    Academia Connect brings workshops, seminars, competitions
+                    and campus activities into one organized platform for
+                    students and organizers.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3">
+
+                    <a th:href="@{/activities}"
+                       class="btn btn-primary btn-lg">
+
+                        <i class="bi bi-calendar-event"></i>
+                        Browse Activities
+                    </a>
+
+                    <a th:href="@{/register}"
+                       class="btn btn-outline-primary btn-lg">
+
+                        Create Account
+                    </a>
+
+                </div>
+
+                <div class="home-trust-row">
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Easy registration
+                    </div>
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Smart waitlists
+                    </div>
+
+                    <div>
+                        <i class="bi bi-check-circle-fill"></i>
+                        Verified certificates
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="home-preview-card">
+
+                    <div class="home-preview-top">
+
+                        <div>
+                            <span class="preview-dot"></span>
+                            <span class="preview-dot"></span>
+                            <span class="preview-dot"></span>
+                        </div>
+
+                        <span>Student Activity Overview</span>
+
+                    </div>
+
+                    <div class="home-preview-body">
+
+                        <div class="preview-heading">
+
+                            <div>
+                                <span class="preview-label">UPCOMING ACTIVITY</span>
+
+                                <h4>Academic Workshop</h4>
+
+                                <p>
+                                    Discover practical learning opportunities
+                                    and manage your participation from one place.
+                                </p>
+                            </div>
+
+                            <div class="preview-icon">
+                                <i class="bi bi-calendar2-check"></i>
+                            </div>
+
+                        </div>
+
+                        <div class="preview-info-grid">
+
+                            <div class="preview-info-box">
+                                <i class="bi bi-journal-check"></i>
+
+                                <span>Registration</span>
+
+                                <strong>Tracked</strong>
+                            </div>
+
+                            <div class="preview-info-box">
+                                <i class="bi bi-hourglass-split"></i>
+
+                                <span>Waitlist</span>
+
+                                <strong>Automatic</strong>
+                            </div>
+
+                            <div class="preview-info-box">
+                                <i class="bi bi-patch-check"></i>
+
+                                <span>Certificate</span>
+
+                                <strong>Verifiable</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="preview-status">
+
+                            <div class="preview-status-icon">
+                                <i class="bi bi-check2-circle"></i>
+                            </div>
+
+                            <div>
+                                <strong>Everything in one dashboard</strong>
+
+                                <p class="mb-0">
+                                    Registrations, waitlists, feedback and certificates.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="home-section">
+
+    <div class="container">
+
+        <div class="home-section-heading">
+
+            <span class="home-section-label">HOW IT WORKS</span>
+
+            <h2>A simple journey from discovery to achievement</h2>
+
+            <p>
+                Every stage of academic participation is organized clearly
+                for students and activity organizers.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="home-step-card">
+
+                    <span class="step-number">01</span>
+
+                    <div class="home-feature-icon">
+                        <i class="bi bi-search"></i>
+                    </div>
+
+                    <h4>Discover activities</h4>
+
+                    <p>
+                        Browse available workshops, seminars, webinars,
+                        competitions and other academic events.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="home-step-card">
+
+                    <span class="step-number">02</span>
+
+                    <div class="home-feature-icon">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+
+                    <h4>Register and participate</h4>
+
+                    <p>
+                        Register for activities, track your status and join
+                        the waitlist automatically when seats are full.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="home-step-card">
+
+                    <span class="step-number">03</span>
+
+                    <div class="home-feature-icon">
+                        <i class="bi bi-award"></i>
+                    </div>
+
+                    <h4>Receive certificates</h4>
+
+                    <p>
+                        After attendance is confirmed, receive a certificate
+                        with a unique public verification code.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="home-section home-soft-section">
+
+    <div class="container">
+
+        <div class="home-section-heading">
+
+            <span class="home-section-label">CORE FEATURES</span>
+
+            <h2>Built around real academic workflows</h2>
+
+            <p>
+                Academia Connect reduces manual work while keeping every
+                activity, participant and certificate organized.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-calendar2-week"></i>
+                    </div>
+
+                    <h4>Activity management</h4>
+
+                    <p>
+                        Organizers can create, edit, manage and cancel academic
+                        activities from one dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+
+                    <h4>Registration tracking</h4>
+
+                    <p>
+                        Students can register for activities and view all active
+                        registrations from their dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+
+                    <h4>Automatic waitlists</h4>
+
+                    <p>
+                        Full activities automatically place students in an
+                        ordered waitlist and promote them when seats open.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-calendar-x"></i>
+                    </div>
+
+                    <h4>Schedule conflict warning</h4>
+
+                    <p>
+                        Students receive a warning when attempting to register
+                        for activities scheduled at the same time.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-clipboard2-check"></i>
+                    </div>
+
+                    <h4>Attendance management</h4>
+
+                    <p>
+                        Organizers can mark participants as attended or absent
+                        before issuing completion certificates.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon-wrapper">
+                        <i class="bi bi-star"></i>
+                    </div>
+
+                    <h4>Feedback and ratings</h4>
+
+                    <p>
+                        Participants can submit feedback, while organizers can
+                        review responses and average ratings.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ROLE SECTION -->
+<section class="home-section">
+
+    <div class="container">
+
+        <div class="home-section-heading">
+
+            <span class="home-section-label">ONE PLATFORM, TWO EXPERIENCES</span>
+
+            <h2>Designed for students and organizers</h2>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-6">
+
+                <div class="role-card student-role-card">
+
+                    <div class="role-card-icon">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                    <h3>For Students</h3>
+
+                    <p>
+                        Find academic opportunities and keep track of every
+                        stage of your participation.
+                    </p>
+
+                    <ul class="role-list">
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Browse available activities
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Manage registrations
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Check waitlist position
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Submit activity feedback
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            View and download certificates
+                        </li>
+
+                    </ul>
+
+                    <a th:href="@{/register}"
+                       class="btn btn-primary">
+
+                        Join as a Student
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="role-card organizer-role-card">
+
+                    <div class="role-card-icon">
+                        <i class="bi bi-person-workspace"></i>
+                    </div>
+
+                    <h3>For Organizers</h3>
+
+                    <p>
+                        Coordinate activities and manage participants using
+                        a focused organizer dashboard.
+                    </p>
+
+                    <ul class="role-list">
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Create and update activities
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            View participants and waitlists
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Mark attendance
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Issue certificates
+                        </li>
+
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            Review feedback and analytics
+                        </li>
+
+                    </ul>
+
+                    <a th:href="@{/register}"
+                       class="btn btn-dark">
+
+                        Join as an Organizer
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CERTIFICATE PREVIEW -->
+<section class="home-section certificate-showcase-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-5">
+
+                <span class="home-section-label">VERIFIABLE CERTIFICATES</span>
+
+                <h2 class="certificate-section-title">
+                    Academic achievements that can be publicly verified
+                </h2>
+
+                <p class="certificate-section-text">
+                    Certificates are issued only after attendance is confirmed.
+                    Each certificate receives a unique code that can be verified
+                    publicly without logging in.
+                </p>
+
+                <div class="certificate-points">
+
+                    <div>
+                        <i class="bi bi-shield-check"></i>
+
+                        <span>
+                            Unique certificate code
+                        </span>
+                    </div>
+
+                    <div>
+                        <i class="bi bi-globe2"></i>
+
+                        <span>
+                            Public verification page
+                        </span>
+                    </div>
+
+                    <div>
+                        <i class="bi bi-printer"></i>
+
+                        <span>
+                            Printable certificate format
+                        </span>
+                    </div>
+
+                </div>
+
+                <a th:href="@{/certificates/verify}"
+                   class="btn btn-primary btn-lg mt-4">
+
+                    <i class="bi bi-patch-check"></i>
+                    Verify a Certificate
+                </a>
+
+            </div>
+
+            <div class="col-lg-7">
+
+                <div class="sample-certificate-wrapper">
+
+                    <span class="sample-certificate-label">
+                        SAMPLE CERTIFICATE PREVIEW
+                    </span>
+
+                    <div class="sample-certificate">
+
+                        <div class="sample-certificate-border">
+
+                            <div class="certificate-brand">
+
+                                <div class="certificate-brand-icon">
+                                    <i class="bi bi-mortarboard-fill"></i>
+                                </div>
+
+                                <div>
+                                    <strong>Academia Connect</strong>
+
+                                    <span>
+                                        Academic Activity Management System
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <div class="certificate-decoration">
+                                <i class="bi bi-award-fill"></i>
+                            </div>
+
+                            <p class="certificate-small-heading">
+                                CERTIFICATE OF PARTICIPATION
+                            </p>
+
+                            <h3>This certificate is presented to</h3>
+
+                            <h2 class="certificate-student-name">
+                                Student Name
+                            </h2>
+
+                            <p class="certificate-description">
+                                for successfully participating in
+                            </p>
+
+                            <h4 class="certificate-activity-name">
+                                Academic Workshop
+                            </h4>
+
+                            <p class="certificate-description">
+                                organized through Academia Connect.
+                            </p>
+
+                            <div class="certificate-footer-grid">
+
+                                <div>
+                                    <span>Issue Date</span>
+                                    <strong>15 July 2026</strong>
+                                </div>
+
+                                <div class="certificate-seal">
+                                    <i class="bi bi-patch-check-fill"></i>
+                                </div>
+
+                                <div>
+                                    <span>Certificate Code</span>
+                                    <strong>CERT-AB12CD34</strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+<section class="home-cta-section">
+
+    <div class="container">
+
+        <div class="home-cta-box">
+
+            <div>
+
+                <span class="home-section-label">
+                    GET STARTED
+                </span>
+
+                <h2>
+                    Ready to explore your next academic opportunity?
+                </h2>
+
+                <p>
+                    Create an account, discover activities and manage your
+                    academic participation from one place.
+                </p>
+
+            </div>
+
+            <div class="d-flex flex-wrap gap-3">
+
+                <a th:href="@{/register}"
+                   class="btn btn-primary btn-lg">
+
+                    Register
+                </a>
+
+                <a th:href="@{/login}"
+                   class="btn btn-outline-primary btn-lg">
+
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/chatbot :: chatbot}"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Browse Activities | Academia Connect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="app-page">
+
+<main class="activities-page">
+
+    <div class="container">
+
+        <!-- PAGE HEADER -->
+        <div class="activities-page-header">
+
+            <div>
+
+                <a th:href="@{/dashboard}"
+                   class="page-back-link">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Back to Dashboard
+
+                </a>
+
+                <span class="page-eyebrow">
+                    <i class="bi bi-calendar2-week"></i>
+                    ACADEMIC OPPORTUNITIES
+                </span>
+
+                <h1>Browse Activities</h1>
+
+                <p>
+                    Discover workshops, seminars, webinars, competitions
+                    and other academic activities available through
+                    Academia Connect.
+                </p>
+
+            </div>
+
+            <div class="activities-header-icon">
+                <i class="bi bi-calendar-event"></i>
+            </div>
+
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div class="activities-empty-state"
+             th:if="${#lists.isEmpty(activities)}">
+
+            <div class="empty-state-icon">
+                <i class="bi bi-calendar-x"></i>
+            </div>
+
+            <span class="empty-state-label">
+                NO ACTIVITIES FOUND
+            </span>
+
+            <h2>No Activities Available</h2>
+
+            <p>
+                There are currently no academic activities available.
+                New opportunities will appear here when organizers create them.
+            </p>
+
+            <a th:href="@{/dashboard}"
+               class="btn btn-primary">
+
+                <i class="bi bi-grid"></i>
+                Return to Dashboard
+
+            </a>
+
+        </div>
+
+        <!-- ACTIVITY LIST -->
+        <div th:unless="${#lists.isEmpty(activities)}">
+
+            <div class="activities-list-heading">
+
+                <div>
+                    <h2>Available Activities</h2>
+
+                    <p>
+                        Select an activity to view complete details,
+                        registration availability and schedule information.
+                    </p>
+                </div>
+
+                <div class="activity-count-badge">
+
+                    <i class="bi bi-calendar-check"></i>
+
+                    <span th:text="${#lists.size(activities)}">
+                        0
+                    </span>
+
+                    <span>Activities</span>
+
+                </div>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-xl-4 col-md-6"
+                     th:each="activity : ${activities}">
+
+                    <article class="browse-activity-card">
+
+                        <div class="browse-card-top">
+
+                            <span class="browse-activity-type"
+                                  th:text="${activity.type}">
+                                WORKSHOP
+                            </span>
+
+                            <span class="browse-status-dot"
+                                  title="Activity available">
+
+                                <span></span>
+                                Available
+
+                            </span>
+
+                        </div>
+
+                        <div class="browse-card-body">
+
+                            <div class="browse-activity-icon">
+                                <i class="bi bi-mortarboard"></i>
+                            </div>
+
+                            <h3 th:text="${activity.title}">
+                                Activity Title
+                            </h3>
+
+                            <p class="browse-activity-description"
+                               th:text="${activity.description}">
+                                Activity description
+                            </p>
+
+                            <div class="browse-activity-meta">
+
+                                <div>
+
+                                    <span class="browse-meta-icon">
+                                        <i class="bi bi-geo-alt"></i>
+                                    </span>
+
+                                    <div>
+                                        <small>Location</small>
+
+                                        <strong th:text="${activity.location}">
+                                            Activity Location
+                                        </strong>
+                                    </div>
+
+                                </div>
+
+                                <div>
+
+                                    <span class="browse-meta-icon">
+                                        <i class="bi bi-calendar3"></i>
+                                    </span>
+
+                                    <div>
+                                        <small>Date and Time</small>
+
+                                        <strong th:text="${activity.dateTime}">
+                                            Activity Date and Time
+                                        </strong>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="browse-card-footer">
+
+                            <a th:href="@{/activities/{id}(id=${activity.id})}"
+                               class="btn btn-primary w-100 justify-content-center">
+
+                                View Activity Details
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<div th:replace="~{fragments/chatbot :: chatbot}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
