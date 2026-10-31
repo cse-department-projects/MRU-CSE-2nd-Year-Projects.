@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>FleetPilot AI</title><link rel="stylesheet" href="style.css" /></head><body>
+<!-- ===================== LOGIN PAGE ===================== -->
+<div id="login-page" class="page visible">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="icon">🚚</div>
+      <div style="font-size:20px;font-weight:700;">FleetPilot AI</div>
+      <div class="mono" style="font-size:11px;color:var(--text-faint);margin-top:4px;letter-spacing:.05em;">AGENTIC AI FLEET MANAGEMENT SYSTEM</div>
+    </div>
+    <form class="login-form" id="login-form">
+      <label class="field-label">Username</label>
+      <div class="field-box">
+        <span>👤</span>
+        <input id="login-user" placeholder="fleet.manager" autocomplete="username" />
+      </div>
+      <label class="field-label">Password</label>
+      <div class="field-box">
+        <span>🔒</span>
+        <input id="login-pass" type="password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <div class="error-text" id="login-error" style="display:none;"></div>
+      <button type="submit" class="login-submit">Sign in</button>
+    </form>
+    <div class="login-hint">Login: admin / admin123</div>
+  </div>
+</div>
+
+<!-- ===================== APP SHELL ===================== -->
+<div id="app" style="display:none;">
+  <div id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🚚</div>
+      <div>
+        <div class="brand-name">FleetPilot AI</div>
+        <div class="brand-sub mono">FLEET AGENT</div>
+      </div>
+    </div>
+    <div id="nav"></div>
+    <div id="user-box">
+      <div class="who mono">Signed in as <span id="who-name" style="color:var(--text-dim);"></span></div>
+      <div id="db-badge" class="mono" style="font-size:10px;margin-bottom:8px;"></div><button id="logout-btn">↩ Log out</button>
+    </div>
+  </div>
+  <div id="main">
+
+    <!-- ---------- Fleet Overview Dashboard ---------- -->
+    <div class="page" id="page-dashboard">
+      <div class="page-head">
+        <div>
+          <div class="page-title">Fleet Overview Dashboard</div>
+          <div class="page-sub mono">TRANSPORT &amp; LOGISTICS · USER &amp; FLEET MANAGEMENT</div>
+        </div>
+      </div>
+      <div class="kpi-strip" id="kpi-strip"></div>
+      <div class="table-wrap">
+        <div class="t-row t-head mono" style="grid-template-columns: 1fr 1fr 90px 90px 100px 20px;">
+          <div>VEHICLE</div><div>DRIVER</div><div>HEALTH</div><div>FUEL</div><div>STATUS</div><div></div>
+        </div>
+        <div id="dashboard-table"></div>
+      </div>
+    </div>
+
+    <!-- ---------- Driver Assignment ---------- -->
+    <div class="page" id="page-drivers">
+      <div class="page-head">
+        <div>
+          <div class="page-title">Driver Assignment</div>
+          <div class="page-sub mono">USER &amp; FLEET MGMT · DRIVER BEHAVIOR MONITORING</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <div class="t-row t-head mono" style="grid-template-columns: 90px 1fr 1fr 100px 140px;">
+          <div>VEHICLE</div><div>DRIVER</div><div>ROUTE</div><div>BEHAVIOR</div><div>REASSIGN</div>
+        </div>
+        <div id="drivers-table"></div>
+      </div>
+    </div>
+
+    <!-- ---------- Route Optimization ---------- -->
+    <div class="page" id="page-routes">
+      <div class="page-head">
+        <div>
+          <div class="page-title">AI Route Optimization</div>
+          <div class="page-sub mono">GPS TRACKING · LIVE AGENT ROUTING</div>
+        </div>
+        <button class="btn-primary" id="optimize-btn">⟳ Run Route Optimization</button>
+      </div>
+      <div id="route-list"></div>
+    </div>
+
+    <div class="page" id="page-alerts">
+      <div class="page-head"><div><div class="page-title">Auto Alerts</div><div class="page-sub mono">AGENT MONITORING · FUEL · SERVICE · BEHAVIOR</div></div>
+      <button class="btn-primary" onclick="fixAll()">🤖 Auto-fix all</button></div>
+      <div id="alerts-list"></div>
+    </div>
+    <div class="page" id="page-map">
+      <div class="page-head"><div><div class="page-title">Live Fleet Map</div><div class="page-sub mono">GPS TRACKING · VEHICLES MOVING LIVE</div></div></div>
+      <div class="route-map" id="map-box"></div>
+      <div class="dim" style="font-size:12px;"><span style="color:#2FD9C4">●</span> normal &nbsp; <span style="color:#F0A84B">●</span> warning &nbsp; <span style="color:#F0605E">●</span> critical</div>
+    </div>
+    <div class="page" id="page-agent">
+      <div class="page-head"><div><div class="page-title">FleetPilot AI Agent</div><div class="page-sub mono">TYPE A COMMAND · AGENT DECIDES AND ACTS</div></div></div>
+      <div class="chat-box"><div id="chat-log"></div>
+        <div style="padding:10px 14px 0;">
+          <button class="chip" onclick="sendChat('Fleet summary')">Fleet summary</button><button class="chip" onclick="sendChat('Show alerts')">Show alerts</button><button class="chip" onclick="sendChat('Fix all alerts')">Fix all alerts</button><button class="chip" onclick="sendChat('Optimize routes')">Optimize routes</button><button class="chip" onclick="sendChat('Refuel the vehicle with lowest fuel')">Refuel lowest</button>
+        </div>
+        <div class="chat-input"><input id="chat-input" placeholder="e.g. refuel FL-102, where is FL-103, reassign driver FL-105" /><button class="btn-primary" id="chat-send">Send</button></div>
+      </div>
+    </div>
+
+    <div class="page" id="page-manage">
+      <div class="page-head"><div><div class="page-title">Manage Fleet</div><div class="page-sub mono">ADD / REMOVE VEHICLES · SAVED IN DATABASE</div></div>
+      <button class="chip" style="margin:0" onclick="resetDemo()">↺ Reset demo data</button></div>
+      <div class="kpi-card" style="margin-bottom:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+        <input id="nv-driver" class="plain-input" placeholder="Driver name" /><select id="nv-from"></select><span class="dim">→</span><select id="nv-to"></select>
+        <button class="btn-primary" onclick="addVehicle()">+ Add Vehicle</button><span id="nv-msg" class="dim" style="font-size:12px"></span>
+      </div>
+      <div class="table-wrap"><div class="t-row t-head mono" style="grid-template-columns: 90px 1fr 1.5fr 90px;"><div>VEHICLE</div><div>DRIVER</div><div>ROUTE</div><div></div></div><div id="manage-table"></div></div>
+    </div>
+    <div class="page" id="page-db">
+      <div class="page-head"><div><div class="page-title">Database</div><div class="page-sub mono">MYSQL · VEHICLE · FUEL_LOG · MAINTENANCE_LOG · ALERT_LOG</div></div></div>
+      <div id="db-info"></div>
+      <div class="table-wrap"><div class="t-row t-head mono" style="grid-template-columns: 150px 80px 1fr 150px;"><div>TABLE</div><div>VEHICLE</div><div>RECORD</div><div>TIME</div></div><div id="db-logs"></div></div>
+    </div>
+    <!-- ---------- Predictive Maintenance ---------- -->
+    <div class="page" id="page-maintenance">
+      <div class="page-head">
+        <div>
+          <div class="page-title">Predictive Maintenance</div>
+          <div class="page-sub mono">MAINTENANCE_LOG · FUEL_LOG</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <div class="t-row t-head mono" style="grid-template-columns: 90px 1fr 130px 130px 120px;">
+          <div>VEHICLE</div><div>DRIVER</div><div>KM TO SERVICE</div><div>HEALTH</div><div>URGENCY</div>
+        </div>
+        <div id="maintenance-table"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="app.js"></script></body></html>
