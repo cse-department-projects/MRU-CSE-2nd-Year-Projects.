@@ -1,0 +1,31 @@
+{
+  "name": "future-of-finance-genkit",
+  "version": "1.0.0",
+  "description": "Firebase Genkit AI intelligence engine for Future of Finance web app",
+  "main": "genkit-server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node genkit-server.js",
+    "genkit:dev": "npx genkit start",
+    "deploy:functions": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "genkit": "^0.9.1",
+    "@genkit-ai/googleai": "^0.9.1",
+    "@genkit-ai/firebase": "^0.9.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^5.0.0"
+  },
+  "keywords": [
+    "firebase",
+    "genkit",
+    "gemini",
+    "ai",
+    "finance"
+  ],
+  "author": "",
+  "license": "ISC"
+}
