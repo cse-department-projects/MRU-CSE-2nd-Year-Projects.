@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENVIORA — Environment & Climate Action Startup</title>
+    <!-- Seo Metadata -->
+    <meta name="description" content="ENVIORA is a modern environmental awareness and sustainability platform. Discover climate solutions, eco tips, renewable energy models, and take action for a cleaner tomorrow.">
+    <meta name="keywords" content="environment, sustainability, climate change, green energy, plant trees, save water, enviora, recycling, eco friendly">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="environment.css">
+</head>
+<body>
+
+    <!-- Floating Leaves Background Animation Containers -->
+    <div class="leaf-container" id="leaf-container"></div>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="header">
+        <div class="container navbar-wrapper">
+            <a href="#home" class="logo animate-fade-in">
+                <!-- SVG Logo representing Earth & Sprout -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-svg">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-dasharray="4 2"/>
+                    <path d="M12 18V9" stroke="#81C784"/>
+                    <path d="M12 12C12 12 14.5 10 16 12C17.5 14 15 15 12 15" stroke="#81C784"/>
+                    <path d="M12 10C12 10 9.5 8 8 10C6.5 12 9 13 12 13" stroke="#81C784"/>
+                </svg>
+                <span class="logo-text">ENVIORA</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#my-environment" class="nav-link">🌍 My Environment</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#issues" class="nav-link">Issues</a>
+                <a href="#solutions" class="nav-link">Solutions</a>
+                <a href="#sustainability" class="nav-link">Sustainability</a>
+                <a href="#take-action" class="nav-link">Take Action</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-cta">
+                <a href="login.html" class="btn btn-nav btn-secondary-nav" id="nav-login-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-user-icon">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Sign In</span>
+                </a>
+                <a href="#take-action" class="btn btn-nav btn-primary">Take Action</a>
+            </div>
+
+            <!-- Hamburger Button for Mobile -->
+            <button class="hamburger-menu" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="bar bar-1"></span>
+                <span class="bar bar-2"></span>
+                <span class="bar bar-3"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-navbar-drawer" id="mobile-drawer">
+        <nav class="mobile-nav-links">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#my-environment" class="mobile-nav-link">🌍 My Environment</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#issues" class="mobile-nav-link">Issues</a>
+            <a href="#solutions" class="mobile-nav-link">Solutions</a>
+            <a href="#sustainability" class="mobile-nav-link">Sustainability</a>
+            <a href="#take-action" class="mobile-nav-link">Take Action</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <div class="mobile-btn-group">
+                <a href="login.html" class="btn mobile-btn-nav btn-secondary-nav">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-user-icon">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Sign In</span>
+                </a>
+                <a href="#take-action" class="btn mobile-btn-nav btn-primary">Take Action Now</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-content-wrapper">
+            <div class="hero-text-content">
+                <div class="badge animate-pop-up">
+                    <span class="badge-dot"></span>
+                    <span>Environment & Protection Platform</span>
+                </div>
+                <h2 class="hero-subtitle animate-slide-up">ENVIRONMENT</h2>
+                <h1 class="hero-title animate-slide-up-delayed">ENVIORA</h1>
+                <p class="hero-tagline animate-fade-in-delayed">“Protecting nature today. Creating a sustainable tomorrow.”</p>
+                <div class="hero-buttons animate-fade-in-delayed-more">
+                    <a href="#about" class="btn btn-hero btn-secondary">Explore Environment</a>
+                    <a href="#take-action" class="btn btn-hero btn-primary-glowing">Take Action</a>
+                </div>
+            </div>
+            
+            <div class="hero-scroll-indicator animate-bounce">
+                <span>Scroll Down</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="indicator-arrow">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flagship Feature — Your Environment, Your Solution -->
+    <section class="environment-section section-padding scroll-trigger" id="my-environment">
+        <div class="container relative-z">
+            
+            <!-- Section Header -->
+            <div class="section-center-header">
+                <div class="section-label">00 // LOCAL ENVIRONMENTAL INTELLIGENCE</div>
+                <h2 class="section-title">“Your Environment, Your Solution”</h2>
+                <p class="section-subtitle">“Understand your local environment and take action.” Real-time microclimate analytics, localized risk evaluations, and proactive sustainability recommendations.</p>
+            </div>
+
+            <div class="env-dashboard-wrapper">
+                
+                <!-- 1. Location Bar & Search Controls -->
+                <div class="env-location-bar section-reveal-up">
+                    <div class="env-location-display">
+                        <div class="env-loc-icon-bubble">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="env-loc-details">
+                            <span class="env-loc-label">Your Monitored Location</span>
+                            <h3 class="env-loc-name" id="env-location-name">📍 Detecting local climate...</h3>
+                            <span class="env-loc-timestamp" id="env-timestamp">Live API Telemetry Synchronized</span>
+                        </div>
+                    </div>
+
+                    <div class="env-actions-group">
+                        <!-- Detect Location Button -->
+                        <button type="button" class="btn-detect-location" id="btn-detect-location" aria-label="Detect my current location">
+                            <span class="loc-ping-dot"></span>
+                            <span>📍 Detect My Location</span>
+                        </button>
+
+                        <!-- Search Location Input -->
+                        <div class="env-search-box">
+                            <div class="env-search-input-wrapper">
+                                <input type="text" id="env-search-input" class="env-search-input" placeholder="Search City, State, or Country..." autocomplete="off">
+                                <button type="button" class="env-search-btn-icon" aria-label="Search location">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="env-search-dropdown" id="env-search-dropdown"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quick City Selector Pills -->
+                    <div class="env-quick-cities">
+                        <span class="env-quick-label">Quick Select:</span>
+                        <button type="button" class="quick-city-pill active" data-lat="17.3850" data-lon="78.4867" data-name="Hyderabad, Telangana, India">📍 Hyderabad</button>
+                        <button type="button" class="quick-city-pill" data-lat="37.7749" data-lon="-122.4194" data-name="San Francisco, California, USA">📍 San Francisco</button>
+                        <button type="button" class="quick-city-pill" data-lat="51.5074" data-lon="-0.1278" data-name="London, England, UK">📍 London</button>
+                        <button type="button" class="quick-city-pill" data-lat="35.6762" data-lon="139.6503" data-name="Tokyo, Japan">📍 Tokyo</button>
+                        <button type="button" class="quick-city-pill" data-lat="40.7128" data-lon="-74.0060" data-name="New York, USA">📍 New York</button>
+                        <button type="button" class="quick-city-pill" data-lat="-33.8688" data-lon="151.2093" data-name="Sydney, Australia">📍 Sydney</button>
+                    </div>
+                </div>
+
+                <!-- 2. Active Environmental Alerts Banner -->
+                <div class="env-alerts-container" id="env-alerts-container" style="display: none;"></div>
+
+                <!-- 3. Current Metrics Dashboard Grid -->
+                <div class="env-metrics-grid section-reveal-up">
+                    
+                    <!-- Metric 1: Temperature -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Temperature</span>
+                            <div class="metric-icon-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="metric-value-row">
+                            <span class="metric-main-value" id="metric-temp-val">--</span>
+                            <span class="metric-unit">°C</span>
+                        </div>
+                        <div class="metric-badge" id="metric-temp-badge">Reading...</div>
+                        <div class="metric-sub-detail" id="metric-temp-feel">Apparent thermal indexing</div>
+                    </div>
+
+                    <!-- Metric 2: Humidity -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Humidity</span>
+                            <div class="metric-icon-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="metric-value-row">
+                            <span class="metric-main-value" id="metric-humidity-val">--</span>
+                            <span class="metric-unit">%</span>
+                        </div>
+                        <div class="metric-badge" id="metric-humidity-badge">Optimal</div>
+                        <div class="metric-sub-detail" id="metric-humidity-status">Relative air moisture ratio</div>
+                    </div>
+
+                    <!-- Metric 3: Weather -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Weather Condition</span>
+                            <div class="metric-icon-box" style="font-size: 1.3rem;" id="metric-weather-icon">
+                                ⛅
+                            </div>
+                        </div>
+                        <div class="metric-value-row">
+                            <span class="metric-main-value" style="font-size: 1.8rem;" id="metric-weather-val">Loading</span>
+                        </div>
+                        <div class="metric-badge badge-info">WMO Telemetry</div>
+                        <div class="metric-sub-detail" id="metric-weather-rain">Precipitation tracking</div>
+                    </div>
+
+                    <!-- Metric 4: Air Quality (AQI) -->
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-title">Air Quality Index</span>
+                            <div class="metric-icon-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9.59 4.59A2 2 0 1 1 11 8H2M10.59 11.59A2 2 0 1 0 12 15H2M15 19H2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="metric-value-row">
+                            <span class="metric-main-value" id="metric-aqi-val">--</span>
+                            <span class="metric-unit">AQI</span>
+                        </div>
+                        <div class="metric-badge" id="metric-aqi-badge">Analyzing...</div>
+                        <div class="metric-sub-detail" id="metric-aqi-pm">PM2.5 & PM10 fine particles</div>
+                    </div>
+                </div>
+
+                <!-- 4. Environmental Score & Overall Status Row -->
+                <div class="env-score-overview-row section-reveal-up">
+                    
+                    <!-- ENVIORA Environmental Score Card -->
+                    <div class="env-score-card">
+                        <div class="score-gauge-container">
+                            <svg class="score-svg-ring" viewBox="0 0 140 140">
+                                <circle class="score-bg-ring" cx="70" cy="70" r="60"></circle>
+                                <circle class="score-progress-ring" id="env-score-progress-ring" cx="70" cy="70" r="60"></circle>
+                            </svg>
+                            <div class="score-center-label">
+                                <span class="score-number" id="env-score-number">--</span>
+                                <span class="score-max">/ 100</span>
+                            </div>
+                        </div>
+
+                        <div class="score-info-col">
+                            <div class="score-badge-header">
+                                <span>🌱 ENVIORA COMPOSITE SCORE</span>
+                            </div>
+                            <h3 class="score-headline" id="env-score-headline">Analyzing Local Biosphere</h3>
+                            <div class="score-factors-breakdown">
+                                <div class="factor-item"><span class="factor-dot"></span><span id="score-factor-air">Air Purity: Assessing</span></div>
+                                <div class="factor-item"><span class="factor-dot"></span><span id="score-factor-temp">Thermal Index: Assessing</span></div>
+                                <div class="factor-item"><span class="factor-dot"></span><span id="score-factor-humidity">Moisture: Assessing</span></div>
+                                <div class="factor-item"><span class="factor-dot"></span><span id="score-factor-rain">Precipitation: Assessing</span></div>
+                            </div>
+                            <p class="score-disclaimer">*Note: This is an ENVIORA informational composite score based on open meteorological indices, not an official government rating.</p>
+                        </div>
+                    </div>
+
+                    <!-- Overall Environmental Status Card -->
+                    <div class="env-status-card">
+                        <div>
+                            <span class="status-label">ENVIRONMENTAL ASSESSMENT</span>
+                            <h3 class="status-title" id="env-status-title">Good Status</h3>
+                            <p class="status-desc" id="env-status-desc">Atmospheric clarity and thermal parameters in your region favor sustainable outdoor activities and normal ecological stability.</p>
+                        </div>
+                        <div class="status-indicator-badge" id="env-status-badge">Overall Score: Calculating...</div>
+                    </div>
+                </div>
+
+                <!-- 5. "Environmental Issues Near You" Section -->
+                <div class="env-issues-container section-reveal-up">
+                    <div class="env-sub-header">
+                        <div>
+                            <h3>Environmental Issues Near You</h3>
+                            <p>Data-driven potential environmental conditions identified from your current atmospheric metrics.</p>
+                        </div>
+                    </div>
+
+                    <div class="env-issues-cards-grid" id="env-issues-cards-grid">
+                        <!-- Dynamically Populated by environment.js -->
+                    </div>
+
+                    <p class="disclaimer-note">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        <span>Environmental issues are presented as potential risks based on real-time atmospheric readings. Local conditions and microclimates may vary.</span>
+                    </p>
+                </div>
+
+                <!-- 6. "What You Can Do Today" (5 Personalized Actions) -->
+                <div class="env-actions-container section-reveal-up">
+                    <div class="env-sub-header">
+                        <div>
+                            <h3>What You Can Do Today</h3>
+                            <p>5 dynamic, high-impact conservation actions personalized to your current environmental data.</p>
+                        </div>
+                    </div>
+
+                    <div class="personalized-actions-grid" id="personalized-actions-grid">
+                        <!-- Dynamically Populated by environment.js -->
+                    </div>
+                </div>
+
+                <!-- 7. 5-Day Forecast & Temperature Range Guide -->
+                <div class="env-forecast-temp-row section-reveal-up">
+                    
+                    <!-- 5-Day Weather & Environmental Forecast -->
+                    <div class="env-forecast-card">
+                        <div class="env-sub-header" style="margin-bottom: 0;">
+                            <div>
+                                <h3>Coming Days (5-Day Outlook)</h3>
+                                <p>Upcoming local weather and rain probabilities to plan outdoor conservation activities.</p>
+                            </div>
+                        </div>
+
+                        <div class="forecast-days-grid" id="forecast-days-grid">
+                            <!-- Dynamically Populated by environment.js -->
+                        </div>
+                    </div>
+
+                    <!-- Temperature Range Guidance -->
+                    <div class="env-temp-guidance-card">
+                        <div>
+                            <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; color: var(--text-main);">Thermal Guide</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 4px;">Dynamic temperature ranges & ecological considerations.</p>
+                        </div>
+
+                        <div class="temp-ranges-list">
+                            <div class="temp-range-item range-cold">
+                                <div class="range-label"><span>❄️</span><span>&lt; 15°C</span></div>
+                                <span class="range-tip">Cold • Conserve thermal energy</span>
+                            </div>
+                            <div class="temp-range-item range-comfortable">
+                                <div class="range-label"><span>🌱</span><span>15 – 25°C</span></div>
+                                <span class="range-tip">Comfortable • Ideal for tree planting</span>
+                            </div>
+                            <div class="temp-range-item range-warm">
+                                <div class="range-label"><span>☀️</span><span>25 – 35°C</span></div>
+                                <span class="range-tip">Warm • Moderate outdoor irrigation</span>
+                            </div>
+                            <div class="temp-range-item range-heat">
+                                <div class="range-label"><span>🔥</span><span>35 – 40°C</span></div>
+                                <span class="range-tip">High Heat • Cut peak electricity</span>
+                            </div>
+                            <div class="temp-range-item range-extreme">
+                                <div class="range-label"><span>🚨</span><span>&gt; 40°C</span></div>
+                                <span class="range-tip">Extreme Heat • High grid & fauna stress</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 1 — About ENVIORA -->
+    <section class="about-section section-padding scroll-trigger" id="about">
+        <div class="container">
+            <div class="split-layout">
+                <div class="about-text-column section-reveal-left">
+                    <div class="section-label">01 // INTRODUCTION</div>
+                    <h2 class="section-title">“Our Planet. Our Responsibility.”</h2>
+                    <p class="section-desc">ENVIORA is an environmental awareness platform designed to help people understand environmental problems and discover practical ways to protect the planet. We believe that by creating simple, actionable awareness, communities can coalesce to reverse ecological decay.</p>
+                    <p class="section-desc">Our mission bridges modern technology and environmental stewardship. Through curated conservation insights, interactive learning modules, and daily green checklists, we empower everyday consumers to adapt sustainability values and transition into green change-makers.</p>
+                    
+                    <div class="about-features-row">
+                        <div class="about-feature-item">
+                            <div class="feature-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="feature-title">Eco Education</h4>
+                                <p class="feature-text">Actionable scientific data on climate science transformed into readable resources.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="about-feature-item">
+                            <div class="feature-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="feature-title">Effective Actions</h4>
+                                <p class="feature-text">Simple and progressive guides for immediate household carbon offset.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image-column section-reveal-right">
+                    <div class="about-image-wrapper">
+                        <div class="image-deco-gradient"></div>
+                        <img src="assets/enviora_about.png" alt="A hand gently holding a plant seedling in rich fertile soil" class="about-img">
+                        <div class="experience-floating-card">
+                            <div class="floating-bold-text">100%</div>
+                            <div class="floating-sub-text">Dedicated to Conservation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2 — Environmental Issues -->
+    <section class="issues-section section-padding scroll-trigger bg-light" id="issues">
+        <div class="container">
+            <div class="section-center-header">
+                <div class="section-label">02 // ECOLOGICAL CHALLENGES</div>
+                <h2 class="section-title">Critical Environmental Issues</h2>
+                <p class="section-subtitle">Human activity has disrupted natural equilibria. Explore the six primary threats threatening our biosphere's delicate balance.</p>
+            </div>
+            
+            <div class="issues-grid">
+                <!-- Card 1: Climate Change -->
+                <div class="issue-card section-reveal-up" data-issue-index="1">
+                    <div class="issue-card-content">
+                        <div class="issue-icon-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 10V3M12 3L9 6M12 3L15 6M18 10A6 6 0 1 1 6 10C6 7.6 9 3 12 3C15 3 18 7.6 18 10Z"/>
+                                <circle cx="12" cy="18" r="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="issue-card-title">Climate Change</h3>
+                        <p class="issue-card-desc">Rising global temperatures, driven by greenhouse gas emission traps, trigger severe heat waves, shifting rain belts, and melting polar glaciers.</p>
+                        <button class="btn-card-learn">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-svg">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Air Pollution -->
+                <div class="issue-card section-reveal-up" data-issue-index="2">
+                    <div class="issue-card-content">
+                        <div class="issue-icon-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.59 4.59A2 2 0 1 1 11 8H2M10.59 11.59A2 2 0 1 0 12 15H2M15 19H2"/>
+                            </svg>
+                        </div>
+                        <h3 class="issue-card-title">Air Pollution</h3>
+                        <p class="issue-card-desc">Industrial particulate waste, combustion of petroleum, and smog degrade respiratory systems, reduce air clarity, and damage crop yields globally.</p>
+                        <button class="btn-card-learn">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-svg">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Water Pollution -->
+                <div class="issue-card section-reveal-up" data-issue-index="3">
+                    <div class="issue-card-content">
+                        <div class="issue-icon-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2A9.9 9.9 0 0 0 3 12c0 2.22.73 4.25 1.94 5.92L12 22l7.06-4.08C20.27 16.25 21 14.22 21 12A9.9 9.9 0 0 0 12 2Zm-4 12V8l8 4-8 2Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="issue-card-title">Water Pollution</h3>
+                        <p class="issue-card-desc">Chemical effluents, agricultural fertilizers, and untreated municipal wastewater enter water reservoirs, causing vast dead zones in lakes and oceans.</p>
+                        <button class="btn-card-learn">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-svg">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Card 4: Deforestation -->
+                <div class="issue-card section-reveal-up" data-issue-index="4">
+                    <div class="issue-card-content">
+                        <div class="issue-icon-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L3 9h9v13h2V9h9L12 2Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="issue-card-title">Deforestation</h3>
+                        <p class="issue-card-desc">Clearing massive swathes of tropical and temperate forests for monoculture agriculture and timber leads to severe soil erosion and destroys carbon capture capabilities.</p>
+                        <button class="btn-card-learn">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-svg">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Card 5: Plastic Pollution -->
+                <div class="issue-card section-reveal-up" data-issue-index="5">
+                    <div class="issue-card-content">
+                        <div class="issue-icon-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L6 5v6a6 6 0 0 0 12 0V5l-6-3Z"/>
+                                <path d="M8 12a4 4 0 0 0 8 0"/>
+                            </svg>
+                        </div>
+                        <h3 class="issue-card-title">Plastic Pollution</h3>
+                        <p class="issue-card-desc">Non-biodegradable synthetic polymers fill landfills and waterways. Over time, plastic degrades into microplastics, contaminating marine organisms and food chains.</p>
+                        <button class="btn-card-learn">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-svg">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Card 6: Loss of Biodiversity -->
+                <div class="issue-card section-reveal-up" data-issue-index="6">
+                    <div class="issue-card-content">
+                        <div class="issue-icon-box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"/>
+                                <path d="M4 14a8 8 0 0 0 16 0"/>
+                                <path d="M12 14v8"/>
+                            </svg>
+                        </div>
+                        <h3 class="issue-card-title">Loss of Biodiversity</h3>
+                        <p class="issue-card-desc">Accelerated ecosystem changes and habitat fragmentation drive native plant and animal species toward extinction, collapsing fragile ecosystem services.</p>
+                        <button class="btn-card-learn">
+                            <span>Learn More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-svg">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Overlay Modal for Issue Cards details -->
+    <div class="modal-overlay" id="details-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-box">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-content" id="modal-body-content">
+                <!-- Dynamically Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3 — The Planet in Numbers -->
+    <section class="stats-section section-padding scroll-trigger" id="stats">
+        <div class="stats-bg-gradient"></div>
+        <div class="container relative-z">
+            <div class="section-center-header">
+                <div class="section-label dark-theme-label">03 // ECOLOGICAL METRICS</div>
+                <h2 class="section-title text-white">The Planet in Numbers</h2>
+                <p class="section-subtitle text-light-gray">Quantifying the state of our environment draws a stark picture of why collective action is required immediately.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <!-- Statistic 1 -->
+                <div class="stat-card section-reveal-up">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number" data-target="70">0</span><span class="stat-suffix">%</span>
+                    </div>
+                    <h4 class="stat-title">Earth's Surface Covered by Water</h4>
+                    <p class="stat-desc">Yet less than 1% of this water is easily accessible, unpolluted fresh water ready for human support.</p>
+                </div>
+                
+                <!-- Statistic 2 -->
+                <div class="stat-card section-reveal-up">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number" data-target="1000000">0</span><span class="stat-suffix">+</span>
+                    </div>
+                    <h4 class="stat-title">Species at Risk of Extinction</h4>
+                    <p class="stat-desc">Accelerating human encroachment has put biodiversity in jeopardy, threatening foundational biological layers.</p>
+                </div>
+                
+                <!-- Statistic 3 -->
+                <div class="stat-card section-reveal-up">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number" data-target="3.6" data-decimals="1">0.0</span><span class="stat-suffix">B</span>
+                    </div>
+                    <h4 class="stat-title">People Vulnerable to Climate Impacts</h4>
+                    <p class="stat-desc">Roughly half human population faces direct risk from extreme weather events, crop losses, and habitat displaces.</p>
+                </div>
+            </div>
+            
+            <!-- Qualitative runner / ticker -->
+            <div class="ticker-wrapper section-reveal-fade">
+                <div class="ticker-title">OUR EVERYDAY RESPONSIBILITY:</div>
+                <div class="ticker-content">
+                    <div class="ticker-item"><span>Reduce</span> • <span>Reuse</span> • <span>Recycle</span></div>
+                    <div class="ticker-item"><span>Reduce</span> • <span>Reuse</span> • <span>Recycle</span></div>
+                    <div class="ticker-item"><span>Reduce</span> • <span>Reuse</span> • <span>Recycle</span></div>
+                    <div class="ticker-item"><span>Reduce</span> • <span>Reuse</span> • <span>Recycle</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4 — Solutions -->
+    <section class="solutions-section section-padding scroll-trigger" id="solutions">
+        <div class="container">
+            <div class="section-center-header">
+                <div class="section-label">04 // MITIGATION PATHWAYS</div>
+                <h2 class="section-title">“Small Actions. Big Impact.”</h2>
+                <p class="section-subtitle">Discover structured environmental solutions. We can restore ecological peace through individual awareness and smart technologies.</p>
+            </div>
+            
+            <div class="solutions-grid">
+                <!-- Solutions Card 1 -->
+                <div class="solution-card section-reveal-up">
+                    <div class="sol-header">
+                        <div class="sol-icon-box">
+                            <!-- Wind Turbine / Sparkle SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"/>
+                                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                            </svg>
+                        </div>
+                        <h3 class="sol-title">Renewable Energy</h3>
+                    </div>
+                    <p class="sol-desc">Support solar power, localized grid batteries, and wind co-ops nearby to displace carbon intensity.</p>
+                </div>
+                
+                <!-- Solutions Card 2 -->
+                <div class="solution-card section-reveal-up">
+                    <div class="sol-header">
+                        <div class="sol-icon-box">
+                            <!-- Plant Sprout SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22V12M12 12H9a3 3 0 0 1-3-3V6a2 2 0 0 1 2-2h1a3 3 0 0 1 3 3v5c0 .5-.5 1-1 1ZM12 12h3a3 3 0 0 0 3-3V6a2 2 0 0 0-2-2h-1a3 3 0 0 0-3 3v5c0 .5.5 1 1 1Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="sol-title">Plant More Trees</h3>
+                    </div>
+                    <p class="sol-desc">Participate in urban reforestation campaigns to rebuild species habitats and foster carbon absorption.</p>
+                </div>
+                
+                <!-- Solutions Card 3 -->
+                <div class="solution-card section-reveal-up">
+                    <div class="sol-header">
+                        <div class="sol-icon-box">
+                            <!-- Save Water Droplet SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-11-7-11S5 10.7 5 15a7 7 0 0 0 7 7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="sol-title">Save Water</h3>
+                    </div>
+                    <p class="sol-desc">Adopt dual-flush mechanics, limit shower runtimes, and practice rainwater collection systems.</p>
+                </div>
+                
+                <!-- Solutions Card 4 -->
+                <div class="solution-card section-reveal-up">
+                    <div class="sol-header">
+                        <div class="sol-icon-box">
+                            <!-- Eco Bag SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zM3 6h18M16 10a4 4 0 0 1-8 0"/>
+                            </svg>
+                        </div>
+                        <h3 class="sol-title">Reduce Plastic</h3>
+                    </div>
+                    <p class="sol-desc">Transition to canvas bags, purchase unpackaged raw foods, and reject single-use plastic utensils.</p>
+                </div>
+                
+                <!-- Solutions Card 5 -->
+                <div class="solution-card section-reveal-up">
+                    <div class="sol-header">
+                        <div class="sol-icon-box">
+                            <!-- Transportation SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="5.5" cy="18.5" r="2.5"/>
+                                <circle cx="18.5" cy="18.5" r="2.5"/>
+                                <path d="M3 16h18V9l-3-4H6L3 9v7zM16 9h4M12 5v11"/>
+                            </svg>
+                        </div>
+                        <h3 class="sol-title">Sustainable Transit</h3>
+                    </div>
+                    <p class="sol-desc">Prioritize electric micro-mobility, public metro lines, and vehicle-pooling routes to work.</p>
+                </div>
+                
+                <!-- Solutions Card 6 -->
+                <div class="solution-card section-reveal-up">
+                    <div class="sol-header">
+                        <div class="sol-icon-box">
+                            <!-- Waste management SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/>
+                            </svg>
+                        </div>
+                        <h3 class="sol-title">Waste Management</h3>
+                    </div>
+                    <p class="sol-desc">Create organic waste backyard composting heaps and follow rigorous sorting protocols local to your district.</p>
+                </div>
+                
+                <!-- Solutions Card 7 -->
+                <div class="solution-card section-reveal-up">
+                    <div class="sol-header">
+                        <div class="sol-icon-box">
+                            <!-- Eco leaf SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 8.48 20 8c1 3.56-1.5 8-9 12Z"/>
+                                <path d="M9 10c2 4 4 4 6 6"/>
+                            </svg>
+                        </div>
+                        <h3 class="sol-title">Eco-Friendly Living</h3>
+                    </div>
+                    <p class="sol-desc">Select zero-impact items, reduce thermostat ranges in winters, and limit heavy consumer goods purchases.</p>
+                </div>
+                
+                <!-- Solutions Card 8 -->
+                <div class="solution-card section-reveal-up">
+                    <div class="sol-header">
+                        <div class="sol-icon-box">
+                            <!-- Protection SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="sol-title">Protect Wildlife</h3>
+                    </div>
+                    <p class="sol-desc">Refrain from buying wildlife products, vote for reserve protections, and eliminate structural chemical toxic runoffs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5 — Sustainability Pillars -->
+    <section class="sustainability-section section-padding bg-light scroll-trigger" id="sustainability">
+        <div class="container">
+            <div class="section-center-header">
+                <div class="section-label">05 // TRIPLE PILLARS</div>
+                <h2 class="section-title">The Three Pillars of Sustainability</h2>
+                <p class="section-subtitle">For humanity to prosper and ecosystems to thrive, sustainability must encompass three interconnected core arenas.</p>
+            </div>
+            
+            <!-- Connected layout cards -->
+            <div class="pillars-container">
+                <!-- Connector SVGs for large screen layout -->
+                <div class="pillars-svg-connector">
+                    <svg viewBox="0 0 800 200" fill="none" stroke="#81C784" stroke-width="3" stroke-dasharray="8 8" class="connector-line animate-dash">
+                        <path d="M150,100 C300,100 350,100 400,100 C450,100 500,100 650,100"/>
+                    </svg>
+                    <div class="connector-pulse p1"></div>
+                    <div class="connector-pulse p2"></div>
+                </div>
+
+                <!-- Pillar 1 -->
+                <div class="pillar-card section-reveal-left">
+                    <div class="pillar-number">A // 01</div>
+                    <div class="pillar-badge badge-env">Environmental</div>
+                    <h3 class="pillar-title">Ecoregion Balance</h3>
+                    <p class="pillar-desc">Protect natural resources and global ecosystems. We emphasize reducing emissions, preserving forests, conserving marine areas, and transitioning completely to renewable electricity.</p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar-card section-reveal-up">
+                    <div class="pillar-number">B // 02</div>
+                    <div class="pillar-badge badge-soc">Social</div>
+                    <h3 class="pillar-title">Community Well-being</h3>
+                    <p class="pillar-desc">Build healthier, more equitable, and highly sustainable communities. Promote fair environmental justice, equal clean resource access, support local agriculture, and green careers.</p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar-card section-reveal-right">
+                    <div class="pillar-number">C // 03</div>
+                    <div class="pillar-badge badge-eco">Economic</div>
+                    <h3 class="pillar-title">Responsible Viability</h3>
+                    <p class="pillar-desc">Support green economic growth. Focus on responsible consumption, closing waste loops with active recycling, rewarding circular supply chains, and green infrastructure funding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6 — Take Action -->
+    <section class="action-section section-padding scroll-trigger" id="take-action">
+        <div class="action-image-overlay" style="background-image: url('assets/enviora_action.png');"></div>
+        <div class="action-bg-mask"></div>
+        <div class="container relative-z">
+            <div class="action-box section-reveal-fade">
+                <div class="section-label dark-theme-label">06 // VOLUNTEER & INVOLVEMENT</div>
+                <h2 class="action-title">“Be Part of the Change.”</h2>
+                <p class="action-desc">Your everyday choices can help create a cleaner, healthier and greener planet. Whether you change personal habits, vote in municipal initiatives, or fund tree plantings, every seed counts.</p>
+                <div class="action-ctas">
+                    <a href="#eco-tips" class="btn btn-hero btn-primary-glowing">Start Your Green Journey</a>
+                    <a href="#contact" class="btn btn-hero btn-secondary">Learn How to Help</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7 — Eco Tips (Interactive Component) -->
+    <section class="tips-section section-padding bg-light scroll-trigger" id="eco-tips">
+        <div class="container">
+            <div class="tips-split-layout">
+                <div class="tips-left-column section-reveal-left">
+                    <div class="section-label">07 // MICRO HABITS</div>
+                    <h2 class="section-title">Habit Transformation</h2>
+                    <p class="section-desc">Big environmental results depend on the accumulation of minor daily decisions. Integrating simple eco tips into your day reduces waste and triggers system changes.</p>
+                    <p class="section-desc">Try adopting one tip every week, mastering it, and introducing it to friends and household members to multiply the climate mitigation effect.</p>
+                </div>
+
+                <div class="tips-right-column section-reveal-right">
+                    <div class="eco-tip-card card-interactive">
+                        <div class="eco-tip-header">
+                            <span class="eco-sprout-emoji">🌱</span>
+                            <span class="eco-badge">Eco Tip of the Day</span>
+                        </div>
+                        <div class="eco-tip-content-box">
+                            <p class="eco-tip-text" id="eco-tip-text">Carry a reusable water bottle instead of buying single-use plastic bottles.</p>
+                        </div>
+                        <div class="eco-tip-footer">
+                            <button class="btn btn-primary btn-icon-only flex-center" id="next-tip-btn">
+                                <span>Show Another Tip</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tip-refresh-svg">
+                                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8 — Contact Form -->
+    <section class="contact-section section-padding scroll-trigger" id="contact">
+        <div class="container">
+            <div class="contact-box-container">
+                <div class="contact-split">
+                    <!-- Text side -->
+                    <div class="contact-text-side section-reveal-left">
+                        <h2 class="contact-brand">ENVIORA</h2>
+                        <h3 class="contact-slogan">“Together for a greener tomorrow.”</h3>
+                        <p class="contact-desc font-light">Have questions about our initiatives, want to contribute content, or look for local reforestation partnerships? Send us a message and our global core team will reach out to you.</p>
+                        
+                        <div class="contact-info-list">
+                            <div class="info-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <span>hello@enviora.org</span>
+                            </div>
+                            <div class="info-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <span>Global Green Node, San Francisco, CA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form side -->
+                    <div class="contact-form-side section-reveal-right">
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="form-name" class="form-label">Full Name</label>
+                                <input type="text" id="form-name" class="form-input" placeholder="Your name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="form-email" class="form-label">Email Address</label>
+                                <input type="email" id="form-email" class="form-input" placeholder="you@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="form-message" class="form-label">Your Message</label>
+                                <textarea id="form-message" class="form-input form-textarea" placeholder="How can we help clean the planet?" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-submit" id="form-submit-btn">
+                                <span>Send Message</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-send-svg">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+
+                            <!-- Custom Success Feedback Alert -->
+                            <div class="form-success-card" id="form-success-box">
+                                <div class="success-icon-wrapper">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="success-text-box">
+                                    <h4 class="success-title">Message Transmitted!</h4>
+                                    <p class="success-text">Thank you. Together, we are building a greener planet.</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-wrapper">
+            <div class="footer-top">
+                <div class="footer-brand-col">
+                    <a href="#home" class="logo footer-logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-svg text-primary">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-dasharray="4 2"/>
+                            <path d="M12 18V9" stroke="#81C784"/>
+                            <path d="M12 12C12 12 14.5 10 16 12C17.5 14 15 15 12 15" stroke="#81C784"/>
+                        </svg>
+                        <span class="logo-text text-white">ENVIORA</span>
+                    </a>
+                    <p class="footer-tagline">“Protect • Preserve • Progress”</p>
+                    <div class="social-links-row">
+                        <!-- Twitter/X -->
+                        <a href="#" class="social-link" aria-label="Follow ENVIORA on Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="#" class="social-link" aria-label="Follow ENVIORA on Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <!-- Linkedin -->
+                        <a href="#" class="social-link" aria-label="Follow ENVIORA on LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4 class="footer-title-small">Navigation</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#my-environment">My Environment</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#issues">Environmental Issues</a></li>
+                        <li><a href="#solutions">Solutions</a></li>
+                        <li><a href="#sustainability">Sustainability</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-col">
+                    <h4 class="footer-title-small">Resources</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="login.html">Sign In / Member Portal</a></li>
+                        <li><a href="#eco-tips">Eco Tips</a></li>
+                        <li><a href="#stats">Planet Metrics</a></li>
+                        <li><a href="#">Security Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 ENVIORA Inc. All rights reserved. Together for a thriving, green biosphere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Environmental Alert Toast Component -->
+    <div id="env-floating-alert-container" class="env-floating-alert-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Interactive script files -->
+    <script src="script.js"></script>
+    <script src="environment.js"></script>
+</body>
+</html>
