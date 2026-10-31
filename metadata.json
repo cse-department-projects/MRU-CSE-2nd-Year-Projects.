@@ -1,0 +1,6 @@
+{
+  "name": "ATLAS - AI Learning Companion",
+  "description": "Next-generation adaptive AI education platform featuring conversational diagnostics, personalized roadmaps, learner DNA synthesis, and 2D tech animal companion avatars.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

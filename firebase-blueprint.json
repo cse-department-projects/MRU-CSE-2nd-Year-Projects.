@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with avatar, stats, learning goal, DNA, and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "stats": { "type": "object" },
+        "avatarConfig": { "type": "object" },
+        "educationProfile": { "type": "object" },
+        "learningGoal": { "type": "object" },
+        "learnerDNA": { "type": "object" },
+        "quests": { "type": "array" },
+        "badges": { "type": "array" },
+        "completedRoadmapNodes": { "type": "array" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid"]
+    },
+    "QuizRecord": {
+      "title": "QuizRecord",
+      "description": "Historical record of completed quiz or assessment session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "dateStr": { "type": "string" },
+        "topicTitle": { "type": "string" },
+        "difficulty": { "type": "string" },
+        "mode": { "type": "string" },
+        "totalQuestions": { "type": "number" },
+        "correctCount": { "type": "number" },
+        "accuracyPercentage": { "type": "number" },
+        "totalPoints": { "type": "number" },
+        "xpEarned": { "type": "number" },
+        "timeSpentSeconds": { "type": "number" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "userId", "topicTitle"]
+    },
+    "RoadmapProgress": {
+      "title": "RoadmapProgress",
+      "description": "Progress state for a specific roadmap learning node",
+      "type": "object",
+      "properties": {
+        "nodeId": { "type": "string" },
+        "userId": { "type": "string" },
+        "status": { "type": "string" },
+        "score": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["nodeId", "userId", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile and main account document"
+    },
+    "/users/{userId}/quizHistory/{quizId}": {
+      "schema": { "$ref": "#/entities/QuizRecord" },
+      "description": "Subcollection of quiz records completed by the user"
+    },
+    "/users/{userId}/roadmapProgress/{nodeId}": {
+      "schema": { "$ref": "#/entities/RoadmapProgress" },
+      "description": "Subcollection of roadmap node progress for the user"
+    }
+  }
+}
