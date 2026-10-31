@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Road Safety & Hospital Notification System
 
 **Department of Computer Science & Engineering**  
@@ -32,3 +33,7 @@ The **Road Safety and Hospital Notification System** is a full-stack web applica
 2. Access in browser:
    - **Web Application**: `http://localhost:8080`
    - **H2 Console**: `http://localhost:8080/h2-console`
+=======
+# MRU-CSE-2nd-Year-Projects
+Upload All Second Year Projects - Mini-projects, Python, Java, web development, DBMS and introductory AI/ML projects
+>>>>>>> college/main
