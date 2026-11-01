@@ -367,11 +367,13 @@ button:hover {
    4. MAIN CONTENT AREA
    --------------------------------------------------------- */
 
-.dashboard-main {
+.dashboard-main,
+.main-content {
     margin-left: 250px;
     width: calc(100% - 250px);
     min-height: 100vh;
     padding: 30px 35px;
+    box-sizing: border-box;
 }
 
 /* ---------------------------------------------------------
@@ -721,7 +723,8 @@ button:hover {
         padding: 15px 5px;
     }
 
-    .dashboard-main {
+    .dashboard-main,
+    .main-content {
         margin-left: 70px;
         width: calc(100% - 70px);
         padding: 25px;
@@ -742,7 +745,8 @@ button:hover {
         font-size: 22px;
     }
 
-    .dashboard-main {
+    .dashboard-main,
+    .main-content {
         padding: 20px 15px;
     }
 

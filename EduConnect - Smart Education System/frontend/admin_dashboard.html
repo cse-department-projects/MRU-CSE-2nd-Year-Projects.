@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect | Administrator Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+        .admin-modal-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            width: 90%;
+            max-width: 520px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+        .admin-table th {
+            padding: 12px 14px;
+            background: #f8fafc;
+            color: #64748b;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .admin-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+        .admin-btn {
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .admin-btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .admin-btn-primary:hover {
+            background: #1d4ed8;
+        }
+        .admin-btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+        }
+        .admin-feedback {
+            display: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .badge-dept {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        /* Responsive Dashboard Layout Fix */
+        .dashboard-main,
+        .main-content {
+            margin-left: 250px !important;
+            width: calc(100% - 250px) !important;
+            min-height: 100vh;
+            padding: 30px 35px !important;
+            box-sizing: border-box !important;
+            background: #f5f7fb;
+            transition: margin-left 0.2s ease, width 0.2s ease;
+        }
+
+        @media (max-width: 800px) {
+            .dashboard-main,
+            .main-content {
+                margin-left: 70px !important;
+                width: calc(100% - 70px) !important;
+                padding: 20px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-main,
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 15px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">E</div>
+                <span>EduConnect</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <p>Admin Portal</p>
+                <a href="#overview" class="nav-link active" data-tab="overview">
+                    <span class="nav-icon">📊</span>
+                    <span>System Overview</span>
+                </a>
+                <a href="#students" class="nav-link" data-tab="students">
+                    <span class="nav-icon">🎓</span>
+                    <span>Student Roster</span>
+                </a>
+                <a href="#faculty" class="nav-link" data-tab="faculty">
+                    <span class="nav-icon">👨‍🏫</span>
+                    <span>Faculty Directory</span>
+                </a>
+                <a href="#courses" class="nav-link" data-tab="courses">
+                    <span class="nav-icon">📚</span>
+                    <span>Course Catalog</span>
+                </a>
+
+                <p style="margin-top: 25px;">Database & System</p>
+                <a href="#database" class="nav-link" data-tab="database">
+                    <span class="nav-icon">⚡</span>
+                    <span>Turso / SQLite Cloud</span>
+                </a>
+
+                <div class="sidebar-footer" style="margin-top: 40px; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <a href="index.html" style="color: #94a3b8; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                        <span>🚪</span>
+                        <span>Sign Out</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main main-content">
+
+            <!-- Top Header -->
+            <header class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+                <div class="dashboard-heading">
+                    <h1 id="page-title" style="margin: 0; font-size: 26px; font-weight: 700; color: #172033;">Administrator Control Center</h1>
+                    <p style="margin: 4px 0 0; font-size: 14px; color: #64748b;">Manage students, faculty appointments, course curricula, and database synchronization.</p>
+                </div>
+                <div class="user-profile" style="display: flex; align-items: center; gap: 12px;">
+                    <div style="text-align: right;">
+                        <span style="display: block; font-weight: 600; font-size: 14px; color: #1e293b;">System Administrator</span>
+                        <span style="font-size: 12px; color: #16a34a; font-weight: 500;">● Database Online</span>
+                    </div>
+                    <div class="profile-avatar" style="width: 42px; height: 42px; border-radius: 50%; background: #0f172a; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;">A</div>
+                </div>
+            </header>
+
+            <div id="admin-global-feedback" class="admin-feedback"></div>
+
+            <!-- TAB 1: OVERVIEW -->
+            <div id="tab-overview" class="tab-content">
+                <div class="stats-grid" style="margin-bottom: 24px;">
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Total Students</span>
+                            <div class="stat-icon" style="background: #eff6ff; color: #2563eb; font-size: 20px;">🎓</div>
+                        </div>
+                        <div class="stat-value" id="stat-students">0</div>
+                        <div class="stat-subtext" id="stat-students-sub">Active enrolled records</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Faculty Staff</span>
+                            <div class="stat-icon" style="background: #f5f3ff; color: #7c3aed; font-size: 20px;">👨‍🏫</div>
+                        </div>
+                        <div class="stat-value" id="stat-faculty" style="color: #7c3aed;">0</div>
+                        <div class="stat-subtext">Professors & Instructors</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Accredited Courses</span>
+                            <div class="stat-icon" style="background: #e0f2fe; color: #0284c7; font-size: 20px;">📚</div>
+                        </div>
+                        <div class="stat-value" id="stat-courses" style="color: #0284c7;">0</div>
+                        <div class="stat-subtext">Active curriculum items</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Database Engine</span>
+                            <div class="stat-icon" style="background: #ecfdf5; color: #16a34a; font-size: 20px;">⚡</div>
+                        </div>
+                        <div class="stat-value" style="color: #16a34a; font-size: 20px;">SQLite / Turso</div>
+                        <div class="stat-subtext">Zero-config embeddable</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card" style="margin-bottom: 24px;">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2>Quick Actions</h2>
+                            <span class="stat-subtext">Administrative management operations</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;">
+                        <button class="admin-btn admin-btn-primary" onclick="openStudentModal()">➕ Add New Student</button>
+                        <button class="admin-btn admin-btn-primary" style="background: #7c3aed;" onclick="openFacultyModal()">➕ Add Faculty Member</button>
+                        <button class="admin-btn admin-btn-primary" style="background: #0284c7;" onclick="openCourseModal()">➕ Add Course</button>
+                        <button class="admin-btn admin-btn-secondary" onclick="loadAllAdminData()">↻ Refresh All Data</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2>System Architecture & Connected Services</h2>
+                        <span class="stat-subtext">High availability educational platform</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 14px;">
+                        <div style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
+                            <div style="font-weight: 700; color: #1e293b; margin-bottom: 4px;">🚀 Backend API</div>
+                            <div style="font-size: 13px; color: #64748b;">Java 17, Spring Boot 4.x / REST MVC running on port 8080.</div>
+                        </div>
+                        <div style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
+                            <div style="font-weight: 700; color: #1e293b; margin-bottom: 4px;">⚡ Database (Turso + SQLite)</div>
+                            <div style="font-size: 13px; color: #64748b;">LibSQL Turso in Mumbai (AWS AP-South-1) with local zero-config SQLite fallback.</div>
+                        </div>
+                        <div style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
+                            <div style="font-weight: 700; color: #1e293b; margin-bottom: 4px;">🌐 Frontend Deployment</div>
+                            <div style="font-size: 13px; color: #64748b;">Vercel CDN Edge Network serving responsive HTML5/CSS3/ES6.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: STUDENTS -->
+            <div id="tab-students" class="tab-content" style="display: none;">
+                <div class="dashboard-card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h2>Student Enrollment Roster</h2>
+                            <span class="stat-subtext">Manage official enrolled student profiles</span>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="studentSearchInput" placeholder="Search by name, roll, dept..." style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; width: 220px;">
+                            <button class="admin-btn admin-btn-primary" onclick="openStudentModal()">➕ Add Student</button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto; margin-top: 15px;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Roll Number</th>
+                                    <th>Department</th>
+                                    <th>Year</th>
+                                    <th>Email</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminStudentsTbody">
+                                <tr><td colspan="7" style="text-align: center; padding: 20px;">Loading student records...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: FACULTY -->
+            <div id="tab-faculty" class="tab-content" style="display: none;">
+                <div class="dashboard-card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h2>Faculty & Teaching Staff</h2>
+                            <span class="stat-subtext">Professors, lecturers, and academic advisors</span>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="facultySearchInput" placeholder="Search faculty..." style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; width: 220px;">
+                            <button class="admin-btn admin-btn-primary" style="background: #8b5cf6;" onclick="openFacultyModal()">➕ Add Faculty</button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto; margin-top: 15px;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Designation</th>
+                                    <th>Department</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminFacultyTbody">
+                                <tr><td colspan="7" style="text-align: center; padding: 20px;">Loading faculty directory...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: COURSES -->
+            <div id="tab-courses" class="tab-content" style="display: none;">
+                <div class="dashboard-card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h2>Curriculum & Course Catalog</h2>
+                            <span class="stat-subtext">Accredited subject offerings and credit mapping</span>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="courseSearchInput" placeholder="Search courses..." style="padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; width: 220px;">
+                            <button class="admin-btn admin-btn-primary" style="background: #0284c7;" onclick="openCourseModal()">➕ Add Course</button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto; margin-top: 15px;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Course Title</th>
+                                    <th>Department</th>
+                                    <th>Credits</th>
+                                    <th>Semester</th>
+                                    <th>Assigned Faculty</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminCoursesTbody">
+                                <tr><td colspan="7" style="text-align: center; padding: 20px;">Loading course catalog...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: DATABASE STATUS -->
+            <div id="tab-database" class="tab-content" style="display: none;">
+                <div class="dashboard-card" style="margin-bottom: 24px;">
+                    <div class="card-header">
+                        <h2>Turso Cloud & SQLite Database Management</h2>
+                        <span class="stat-subtext">Live synchronization and database inspection</span>
+                    </div>
+
+                    <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 16px;">
+                        <div style="padding: 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px;">
+                            <h4 style="margin: 0 0 6px; color: #166534; font-size: 15px;">✅ Turso Cloud Database Active</h4>
+                            <p style="margin: 0; font-size: 13px; color: #14532d;">
+                                Hostname: <code>educonnect-keshvi.aws-ap-south-1.turso.io</code><br>
+                                Organization: <code>keshvi</code> · Region: <code>Mumbai (aws-ap-south-1)</code><br>
+                                Connected schema tables: <code>student</code>, <code>attendance</code>, <code>attendance_session</code>, <code>attendance_record</code>, <code>assignment</code>, <code>assignment_submission</code>, <code>material</code>, <code>result</code>, <code>quiz</code>, <code>faculty</code>, <code>course</code>.
+                            </p>
+                        </div>
+
+                        <div style="padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px;">
+                            <h4 style="margin: 0 0 6px; color: #1e40af; font-size: 15px;">📂 Local Standalone SQLite Database</h4>
+                            <p style="margin: 0; font-size: 13px; color: #1e3a8a;">
+                                Location: <code>database/educonnect.db</code><br>
+                                SQL Backup Script: <code>database/educonnect.sql</code><br>
+                                Converted from MySQL to SQLite for effortless zero-setup execution.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MODAL: ADD / EDIT STUDENT -->
+    <div id="studentModal" class="admin-modal">
+        <div class="admin-modal-card">
+            <h3 id="studentModalTitle" style="margin-top: 0; margin-bottom: 16px; font-size: 18px; color: #0f172a;">Add Enrolled Student</h3>
+            <form id="studentForm" style="display: flex; flex-direction: column; gap: 12px;">
+                <input type="hidden" id="modal-student-id">
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Full Name</label>
+                    <input type="text" id="modal-student-name" required placeholder="e.g. Keshvi" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Roll Number</label>
+                    <input type="text" id="modal-student-roll" required placeholder="e.g. MRU001" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Department</label>
+                    <select id="modal-student-dept" required style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                        <option value="CSE">Computer Science & Engineering (CSE)</option>
+                        <option value="ECE">Electronics & Communication (ECE)</option>
+                        <option value="IT">Information Technology (IT)</option>
+                        <option value="ME">Mechanical Engineering (ME)</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Academic Year</label>
+                    <input type="number" id="modal-student-year" min="1" max="4" value="2" required style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Email Address</label>
+                    <input type="email" id="modal-student-email" required placeholder="keshvi@example.com" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+                    <button type="button" class="admin-btn admin-btn-secondary" onclick="closeStudentModal()">Cancel</button>
+                    <button type="submit" class="admin-btn admin-btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD / EDIT FACULTY -->
+    <div id="facultyModal" class="admin-modal">
+        <div class="admin-modal-card">
+            <h3 id="facultyModalTitle" style="margin-top: 0; margin-bottom: 16px; font-size: 18px; color: #0f172a;">Add Faculty Member</h3>
+            <form id="facultyForm" style="display: flex; flex-direction: column; gap: 12px;">
+                <input type="hidden" id="modal-faculty-id">
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Full Name</label>
+                    <input type="text" id="modal-faculty-name" required placeholder="e.g. Dr. Ananya Sharma" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Designation</label>
+                    <input type="text" id="modal-faculty-desig" required placeholder="e.g. Associate Professor" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Department</label>
+                    <select id="modal-faculty-dept" required style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="IT">IT</option>
+                        <option value="ME">ME</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Email Address</label>
+                    <input type="email" id="modal-faculty-email" required placeholder="faculty@educonnect.edu" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Phone Number</label>
+                    <input type="text" id="modal-faculty-phone" placeholder="+91 9876543210" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+                    <button type="button" class="admin-btn admin-btn-secondary" onclick="closeFacultyModal()">Cancel</button>
+                    <button type="submit" class="admin-btn admin-btn-primary" style="background: #8b5cf6;">Save Faculty</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD / EDIT COURSE -->
+    <div id="courseModal" class="admin-modal">
+        <div class="admin-modal-card">
+            <h3 id="courseModalTitle" style="margin-top: 0; margin-bottom: 16px; font-size: 18px; color: #0f172a;">Add Course Offering</h3>
+            <form id="courseForm" style="display: flex; flex-direction: column; gap: 12px;">
+                <input type="hidden" id="modal-course-id">
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Course Code</label>
+                    <input type="text" id="modal-course-code" required placeholder="e.g. CS201" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Course Title</label>
+                    <input type="text" id="modal-course-name" required placeholder="e.g. Database Management Systems" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Department</label>
+                    <select id="modal-course-dept" required style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                        <option value="CSE">CSE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="IT">IT</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Credits</label>
+                        <input type="number" id="modal-course-credits" min="1" max="6" value="4" required style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Semester</label>
+                        <input type="number" id="modal-course-sem" min="1" max="8" value="3" required style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                    </div>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 4px;">Assigned Instructor</label>
+                    <select id="modal-course-faculty" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px;">
+                        <option value="">Unassigned</option>
+                    </select>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+                    <button type="button" class="admin-btn admin-btn-secondary" onclick="closeCourseModal()">Cancel</button>
+                    <button type="submit" class="admin-btn admin-btn-primary" style="background: #0284c7;">Save Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+    (function () {
+        const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+            ? "http://localhost:8080/api"
+            : "/api";
+
+        let studentsList = [];
+        let facultyList = [];
+        let coursesList = [];
+
+        function showFeedback(msg, isError = false) {
+            const el = document.getElementById("admin-global-feedback");
+            if (!el) return;
+            el.textContent = msg;
+            el.style.display = "block";
+            el.style.background = isError ? "#fef2f2" : "#f0fdf4";
+            el.style.color = isError ? "#991b1b" : "#166534";
+            el.style.border = isError ? "1px solid #fecaca" : "1px solid #bbf7d0";
+            setTimeout(() => { if (el) el.style.display = "none"; }, 4000);
+        }
+
+        // Tab Navigation
+        window.switchTab = function (tabName) {
+            const tabs = ["overview", "students", "faculty", "courses", "database"];
+            if (!tabs.includes(tabName)) tabName = "overview";
+
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                if (el) el.style.display = (t === tabName) ? "block" : "none";
+            });
+
+            document.querySelectorAll(".sidebar-nav a[data-tab]").forEach(link => {
+                if (link.getAttribute("data-tab") === tabName) link.classList.add("active");
+                else link.classList.remove("active");
+            });
+
+            window.location.hash = `#${tabName}`;
+        };
+
+        document.querySelectorAll(".sidebar-nav a[data-tab]").forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                switchTab(this.getAttribute("data-tab"));
+            });
+        });
+
+        // Safe JSON Fetch
+        async function fetchJson(endpoint) {
+            const res = await fetch(`${API_BASE}${endpoint}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+        }
+
+        // Initial Data Load
+        window.loadAllAdminData = async function () {
+            try {
+                const [students, faculty, courses] = await Promise.all([
+                    fetchJson("/students").catch(() => []),
+                    fetchJson("/faculty").catch(() => []),
+                    fetchJson("/courses").catch(() => [])
+                ]);
+
+                studentsList = Array.isArray(students) ? students : [];
+                facultyList = Array.isArray(faculty) ? faculty : [];
+                coursesList = Array.isArray(courses) ? courses : [];
+
+                document.getElementById("stat-students").textContent = studentsList.length;
+                document.getElementById("stat-students-sub").textContent = `${studentsList.length} verified profile${studentsList.length === 1 ? "" : "s"}`;
+                document.getElementById("stat-faculty").textContent = facultyList.length;
+                document.getElementById("stat-courses").textContent = coursesList.length;
+
+                renderStudents(studentsList);
+                renderFaculty(facultyList);
+                renderCourses(coursesList);
+                populateFacultyDropdown(facultyList);
+            } catch (err) {
+                console.error("Admin data load error:", err);
+                showFeedback("Could not synchronize all administrative records: " + err.message, true);
+            }
+        };
+
+        // Render Students
+        function renderStudents(list) {
+            const tbody = document.getElementById("adminStudentsTbody");
+            if (!tbody) return;
+            const query = (document.getElementById("studentSearchInput")?.value || "").toLowerCase();
+            const filtered = list.filter(s =>
+                (s.name || "").toLowerCase().includes(query) ||
+                (s.rollNumber || "").toLowerCase().includes(query) ||
+                (s.department || "").toLowerCase().includes(query) ||
+                (s.email || "").toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 24px; color: #64748b;">No students found matching your criteria.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = "";
+            filtered.forEach(s => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td style="font-weight: 700; color: #64748b;">#${s.id}</td>
+                    <td style="font-weight: 600; color: #0f172a;">${s.name}</td>
+                    <td><code>${s.rollNumber}</code></td>
+                    <td><span class="badge-dept">${s.department}</span></td>
+                    <td>Year ${s.year}</td>
+                    <td>${s.email}</td>
+                    <td style="text-align: right;">
+                        <button class="admin-btn admin-btn-secondary" style="padding: 4px 8px; font-size: 11px; margin-right: 4px;" onclick="editStudent(${s.id})">Edit</button>
+                        <button class="admin-btn" style="padding: 4px 8px; font-size: 11px; background: #fee2e2; color: #991b1b;" onclick="deleteStudent(${s.id})">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Render Faculty
+        function renderFaculty(list) {
+            const tbody = document.getElementById("adminFacultyTbody");
+            if (!tbody) return;
+            const query = (document.getElementById("facultySearchInput")?.value || "").toLowerCase();
+            const filtered = list.filter(f =>
+                (f.name || "").toLowerCase().includes(query) ||
+                (f.designation || "").toLowerCase().includes(query) ||
+                (f.department || "").toLowerCase().includes(query) ||
+                (f.email || "").toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 24px; color: #64748b;">No faculty members found.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = "";
+            filtered.forEach(f => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td style="font-weight: 700; color: #64748b;">#${f.id}</td>
+                    <td style="font-weight: 600; color: #0f172a;">${f.name}</td>
+                    <td>${f.designation}</td>
+                    <td><span class="badge-dept" style="background: #fdf4ff; color: #8b5cf6;">${f.department}</span></td>
+                    <td>${f.email}</td>
+                    <td>${f.phone || "N/A"}</td>
+                    <td style="text-align: right;">
+                        <button class="admin-btn admin-btn-secondary" style="padding: 4px 8px; font-size: 11px; margin-right: 4px;" onclick="editFaculty(${f.id})">Edit</button>
+                        <button class="admin-btn" style="padding: 4px 8px; font-size: 11px; background: #fee2e2; color: #991b1b;" onclick="deleteFaculty(${f.id})">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Render Courses
+        function renderCourses(list) {
+            const tbody = document.getElementById("adminCoursesTbody");
+            if (!tbody) return;
+            const query = (document.getElementById("courseSearchInput")?.value || "").toLowerCase();
+            const filtered = list.filter(c =>
+                (c.courseCode || "").toLowerCase().includes(query) ||
+                (c.courseName || "").toLowerCase().includes(query) ||
+                (c.department || "").toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 24px; color: #64748b;">No courses found.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = "";
+            filtered.forEach(c => {
+                const instructor = facultyList.find(f => f.id === c.facultyId);
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td style="font-weight: 700; color: #0284c7;"><code>${c.courseCode}</code></td>
+                    <td style="font-weight: 600; color: #0f172a;">${c.courseName}</td>
+                    <td><span class="badge-dept" style="background: #f0fdf4; color: #166534;">${c.department}</span></td>
+                    <td>${c.credits} Credits</td>
+                    <td>Semester ${c.semester}</td>
+                    <td>${instructor ? instructor.name : '<span style="color:#94a3b8;">Unassigned</span>'}</td>
+                    <td style="text-align: right;">
+                        <button class="admin-btn admin-btn-secondary" style="padding: 4px 8px; font-size: 11px; margin-right: 4px;" onclick="editCourse(${c.id})">Edit</button>
+                        <button class="admin-btn" style="padding: 4px 8px; font-size: 11px; background: #fee2e2; color: #991b1b;" onclick="deleteCourse(${c.id})">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function populateFacultyDropdown(list) {
+            const select = document.getElementById("modal-course-faculty");
+            if (!select) return;
+            select.innerHTML = '<option value="">Unassigned</option>';
+            list.forEach(f => {
+                const opt = document.createElement("option");
+                opt.value = f.id;
+                opt.textContent = `${f.name} (${f.department})`;
+                select.appendChild(opt);
+            });
+        }
+
+        // Student Modal Handlers
+        window.openStudentModal = function () {
+            document.getElementById("studentForm").reset();
+            document.getElementById("modal-student-id").value = "";
+            document.getElementById("studentModalTitle").textContent = "Add Enrolled Student";
+            document.getElementById("studentModal").style.display = "flex";
+        };
+        window.closeStudentModal = function () {
+            document.getElementById("studentModal").style.display = "none";
+        };
+        window.editStudent = function (id) {
+            const s = studentsList.find(item => item.id === id);
+            if (!s) return;
+            document.getElementById("modal-student-id").value = s.id;
+            document.getElementById("modal-student-name").value = s.name;
+            document.getElementById("modal-student-roll").value = s.rollNumber;
+            document.getElementById("modal-student-dept").value = s.department;
+            document.getElementById("modal-student-year").value = s.year;
+            document.getElementById("modal-student-email").value = s.email;
+            document.getElementById("studentModalTitle").textContent = "Edit Student Profile";
+            document.getElementById("studentModal").style.display = "flex";
+        };
+        window.deleteStudent = async function (id) {
+            if (!confirm(`Are you sure you want to delete student #${id}?`)) return;
+            try {
+                const res = await fetch(`${API_BASE}/students/${id}`, { method: "DELETE" });
+                if (!res.ok) throw new Error("Delete failed");
+                showFeedback("Student record deleted.");
+                loadAllAdminData();
+            } catch (err) {
+                showFeedback("Error deleting student: " + err.message, true);
+            }
+        };
+
+        // Faculty Modal Handlers
+        window.openFacultyModal = function () {
+            document.getElementById("facultyForm").reset();
+            document.getElementById("modal-faculty-id").value = "";
+            document.getElementById("facultyModalTitle").textContent = "Add Faculty Member";
+            document.getElementById("facultyModal").style.display = "flex";
+        };
+        window.closeFacultyModal = function () {
+            document.getElementById("facultyModal").style.display = "none";
+        };
+        window.editFaculty = function (id) {
+            const f = facultyList.find(item => item.id === id);
+            if (!f) return;
+            document.getElementById("modal-faculty-id").value = f.id;
+            document.getElementById("modal-faculty-name").value = f.name;
+            document.getElementById("modal-faculty-desig").value = f.designation;
+            document.getElementById("modal-faculty-dept").value = f.department;
+            document.getElementById("modal-faculty-email").value = f.email;
+            document.getElementById("modal-faculty-phone").value = f.phone || "";
+            document.getElementById("facultyModalTitle").textContent = "Edit Faculty Member";
+            document.getElementById("facultyModal").style.display = "flex";
+        };
+        window.deleteFaculty = async function (id) {
+            if (!confirm(`Are you sure you want to delete faculty #${id}?`)) return;
+            try {
+                const res = await fetch(`${API_BASE}/faculty/${id}`, { method: "DELETE" });
+                if (!res.ok) throw new Error("Delete failed");
+                showFeedback("Faculty member deleted.");
+                loadAllAdminData();
+            } catch (err) {
+                showFeedback("Error deleting faculty: " + err.message, true);
+            }
+        };
+
+        // Course Modal Handlers
+        window.openCourseModal = function () {
+            document.getElementById("courseForm").reset();
+            document.getElementById("modal-course-id").value = "";
+            document.getElementById("courseModalTitle").textContent = "Add Course Offering";
+            document.getElementById("courseModal").style.display = "flex";
+        };
+        window.closeCourseModal = function () {
+            document.getElementById("courseModal").style.display = "none";
+        };
+        window.editCourse = function (id) {
+            const c = coursesList.find(item => item.id === id);
+            if (!c) return;
+            document.getElementById("modal-course-id").value = c.id;
+            document.getElementById("modal-course-code").value = c.courseCode;
+            document.getElementById("modal-course-name").value = c.courseName;
+            document.getElementById("modal-course-dept").value = c.department;
+            document.getElementById("modal-course-credits").value = c.credits;
+            document.getElementById("modal-course-sem").value = c.semester;
+            document.getElementById("modal-course-faculty").value = c.facultyId || "";
+            document.getElementById("courseModalTitle").textContent = "Edit Course Offering";
+            document.getElementById("courseModal").style.display = "flex";
+        };
+        window.deleteCourse = async function (id) {
+            if (!confirm(`Are you sure you want to delete course #${id}?`)) return;
+            try {
+                const res = await fetch(`${API_BASE}/courses/${id}`, { method: "DELETE" });
+                if (!res.ok) throw new Error("Delete failed");
+                showFeedback("Course deleted.");
+                loadAllAdminData();
+            } catch (err) {
+                showFeedback("Error deleting course: " + err.message, true);
+            }
+        };
+
+        // Form Submit Listeners
+        document.getElementById("studentForm")?.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const id = document.getElementById("modal-student-id").value;
+            const payload = {
+                name: document.getElementById("modal-student-name").value,
+                rollNumber: document.getElementById("modal-student-roll").value,
+                department: document.getElementById("modal-student-dept").value,
+                year: Number(document.getElementById("modal-student-year").value),
+                email: document.getElementById("modal-student-email").value
+            };
+            const method = id ? "PUT" : "POST";
+            const url = id ? `${API_BASE}/students/${id}` : `${API_BASE}/students`;
+
+            try {
+                const res = await fetch(url, {
+                    method: method,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                closeStudentModal();
+                showFeedback(id ? "Student profile updated!" : "New student enrolled!");
+                loadAllAdminData();
+            } catch (err) {
+                showFeedback("Save failed: " + err.message, true);
+            }
+        });
+
+        document.getElementById("facultyForm")?.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const id = document.getElementById("modal-faculty-id").value;
+            const payload = {
+                name: document.getElementById("modal-faculty-name").value,
+                designation: document.getElementById("modal-faculty-desig").value,
+                department: document.getElementById("modal-faculty-dept").value,
+                email: document.getElementById("modal-faculty-email").value,
+                phone: document.getElementById("modal-faculty-phone").value
+            };
+            const method = id ? "PUT" : "POST";
+            const url = id ? `${API_BASE}/faculty/${id}` : `${API_BASE}/faculty`;
+
+            try {
+                const res = await fetch(url, {
+                    method: method,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                closeFacultyModal();
+                showFeedback(id ? "Faculty profile updated!" : "Faculty member appointed!");
+                loadAllAdminData();
+            } catch (err) {
+                showFeedback("Save failed: " + err.message, true);
+            }
+        });
+
+        document.getElementById("courseForm")?.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const id = document.getElementById("modal-course-id").value;
+            const facVal = document.getElementById("modal-course-faculty").value;
+            const payload = {
+                courseCode: document.getElementById("modal-course-code").value,
+                courseName: document.getElementById("modal-course-name").value,
+                department: document.getElementById("modal-course-dept").value,
+                credits: Number(document.getElementById("modal-course-credits").value),
+                semester: Number(document.getElementById("modal-course-sem").value),
+                facultyId: facVal ? Number(facVal) : null
+            };
+            const method = id ? "PUT" : "POST";
+            const url = id ? `${API_BASE}/courses/${id}` : `${API_BASE}/courses`;
+
+            try {
+                const res = await fetch(url, {
+                    method: method,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                closeCourseModal();
+                showFeedback(id ? "Course curriculum updated!" : "Course added to catalog!");
+                loadAllAdminData();
+            } catch (err) {
+                showFeedback("Save failed: " + err.message, true);
+            }
+        });
+
+        // Search Listeners
+        document.getElementById("studentSearchInput")?.addEventListener("input", () => renderStudents(studentsList));
+        document.getElementById("facultySearchInput")?.addEventListener("input", () => renderFaculty(facultyList));
+        document.getElementById("courseSearchInput")?.addEventListener("input", () => renderCourses(coursesList));
+
+        // Initial Load
+        const initialTab = (window.location.hash || "").replace("#", "") || "overview";
+        switchTab(initialTab);
+        loadAllAdminData();
+    })();
+    </script>
+</body>
+</html>

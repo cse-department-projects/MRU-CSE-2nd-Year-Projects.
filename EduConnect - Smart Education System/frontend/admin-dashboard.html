@@ -80,6 +80,36 @@
             background: #eff6ff;
             color: #1d4ed8;
         }
+
+        /* Responsive Dashboard Layout Fix */
+        .dashboard-main,
+        .main-content {
+            margin-left: 250px !important;
+            width: calc(100% - 250px) !important;
+            min-height: 100vh;
+            padding: 30px 35px !important;
+            box-sizing: border-box !important;
+            background: #f5f7fb;
+            transition: margin-left 0.2s ease, width 0.2s ease;
+        }
+
+        @media (max-width: 800px) {
+            .dashboard-main,
+            .main-content {
+                margin-left: 70px !important;
+                width: calc(100% - 70px) !important;
+                padding: 20px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-main,
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 15px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -128,20 +158,20 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <main class="dashboard-main main-content">
 
             <!-- Top Header -->
-            <header class="top-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                <div>
-                    <h1 id="page-title" style="margin: 0; font-size: 24px; color: #0f172a;">Administrator Control Center</h1>
-                    <p style="margin: 4px 0 0; font-size: 13px; color: #64748b;">Manage students, faculty appointments, course curricula, and database synchronization.</p>
+            <header class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+                <div class="dashboard-heading">
+                    <h1 id="page-title" style="margin: 0; font-size: 26px; font-weight: 700; color: #172033;">Administrator Control Center</h1>
+                    <p style="margin: 4px 0 0; font-size: 14px; color: #64748b;">Manage students, faculty appointments, course curricula, and database synchronization.</p>
                 </div>
                 <div class="user-profile" style="display: flex; align-items: center; gap: 12px;">
                     <div style="text-align: right;">
                         <span style="display: block; font-weight: 600; font-size: 14px; color: #1e293b;">System Administrator</span>
-                        <span style="font-size: 12px; color: #16a34a;">● Database Online</span>
+                        <span style="font-size: 12px; color: #16a34a; font-weight: 500;">● Database Online</span>
                     </div>
-                    <div class="profile-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: #0f172a; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700;">A</div>
+                    <div class="profile-avatar" style="width: 42px; height: 42px; border-radius: 50%; background: #0f172a; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;">A</div>
                 </div>
             </header>
 
@@ -151,22 +181,34 @@
             <div id="tab-overview" class="tab-content">
                 <div class="stats-grid" style="margin-bottom: 24px;">
                     <div class="stat-card">
-                        <div class="stat-title">Total Students</div>
+                        <div class="stat-top">
+                            <span class="stat-label">Total Students</span>
+                            <div class="stat-icon" style="background: #eff6ff; color: #2563eb; font-size: 20px;">🎓</div>
+                        </div>
                         <div class="stat-value" id="stat-students">0</div>
                         <div class="stat-subtext" id="stat-students-sub">Active enrolled records</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-title">Faculty Staff</div>
-                        <div class="stat-value" id="stat-faculty" style="color: #2563eb;">0</div>
+                        <div class="stat-top">
+                            <span class="stat-label">Faculty Staff</span>
+                            <div class="stat-icon" style="background: #f5f3ff; color: #7c3aed; font-size: 20px;">👨‍🏫</div>
+                        </div>
+                        <div class="stat-value" id="stat-faculty" style="color: #7c3aed;">0</div>
                         <div class="stat-subtext">Professors & Instructors</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-title">Accredited Courses</div>
-                        <div class="stat-value" id="stat-courses" style="color: #8b5cf6;">0</div>
+                        <div class="stat-top">
+                            <span class="stat-label">Accredited Courses</span>
+                            <div class="stat-icon" style="background: #e0f2fe; color: #0284c7; font-size: 20px;">📚</div>
+                        </div>
+                        <div class="stat-value" id="stat-courses" style="color: #0284c7;">0</div>
                         <div class="stat-subtext">Active curriculum items</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-title">Database Engine</div>
+                        <div class="stat-top">
+                            <span class="stat-label">Database Engine</span>
+                            <div class="stat-icon" style="background: #ecfdf5; color: #16a34a; font-size: 20px;">⚡</div>
+                        </div>
                         <div class="stat-value" style="color: #16a34a; font-size: 20px;">SQLite / Turso</div>
                         <div class="stat-subtext">Zero-config embeddable</div>
                     </div>
@@ -181,7 +223,7 @@
                     </div>
                     <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;">
                         <button class="admin-btn admin-btn-primary" onclick="openStudentModal()">➕ Add New Student</button>
-                        <button class="admin-btn admin-btn-primary" style="background: #8b5cf6;" onclick="openFacultyModal()">➕ Add Faculty Member</button>
+                        <button class="admin-btn admin-btn-primary" style="background: #7c3aed;" onclick="openFacultyModal()">➕ Add Faculty Member</button>
                         <button class="admin-btn admin-btn-primary" style="background: #0284c7;" onclick="openCourseModal()">➕ Add Course</button>
                         <button class="admin-btn admin-btn-secondary" onclick="loadAllAdminData()">↻ Refresh All Data</button>
                     </div>
@@ -203,7 +245,7 @@
                         </div>
                         <div style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
                             <div style="font-weight: 700; color: #1e293b; margin-bottom: 4px;">🌐 Frontend Deployment</div>
-                            <div style="font-size: 13px; color: #64748b;">Vercel CDN Edge Network serving responsive responsive HTML5/CSS3/ES6.</div>
+                            <div style="font-size: 13px; color: #64748b;">Vercel CDN Edge Network serving responsive HTML5/CSS3/ES6.</div>
                         </div>
                     </div>
                 </div>
