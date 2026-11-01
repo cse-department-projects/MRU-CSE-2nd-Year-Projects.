@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government Schemes – Rural One</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+  <button class="floating-sidebar-toggle sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i class="bi bi-list"></i></button>
+<div class="app-layout">
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="sidebar-brand">
+      <img src="images/logo-mark.svg" alt="Rural One" class="sidebar-logo">
+      <div>
+        <strong>Rural One</strong>
+        <small>Village Portal</small>
+      </div>
+    </div>
+    <div class="sidebar-section-label">Main Menu</div>
+    <nav class="sidebar-nav">
+      <a href="index.html"><i class="bi bi-house-door-fill"></i> <span>Home</span></a>
+      <a href="about.html"><i class="bi bi-info-circle"></i> <span>About</span></a>
+      <a href="citizens.html"><i class="bi bi-people"></i> <span>Citizens</span></a>
+      <a href="farmers.html"><i class="bi bi-flower1"></i> <span>Farmers</span></a>
+      <a href="schemes.html" class="active"><i class="bi bi-journal-check"></i> <span>Schemes</span></a>
+      <a href="complaints.html"><i class="bi bi-chat-dots"></i> <span>Complaints</span></a>
+      <a href="jobs.html"><i class="bi bi-briefcase"></i> <span>Jobs</span></a>
+      <a href="weather.html"><i class="bi bi-cloud-sun"></i> <span>Weather</span></a>
+      <a href="calendar.html"><i class="bi bi-calendar3"></i> <span>Calendar</span></a>
+      <a href="shg.html"><i class="bi bi-people-fill"></i> <span>SHG</span></a>
+      <a href="residents.html"><i class="bi bi-house"></i> <span>Residents</span></a>
+      <a href="dashboard.html"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
+      <a href="announcements.html"><i class="bi bi-megaphone"></i> <span>Announcements</span></a>
+      <a href="health-services.html"><i class="bi bi-heart-pulse"></i> <span>Health Services</span></a>
+      <a href="feedback.html"><i class="bi bi-star"></i> <span>Feedback</span></a>
+      <a href="contact.html"><i class="bi bi-telephone"></i> <span>Contact</span></a>
+      <a href="profile.html"><i class="bi bi-person-circle"></i> <span>Profile</span></a>
+      <a href="settings.html"><i class="bi bi-gear"></i> <span>Settings</span></a>
+      <a href="login.html"><i class="bi bi-box-arrow-in-right"></i> <span>Login</span></a>
+    </nav>
+    <div class="sidebar-section-label">Quick Actions</div>
+    <div class="sidebar-quick">
+      <a href="complaints.html"><i class="bi bi-pencil-square"></i> Complaint</a>
+      <a href="schemes.html"><i class="bi bi-journal-check"></i> Schemes</a>
+      <a href="jobs.html"><i class="bi bi-briefcase"></i> Jobs</a>
+      <a href="weather.html"><i class="bi bi-cloud-sun"></i> Weather</a>
+    </div>
+    <div class="sidebar-stats">
+      <div class="sidebar-stat"><span>2,450</span><small>Citizens</small></div>
+      <div class="sidebar-stat"><span>380</span><small>Farmers</small></div>
+      <div class="sidebar-stat"><span>12</span><small>Open Issues</small></div>
+    </div>
+    <div class="sidebar-footer-box">
+      <i class="bi bi-geo-alt-fill"></i>
+      <div>
+        <strong>Rampur Village</strong>
+        <small>Office: Mon–Sat 10AM–5PM</small>
+      </div>
+    </div>
+  </aside>
+    <div class="app-main">
+<section class="page-hero">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Schemes</div>
+        <h1>Government Schemes</h1>
+        <p>Eligibility, benefits and how to apply</p>
+      </section>
+      <section class="section">
+        <div class="filter-bar">
+          <input type="text" class="form-control" id="searchInput" placeholder="Search schemes..." style="min-width:200px;">
+          <button class="btn btn-outline-green active" data-cat-filter="">All</button>
+          <button class="btn btn-outline-green" data-cat-filter="agri">Agriculture</button>
+          <button class="btn btn-outline-green" data-cat-filter="health">Health</button>
+          <button class="btn btn-outline-green" data-cat-filter="emp">Employment</button>
+          <button class="btn btn-outline-green" data-cat-filter="social">Social</button>
+        </div>
+        <div class="grid-auto" id="schemesGrid">
+          <div class="card card-body" data-category="agri" data-search="pm kisan" data-scheme="pm-kisan">
+            <span class="badge badge-success">Active</span>
+            <h4 style="margin:0.6rem 0;">PM-KISAN</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Income support of ₹6,000/year to land-holding farmer families in three instalments.</p>
+            <p style="font-size:0.88rem;"><strong>Eligibility:</strong> Land-holding farmers<br><strong>Benefits:</strong> ₹2,000 every 4 months</p>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-apply" data-scheme="pm-kisan" data-title="PM-KISAN">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-details" data-scheme="pm-kisan">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="agri" data-search="fasal bima" data-scheme="fasal-bima">
+            <span class="badge badge-success">Active</span>
+            <h4 style="margin:0.6rem 0;">PM Fasal Bima Yojana</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Crop insurance against natural calamities, pests and diseases.</p>
+            <p style="font-size:0.88rem;"><strong>Eligibility:</strong> Farmers growing notified crops<br><strong>Benefits:</strong> Compensation for crop loss</p>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-apply" data-scheme="fasal-bima" data-title="PM Fasal Bima Yojana">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-details" data-scheme="fasal-bima">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="agri" data-search="soil health" data-scheme="soil-health">
+            <span class="badge badge-success">Active</span>
+            <h4 style="margin:0.6rem 0;">Soil Health Card</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Free soil testing and fertiliser recommendations.</p>
+            <p style="font-size:0.88rem;"><strong>Eligibility:</strong> Any farmer<br><strong>Benefits:</strong> Printed nutrient status card</p>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-apply" data-scheme="soil-health" data-title="Soil Health Card">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-details" data-scheme="soil-health">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="agri" data-search="kisan credit" data-scheme="kcc">
+            <span class="badge badge-success">Active</span>
+            <h4 style="margin:0.6rem 0;">Kisan Credit Card</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Short-term credit for agriculture at low interest.</p>
+            <p style="font-size:0.88rem;"><strong>Eligibility:</strong> Farmers, tenant farmers, agri SHGs<br><strong>Benefits:</strong> Flexible credit + interest subvention</p>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-apply" data-scheme="kcc" data-title="Kisan Credit Card">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-details" data-scheme="kcc">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="emp" data-search="mgnrega" data-scheme="mgnrega">
+            <span class="badge badge-info">Ongoing</span>
+            <h4 style="margin:0.6rem 0;">MGNREGA</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Guaranteed 100 days of wage employment for rural households.</p>
+            <p style="font-size:0.88rem;"><strong>Eligibility:</strong> Adult rural household members<br><strong>Benefits:</strong> Wage employment + job card</p>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-apply" data-scheme="mgnrega" data-title="MGNREGA">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-details" data-scheme="mgnrega">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="health" data-search="ayushman" data-scheme="ayushman">
+            <span class="badge badge-success">Active</span>
+            <h4 style="margin:0.6rem 0;">Ayushman Bharat</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Health insurance for secondary and tertiary care.</p>
+            <p style="font-size:0.88rem;"><strong>Eligibility:</strong> As per SECC / state list<br><strong>Benefits:</strong> Up to ₹5 lakh cover per family</p>
+            <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-apply" data-scheme="ayushman" data-title="Ayushman Bharat">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-details" data-scheme="ayushman">View Details</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+  <!-- Scheme Details Modal -->
+  <div class="modal-overlay" id="detailsModal" role="dialog" aria-modal="true">
+    <div class="modal-box modal-wide">
+      <div class="modal-header">
+        <h3 id="detailsTitle">Scheme Details</h3>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body" id="detailsBody"></div>
+    </div>
+  </div>
+
+  <!-- Scheme Apply Modal -->
+  <div class="modal-overlay" id="applyModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="applyTitle">Apply for Scheme</h3>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="schemeApplyForm" data-demo data-success="Application submitted successfully! (Demo mode)">
+          <input type="hidden" id="applySchemeId" name="schemeId">
+          <div class="form-group">
+            <label>Scheme</label>
+            <input type="text" class="form-control" id="applySchemeName" readonly>
+          </div>
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" class="form-control" name="fullName" placeholder="As per Aadhaar" required>
+          </div>
+          <div class="form-group">
+            <label>Mobile Number *</label>
+            <input type="tel" class="form-control" name="mobile" placeholder="10-digit mobile" pattern="[0-9]{10}" required>
+          </div>
+          <div class="form-group">
+            <label>Aadhaar Number *</label>
+            <input type="text" class="form-control" name="aadhaar" placeholder="12-digit Aadhaar" pattern="[0-9]{12}" required>
+          </div>
+          <div class="form-group">
+            <label>Village / Ward</label>
+            <input type="text" class="form-control" name="village" value="Rampur" placeholder="Village name">
+          </div>
+          <div class="form-group">
+            <label>Land Survey No. (if applicable)</label>
+            <input type="text" class="form-control" name="surveyNo" placeholder="Optional">
+          </div>
+          <div class="form-group">
+            <label>Remarks</label>
+            <textarea class="form-control" name="remarks" rows="2" placeholder="Any additional information"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-green"><i class="bi bi-send"></i> Submit Application</button>
+            <button type="button" class="btn btn-outline-green" data-close-modal>Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h5><img src="images/logo-mark.svg" alt="" class="footer-logo"> Rural One</h5>
+          <p>A simple digital platform for village administration, farmers, schemes, jobs and citizen services.</p>
+          <div class="footer-social">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-whatsapp"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h5>Quick Links</h5>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="schemes.html">Schemes</a>
+          <a href="jobs.html">Jobs</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="announcements.html">Announcements</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html">Login</a>
+        </div>
+        <div>
+          <h5>Services</h5>
+          <a href="citizens.html">Citizens</a>
+          <a href="farmers.html">Farmers</a>
+          <a href="complaints.html">Complaints</a>
+          <a href="health-services.html">Health Services</a>
+          <a href="shg.html">Self Help Groups</a>
+          <a href="weather.html">Weather</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="residents.html">Residents</a>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <p><i class="bi bi-geo-alt"></i> Gram Panchayat Office, Rampur</p>
+          <p><i class="bi bi-telephone"></i> +91 98765 44000</p>
+          <p><i class="bi bi-envelope"></i> office@rampur-village.gov.in</p>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Rural One. All rights reserved.</div>
+    </div>
+  </footer>
+    </div>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <script src="js/script.js"></script>
+
+  <script>
+  (function () {
+    const schemeDetails = {
+      'pm-kisan': {
+        title: 'PM-KISAN',
+        status: 'Active',
+        category: 'Agriculture',
+        summary: 'Pradhan Mantri Kisan Samman Nidhi provides income support of ₹6,000 per year to land-holding farmer families.',
+        eligibility: [
+          'Land-holding farmer families',
+          'Name must appear in land records',
+          'Exclusions: institutional land holders, higher-income professionals as per guidelines'
+        ],
+        benefits: [
+          '₹6,000 per year in three equal instalments of ₹2,000',
+          'Direct Benefit Transfer (DBT) to bank account'
+        ],
+        documents: ['Aadhaar', 'Bank passbook', 'Land ownership documents', 'Mobile number linked to Aadhaar'],
+        howToApply: 'Apply online on the PM-KISAN portal or at the Gram Panchayat / Common Service Centre with required documents.',
+        office: 'Gram Panchayat Office, Rampur · Krishi Seva Kendra'
+      },
+      'fasal-bima': {
+        title: 'PM Fasal Bima Yojana',
+        status: 'Active',
+        category: 'Agriculture',
+        summary: 'Crop insurance scheme covering yield losses due to natural calamities, pests and diseases.',
+        eligibility: [
+          'All farmers growing notified crops in notified areas',
+          'Loanee and non-loanee farmers can enrol'
+        ],
+        benefits: [
+          'Compensation for crop loss as per scheme norms',
+          'Low premium for farmers (rest subsidised by government)'
+        ],
+        documents: ['Aadhaar', 'Bank account details', 'Land records / sowing certificate', 'Crop details'],
+        howToApply: 'Enrol through banks, CSCs, or the national crop insurance portal before the cut-off date for the season.',
+        office: 'Krishi Seva Kendra / Cooperative Bank, Rampur'
+      },
+      'soil-health': {
+        title: 'Soil Health Card',
+        status: 'Active',
+        category: 'Agriculture',
+        summary: 'Free soil testing and crop-wise fertiliser recommendations for better yields and lower input cost.',
+        eligibility: ['Any farmer in the village'],
+        benefits: [
+          'Printed Soil Health Card with nutrient status',
+          'Recommended fertiliser doses for major crops'
+        ],
+        documents: ['Aadhaar or farmer ID', 'Land details (optional)'],
+        howToApply: 'Submit soil sample at Krishi Seva Kendra or request collection during village camps.',
+        office: 'Krishi Seva Kendra, Rampur'
+      },
+      'kcc': {
+        title: 'Kisan Credit Card',
+        status: 'Active',
+        category: 'Agriculture',
+        summary: 'Short-term credit facility for crop production, post-harvest and allied activities at concessional interest.',
+        eligibility: [
+          'Farmers (individual / joint)',
+          'Tenant farmers, sharecroppers',
+          'Self Help Groups and Joint Liability Groups of farmers'
+        ],
+        benefits: [
+          'Flexible credit limit based on crop and land',
+          'Interest subvention as per government norms',
+          'Insurance coverage options'
+        ],
+        documents: ['Aadhaar', 'Land documents / cultivation proof', 'Bank account', 'Passport-size photo'],
+        howToApply: 'Apply at any commercial / cooperative / regional rural bank branch or through the village CSC.',
+        office: 'Cooperative Bank / Bank branch, Rampur'
+      },
+      'mgnrega': {
+        title: 'MGNREGA',
+        status: 'Ongoing',
+        category: 'Employment',
+        summary: 'Mahatma Gandhi National Rural Employment Guarantee Act guarantees 100 days of wage employment in a financial year to rural households.',
+        eligibility: [
+          'Adult members of rural households',
+          'Willing to do unskilled manual work'
+        ],
+        benefits: [
+          'Job card',
+          'Guaranteed wage employment (up to 100 days)',
+          'Unemployment allowance if work not provided in time'
+        ],
+        documents: ['Aadhaar', 'Job card application form', 'Passport photo', 'Bank/post office account'],
+        howToApply: 'Register at the Gram Panchayat. Demand work using Form 6 when needed.',
+        office: 'Gram Panchayat Office, Rampur'
+      },
+      'ayushman': {
+        title: 'Ayushman Bharat (PM-JAY)',
+        status: 'Active',
+        category: 'Health',
+        summary: 'Health insurance covering secondary and tertiary hospitalisation up to ₹5 lakh per family per year.',
+        eligibility: [
+          'Families as per SECC / state eligibility list',
+          'Verify entitlement on the official portal or at PHC'
+        ],
+        benefits: [
+          'Cashless treatment at empaneled hospitals',
+          'Cover up to ₹5 lakh per family per year'
+        ],
+        documents: ['Aadhaar', 'Ration card / SECC details', 'Mobile number'],
+        howToApply: 'Check eligibility online or at the Primary Health Centre. Golden Card can be generated at CSC / hospital kiosk.',
+        office: 'PHC Rampur / Common Service Centre'
+      }
+    };
+
+    const detailsModal = document.getElementById('detailsModal');
+    const applyModal = document.getElementById('applyModal');
+    const detailsBody = document.getElementById('detailsBody');
+    const detailsTitle = document.getElementById('detailsTitle');
+
+    function openModal(el) { el.classList.add('show'); document.body.style.overflow = 'hidden'; }
+    function closeModal(el) { el.classList.remove('show'); document.body.style.overflow = ''; }
+    function closeAll() {
+      closeModal(detailsModal);
+      closeModal(applyModal);
+    }
+
+    document.querySelectorAll('[data-close-modal]').forEach(btn => {
+      btn.addEventListener('click', closeAll);
+    });
+    [detailsModal, applyModal].forEach(m => {
+      m.addEventListener('click', e => { if (e.target === m) closeAll(); });
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+
+    document.querySelectorAll('.btn-details').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.scheme;
+        const d = schemeDetails[id];
+        if (!d) return;
+        detailsTitle.textContent = d.title;
+        detailsBody.innerHTML = `
+          <span class="badge badge-success" style="margin-bottom:0.75rem;">${d.status}</span>
+          <span class="badge badge-info" style="margin-bottom:0.75rem;margin-left:0.35rem;">${d.category}</span>
+          <div class="detail-row"><strong>About</strong><p style="margin:0;color:var(--text);">${d.summary}</p></div>
+          <div class="detail-row"><strong>Eligibility</strong><ul>${d.eligibility.map(x => '<li>'+x+'</li>').join('')}</ul></div>
+          <div class="detail-row"><strong>Benefits</strong><ul>${d.benefits.map(x => '<li>'+x+'</li>').join('')}</ul></div>
+          <div class="detail-row"><strong>Documents Required</strong><ul>${d.documents.map(x => '<li>'+x+'</li>').join('')}</ul></div>
+          <div class="detail-row"><strong>How to Apply</strong><p style="margin:0;">${d.howToApply}</p></div>
+          <div class="detail-row"><strong>Contact Office</strong><p style="margin:0;"><i class="bi bi-geo-alt"></i> ${d.office}</p></div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-green btn-sm" id="detailsApplyBtn" data-scheme="${id}" data-title="${d.title}"><i class="bi bi-pencil-square"></i> Apply Now</button>
+            <button type="button" class="btn btn-outline-green btn-sm" data-close-modal>Close</button>
+          </div>
+        `;
+        openModal(detailsModal);
+        document.getElementById('detailsApplyBtn').addEventListener('click', function () {
+          closeModal(detailsModal);
+          openApply(this.dataset.scheme, this.dataset.title);
+        });
+      });
+    });
+
+    function openApply(id, title) {
+      document.getElementById('applySchemeId').value = id;
+      document.getElementById('applySchemeName').value = title;
+      document.getElementById('applyTitle').textContent = 'Apply – ' + title;
+      openModal(applyModal);
+    }
+
+    document.querySelectorAll('.btn-apply').forEach(btn => {
+      btn.addEventListener('click', () => openApply(btn.dataset.scheme, btn.dataset.title));
+    });
+  })();
+  </script>
+
+</body>
+</html>

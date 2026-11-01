@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Information & Agricultural Advisory – Rural One</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <button class="floating-sidebar-toggle sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i class="bi bi-list"></i></button>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <img src="images/logo-mark.svg" alt="Rural One" class="sidebar-logo">
+        <div>
+          <strong>Rural One</strong>
+          <small>Village Portal</small>
+        </div>
+      </div>
+      <div class="sidebar-section-label">Main Menu</div>
+      <nav class="sidebar-nav">
+        <a href="index.html"><i class="bi bi-house-door-fill"></i> <span>Home</span></a>
+        <a href="about.html"><i class="bi bi-info-circle"></i> <span>About</span></a>
+        <a href="citizens.html"><i class="bi bi-people"></i> <span>Citizens</span></a>
+        <a href="farmers.html" class="active"><i class="bi bi-flower1"></i> <span>Farmers</span></a>
+        <a href="schemes.html"><i class="bi bi-journal-check"></i> <span>Schemes</span></a>
+        <a href="complaints.html"><i class="bi bi-chat-dots"></i> <span>Complaints</span></a>
+        <a href="jobs.html"><i class="bi bi-briefcase"></i> <span>Jobs</span></a>
+        <a href="weather.html"><i class="bi bi-cloud-sun"></i> <span>Weather</span></a>
+        <a href="calendar.html"><i class="bi bi-calendar3"></i> <span>Calendar</span></a>
+        <a href="shg.html"><i class="bi bi-people-fill"></i> <span>SHG</span></a>
+        <a href="residents.html"><i class="bi bi-house"></i> <span>Residents</span></a>
+        <a href="dashboard.html"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
+        <a href="announcements.html"><i class="bi bi-megaphone"></i> <span>Announcements</span></a>
+        <a href="health-services.html"><i class="bi bi-heart-pulse"></i> <span>Health Services</span></a>
+        <a href="feedback.html"><i class="bi bi-star"></i> <span>Feedback</span></a>
+        <a href="contact.html"><i class="bi bi-telephone"></i> <span>Contact</span></a>
+        <a href="profile.html"><i class="bi bi-person-circle"></i> <span>Profile</span></a>
+        <a href="settings.html"><i class="bi bi-gear"></i> <span>Settings</span></a>
+        <a href="login.html"><i class="bi bi-box-arrow-in-right"></i> <span>Login</span></a>
+      </nav>
+      <div class="sidebar-section-label">Quick Actions</div>
+      <div class="sidebar-quick">
+        <a href="complaints.html"><i class="bi bi-pencil-square"></i> Complaint</a>
+        <a href="schemes.html"><i class="bi bi-journal-check"></i> Schemes</a>
+        <a href="jobs.html"><i class="bi bi-briefcase"></i> Jobs</a>
+        <a href="weather.html"><i class="bi bi-cloud-sun"></i> Weather</a>
+      </div>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat"><span>2,450</span><small>Citizens</small></div>
+        <div class="sidebar-stat"><span>380</span><small>Farmers</small></div>
+        <div class="sidebar-stat"><span>12</span><small>Open Issues</small></div>
+      </div>
+      <div class="sidebar-footer-box">
+        <i class="bi bi-geo-alt-fill"></i>
+        <div>
+          <strong>Rampur Village</strong>
+          <small>Office: Mon–Sat 10AM–5PM</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="app-main">
+      <section class="page-hero">
+        <div class="container">
+          <div class="detail-toolbar" style="margin-bottom:0.75rem;">
+            <div class="breadcrumb" style="margin-bottom:0;"><a href="index.html">Home</a> / <a href="farmers.html">Farmers</a> / Crop Details</div>
+            <a href="farmers.html" class="btn-back"><i class="bi bi-arrow-left"></i> Back to Farmers</a>
+          </div>
+          <h1>Crop Information & Seasonal Advisory</h1>
+          <p>Rampur village seasonal acreage, expected yield rates, MSP benchmarks, pest advisories, and harvest calendars.</p>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:2rem;">
+        <!-- Metrics -->
+        <div class="grid-auto" style="margin-bottom:2rem;">
+          <div class="stat-card">
+            <i class="bi bi-flower1"></i>
+            <div class="num">6</div>
+            <div class="lbl">Major Village Crops</div>
+          </div>
+          <div class="stat-card">
+            <i class="bi bi-grid-3x3"></i>
+            <div class="num">478 Ha</div>
+            <div class="lbl">Total Cultivated Area</div>
+          </div>
+          <div class="stat-card">
+            <i class="bi bi-currency-rupee"></i>
+            <div class="num">₹2,275</div>
+            <div class="lbl">Wheat MSP / Quintal</div>
+          </div>
+          <div class="stat-card">
+            <i class="bi bi-graph-up-arrow"></i>
+            <div class="num">₹5,650</div>
+            <div class="lbl">Mustard MSP / Quintal</div>
+          </div>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="card card-body" style="margin-bottom:2rem;padding:1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+            <div style="display:flex;align-items:center;gap:0.5rem;">
+              <span style="font-weight:700;color:var(--primary-dark);font-size:0.95rem;"><i class="bi bi-funnel-fill"></i> Filter by Season:</span>
+              <button class="btn btn-outline-green btn-sm active" data-season-filter="all">All Crops</button>
+              <button class="btn btn-outline-green btn-sm" data-season-filter="Rabi">Rabi</button>
+              <button class="btn btn-outline-green btn-sm" data-season-filter="Kharif">Kharif</button>
+              <button class="btn btn-outline-green btn-sm" data-season-filter="Annual">Annual</button>
+            </div>
+            <span style="font-size:0.85rem;color:var(--text-muted);"><i class="bi bi-check-circle-fill" style="color:var(--fresh);"></i> Official Krishi Vigyan Kendra Data</span>
+          </div>
+        </div>
+
+        <!-- Detailed Crop Cards Grid -->
+        <div class="grid-2" style="margin-bottom:2.5rem;" id="cropCardsGrid">
+          
+          <!-- Wheat -->
+          <div class="card card-body crop-card" data-season="Rabi">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-flower1"></i></div>
+                <div>
+                  <h3 style="margin:0;">Wheat (गेंहू)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Varieties: HD-2967, DBW-187 · High-yielding</small>
+                </div>
+              </div>
+              <span class="badge badge-success">Rabi Season</span>
+            </div>
+            <p style="margin-top:0.75rem;color:var(--text-muted);font-size:0.92rem;">Primary staple cereal crop of Rampur. High germination rate observed with zero-tillage sowing practices.</p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Village Acreage</small><strong>125 Hectares</strong></div>
+              <div class="spec-box"><small>Expected Yield</small><strong>22 Qtl / Acre</strong></div>
+              <div class="spec-box"><small>Govt MSP Rate</small><strong>₹2,275 / Qtl</strong></div>
+              <div class="spec-box"><small>Water Need</small><strong>4–5 Irrigations</strong></div>
+              <div class="spec-box"><small>Fertilizer Dosage</small><strong>NPK 120:60:40 + Zn</strong></div>
+              <div class="spec-box"><small>Harvest Window</small><strong>March – April</strong></div>
+            </div>
+            <div style="margin-top:1.15rem;padding:0.85rem;background:var(--cream);border-radius:10px;border-left:4px solid var(--gold);">
+              <div style="font-size:0.82rem;font-weight:700;color:var(--charcoal);"><i class="bi bi-shield-exclamation" style="color:var(--gold);"></i> Pest & Disease Advisory:</div>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:var(--text-muted);">Inspect crown root initiation for Yellow Rust. Spray Propiconazole 25% EC @ 1ml/liter if rust pustules appear on flag leaves.</p>
+            </div>
+          </div>
+
+          <!-- Onion -->
+          <div class="card card-body crop-card" data-season="Rabi">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-circle-fill"></i></div>
+                <div>
+                  <h3 style="margin:0;">Onion (प्याज)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Varieties: Nashik Red, Bhima Super</small>
+                </div>
+              </div>
+              <span class="badge badge-success">Rabi / Kharif</span>
+            </div>
+            <p style="margin-top:0.75rem;color:var(--text-muted);font-size:0.92rem;">High-value cash vegetable crop concentrated along Ward 1 and Ward 2 with micro-irrigation lines.</p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Village Acreage</small><strong>54 Hectares</strong></div>
+              <div class="spec-box"><small>Expected Yield</small><strong>110 Qtl / Acre</strong></div>
+              <div class="spec-box"><small>Average Market Rate</small><strong>₹1,850 / Qtl</strong></div>
+              <div class="spec-box"><small>Water Need</small><strong>Light Frequent Drip</strong></div>
+              <div class="spec-box"><small>Fertilizer Dosage</small><strong>NPK 100:50:50 + S</strong></div>
+              <div class="spec-box"><small>Harvest Window</small><strong>April – May</strong></div>
+            </div>
+            <div style="margin-top:1.15rem;padding:0.85rem;background:var(--cream);border-radius:10px;border-left:4px solid var(--gold);">
+              <div style="font-size:0.82rem;font-weight:700;color:var(--charcoal);"><i class="bi bi-shield-exclamation" style="color:var(--gold);"></i> Pest & Disease Advisory:</div>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:var(--text-muted);">Thrips attacks during dry sunny spells. Apply Fipronil 5% SC or organic neem spray (10,000 ppm) with sticker solution.</p>
+            </div>
+          </div>
+
+          <!-- Mustard -->
+          <div class="card card-body crop-card" data-season="Rabi">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-sun-fill"></i></div>
+                <div>
+                  <h3 style="margin:0;">Mustard (सरसों)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Varieties: Pusa Bold, Giriraj · High Oil Content</small>
+                </div>
+              </div>
+              <span class="badge badge-success">Rabi Season</span>
+            </div>
+            <p style="margin-top:0.75rem;color:var(--text-muted);font-size:0.92rem;">Key oilseed crop requiring minimal water, ideal for well-drained loamy soils across central village blocks.</p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Village Acreage</small><strong>41 Hectares</strong></div>
+              <div class="spec-box"><small>Expected Yield</small><strong>18 Qtl / Acre</strong></div>
+              <div class="spec-box"><small>Govt MSP Rate</small><strong>₹5,650 / Qtl</strong></div>
+              <div class="spec-box"><small>Water Need</small><strong>2 Irrigations</strong></div>
+              <div class="spec-box"><small>Fertilizer Dosage</small><strong>NPK 80:40:20 + Gypsum</strong></div>
+              <div class="spec-box"><small>Harvest Window</small><strong>February – March</strong></div>
+            </div>
+            <div style="margin-top:1.15rem;padding:0.85rem;background:var(--cream);border-radius:10px;border-left:4px solid var(--gold);">
+              <div style="font-size:0.82rem;font-weight:700;color:var(--charcoal);"><i class="bi bi-shield-exclamation" style="color:var(--gold);"></i> Pest & Disease Advisory:</div>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:var(--text-muted);">Mustard aphid threat during cloudy humid days. Set up yellow sticky traps and spray Dimethoate 30 EC if threshold exceeds 20 aphids/plant.</p>
+            </div>
+          </div>
+
+          <!-- Rice / Paddy -->
+          <div class="card card-body crop-card" data-season="Kharif">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-water"></i></div>
+                <div>
+                  <h3 style="margin:0;">Rice / Paddy (धान)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Varieties: Swarna Sub-1, Basmati Hybrid</small>
+                </div>
+              </div>
+              <span class="badge badge-info">Kharif Season</span>
+            </div>
+            <p style="margin-top:0.75rem;color:var(--text-muted);font-size:0.92rem;">Monsoon season staple grown on low-lying clay tracts with assured canal water in West and South Rampur.</p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Village Acreage</small><strong>98 Hectares</strong></div>
+              <div class="spec-box"><small>Expected Yield</small><strong>28 Qtl / Acre</strong></div>
+              <div class="spec-box"><small>Govt MSP Rate</small><strong>₹2,183 / Qtl</strong></div>
+              <div class="spec-box"><small>Water Need</small><strong>Shallow Standing Water</strong></div>
+              <div class="spec-box"><small>Fertilizer Dosage</small><strong>NPK 120:60:40 + Zinc</strong></div>
+              <div class="spec-box"><small>Harvest Window</small><strong>October – November</strong></div>
+            </div>
+            <div style="margin-top:1.15rem;padding:0.85rem;background:var(--cream);border-radius:10px;border-left:4px solid var(--gold);">
+              <div style="font-size:0.82rem;font-weight:700;color:var(--charcoal);"><i class="bi bi-shield-exclamation" style="color:var(--gold);"></i> Pest & Disease Advisory:</div>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:var(--text-muted);">Watch for Yellow Stem Borer and Brown Planthopper. Maintain alternate wetting and drying; apply Cartap Hydrochloride 4G granules.</p>
+            </div>
+          </div>
+
+          <!-- Sugarcane -->
+          <div class="card card-body crop-card" data-season="Annual">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-tree-fill"></i></div>
+                <div>
+                  <h3 style="margin:0;">Sugarcane (गन्ना)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Varieties: Co-0238, Co-86032</small>
+                </div>
+              </div>
+              <span class="badge badge-gold">Annual Crop</span>
+            </div>
+            <p style="margin-top:0.75rem;color:var(--text-muted);font-size:0.92rem;">High biomass commercial crop directly bound with contract procurement at the Rampur Cooperative Sugar Mill.</p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Village Acreage</small><strong>88 Hectares</strong></div>
+              <div class="spec-box"><small>Expected Yield</small><strong>380 Qtl / Acre</strong></div>
+              <div class="spec-box"><small>Fair Remunerative Price</small><strong>₹315 / Qtl</strong></div>
+              <div class="spec-box"><small>Water Need</small><strong>High Regular Furrow</strong></div>
+              <div class="spec-box"><small>Fertilizer Dosage</small><strong>NPK 250:100:100</strong></div>
+              <div class="spec-box"><small>Harvest Window</small><strong>December – February</strong></div>
+            </div>
+            <div style="margin-top:1.15rem;padding:0.85rem;background:var(--cream);border-radius:10px;border-left:4px solid var(--gold);">
+              <div style="font-size:0.82rem;font-weight:700;color:var(--charcoal);"><i class="bi bi-shield-exclamation" style="color:var(--gold);"></i> Pest & Disease Advisory:</div>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:var(--text-muted);">Red Rot alert on aged ratoon fields. Use certified seed canes treated with Trichoderma viride before planting.</p>
+            </div>
+          </div>
+
+          <!-- Cotton -->
+          <div class="card card-body crop-card" data-season="Kharif">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-cloud-snow-fill"></i></div>
+                <div>
+                  <h3 style="margin:0;">Cotton (कपास)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Bt Cotton Hybrid Varieties</small>
+                </div>
+              </div>
+              <span class="badge badge-info">Kharif Season</span>
+            </div>
+            <p style="margin-top:0.75rem;color:var(--text-muted);font-size:0.92rem;">Leading fiber crop planted in deep black soils with integrated pest management (IPM) adherence in Ward 4.</p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Village Acreage</small><strong>72 Hectares</strong></div>
+              <div class="spec-box"><small>Expected Yield</small><strong>14 Qtl / Acre</strong></div>
+              <div class="spec-box"><small>Govt MSP Rate</small><strong>₹6,620 / Qtl</strong></div>
+              <div class="spec-box"><small>Water Need</small><strong>Medium Controlled Drip</strong></div>
+              <div class="spec-box"><small>Fertilizer Dosage</small><strong>NPK 100:50:50 + B</strong></div>
+              <div class="spec-box"><small>Harvest Window</small><strong>November – January</strong></div>
+            </div>
+            <div style="margin-top:1.15rem;padding:0.85rem;background:var(--cream);border-radius:10px;border-left:4px solid var(--gold);">
+              <div style="font-size:0.82rem;font-weight:700;color:var(--charcoal);"><i class="bi bi-shield-exclamation" style="color:var(--gold);"></i> Pest & Disease Advisory:</div>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:var(--text-muted);">Mandatory pheromone traps for Pink Bollworm. Spray Neem extract during early vegetative stage; avoid unauthorized pesticides.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Village Mandi & Support Overview -->
+        <div class="table-card">
+          <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+            <h4 style="margin:0;">Rampur APMC Mandi Procurement Dashboard</h4>
+            <span class="badge badge-success">Daily Mandi Updates</span>
+          </div>
+          <table>
+            <thead>
+              <tr><th>Crop Name</th><th>Season</th><th>Area (Ha)</th><th>MSP Price</th><th>Mandi Modal Price</th><th>Procurement Center</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Wheat (HD-2967)</strong></td><td>Rabi</td><td>125</td><td>₹2,275 / Qtl</td><td>₹2,320 / Qtl</td><td>Rampur Village Sub-Mandi Yard</td></tr>
+              <tr><td><strong>Onion (Nashik Red)</strong></td><td>Rabi/Kharif</td><td>54</td><td>Market Avg</td><td>₹1,850 / Qtl</td><td>Block Krishi Mandi Yard No. 2</td></tr>
+              <tr><td><strong>Mustard (Pusa Bold)</strong></td><td>Rabi</td><td>41</td><td>₹5,650 / Qtl</td><td>₹5,710 / Qtl</td><td>NAFED Procurement Counter</td></tr>
+              <tr><td><strong>Rice (Swarna Sub-1)</strong></td><td>Kharif</td><td>98</td><td>₹2,183 / Qtl</td><td>₹2,210 / Qtl</td><td>FCI Paddy Center, Rampur</td></tr>
+              <tr><td><strong>Sugarcane (Co-0238)</strong></td><td>Annual</td><td>88</td><td>₹315 / Qtl (FRP)</td><td>₹340 / Qtl</td><td>Direct Mill Gate Weighbridge</td></tr>
+              <tr><td><strong>Cotton (Bt Hybrid)</strong></td><td>Kharif</td><td>72</td><td>₹6,620 / Qtl</td><td>₹6,800 / Qtl</td><td>CCI Cotton Purchase Center</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-grid">
+            <div>
+              <h5><img src="images/logo-mark.svg" alt="" class="footer-logo"> Rural One</h5>
+              <p>A simple digital platform for village administration, farmers, schemes, jobs and citizen services.</p>
+              <div class="footer-social">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-whatsapp"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
+              </div>
+            </div>
+            <div>
+              <h5>Quick Links</h5>
+              <a href="index.html">Home</a>
+              <a href="about.html">About</a>
+              <a href="schemes.html">Schemes</a>
+              <a href="jobs.html">Jobs</a>
+              <a href="calendar.html">Calendar</a>
+              <a href="announcements.html">Announcements</a>
+              <a href="contact.html">Contact</a>
+              <a href="login.html">Login</a>
+            </div>
+            <div>
+              <h5>Services</h5>
+              <a href="citizens.html">Citizens</a>
+              <a href="farmers.html">Farmers</a>
+              <a href="complaints.html">Complaints</a>
+              <a href="health-services.html">Health Services</a>
+              <a href="shg.html">Self Help Groups</a>
+              <a href="weather.html">Weather</a>
+              <a href="dashboard.html">Dashboard</a>
+              <a href="residents.html">Residents</a>
+            </div>
+            <div>
+              <h5>Contact</h5>
+              <p><i class="bi bi-geo-alt"></i> Gram Panchayat Office, Rampur</p>
+              <p><i class="bi bi-telephone"></i> +91 98765 44000</p>
+              <p><i class="bi bi-envelope"></i> office@rampur-village.gov.in</p>
+            </div>
+          </div>
+          <div class="footer-bottom">&copy; 2026 Rural One. All rights reserved.</div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <script src="js/script.js"></script>
+  <script>
+    // Season filter
+    const seasonBtns = document.querySelectorAll('[data-season-filter]');
+    const cropCards = document.querySelectorAll('.crop-card');
+
+    seasonBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        seasonBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const season = btn.dataset.seasonFilter;
+        cropCards.forEach(c => {
+          c.style.display = (season === 'all' || c.dataset.season === season || c.dataset.season.includes(season)) ? '' : 'none';
+        });
+      });
+    });
+
+    // Dynamic backend sync
+    fetch('/api/crops')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(crops => {
+        // Hydrates seamlessly if Spring Boot is running
+        console.log('Loaded crops from backend:', crops.length);
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>

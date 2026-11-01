@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – Rural One</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Login page – no navbar / no sidebar */
+    body.login-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(160deg, #e8f5e9 0%, #F7F9F2 45%, #fff8e1 100%);
+    }
+    .login-top {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .login-top .brand {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .login-top .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+    .login-top a.back-home {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .login-top a.back-home:hover { color: var(--primary-dark); }
+    .login-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem 3rem;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(27, 94, 32, 0.12);
+      padding: 2rem 1.75rem 1.75rem;
+      border: 1px solid var(--border);
+    }
+    .login-box .logo { text-align: center; margin-bottom: 1rem; }
+    .login-box .logo img.login-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(27,94,32,0.2);
+    }
+    .login-box h2 { text-align: center; margin-bottom: 0.25rem; font-size: 1.45rem; }
+    .login-box .sub { text-align: center; color: var(--text-muted); margin-bottom: 1.35rem; font-size: 0.92rem; }
+    .role-tabs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+      justify-content: center;
+    }
+    .role-tabs button {
+      flex: 1;
+      padding: 0.5rem 0.6rem;
+      border: 1.5px solid var(--border);
+      background: var(--cream);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .role-tabs button.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .login-box .form-group { text-align: left; margin-bottom: 1rem; }
+    .login-box .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--charcoal);
+    }
+    .forgot-row {
+      display: flex;
+      justify-content: flex-end;
+      margin: -0.35rem 0 1rem;
+    }
+    .forgot-row a {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .forgot-row a:hover { text-decoration: underline; }
+    .login-footer-note {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .login-footer-note a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    /* Forgot password panel */
+    .forgot-panel {
+      display: none;
+    }
+    .forgot-panel.show {
+      display: block;
+    }
+    .login-form-panel.hide {
+      display: none;
+    }
+    .forgot-panel h3 {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 0.35rem;
+    }
+    .forgot-panel .sub {
+      margin-bottom: 1.25rem;
+    }
+    .back-to-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 1rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .back-to-login:hover { text-decoration: underline; }
+  </style>
+</head>
+<body class="login-page">
+  <div class="login-top">
+    <a href="index.html" class="brand">
+      <img src="images/logo-mark.svg" alt="Rural One"> Rural One
+    </a>
+    <a href="index.html" class="back-home"><i class="bi bi-arrow-left"></i> Back to Home</a>
+  </div>
+
+  <div class="login-main">
+    <div class="login-box">
+      <div class="logo"><img src="images/logo.svg" alt="Rural One" class="login-logo"></div>
+
+      <!-- Login alert -->
+      <div id="loginAlert" style="display:none; padding:0.75rem 1rem; border-radius:10px; font-size:0.88rem; font-weight:600; margin-bottom:1rem; align-items:center; gap:0.4rem;"></div>
+
+      <!-- Login form -->
+      <div class="login-form-panel" id="loginPanel">
+        <h2>Welcome Back</h2>
+        <p class="sub">Login to access village services</p>
+        <div class="role-tabs">
+          <button type="button" class="active" data-role="Admin">Admin</button>
+          <button type="button" data-role="Citizen">Citizen</button>
+          <button type="button" data-role="Farmer">Farmer</button>
+        </div>
+        <form id="loginForm" novalidate>
+          <input type="hidden" id="loginRole" value="Admin">
+          <div class="form-group">
+            <label>Username or Phone</label>
+            <input type="text" class="form-control" id="loginIdentifier" placeholder="Enter username or mobile" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" required>
+          </div>
+          <div class="forgot-row">
+            <a href="#" id="showForgot">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn btn-green" id="loginBtn" style="width:100%;">
+            <span class="btn-text"><i class="bi bi-box-arrow-in-right"></i> Login</span>
+            <span class="login-spinner" style="display:none;width:16px;height:16px;border:2.5px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;"></span>
+          </button>
+        </form>
+        <p class="login-footer-note">
+          Don't have an account? <a href="register.html"><i class="bi bi-person-plus"></i> Create Account</a>
+        </p>
+      </div>
+
+      <!-- Forgot password form -->
+      <div class="forgot-panel" id="forgotPanel">
+        <h3>Reset Password</h3>
+        <p class="sub">Enter your registered phone or email. We'll send a reset link (demo).</p>
+        <form data-demo data-success="Password reset link sent! Check your phone/email. (Demo)">
+          <div class="form-group">
+            <label>Phone or Email</label>
+            <input type="text" class="form-control" placeholder="Registered mobile or email" required>
+          </div>
+          <button type="submit" class="btn btn-green" style="width:100%;"><i class="bi bi-envelope"></i> Send Reset Link</button>
+        </form>
+        <button type="button" class="back-to-login" id="showLogin"><i class="bi bi-arrow-left"></i> Back to Login</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+  <script src="js/script.js"></script>
+  <script>
+    document.getElementById('showForgot').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('loginPanel').classList.add('hide');
+      document.getElementById('forgotPanel').classList.add('show');
+    });
+    document.getElementById('showLogin').addEventListener('click', function () {
+      document.getElementById('forgotPanel').classList.remove('show');
+      document.getElementById('loginPanel').classList.remove('hide');
+    });
+
+    // Login form – connect to backend API
+    const loginAlert = document.getElementById('loginAlert');
+    function showLoginAlert(msg, type) {
+      loginAlert.style.display = 'flex';
+      loginAlert.style.background = type === 'error' ? '#fdecea' : '#e8f5e9';
+      loginAlert.style.color = type === 'error' ? '#c62828' : '#1b5e20';
+      loginAlert.style.border = type === 'error' ? '1px solid #f5c6cb' : '1px solid #c8e6c9';
+      loginAlert.innerHTML = '<i class="bi ' + (type === 'error' ? 'bi-exclamation-circle-fill' : 'bi-check-circle-fill') + '"></i> ' + msg;
+    }
+    function hideLoginAlert() { loginAlert.style.display = 'none'; }
+
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      hideLoginAlert();
+
+      const identifier = document.getElementById('loginIdentifier').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const role = document.getElementById('loginRole').value;
+
+      if (!identifier || !password) {
+        showLoginAlert('Please enter your username/phone and password.', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('loginBtn');
+      const btnText = btn.querySelector('.btn-text');
+      const spinner = btn.querySelector('.login-spinner');
+      btnText.style.display = 'none';
+      spinner.style.display = 'inline-block';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier, password, role })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showLoginAlert('Login successful! Welcome, ' + data.fullName + '. Redirecting...', 'success');
+          // Store user info in sessionStorage
+          sessionStorage.setItem('user', JSON.stringify(data));
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 1500);
+        } else {
+          showLoginAlert(data.message || 'Invalid credentials.', 'error');
+        }
+      } catch (err) {
+        showLoginAlert('Network error. Please check your connection.', 'error');
+      } finally {
+        btnText.style.display = '';
+        spinner.style.display = 'none';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
