@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduConnect | AI Study Coach</title>
+
+    <!-- Shared EduConnect CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .ai-chip {
+            padding: 7px 14px;
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .ai-chip:hover {
+            background: #e2e8f0;
+            border-color: #94a3b8;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         AI STUDY COACH PAGE
+         ===================================================== -->
+
+    <div class="dashboard">
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="sidebar">
+
+            <!-- Brand -->
+            <div class="sidebar-brand">
+
+                <div class="sidebar-brand-icon">
+                    E
+                </div>
+
+                <span>EduConnect</span>
+
+            </div>
+
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+
+                <p>Menu</p>
+
+                <a href="student-dashboard.html" class="nav-link">
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="attendance.html" class="nav-link">
+                    <span class="nav-icon">◷</span>
+                    <span>Attendance</span>
+                </a>
+
+                <a href="assignments.html" class="nav-link">
+                    <span class="nav-icon">✓</span>
+                    <span>Assignments</span>
+                </a>
+
+                <a href="materials.html" class="nav-link">
+                    <span class="nav-icon">▣</span>
+                    <span>Study Materials</span>
+                </a>
+
+                <a href="results.html" class="nav-link">
+                    <span class="nav-icon">▤</span>
+                    <span>Results</span>
+                </a>
+
+                <a href="study-coach.html" class="nav-link active">
+                    <span class="nav-icon">✦</span>
+                    <span>AI Study Coach</span>
+                </a>
+
+            </nav>
+
+
+            <!-- Student Profile -->
+            <div class="sidebar-profile">
+
+                <div class="profile-avatar">
+                    K
+                </div>
+
+                <div class="profile-info">
+
+                    <span class="profile-name">
+                        Keshvi
+                    </span>
+
+                    <span class="profile-role">
+                        Student
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
+
+        <main class="dashboard-main">
+
+
+            <!-- =================================================
+                 PAGE HEADER
+                 ================================================= -->
+
+            <header class="dashboard-header">
+
+                <div class="dashboard-heading">
+
+                    <h1>
+                        AI Study Coach 🤖
+                    </h1>
+
+                    <p>
+                        Personalized guidance based on your academic performance.
+                    </p>
+
+                </div>
+
+
+                <div class="header-actions">
+
+                    <div class="notification">
+                        🔔
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 AI INTRODUCTION CARD
+                 ================================================= -->
+
+            <section class="ai-hero">
+
+                <div class="ai-hero-icon">
+                    ✦
+                </div>
+
+                <div class="ai-hero-content">
+
+                    <span class="ai-badge">
+                        AI-POWERED
+                    </span>
+
+                    <h2>
+                        Your Personal Study Assistant
+                    </h2>
+
+                    <p>
+                        EduConnect analyzes your attendance, results,
+                        assignments, and academic progress to identify
+                        areas that need your attention.
+                    </p>
+
+                </div>
+
+                <button
+                    class="ai-generate-btn"
+                    id="generatePlanBtn">
+
+                    Generate Study Plan
+
+                </button>
+
+            </section>
+
+
+            
+
+
+            <!-- =================================================
+                 ACADEMIC ANALYSIS
+                 ================================================= -->
+
+            <section class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Academic Analysis
+                        </h2>
+
+                        <p class="result-subtitle">
+                            Based on your current semester data
+                        </p>
+
+                    </div>
+
+                    <span class="analysis-status">
+                        ● Analysis Ready
+                    </span>
+
+                </div>
+
+
+                <div class="analysis-grid">
+
+
+                    <!-- Overall Score -->
+                    <div class="analysis-item">
+
+                        <div class="analysis-icon blue">
+                            📊
+                        </div>
+
+                        <div>
+
+                            <span class="analysis-label">
+                                Overall Score
+                            </span>
+
+                            <strong class="analysis-value">
+                                82%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Attendance -->
+                    <div class="analysis-item">
+
+                        <div class="analysis-icon green">
+                            📅
+                        </div>
+
+                        <div>
+
+                            <span class="analysis-label">
+                                Overall Attendance
+                            </span>
+
+                            <strong class="analysis-value">
+                                78%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Strongest -->
+                    <div class="analysis-item">
+
+                        <div class="analysis-icon purple">
+                            ⭐
+                        </div>
+
+                        <div>
+
+                            <span class="analysis-label">
+                                Strongest Subject
+                            </span>
+
+                            <strong class="analysis-value small">
+                                AI
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Attention -->
+                    <div class="analysis-item">
+
+                        <div class="analysis-icon orange">
+                            ⚠
+                        </div>
+
+                        <div>
+
+                            <span class="analysis-label">
+                                Needs Attention
+                            </span>
+
+                            <strong class="analysis-value small">
+                                DBMS
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            
+
+
+            <!-- =================================================
+                 AI RECOMMENDATION
+                 ================================================= -->
+
+            <section class="recommendation-card">
+
+                <div class="recommendation-icon">
+                    💡
+                </div>
+
+                <div class="recommendation-content">
+
+                    <span class="recommendation-label">
+                        AI Recommendation
+                    </span>
+
+                    <h3>
+                        Focus on Database Management Systems
+                    </h3>
+
+                    <p>
+                        Your DBMS attendance is currently
+                        <strong>68%</strong> and your academic score
+                        is <strong>72%</strong>. Regular attendance
+                        and focused practice can help improve your
+                        performance.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            
+
+
+            <!-- =================================================
+                 RECOMMENDED TOPICS
+                 ================================================= -->
+
+            <section class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Recommended Focus Areas
+                        </h2>
+
+                        <p class="result-subtitle">
+                            Topics selected based on your performance
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="focus-grid">
+
+
+                    <!-- SQL -->
+                    <div class="focus-card">
+
+                        <div class="focus-card-top">
+
+                            <div class="focus-icon">
+                                🗄️
+                            </div>
+
+                            <span class="focus-time">
+                                30 min
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            SQL Queries
+                        </h3>
+
+                        <p>
+                            Practice SELECT, JOIN, GROUP BY and
+                            aggregate queries.
+                        </p>
+
+                        <a href="materials.html">
+                            View Materials →
+                        </a>
+
+                    </div>
+
+
+                    <!-- Normalization -->
+                    <div class="focus-card">
+
+                        <div class="focus-card-top">
+
+                            <div class="focus-icon">
+                                📐
+                            </div>
+
+                            <span class="focus-time">
+                                20 min
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Normalization
+                        </h3>
+
+                        <p>
+                            Revise 1NF, 2NF, 3NF and functional
+                            dependencies.
+                        </p>
+
+                        <a href="materials.html">
+                            View Materials →
+                        </a>
+
+                    </div>
+
+
+                    <!-- ER Diagrams -->
+                    <div class="focus-card">
+
+                        <div class="focus-card-top">
+
+                            <div class="focus-icon">
+                                🔗
+                            </div>
+
+                            <span class="focus-time">
+                                20 min
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            ER Diagrams
+                        </h3>
+
+                        <p>
+                            Practice entities, relationships,
+                            attributes and cardinality.
+                        </p>
+
+                        <a href="materials.html">
+                            View Materials →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            
+
+
+            <!-- =================================================
+                 TODAY'S STUDY PLAN
+                 ================================================= -->
+
+            <section
+                class="dashboard-card study-plan-card"
+                id="studyPlan">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            📅 Today's Study Plan
+                        </h2>
+
+                        <p class="result-subtitle">
+                            A focused plan based on your current needs
+                        </p>
+
+                    </div>
+
+                    <span class="plan-duration">
+                        80 minutes
+                    </span>
+
+                </div>
+
+
+                <div class="study-timeline">
+
+
+                    <!-- Step 1 -->
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            1
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Revise SQL Basics
+                            </h3>
+
+                            <p>
+                                Review SELECT statements, filtering,
+                                sorting and aggregate functions.
+                            </p>
+
+                            <span>
+                                ⏱ 30 minutes
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Step 2 -->
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            2
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Practice SQL Queries
+                            </h3>
+
+                            <p>
+                                Solve five SQL problems using
+                                different query operations.
+                            </p>
+
+                            <span>
+                                ⏱ 30 minutes
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Step 3 -->
+                    <div class="timeline-item">
+
+                        <div class="timeline-number">
+                            3
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>
+                                Review Normalization
+                            </h3>
+
+                            <p>
+                                Revise normalization concepts and
+                                solve a small example.
+                            </p>
+
+                            <span>
+                                ⏱ 20 minutes
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            
+
+
+            <!-- =================================================
+                 MOTIVATION CARD
+                 ================================================= -->
+
+            <section class="motivation-card">
+
+                <div class="motivation-icon">
+                    🚀
+                </div>
+
+                <div>
+
+                    <h3>
+                        Small progress every day!
+                    </h3>
+
+                    <p>
+                        Consistent study sessions can help you
+                        strengthen your weaker subjects and maintain
+                        your strongest ones.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 INTERACTIVE AI STUDY COACH CHAT (POWERED BY GROQ)
+                 ================================================= -->
+
+            <section class="dashboard-card" style="margin-top: 24px; border: 1px solid #e0e7ff; background: #ffffff;">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 38px; height: 38px; border-radius: 8px; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold;">
+                            ⚡
+                        </div>
+                        <div>
+                            <h2 style="margin: 0; font-size: 18px; color: #1e293b;">Ask Groq AI Study Coach</h2>
+                            <p class="result-subtitle" style="margin: 2px 0 0; font-size: 12px; color: #64748b;">
+                                Real-time AI explanations, doubts resolution, and exam preparation tips
+                            </p>
+                        </div>
+                    </div>
+                    <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 20px; background: #fef3c7; color: #92400e; font-size: 12px; font-weight: 700;">
+                        <span>●</span> Powered by Groq
+                    </span>
+                </div>
+
+                <!-- Prompt Suggestion Chips -->
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;">
+                    <button class="ai-chip" type="button" onclick="askAiQuestion('Explain Boyce-Codd Normal Form (BCNF) in simple terms with an example.')">
+                        💡 Explain BCNF Normalization
+                    </button>
+                    <button class="ai-chip" type="button" onclick="askAiQuestion('How can I improve my marks in Operating Systems from 77% to 90%?')">
+                        📈 Plan to boost Operating Systems
+                    </button>
+                    <button class="ai-chip" type="button" onclick="askAiQuestion('What are the key concepts to revise for Java Multithreading and Collections?')">
+                        ☕ Java Revision Roadmap
+                    </button>
+                    <button class="ai-chip" type="button" onclick="askAiQuestion('Give me a 3-day rapid exam revision schedule for CSE semester 3.')">
+                        📅 3-Day Exam Schedule
+                    </button>
+                </div>
+
+                <!-- Chat Messages History -->
+                <div id="aiChatBox" style="margin-top: 16px; min-height: 200px; max-height: 420px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 16px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563eb; color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;">🤖</div>
+                        <div style="background: white; padding: 12px 16px; border-radius: 12px; border-top-left-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 13px; color: #334155; line-height: 1.6; max-width: 85%;">
+                            Hello Keshvi! 👋 I am your AI Study Coach powered by <strong>Groq</strong>. I've analyzed your academic records: <strong>85.8% attendance</strong>, <strong>88% in DBMS</strong>, and <strong>77% in OS</strong>. Ask me any subject question, request a concept explanation, or get tailored preparation advice!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Input Form -->
+                <form id="aiChatForm" style="display: flex; gap: 10px; margin-top: 14px;">
+                    <input type="text" id="aiChatInput" placeholder="Ask your AI Study Coach anything (e.g. explain process scheduling)..." required style="flex: 1; padding: 11px 16px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
+                    <button type="submit" id="aiSendBtn" style="padding: 11px 22px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                        <span>Send</span> ⚡
+                    </button>
+                </form>
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         AI STUDY COACH JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    ? "http://localhost:8080/api"
+    : "/api";
+
+async function loadStudyCoach() {
+
+    try {
+
+        const studentId = 1;
+
+        const response = await fetch(
+            `${API_BASE}/study-coach/student/${studentId}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to load Study Coach data.");
+        }
+
+        const data = await response.json();
+
+        console.log("Study Coach data:", data);
+
+
+        // ==========================================
+        // 1. ACADEMIC ANALYSIS
+        // ==========================================
+
+        const analysisItems =
+            document.querySelectorAll(".analysis-item");
+
+        analysisItems.forEach(function (item) {
+
+            const label =
+                item.querySelector(".analysis-label");
+
+            const value =
+                item.querySelector(".analysis-value");
+
+            if (!label || !value) {
+                return;
+            }
+
+            const labelText =
+                label.textContent.trim();
+
+
+            if (labelText === "Overall Score") {
+
+                value.textContent =
+                    Math.round(data.overallScore) + "%";
+
+            }
+
+
+            else if (
+                labelText === "Overall Attendance"
+            ) {
+
+                value.textContent =
+                    data.overallAttendance + "%";
+
+            }
+
+
+            else if (
+                labelText === "Strongest Subject"
+            ) {
+
+                value.textContent =
+                    data.strongestSubject;
+
+            }
+
+
+            else if (
+                labelText === "Needs Attention"
+            ) {
+
+                value.textContent =
+                    data.needsAttention;
+
+            }
+
+        });
+
+
+        // ==========================================
+        // 2. AI RECOMMENDATION
+        // ==========================================
+
+        const recommendationCard =
+            document.querySelector(
+                ".recommendation-card"
+            );
+
+        if (recommendationCard) {
+
+            const heading =
+                recommendationCard.querySelector("h3");
+
+            const paragraph =
+                recommendationCard.querySelector("p");
+
+
+            if (heading) {
+
+                heading.textContent =
+                    "Focus on " +
+                    data.needsAttention;
+
+            }
+
+
+            if (paragraph) {
+
+                paragraph.innerHTML =
+                    "Your current academic score is " +
+                    "<strong>" +
+                    Math.round(data.lowestScore) +
+                    "%</strong>. " +
+                    data.recommendation;
+
+            }
+
+        }
+
+
+        // ==========================================
+        // 3. TODAY'S STUDY PLAN
+        // ==========================================
+
+        const studyPlan =
+            document.getElementById("studyPlan");
+
+
+        if (studyPlan) {
+
+            const planItems =
+                studyPlan.querySelectorAll(
+                    ".timeline-item"
+                );
+
+
+            data.studyPlan.forEach(
+                function (plan, index) {
+
+                    if (!planItems[index]) {
+                        return;
+                    }
+
+
+                    const title =
+                        planItems[index]
+                            .querySelector(
+                                ".timeline-content h3"
+                            );
+
+
+                    const description =
+                        planItems[index]
+                            .querySelector(
+                                ".timeline-content p"
+                            );
+
+
+                    const duration =
+                        planItems[index]
+                            .querySelector(
+                                ".timeline-content span"
+                            );
+
+
+                    if (title) {
+
+                        title.textContent =
+                            plan.title;
+
+                    }
+
+
+                    if (description) {
+
+                        if (index === 0) {
+
+                            description.textContent =
+                                "Review important concepts and key points.";
+
+                        }
+
+                        else if (index === 1) {
+
+                            description.textContent =
+                                "Solve practice questions related to the topic.";
+
+                        }
+
+                        else {
+
+                            description.textContent =
+                                "Review notes and revise the important concepts.";
+
+                        }
+
+                    }
+
+
+                    if (duration) {
+
+                        duration.textContent =
+                            "⏱ " +
+                            plan.minutes +
+                            " minutes";
+
+                    }
+
+                }
+            );
+
+
+            // Calculate total study time
+
+            const totalMinutes =
+                data.studyPlan.reduce(
+                    function (total, plan) {
+                        return total + plan.minutes;
+                    },
+                    0
+                );
+
+
+            const planDuration =
+                studyPlan.querySelector(
+                    ".card-header .plan-duration"
+                );
+
+
+            if (planDuration) {
+
+                planDuration.textContent =
+                    totalMinutes +
+                    " minutes";
+
+            }
+
+        }
+
+
+        // ==========================================
+        // 4. GENERATE STUDY PLAN BUTTON
+        // ==========================================
+
+        const generatePlanBtn =
+            document.getElementById(
+                "generatePlanBtn"
+            );
+
+
+        if (generatePlanBtn) {
+
+            generatePlanBtn.textContent =
+                "Generate Study Plan";
+
+            generatePlanBtn.disabled = false;
+
+
+            generatePlanBtn.onclick =
+                async function () {
+
+                    generatePlanBtn.textContent =
+                        "Generating...";
+
+                    generatePlanBtn.disabled = true;
+
+
+                    await loadStudyCoach();
+
+
+                    generatePlanBtn.textContent =
+                        "Plan Generated ✓";
+
+                    generatePlanBtn.disabled =
+                        false;
+
+
+                    if (studyPlan) {
+
+                        studyPlan.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+
+                    }
+
+                };
+
+        }
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "Error loading Study Coach:",
+            error
+        );
+
+    }
+
+}
+
+
+// Load Study Coach data when page opens
+loadStudyCoach();
+
+// ==========================================
+// GROQ AI STUDY COACH CHAT INTERACTION
+// ==========================================
+window.askAiQuestion = function (question) {
+    const input = document.getElementById("aiChatInput");
+    if (input) {
+        input.value = question;
+        document.getElementById("aiChatForm")?.dispatchEvent(new Event("submit"));
+    }
+};
+
+const aiForm = document.getElementById("aiChatForm");
+if (aiForm) {
+    aiForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const input = document.getElementById("aiChatInput");
+        const sendBtn = document.getElementById("aiSendBtn");
+        const chatBox = document.getElementById("aiChatBox");
+        const query = (input?.value || "").trim();
+        if (!query) return;
+
+        // Append User Message
+        const userDiv = document.createElement("div");
+        userDiv.style.display = "flex";
+        userDiv.style.justifyContent = "flex-end";
+        userDiv.innerHTML = `
+            <div style="background: #2563eb; color: white; padding: 10px 16px; border-radius: 12px; border-top-right-radius: 2px; font-size: 13px; line-height: 1.5; max-width: 80%;">
+                ${escapeHtml(query)}
+            </div>
+        `;
+        chatBox.appendChild(userDiv);
+        input.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Append Loading Indicator
+        const loadingDiv = document.createElement("div");
+        loadingDiv.id = "aiLoadingMsg";
+        loadingDiv.style.display = "flex";
+        loadingDiv.style.gap = "10px";
+        loadingDiv.style.alignItems = "flex-start";
+        loadingDiv.innerHTML = `
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: #f59e0b; color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;">⚡</div>
+            <div style="background: white; padding: 12px 16px; border-radius: 12px; border-top-left-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 13px; color: #64748b; font-style: italic;">
+                Consulting Groq LLM...
+            </div>
+        `;
+        chatBox.appendChild(loadingDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        if (sendBtn) sendBtn.disabled = true;
+
+        try {
+            const res = await fetch(`${API_BASE}/ai/chat`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt: query })
+            });
+            const data = await res.json();
+            const aiText = data.response || "Keep regular practice and complete assignments on time!";
+
+            document.getElementById("aiLoadingMsg")?.remove();
+
+            const aiDiv = document.createElement("div");
+            aiDiv.style.display = "flex";
+            aiDiv.style.gap = "10px";
+            aiDiv.style.alignItems = "flex-start";
+            aiDiv.innerHTML = `
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: #2563eb; color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;">🤖</div>
+                <div style="background: white; padding: 12px 16px; border-radius: 12px; border-top-left-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); font-size: 13px; color: #334155; line-height: 1.6; max-width: 85%; white-space: pre-wrap;">
+                    ${formatAiResponse(aiText)}
+                </div>
+            `;
+            chatBox.appendChild(aiDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        } catch (err) {
+            document.getElementById("aiLoadingMsg")?.remove();
+            const errDiv = document.createElement("div");
+            errDiv.innerHTML = `<div style="color: #dc2626; font-size: 12px; padding: 6px 12px;">Failed to reach Groq AI: ${err.message}</div>`;
+            chatBox.appendChild(errDiv);
+        } finally {
+            if (sendBtn) sendBtn.disabled = false;
+        }
+    });
+}
+
+function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+function formatAiResponse(text) {
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+</script>
+
+<script src="js/script.js"></script>
+
+<script src="js/script.js"></script>
+
+    <!-- Shared JavaScript -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
