@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Jobs & Employment – Rural One</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+  <button class="floating-sidebar-toggle sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i class="bi bi-list"></i></button>
+<div class="app-layout">
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="sidebar-brand">
+      <img src="images/logo-mark.svg" alt="Rural One" class="sidebar-logo">
+      <div>
+        <strong>Rural One</strong>
+        <small>Village Portal</small>
+      </div>
+    </div>
+    <div class="sidebar-section-label">Main Menu</div>
+    <nav class="sidebar-nav">
+      <a href="index.html"><i class="bi bi-house-door-fill"></i> <span>Home</span></a>
+      <a href="about.html"><i class="bi bi-info-circle"></i> <span>About</span></a>
+      <a href="citizens.html"><i class="bi bi-people"></i> <span>Citizens</span></a>
+      <a href="farmers.html"><i class="bi bi-flower1"></i> <span>Farmers</span></a>
+      <a href="schemes.html"><i class="bi bi-journal-check"></i> <span>Schemes</span></a>
+      <a href="complaints.html"><i class="bi bi-chat-dots"></i> <span>Complaints</span></a>
+      <a href="jobs.html" class="active"><i class="bi bi-briefcase"></i> <span>Jobs</span></a>
+      <a href="weather.html"><i class="bi bi-cloud-sun"></i> <span>Weather</span></a>
+      <a href="calendar.html"><i class="bi bi-calendar3"></i> <span>Calendar</span></a>
+      <a href="shg.html"><i class="bi bi-people-fill"></i> <span>SHG</span></a>
+      <a href="residents.html"><i class="bi bi-house"></i> <span>Residents</span></a>
+      <a href="dashboard.html"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
+      <a href="announcements.html"><i class="bi bi-megaphone"></i> <span>Announcements</span></a>
+      <a href="health-services.html"><i class="bi bi-heart-pulse"></i> <span>Health Services</span></a>
+      <a href="feedback.html"><i class="bi bi-star"></i> <span>Feedback</span></a>
+      <a href="contact.html"><i class="bi bi-telephone"></i> <span>Contact</span></a>
+      <a href="profile.html"><i class="bi bi-person-circle"></i> <span>Profile</span></a>
+      <a href="settings.html"><i class="bi bi-gear"></i> <span>Settings</span></a>
+      <a href="login.html"><i class="bi bi-box-arrow-in-right"></i> <span>Login</span></a>
+    </nav>
+    <div class="sidebar-section-label">Quick Actions</div>
+    <div class="sidebar-quick">
+      <a href="complaints.html"><i class="bi bi-pencil-square"></i> Complaint</a>
+      <a href="schemes.html"><i class="bi bi-journal-check"></i> Schemes</a>
+      <a href="jobs.html"><i class="bi bi-briefcase"></i> Jobs</a>
+      <a href="weather.html"><i class="bi bi-cloud-sun"></i> Weather</a>
+    </div>
+    <div class="sidebar-stats">
+      <div class="sidebar-stat"><span>2,450</span><small>Citizens</small></div>
+      <div class="sidebar-stat"><span>380</span><small>Farmers</small></div>
+      <div class="sidebar-stat"><span>12</span><small>Open Issues</small></div>
+    </div>
+    <div class="sidebar-footer-box">
+      <i class="bi bi-geo-alt-fill"></i>
+      <div>
+        <strong>Rampur Village</strong>
+        <small>Office: Mon–Sat 10AM–5PM</small>
+      </div>
+    </div>
+  </aside>
+    <div class="app-main">
+<section class="page-hero">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Jobs</div>
+        <h1>Local Jobs & Employment</h1>
+        <p>Opportunities in and around the village</p>
+      </section>
+      <section class="section">
+        <div class="filter-bar">
+          <input type="text" class="form-control" id="searchInput" placeholder="Search jobs..." style="min-width:200px;">
+          <button class="btn btn-outline-green active" data-cat-filter="">All</button>
+          <button class="btn btn-outline-green" data-cat-filter="mgnrega">MGNREGA</button>
+          <button class="btn btn-outline-green" data-cat-filter="agri">Agriculture</button>
+          <button class="btn btn-outline-green" data-cat-filter="skill">Skill-based</button>
+          <button class="btn btn-outline-green" data-cat-filter="gov">Government</button>
+        </div>
+        <div class="grid-auto">
+          <div class="card card-body" data-category="mgnrega" data-search="canal desilting">
+            <span class="badge badge-success">Open</span>
+            <h4 style="margin:0.6rem 0;">Canal Desilting – MGNREGA</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Unskilled labour for cleaning and repair of village canal.</p>
+            <p style="font-size:0.85rem;color:var(--text-muted);"><i class="bi bi-geo-alt"></i> Ward 2 · 25 needed<br><i class="bi bi-cash"></i> MGNREGA wage rate<br><i class="bi bi-calendar"></i> Start: 12 Aug 2026</p>
+            <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-job-apply" data-job="Canal Desilting – MGNREGA" data-location="Ward 2">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-job-details" data-job="canal">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="agri" data-search="farm labour harvest">
+            <span class="badge badge-success">Open</span>
+            <h4 style="margin:0.6rem 0;">Farm Labour – Harvest Help</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Seasonal help for wheat and onion harvest on local farms.</p>
+            <p style="font-size:0.85rem;color:var(--text-muted);"><i class="bi bi-geo-alt"></i> Multiple farms · 15+ needed<br><i class="bi bi-cash"></i> Daily wage as agreed<br><i class="bi bi-calendar"></i> Ongoing through August</p>
+            <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-job-apply" data-job="Farm Labour – Harvest Help" data-location="Multiple farms">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-job-details" data-job="harvest">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="mgnrega" data-search="plantation">
+            <span class="badge badge-info">Open</span>
+            <h4 style="margin:0.6rem 0;">Road Side Plantation</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Planting and watering saplings along the main village road.</p>
+            <p style="font-size:0.85rem;color:var(--text-muted);"><i class="bi bi-geo-alt"></i> Main Road · 10 workers<br><i class="bi bi-cash"></i> MGNREGA rate<br><i class="bi bi-calendar"></i> From 15 Aug 2026</p>
+            <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-job-apply" data-job="Road Side Plantation" data-location="Main Road">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-job-details" data-job="plantation">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="gov" data-search="anganwadi">
+            <span class="badge badge-gold">Few seats</span>
+            <h4 style="margin:0.6rem 0;">Anganwadi Helper (Part-time)</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Support cooking and cleaning at the village Anganwadi.</p>
+            <p style="font-size:0.85rem;color:var(--text-muted);"><i class="bi bi-geo-alt"></i> Anganwadi · 1 post<br><i class="bi bi-cash"></i> As per state norms<br><i class="bi bi-calendar"></i> Apply by 20 Aug 2026</p>
+            <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-job-apply" data-job="Anganwadi Helper (Part-time)" data-location="Anganwadi">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-job-details" data-job="anganwadi">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="agri" data-search="dairy">
+            <span class="badge badge-success">Open</span>
+            <h4 style="margin:0.6rem 0;">Dairy Collection Helper</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Morning milk collection and basic record keeping.</p>
+            <p style="font-size:0.85rem;color:var(--text-muted);"><i class="bi bi-geo-alt"></i> Dairy Society · 2 helpers<br><i class="bi bi-cash"></i> Monthly stipend<br><i class="bi bi-calendar"></i> Immediate</p>
+            <div style="margin-top:0.75rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button type="button" class="btn btn-green btn-sm btn-job-apply" data-job="Dairy Collection Helper" data-location="Dairy Society">Apply Now</button>
+              <button type="button" class="btn btn-outline-green btn-sm btn-job-details" data-job="dairy">View Details</button>
+            </div>
+          </div>
+          <div class="card card-body" data-category="skill" data-search="tailoring">
+            <span class="badge badge-muted">Coming soon</span>
+            <h4 style="margin:0.6rem 0;">Skill Training – Tailoring</h4>
+            <p style="color:var(--text-muted);font-size:0.9rem;">Free training batch for women through SHG / skill mission.</p>
+            <p style="font-size:0.85rem;color:var(--text-muted);"><i class="bi bi-geo-alt"></i> Community Hall<br><i class="bi bi-calendar"></i> Batch starts September 2026</p>
+            <button type="button" class="btn btn-outline-green btn-sm" style="margin-top:0.75rem;" disabled>Notify Me</button>
+          </div>
+        </div>
+      </section>
+
+  <!-- Job Details Modal -->
+  <div class="modal-overlay" id="jobDetailsModal" role="dialog" aria-modal="true">
+    <div class="modal-box modal-wide">
+      <div class="modal-header">
+        <h3 id="jobDetailsTitle">Job Details</h3>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body" id="jobDetailsBody"></div>
+    </div>
+  </div>
+
+  <!-- Job Apply Modal -->
+  <div class="modal-overlay" id="jobApplyModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="jobApplyTitle">Apply for Job</h3>
+        <button type="button" class="modal-close" data-close-modal aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="jobApplyForm" data-demo data-success="Job application submitted! The office will contact you. (Demo)">
+          <input type="hidden" id="jobApplyName" name="jobTitle">
+          <div class="form-group">
+            <label>Job</label>
+            <input type="text" class="form-control" id="jobApplyNameDisplay" readonly>
+          </div>
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" class="form-control" name="fullName" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label>Mobile Number *</label>
+            <input type="tel" class="form-control" name="mobile" placeholder="10-digit mobile" pattern="[0-9]{10}" required>
+          </div>
+          <div class="form-group">
+            <label>Age *</label>
+            <input type="number" class="form-control" name="age" min="18" max="65" placeholder="Age in years" required>
+          </div>
+          <div class="form-group">
+            <label>Gender</label>
+            <select class="form-control" name="gender">
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Job Card No. (for MGNREGA)</label>
+            <input type="text" class="form-control" name="jobCard" placeholder="Optional">
+          </div>
+          <div class="form-group">
+            <label>Address / Ward</label>
+            <input type="text" class="form-control" name="address" placeholder="Ward / locality">
+          </div>
+          <div class="form-group">
+            <label>Experience / Notes</label>
+            <textarea class="form-control" name="notes" rows="2" placeholder="Any relevant experience"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="btn btn-green"><i class="bi bi-send"></i> Submit Application</button>
+            <button type="button" class="btn btn-outline-green" data-close-modal>Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h5><img src="images/logo-mark.svg" alt="" class="footer-logo"> Rural One</h5>
+          <p>A simple digital platform for village administration, farmers, schemes, jobs and citizen services.</p>
+          <div class="footer-social">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-whatsapp"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h5>Quick Links</h5>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="schemes.html">Schemes</a>
+          <a href="jobs.html">Jobs</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="announcements.html">Announcements</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html">Login</a>
+        </div>
+        <div>
+          <h5>Services</h5>
+          <a href="citizens.html">Citizens</a>
+          <a href="farmers.html">Farmers</a>
+          <a href="complaints.html">Complaints</a>
+          <a href="health-services.html">Health Services</a>
+          <a href="shg.html">Self Help Groups</a>
+          <a href="weather.html">Weather</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="residents.html">Residents</a>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <p><i class="bi bi-geo-alt"></i> Gram Panchayat Office, Rampur</p>
+          <p><i class="bi bi-telephone"></i> +91 98765 44000</p>
+          <p><i class="bi bi-envelope"></i> office@rampur-village.gov.in</p>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Rural One. All rights reserved.</div>
+    </div>
+  </footer>
+    </div>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <script src="js/script.js"></script>
+
+  <script>
+  (function () {
+    const jobDetails = {
+      canal: {
+        title: 'Canal Desilting – MGNREGA',
+        status: 'Open',
+        category: 'MGNREGA',
+        summary: 'Unskilled manual work for desilting and minor repair of the village irrigation canal under MGNREGA.',
+        location: 'Ward 2, Rampur',
+        openings: '25 workers',
+        wage: 'As per current MGNREGA wage rate',
+        duration: 'Starts 12 Aug 2026 · approx. 15–20 days',
+        requirements: ['Valid MGNREGA job card preferred', 'Age 18+', 'Willing to do outdoor manual work'],
+        contact: 'Gram Panchayat Office / Mate (Ward 2)'
+      },
+      harvest: {
+        title: 'Farm Labour – Harvest Help',
+        status: 'Open',
+        category: 'Agriculture',
+        summary: 'Seasonal farm labour for wheat and onion harvest on local farms around Rampur.',
+        location: 'Multiple farms near Rampur',
+        openings: '15+ workers',
+        wage: 'Daily wage as agreed with farmer',
+        duration: 'Ongoing through August 2026',
+        requirements: ['Physical fitness for field work', 'Prior harvest experience preferred but not mandatory'],
+        contact: 'Village Agriculture Coordinator / local farmers'
+      },
+      plantation: {
+        title: 'Road Side Plantation',
+        status: 'Open',
+        category: 'MGNREGA',
+        summary: 'Planting and watering saplings along the main village road under MGNREGA works.',
+        location: 'Main Road, Rampur',
+        openings: '10 workers',
+        wage: 'MGNREGA wage rate',
+        duration: 'From 15 Aug 2026',
+        requirements: ['Job card preferred', 'Age 18+'],
+        contact: 'Gram Panchayat Office'
+      },
+      anganwadi: {
+        title: 'Anganwadi Helper (Part-time)',
+        status: 'Few seats',
+        category: 'Government',
+        summary: 'Part-time support for cooking, cleaning and assisting the Anganwadi worker.',
+        location: 'Village Anganwadi Centre',
+        openings: '1 post',
+        wage: 'As per state norms / honorarium',
+        duration: 'Apply by 20 Aug 2026',
+        requirements: ['Local resident preferred', 'Basic literacy', 'Women candidates encouraged'],
+        contact: 'Anganwadi Supervisor / Gram Panchayat'
+      },
+      dairy: {
+        title: 'Dairy Collection Helper',
+        status: 'Open',
+        category: 'Agriculture',
+        summary: 'Morning milk collection from member farmers and basic record keeping at the Dairy Society.',
+        location: 'Dairy Society, Rampur',
+        openings: '2 helpers',
+        wage: 'Monthly stipend',
+        duration: 'Immediate joining',
+        requirements: ['Early morning availability', 'Basic reading/writing', 'Local resident'],
+        contact: 'Dairy Society Secretary'
+      }
+    };
+
+    const detailsModal = document.getElementById('jobDetailsModal');
+    const applyModal = document.getElementById('jobApplyModal');
+
+    function openModal(el) { el.classList.add('show'); document.body.style.overflow = 'hidden'; }
+    function closeModal(el) { el.classList.remove('show'); document.body.style.overflow = ''; }
+    function closeAll() {
+      closeModal(detailsModal);
+      closeModal(applyModal);
+    }
+
+    document.querySelectorAll('[data-close-modal]').forEach(btn => {
+      btn.addEventListener('click', closeAll);
+    });
+    [detailsModal, applyModal].forEach(m => {
+      m.addEventListener('click', e => { if (e.target === m) closeAll(); });
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+
+    document.querySelectorAll('.btn-job-details').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.job;
+        const d = jobDetails[id];
+        if (!d) return;
+        document.getElementById('jobDetailsTitle').textContent = d.title;
+        document.getElementById('jobDetailsBody').innerHTML = `
+          <span class="badge badge-success" style="margin-bottom:0.75rem;">${d.status}</span>
+          <span class="badge badge-info" style="margin-bottom:0.75rem;margin-left:0.35rem;">${d.category}</span>
+          <div class="detail-row"><strong>About</strong><p style="margin:0;">${d.summary}</p></div>
+          <div class="detail-row"><strong>Location</strong><p style="margin:0;"><i class="bi bi-geo-alt"></i> ${d.location}</p></div>
+          <div class="detail-row"><strong>Openings</strong><p style="margin:0;">${d.openings}</p></div>
+          <div class="detail-row"><strong>Wage / Pay</strong><p style="margin:0;">${d.wage}</p></div>
+          <div class="detail-row"><strong>Duration</strong><p style="margin:0;">${d.duration}</p></div>
+          <div class="detail-row"><strong>Requirements</strong><ul>${d.requirements.map(x => '<li>'+x+'</li>').join('')}</ul></div>
+          <div class="detail-row"><strong>Contact</strong><p style="margin:0;">${d.contact}</p></div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-green btn-sm" id="jobDetailsApplyBtn" data-job="${d.title}" data-location="${d.location}"><i class="bi bi-pencil-square"></i> Apply Now</button>
+            <button type="button" class="btn btn-outline-green btn-sm" data-close-modal>Close</button>
+          </div>
+        `;
+        openModal(detailsModal);
+        document.getElementById('jobDetailsApplyBtn').addEventListener('click', function () {
+          closeModal(detailsModal);
+          openApply(this.dataset.job);
+        });
+      });
+    });
+
+    function openApply(jobTitle) {
+      document.getElementById('jobApplyName').value = jobTitle;
+      document.getElementById('jobApplyNameDisplay').value = jobTitle;
+      document.getElementById('jobApplyTitle').textContent = 'Apply – ' + jobTitle;
+      openModal(applyModal);
+    }
+
+    document.querySelectorAll('.btn-job-apply').forEach(btn => {
+      btn.addEventListener('click', () => openApply(btn.dataset.job));
+    });
+  })();
+  </script>
+
+</body>
+</html>

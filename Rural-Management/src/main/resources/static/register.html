@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account – Rural One</title>
+  <meta name="description" content="Create your Rural One account to access village services, farmer tools, and citizen resources.">
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body.register-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(160deg, #e8f5e9 0%, #F7F9F2 45%, #fff8e1 100%);
+    }
+
+    /* Top bar */
+    .register-top {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .register-top .brand {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .register-top .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+    .register-top a.back-home {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .register-top a.back-home:hover { color: var(--primary-dark); }
+
+    /* Main content */
+    .register-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1rem 3rem;
+    }
+
+    /* Card */
+    .register-box {
+      width: 100%;
+      max-width: 520px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(27, 94, 32, 0.12);
+      padding: 2rem 2rem 1.75rem;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .register-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--fresh), var(--gold));
+    }
+
+    .register-box .logo { text-align: center; margin-bottom: 0.75rem; }
+    .register-box .logo img.reg-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(27,94,32,0.18);
+    }
+    .register-box h2 {
+      text-align: center;
+      margin-bottom: 0.2rem;
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+    }
+    .register-box .sub {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    /* Steps indicator */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .step-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all 0.3s;
+    }
+    .step-dot.active {
+      background: var(--primary);
+      box-shadow: 0 0 0 4px rgba(27,94,32,0.15);
+      transform: scale(1.15);
+    }
+    .step-dot.done {
+      background: var(--fresh);
+    }
+    .step-line {
+      width: 40px; height: 2px;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+    .step-line.done {
+      background: var(--fresh);
+    }
+
+    /* Role cards */
+    .role-cards {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .role-card {
+      flex: 1;
+      padding: 0.85rem 0.5rem;
+      border: 2px solid var(--border);
+      background: var(--cream);
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .role-card:hover {
+      border-color: var(--fresh);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(27,94,32,0.08);
+    }
+    .role-card.active {
+      border-color: var(--primary);
+      background: var(--fresh-soft);
+      box-shadow: 0 4px 16px rgba(27,94,32,0.12);
+    }
+    .role-card i {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--text-muted);
+      transition: color 0.25s;
+    }
+    .role-card.active i { color: var(--primary); }
+    .role-card span {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: color 0.25s;
+    }
+    .role-card.active span { color: var(--primary-dark); }
+
+    /* Form fields */
+    .form-row {
+      display: flex;
+      gap: 0.85rem;
+    }
+    .form-row .form-group { flex: 1; }
+
+    .register-box .form-group {
+      text-align: left;
+      margin-bottom: 0.9rem;
+    }
+    .register-box .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: var(--charcoal);
+    }
+    .register-box .form-group label .optional {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+    .register-box .form-group .input-icon {
+      position: relative;
+    }
+    .register-box .form-group .input-icon i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      pointer-events: none;
+    }
+    .register-box .form-group .input-icon input {
+      padding-left: 2.4rem;
+    }
+
+    /* Password strength */
+    .pw-strength {
+      height: 3px;
+      border-radius: 2px;
+      background: var(--border);
+      margin-top: 0.4rem;
+      overflow: hidden;
+    }
+    .pw-strength .pw-bar {
+      height: 100%;
+      width: 0;
+      border-radius: 2px;
+      transition: width 0.3s, background 0.3s;
+    }
+    .pw-strength-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 0.15rem;
+      color: var(--text-muted);
+    }
+
+    /* Toggle password */
+    .pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 1rem;
+      padding: 0;
+      pointer-events: all;
+    }
+    .pw-toggle:hover { color: var(--primary); }
+
+    /* Step panels */
+    .step-panel {
+      display: none;
+      animation: fadeSlide 0.35s ease;
+    }
+    .step-panel.active {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateX(20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Button row */
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .btn-row .btn { flex: 1; }
+    .btn-outline-green {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+    .btn-outline-green:hover {
+      background: var(--fresh-soft);
+    }
+
+    /* Alert */
+    .reg-alert {
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .reg-alert.error {
+      background: #fdecea;
+      color: #c62828;
+      border: 1px solid #f5c6cb;
+      display: flex;
+    }
+    .reg-alert.success {
+      background: #e8f5e9;
+      color: #1b5e20;
+      border: 1px solid #c8e6c9;
+      display: flex;
+    }
+
+    /* Footer */
+    .register-footer-note {
+      text-align: center;
+      margin-top: 1.15rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .register-footer-note a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .register-footer-note a:hover { text-decoration: underline; }
+
+    /* Loading spinner on button */
+    .btn .spinner {
+      display: none;
+      width: 16px; height: 16px;
+      border: 2.5px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    .btn.loading .spinner { display: inline-block; }
+    .btn.loading .btn-text { display: none; }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 540px) {
+      .register-box { padding: 1.5rem 1.15rem 1.25rem; }
+      .form-row { flex-direction: column; gap: 0; }
+      .role-cards { flex-wrap: wrap; }
+      .role-card { min-width: calc(50% - 0.5rem); }
+    }
+  </style>
+</head>
+<body class="register-page">
+  <div class="register-top">
+    <a href="index.html" class="brand">
+      <img src="images/logo-mark.svg" alt="Rural One"> Rural One
+    </a>
+    <a href="login.html" class="back-home"><i class="bi bi-arrow-left"></i> Back to Login</a>
+  </div>
+
+  <div class="register-main">
+    <div class="register-box">
+      <div class="logo"><img src="images/logo.svg" alt="Rural One" class="reg-logo"></div>
+      <h2>Create Your Account</h2>
+      <p class="sub">Join Rural One to access village services</p>
+
+      <!-- Step indicator -->
+      <div class="step-indicator">
+        <div class="step-dot active" id="dot1"></div>
+        <div class="step-line" id="line1"></div>
+        <div class="step-dot" id="dot2"></div>
+        <div class="step-line" id="line2"></div>
+        <div class="step-dot" id="dot3"></div>
+      </div>
+
+      <!-- Alert box -->
+      <div class="reg-alert" id="regAlert">
+        <i class="bi bi-exclamation-circle-fill"></i>
+        <span id="regAlertText"></span>
+      </div>
+
+      <form id="registerForm" novalidate>
+        <!-- Step 1: Choose Role -->
+        <div class="step-panel active" id="step1">
+          <p style="font-weight:600; font-size:0.9rem; margin-bottom:0.75rem; color:var(--charcoal);">
+            <i class="bi bi-person-badge"></i> Select your role
+          </p>
+          <div class="role-cards">
+            <div class="role-card" data-role="Admin" id="roleAdmin">
+              <i class="bi bi-shield-lock"></i>
+              <span>Admin</span>
+            </div>
+            <div class="role-card active" data-role="Citizen" id="roleCitizen">
+              <i class="bi bi-people"></i>
+              <span>Citizen</span>
+            </div>
+            <div class="role-card" data-role="Farmer" id="roleFarmer">
+              <i class="bi bi-tree"></i>
+              <span>Farmer</span>
+            </div>
+          </div>
+          <input type="hidden" id="regRole" value="Citizen">
+
+          <div class="form-group">
+            <label>Full Name <span style="color:#c62828;">*</span></label>
+            <div class="input-icon">
+              <i class="bi bi-person"></i>
+              <input type="text" class="form-control" id="regFullName" placeholder="Enter your full name" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Username <span style="color:#c62828;">*</span></label>
+            <div class="input-icon">
+              <i class="bi bi-at"></i>
+              <input type="text" class="form-control" id="regUsername" placeholder="Choose a username" required>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-green" id="toStep2" style="width:100%;">
+              Next <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Contact Info -->
+        <div class="step-panel" id="step2">
+          <div class="form-group">
+            <label>Phone Number <span style="color:#c62828;">*</span></label>
+            <div class="input-icon">
+              <i class="bi bi-telephone"></i>
+              <input type="tel" class="form-control" id="regPhone" placeholder="10-digit mobile number" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email <span class="optional">(optional)</span></label>
+            <div class="input-icon">
+              <i class="bi bi-envelope"></i>
+              <input type="email" class="form-control" id="regEmail" placeholder="your@email.com">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Village / Area <span class="optional">(optional)</span></label>
+              <div class="input-icon">
+                <i class="bi bi-geo-alt"></i>
+                <input type="text" class="form-control" id="regVillage" placeholder="Village name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Ward <span class="optional">(optional)</span></label>
+              <div class="input-icon">
+                <i class="bi bi-signpost-2"></i>
+                <input type="text" class="form-control" id="regWard" placeholder="Ward number">
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn-outline-green" id="backToStep1">
+              <i class="bi bi-arrow-left"></i> Back
+            </button>
+            <button type="button" class="btn btn-green" id="toStep3">
+              Next <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Password -->
+        <div class="step-panel" id="step3">
+          <div class="form-group">
+            <label>Password <span style="color:#c62828;">*</span></label>
+            <div class="input-icon">
+              <i class="bi bi-lock"></i>
+              <input type="password" class="form-control" id="regPassword" placeholder="At least 6 characters" required style="padding-right:2.8rem;">
+              <button type="button" class="pw-toggle" id="pwToggle1"><i class="bi bi-eye"></i></button>
+            </div>
+            <div class="pw-strength"><div class="pw-bar" id="pwBar"></div></div>
+            <div class="pw-strength-label" id="pwLabel"></div>
+          </div>
+
+          <div class="form-group">
+            <label>Confirm Password <span style="color:#c62828;">*</span></label>
+            <div class="input-icon">
+              <i class="bi bi-lock-fill"></i>
+              <input type="password" class="form-control" id="regConfirmPassword" placeholder="Re-enter your password" required style="padding-right:2.8rem;">
+              <button type="button" class="pw-toggle" id="pwToggle2"><i class="bi bi-eye"></i></button>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn-outline-green" id="backToStep2">
+              <i class="bi bi-arrow-left"></i> Back
+            </button>
+            <button type="submit" class="btn btn-green" id="submitBtn">
+              <span class="btn-text"><i class="bi bi-person-plus"></i> Create Account</span>
+              <span class="spinner"></span>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <p class="register-footer-note">
+        Already have an account? <a href="login.html">Login here</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    (() => {
+      // Elements
+      const dots = [document.getElementById('dot1'), document.getElementById('dot2'), document.getElementById('dot3')];
+      const lines = [document.getElementById('line1'), document.getElementById('line2')];
+      const steps = [document.getElementById('step1'), document.getElementById('step2'), document.getElementById('step3')];
+      const alert = document.getElementById('regAlert');
+      const alertText = document.getElementById('regAlertText');
+
+      let currentStep = 0;
+
+      function goToStep(idx) {
+        steps.forEach((s, i) => {
+          s.classList.toggle('active', i === idx);
+        });
+        dots.forEach((d, i) => {
+          d.classList.remove('active', 'done');
+          if (i < idx) d.classList.add('done');
+          else if (i === idx) d.classList.add('active');
+        });
+        lines.forEach((l, i) => {
+          l.classList.toggle('done', i < idx);
+        });
+        currentStep = idx;
+        hideAlert();
+      }
+
+      function showAlert(msg, type) {
+        alert.className = 'reg-alert ' + type;
+        alert.querySelector('i').className = type === 'error'
+          ? 'bi bi-exclamation-circle-fill'
+          : 'bi bi-check-circle-fill';
+        alertText.textContent = msg;
+      }
+      function hideAlert() {
+        alert.className = 'reg-alert';
+      }
+
+      // Role cards
+      document.querySelectorAll('.role-card').forEach(card => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
+          card.classList.add('active');
+          document.getElementById('regRole').value = card.dataset.role;
+        });
+      });
+
+      // Step navigation
+      document.getElementById('toStep2').addEventListener('click', () => {
+        const name = document.getElementById('regFullName').value.trim();
+        const user = document.getElementById('regUsername').value.trim();
+        if (!name) { showAlert('Please enter your full name', 'error'); return; }
+        if (!user) { showAlert('Please choose a username', 'error'); return; }
+        if (user.length < 3) { showAlert('Username must be at least 3 characters', 'error'); return; }
+        goToStep(1);
+      });
+
+      document.getElementById('toStep3').addEventListener('click', () => {
+        const phone = document.getElementById('regPhone').value.trim();
+        if (!phone) { showAlert('Please enter your phone number', 'error'); return; }
+        if (!/^\d{10}$/.test(phone)) { showAlert('Phone number must be exactly 10 digits', 'error'); return; }
+        goToStep(2);
+      });
+
+      document.getElementById('backToStep1').addEventListener('click', () => goToStep(0));
+      document.getElementById('backToStep2').addEventListener('click', () => goToStep(1));
+
+      // Password strength
+      const pwInput = document.getElementById('regPassword');
+      const pwBar = document.getElementById('pwBar');
+      const pwLabel = document.getElementById('pwLabel');
+      pwInput.addEventListener('input', () => {
+        const val = pwInput.value;
+        let score = 0;
+        if (val.length >= 6) score++;
+        if (val.length >= 10) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        const levels = [
+          { w: '0%', c: '', t: '' },
+          { w: '20%', c: '#e53935', t: 'Weak' },
+          { w: '40%', c: '#fb8c00', t: 'Fair' },
+          { w: '60%', c: '#f9a825', t: 'Good' },
+          { w: '85%', c: '#66bb6a', t: 'Strong' },
+          { w: '100%', c: '#1b5e20', t: 'Excellent' }
+        ];
+        const l = levels[score];
+        pwBar.style.width = l.w;
+        pwBar.style.background = l.c;
+        pwLabel.textContent = l.t;
+        pwLabel.style.color = l.c;
+      });
+
+      // Toggle password visibility
+      function togglePw(btnId, inputId) {
+        document.getElementById(btnId).addEventListener('click', () => {
+          const inp = document.getElementById(inputId);
+          const icon = document.getElementById(btnId).querySelector('i');
+          if (inp.type === 'password') {
+            inp.type = 'text';
+            icon.className = 'bi bi-eye-slash';
+          } else {
+            inp.type = 'password';
+            icon.className = 'bi bi-eye';
+          }
+        });
+      }
+      togglePw('pwToggle1', 'regPassword');
+      togglePw('pwToggle2', 'regConfirmPassword');
+
+      // Form submit
+      document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const password = document.getElementById('regPassword').value;
+        const confirm = document.getElementById('regConfirmPassword').value;
+
+        if (password.length < 6) {
+          showAlert('Password must be at least 6 characters', 'error');
+          return;
+        }
+        if (password !== confirm) {
+          showAlert('Passwords do not match', 'error');
+          return;
+        }
+
+        const payload = {
+          fullName: document.getElementById('regFullName').value.trim(),
+          username: document.getElementById('regUsername').value.trim(),
+          phone: document.getElementById('regPhone').value.trim(),
+          email: document.getElementById('regEmail').value.trim(),
+          password: password,
+          role: document.getElementById('regRole').value,
+          village: document.getElementById('regVillage').value.trim(),
+          ward: document.getElementById('regWard').value.trim()
+        };
+
+        const btn = document.getElementById('submitBtn');
+        btn.classList.add('loading');
+        btn.disabled = true;
+
+        try {
+          const res = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            showAlert('Account created successfully! Redirecting to login...', 'success');
+            setTimeout(() => {
+              window.location.href = 'login.html';
+            }, 1800);
+          } else {
+            showAlert(data.message || 'Registration failed. Please try again.', 'error');
+          }
+        } catch (err) {
+          showAlert('Network error. Please check your connection.', 'error');
+        } finally {
+          btn.classList.remove('loading');
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

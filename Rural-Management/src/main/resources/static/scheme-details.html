@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agricultural Schemes & Support – Rural One</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo-mark.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <button class="floating-sidebar-toggle sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><i class="bi bi-list"></i></button>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-brand">
+        <img src="images/logo-mark.svg" alt="Rural One" class="sidebar-logo">
+        <div>
+          <strong>Rural One</strong>
+          <small>Village Portal</small>
+        </div>
+      </div>
+      <div class="sidebar-section-label">Main Menu</div>
+      <nav class="sidebar-nav">
+        <a href="index.html"><i class="bi bi-house-door-fill"></i> <span>Home</span></a>
+        <a href="about.html"><i class="bi bi-info-circle"></i> <span>About</span></a>
+        <a href="citizens.html"><i class="bi bi-people"></i> <span>Citizens</span></a>
+        <a href="farmers.html" class="active"><i class="bi bi-flower1"></i> <span>Farmers</span></a>
+        <a href="schemes.html"><i class="bi bi-journal-check"></i> <span>Schemes</span></a>
+        <a href="complaints.html"><i class="bi bi-chat-dots"></i> <span>Complaints</span></a>
+        <a href="jobs.html"><i class="bi bi-briefcase"></i> <span>Jobs</span></a>
+        <a href="weather.html"><i class="bi bi-cloud-sun"></i> <span>Weather</span></a>
+        <a href="calendar.html"><i class="bi bi-calendar3"></i> <span>Calendar</span></a>
+        <a href="shg.html"><i class="bi bi-people-fill"></i> <span>SHG</span></a>
+        <a href="residents.html"><i class="bi bi-house"></i> <span>Residents</span></a>
+        <a href="dashboard.html"><i class="bi bi-speedometer2"></i> <span>Dashboard</span></a>
+        <a href="announcements.html"><i class="bi bi-megaphone"></i> <span>Announcements</span></a>
+        <a href="health-services.html"><i class="bi bi-heart-pulse"></i> <span>Health Services</span></a>
+        <a href="feedback.html"><i class="bi bi-star"></i> <span>Feedback</span></a>
+        <a href="contact.html"><i class="bi bi-telephone"></i> <span>Contact</span></a>
+        <a href="profile.html"><i class="bi bi-person-circle"></i> <span>Profile</span></a>
+        <a href="settings.html"><i class="bi bi-gear"></i> <span>Settings</span></a>
+        <a href="login.html"><i class="bi bi-box-arrow-in-right"></i> <span>Login</span></a>
+      </nav>
+      <div class="sidebar-section-label">Quick Actions</div>
+      <div class="sidebar-quick">
+        <a href="complaints.html"><i class="bi bi-pencil-square"></i> Complaint</a>
+        <a href="schemes.html"><i class="bi bi-journal-check"></i> Schemes</a>
+        <a href="jobs.html"><i class="bi bi-briefcase"></i> Jobs</a>
+        <a href="weather.html"><i class="bi bi-cloud-sun"></i> Weather</a>
+      </div>
+      <div class="sidebar-stats">
+        <div class="sidebar-stat"><span>2,450</span><small>Citizens</small></div>
+        <div class="sidebar-stat"><span>380</span><small>Farmers</small></div>
+        <div class="sidebar-stat"><span>12</span><small>Open Issues</small></div>
+      </div>
+      <div class="sidebar-footer-box">
+        <i class="bi bi-geo-alt-fill"></i>
+        <div>
+          <strong>Rampur Village</strong>
+          <small>Office: Mon–Sat 10AM–5PM</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="app-main">
+      <section class="page-hero">
+        <div class="container">
+          <div class="detail-toolbar" style="margin-bottom:0.75rem;">
+            <div class="breadcrumb" style="margin-bottom:0;"><a href="index.html">Home</a> / <a href="farmers.html">Farmers</a> / Agri Scheme Details</div>
+            <a href="farmers.html" class="btn-back"><i class="bi bi-arrow-left"></i> Back to Farmers</a>
+          </div>
+          <h1>Agricultural Schemes & Support Details</h1>
+          <p>Direct benefit transfers, subsidized crop insurance, concessional credit, and precision micro-irrigation for Rampur farmers.</p>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:2rem;">
+        <!-- Metrics -->
+        <div class="grid-auto" style="margin-bottom:2rem;">
+          <div class="stat-card">
+            <i class="bi bi-bank"></i>
+            <div class="num">5</div>
+            <div class="lbl">Active Agri Schemes</div>
+          </div>
+          <div class="stat-card">
+            <i class="bi bi-cash-coin"></i>
+            <div class="num">₹6,000 / yr</div>
+            <div class="lbl">PM-KISAN DBT</div>
+          </div>
+          <div class="stat-card">
+            <i class="bi bi-percent"></i>
+            <div class="num">55%</div>
+            <div class="lbl">Max Drip Irrigation Subsidy</div>
+          </div>
+          <div class="stat-card">
+            <i class="bi bi-credit-card-fill"></i>
+            <div class="num">4%</div>
+            <div class="lbl">KCC Concessional Interest</div>
+          </div>
+        </div>
+
+        <!-- Detailed Scheme Cards -->
+        <div class="grid-auto" style="grid-template-columns:1fr;gap:1.75rem;margin-bottom:2.5rem;">
+          
+          <!-- PM-KISAN -->
+          <div class="card card-body">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-currency-rupee"></i></div>
+                <div>
+                  <h3 style="margin:0;">PM-KISAN Samman Nidhi</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Ministry of Agriculture & Farmers Welfare · Direct Benefit Transfer</small>
+                </div>
+              </div>
+              <span class="badge badge-success"><i class="bi bi-check-circle"></i> Active & Enrolling</span>
+            </div>
+            <p style="margin-top:1rem;color:var(--text);font-size:0.95rem;">
+              Provides 100% centrally sponsored income support of ₹6,000 per annum to all eligible landholder farmer families, transferred directly into their Aadhaar-linked bank accounts in three equal 4-monthly tranches of ₹2,000.
+            </p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Financial Benefit</small><strong>₹6,000 / Year (DBT)</strong></div>
+              <div class="spec-box"><small>Eligibility Criteria</small><strong>Landholding Farmer Families</strong></div>
+              <div class="spec-box"><small>Disbursement Mode</small><strong>Aadhaar-seeded Bank A/C</strong></div>
+              <div class="spec-box"><small>Panchayat Helpdesk</small><strong>Desk 1 (Gram Sevak)</strong></div>
+            </div>
+            <div style="margin-top:1.25rem;padding:1rem;background:var(--cream);border-radius:10px;">
+              <div style="font-size:0.85rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.35rem;"><i class="bi bi-file-earmark-text"></i> Required Documents for Rampur Desk:</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                <span class="member-chip"><i class="bi bi-check-circle"></i> Aadhaar Card</span>
+                <span class="member-chip"><i class="bi bi-check-circle"></i> Land Record (Khatauni / Jamabandi)</span>
+                <span class="member-chip"><i class="bi bi-check-circle"></i> Bank Passbook with IFSC</span>
+                <span class="member-chip"><i class="bi bi-check-circle"></i> Active Mobile No. Linked to Aadhaar</span>
+              </div>
+            </div>
+            <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+              <a href="https://pmkisan.gov.in" target="_blank" class="btn btn-outline-green btn-sm">Official Portal <i class="bi bi-box-arrow-up-right"></i></a>
+              <span style="font-size:0.85rem;color:var(--text-muted);">Toll-Free Helpline: 155261 / 1800115526</span>
+            </div>
+          </div>
+
+          <!-- PMFBY -->
+          <div class="card card-body">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-shield-check"></i></div>
+                <div>
+                  <h3 style="margin:0;">Pradhan Mantri Fasal Bima Yojana (PMFBY)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Comprehensive Yield & Weather Risk Crop Insurance</small>
+                </div>
+              </div>
+              <span class="badge badge-success"><i class="bi bi-check-circle"></i> Active For Rabi Season</span>
+            </div>
+            <p style="margin-top:1rem;color:var(--text);font-size:0.95rem;">
+              Insures farmers against non-preventable natural risks (drought, dry spells, floods, inundation, pests, diseases, hailstorms, and unseasonal rains). Farmers pay nominal premium (1.5% for Rabi, 2% for Kharif) with 85%+ subsidized by Government.
+            </p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Farmer Premium Share</small><strong>1.5% (Rabi) / 2.0% (Kharif)</strong></div>
+              <div class="spec-box"><small>Coverage Type</small><strong>Sowing to Post-Harvest</strong></div>
+              <div class="spec-box"><small>Claim Assessment</small><strong>Satellite & Drone CCE</strong></div>
+              <div class="spec-box"><small>Intimation Window</small><strong>Within 72 Hours of Loss</strong></div>
+            </div>
+            <div style="margin-top:1.25rem;padding:1rem;background:var(--cream);border-radius:10px;">
+              <div style="font-size:0.85rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.35rem;"><i class="bi bi-file-earmark-text"></i> Required Documents:</div>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                <span class="member-chip"><i class="bi bi-check-circle"></i> Sowing Certificate / Self-Declaration</span>
+                <span class="member-chip"><i class="bi bi-check-circle"></i> Land Revenue Record / Khasra No.</span>
+                <span class="member-chip"><i class="bi bi-check-circle"></i> Bank Account Details</span>
+                <span class="member-chip"><i class="bi bi-check-circle"></i> Aadhaar Card</span>
+              </div>
+            </div>
+            <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+              <a href="https://pmfby.gov.in" target="_blank" class="btn btn-outline-green btn-sm">Official Portal <i class="bi bi-box-arrow-up-right"></i></a>
+              <span style="font-size:0.85rem;color:var(--text-muted);">Crop Loss Toll-Free: 1800 180 1551</span>
+            </div>
+          </div>
+
+          <!-- Soil Health Card -->
+          <div class="card card-body">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-card-checklist"></i></div>
+                <div>
+                  <h3 style="margin:0;">Soil Health Card Scheme</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Ministry of Agriculture & Farmers Welfare · Scientific Soil Nutrition</small>
+                </div>
+              </div>
+              <span class="badge badge-success"><i class="bi bi-check-circle"></i> 100% Free Testing</span>
+            </div>
+            <p style="margin-top:1rem;color:var(--text);font-size:0.95rem;">
+              Provides customized soil assessment cards every two years, analyzing 12 critical chemical and physical parameters (N, P, K, S, Zn, Fe, Cu, Mn, Bo, pH, EC, OC) to advise farmers on exact fertilizer doses, saving up to 25% on input costs.
+            </p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Cost to Farmer</small><strong>100% Free of Cost</strong></div>
+              <div class="spec-box"><small>Parameters Tested</small><strong>12 Macro & Micro Nutrients</strong></div>
+              <div class="spec-box"><small>Validity</small><strong>2 Years (Cycle II)</strong></div>
+              <div class="spec-box"><small>Soil Collection Center</small><strong>Rampur Village Office</strong></div>
+            </div>
+            <div style="margin-top:1.25rem;padding:1rem;background:var(--cream);border-radius:10px;">
+              <div style="font-size:0.85rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.35rem;"><i class="bi bi-file-earmark-text"></i> How to Submit Soil Sample:</div>
+              <p style="margin:0;font-size:0.88rem;color:var(--text-muted);">Collect 'V' shaped soil slices from 8-10 points in your plot (depth 15cm). Mix thoroughly, pack 500g in clean bag with survey number and drop at Rampur Panchayat desk.</p>
+            </div>
+            <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+              <a href="https://soilhealth.dac.gov.in" target="_blank" class="btn btn-outline-green btn-sm">Official Portal <i class="bi bi-box-arrow-up-right"></i></a>
+              <span style="font-size:0.85rem;color:var(--text-muted);">Next Collection Drive: Monday 10:00 AM</span>
+            </div>
+          </div>
+
+          <!-- KCC -->
+          <div class="card card-body">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-credit-card-2-front"></i></div>
+                <div>
+                  <h3 style="margin:0;">Kisan Credit Card (KCC)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">NABARD & Commercial Banks · Flexible Low-Interest Farm Credit</small>
+                </div>
+              </div>
+              <span class="badge badge-success"><i class="bi bi-check-circle"></i> Fast-Track Approval</span>
+            </div>
+            <p style="margin-top:1rem;color:var(--text);font-size:0.95rem;">
+              Single-window institutional credit facility enabling farmers to purchase seeds, fertilizers, tractor diesel, crop labor, and meet post-harvest storage expenses at a heavily subsidized effective interest rate of 4% per year on prompt repayment.
+            </p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Collateral-Free Limit</small><strong>Up to ₹3,00,000</strong></div>
+              <div class="spec-box"><small>Effective Interest Rate</small><strong>4% p.a. (with subvention)</strong></div>
+              <div class="spec-box"><small>Tenure / Validity</small><strong>5 Years (Revolving)</strong></div>
+              <div class="spec-box"><small>Participating Bank</small><strong>SBI & Bank of Baroda</strong></div>
+            </div>
+            <div style="margin-top:1.25rem;padding:1rem;background:var(--cream);border-radius:10px;">
+              <div style="font-size:0.85rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.35rem;"><i class="bi bi-file-earmark-text"></i> Eligibility & Process:</div>
+              <p style="margin:0;font-size:0.88rem;color:var(--text-muted);">Open to all owner cultivators, tenant farmers, sharecroppers, and SHG joint liability groups. Submit land cultivation slip and Aadhaar to SBI Rampur branch for 14-day sanction.</p>
+            </div>
+            <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+              <a href="https://www.nabard.org" target="_blank" class="btn btn-outline-green btn-sm">NABARD KCC Portal <i class="bi bi-box-arrow-up-right"></i></a>
+              <span style="font-size:0.85rem;color:var(--text-muted);">Rampur Nodal Officer: +91 98765 44000</span>
+            </div>
+          </div>
+
+          <!-- Micro Irrigation -->
+          <div class="card card-body">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;">
+              <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="icon-box" style="margin-bottom:0;"><i class="bi bi-droplet-half"></i></div>
+                <div>
+                  <h3 style="margin:0;">PM Krishi Sinchayee Yojana (Per Drop More Crop)</h3>
+                  <small style="color:var(--text-muted);font-weight:600;">Ministry of Jal Shakti · Drip & Sprinkler Micro Irrigation Subsidy</small>
+                </div>
+              </div>
+              <span class="badge badge-success"><i class="bi bi-check-circle"></i> 55% Direct Subsidy</span>
+            </div>
+            <p style="margin-top:1rem;color:var(--text);font-size:0.95rem;">
+              Encourages water-saving micro-irrigation systems to improve crop water productivity. Small and marginal farmers receive 55% direct financial subsidy on certified drip or sprinkler irrigation equipment installations.
+            </p>
+            <div class="spec-grid">
+              <div class="spec-box"><small>Small/Marginal Subsidy</small><strong>55% of Approved Cost</strong></div>
+              <div class="spec-box"><small>Other Farmers Subsidy</small><strong>45% of Cost</strong></div>
+              <div class="spec-box"><small>Water Saving Rate</small><strong>40% to 50% Water Saved</strong></div>
+              <div class="spec-box"><small>Yield Enhancement</small><strong>20% to 35% Yield Increase</strong></div>
+            </div>
+            <div style="margin-top:1.25rem;padding:1rem;background:var(--cream);border-radius:10px;">
+              <div style="font-size:0.85rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.35rem;"><i class="bi bi-file-earmark-text"></i> Application Steps:</div>
+              <p style="margin:0;font-size:0.88rem;color:var(--text-muted);">Verify water source at Panchayat -> Select empanelled drip manufacturer -> Receive field survey & estimation -> Department sanction -> Installation with GPS tag.</p>
+            </div>
+            <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+              <a href="https://pmksy.gov.in" target="_blank" class="btn btn-outline-green btn-sm">Official Portal <i class="bi bi-box-arrow-up-right"></i></a>
+              <span style="font-size:0.85rem;color:var(--text-muted);">Empanelled Vendors List at Panchayat Office</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4-Step Application Walkthrough -->
+        <div class="card card-body">
+          <h4 style="margin-bottom:1.25rem;color:var(--primary-dark);"><i class="bi bi-diagram-3-fill" style="color:var(--fresh);"></i> 4-Step Panchayat Application Process</h4>
+          <div class="grid-4" style="text-align:center;">
+            <div class="spec-box">
+              <div style="font-size:1.75rem;font-weight:800;color:var(--fresh);margin-bottom:0.35rem;">01</div>
+              <h5 style="margin-bottom:0.25rem;">Document Check</h5>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">Bring Aadhaar, Land deed & Bank passbook to Panchayat Office.</p>
+            </div>
+            <div class="spec-box">
+              <div style="font-size:1.75rem;font-weight:800;color:var(--fresh);margin-bottom:0.35rem;">02</div>
+              <h5 style="margin-bottom:0.25rem;">E-Kendra Entry</h5>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">Free digital application entry by village portal operator.</p>
+            </div>
+            <div class="spec-box">
+              <div style="font-size:1.75rem;font-weight:800;color:var(--fresh);margin-bottom:0.35rem;">03</div>
+              <h5 style="margin-bottom:0.25rem;">Field Verification</h5>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">Patwari & Agriculture Supervisor inspect survey numbers.</p>
+            </div>
+            <div class="spec-box">
+              <div style="font-size:1.75rem;font-weight:800;color:var(--fresh);margin-bottom:0.35rem;">04</div>
+              <h5 style="margin-bottom:0.25rem;">Direct Credit</h5>
+              <p style="font-size:0.82rem;color:var(--text-muted);margin:0;">Subsidies & DBT benefits directly credited to bank account.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-grid">
+            <div>
+              <h5><img src="images/logo-mark.svg" alt="" class="footer-logo"> Rural One</h5>
+              <p>A simple digital platform for village administration, farmers, schemes, jobs and citizen services.</p>
+              <div class="footer-social">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-whatsapp"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
+              </div>
+            </div>
+            <div>
+              <h5>Quick Links</h5>
+              <a href="index.html">Home</a>
+              <a href="about.html">About</a>
+              <a href="schemes.html">Schemes</a>
+              <a href="jobs.html">Jobs</a>
+              <a href="calendar.html">Calendar</a>
+              <a href="announcements.html">Announcements</a>
+              <a href="contact.html">Contact</a>
+              <a href="login.html">Login</a>
+            </div>
+            <div>
+              <h5>Services</h5>
+              <a href="citizens.html">Citizens</a>
+              <a href="farmers.html">Farmers</a>
+              <a href="complaints.html">Complaints</a>
+              <a href="health-services.html">Health Services</a>
+              <a href="shg.html">Self Help Groups</a>
+              <a href="weather.html">Weather</a>
+              <a href="dashboard.html">Dashboard</a>
+              <a href="residents.html">Residents</a>
+            </div>
+            <div>
+              <h5>Contact</h5>
+              <p><i class="bi bi-geo-alt"></i> Gram Panchayat Office, Rampur</p>
+              <p><i class="bi bi-telephone"></i> +91 98765 44000</p>
+              <p><i class="bi bi-envelope"></i> office@rampur-village.gov.in</p>
+            </div>
+          </div>
+          <div class="footer-bottom">&copy; 2026 Rural One. All rights reserved.</div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <script src="js/script.js"></script>
+  <script>
+    // Live Spring Boot sync
+    fetch('/api/schemes')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(schemes => {
+        console.log('Loaded schemes from backend:', schemes.length);
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
