@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduConnect | Attendance</title>
+
+    <!-- Main EduConnect stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         ATTENDANCE PAGE
+         ===================================================== -->
+
+    <div class="dashboard">
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="sidebar">
+
+            <!-- EduConnect Brand -->
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">E</div>
+                <span>EduConnect</span>
+            </div>
+
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+
+                <p>Menu</p>
+
+                <a href="student-dashboard.html" class="nav-link">
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="attendance.html" class="nav-link active">
+                    <span class="nav-icon">◷</span>
+                    <span>Attendance</span>
+                </a>
+
+                <a href="assignments.html" class="nav-link">
+                    <span class="nav-icon">✓</span>
+                    <span>Assignments</span>
+                </a>
+
+                <a href="materials.html" class="nav-link">
+                    <span class="nav-icon">▣</span>
+                    <span>Study Materials</span>
+                </a>
+
+                <a href="results.html" class="nav-link">
+                    <span class="nav-icon">▤</span>
+                    <span>Results</span>
+                </a>
+
+                <a href="study-coach.html" class="nav-link">
+                    <span class="nav-icon">✦</span>
+                    <span>AI Study Coach</span>
+                </a>
+
+            </nav>
+
+
+            <!-- Sidebar Profile -->
+            <div class="sidebar-profile">
+
+                <div class="profile-avatar" id="profile-avatar">
+                    S
+                </div>
+
+                <div class="profile-info">
+
+                    <span class="profile-name" id="profile-name">
+                        Student
+                    </span>
+
+                    <span class="profile-role">
+                        Student
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
+
+        <main class="dashboard-main">
+
+            <!-- =================================================
+                 PAGE HEADER
+                 ================================================= -->
+
+            <header class="dashboard-header">
+
+                <div class="dashboard-heading">
+
+                    <h1>Attendance</h1>
+
+                    <p>
+                        Track your attendance across all subjects.
+                    </p>
+
+                </div>
+
+                <div class="header-actions">
+
+                    <div class="notification" title="Notifications">
+                        🔔
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 ATTENDANCE SUMMARY
+                 ================================================= -->
+
+            <section class="stats-grid">
+
+                <!-- Overall Attendance -->
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div>
+
+                            <div class="stat-label">
+                                Overall Attendance
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="overall-attendance">
+                                --
+                            </div>
+
+                            <div class="stat-subtext">
+                                Current semester
+                            </div>
+
+                        </div>
+
+                        <div class="stat-icon">
+                            📊
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Classes Attended -->
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div>
+
+                            <div class="stat-label">
+                                Classes Attended
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="classes-attended">
+                                --
+                            </div>
+
+                            <div
+                                class="stat-subtext"
+                                id="classes-total">
+                                Loading...
+                            </div>
+
+                        </div>
+
+                        <div class="stat-icon">
+                            ✓
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Classes Missed -->
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div>
+
+                            <div class="stat-label">
+                                Classes Missed
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="classes-missed">
+                                --
+                            </div>
+
+                            <div class="stat-subtext">
+                                This semester
+                            </div>
+
+                        </div>
+
+                        <div class="stat-icon">
+                            ⚠
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Attendance Status -->
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div>
+
+                            <div class="stat-label">
+                                Attendance Status
+                            </div>
+
+                            <div
+                                class="stat-value"
+                                id="attendance-status">
+                                --
+                            </div>
+
+                            <div
+                                class="stat-subtext"
+                                id="attendance-status-text">
+                                Calculating...
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="stat-icon"
+                            id="attendance-status-icon">
+                            🟢
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SUBJECT-WISE ATTENDANCE
+                 ================================================= -->
+
+            <section class="dashboard-card">
+
+                <div class="card-header">
+
+                    <h2>Subject-wise Attendance</h2>
+
+                    <span class="stat-subtext">
+                        Minimum required: 75%
+                    </span>
+
+                </div>
+
+
+                <!-- Dynamic attendance rows will appear here -->
+
+                <div id="attendance-list">
+
+                    <p>
+                        Loading attendance...
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ATTENDANCE DETAILS TABLE
+                 ================================================= -->
+
+            <section class="dashboard-card attendance-table-card">
+
+                <div class="card-header">
+
+                    <h2>Attendance Details</h2>
+
+                </div>
+
+
+                <div class="attendance-table-wrapper">
+
+                    <table class="attendance-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Subject</th>
+
+                                <th>Total Classes</th>
+
+                                <th>Present</th>
+
+                                <th>Absent</th>
+
+                                <th>Attendance</th>
+
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="attendance-table-body">
+
+                            <tr>
+
+                                <td colspan="6">
+                                    Loading attendance...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ATTENDANCE TIP
+                 ================================================= -->
+
+            <section class="study-coach-card">
+
+                <div class="coach-content">
+
+                    <div class="coach-icon">
+                        💡
+                    </div>
+
+                    <div class="coach-text">
+
+                        <h3>
+                            Attendance Insight
+                        </h3>
+
+                        <p id="attendance-insight">
+                            Loading attendance insight...
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="study-coach.html"
+                        class="coach-button">
+                        Open Study Coach
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- Shared JavaScript -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
